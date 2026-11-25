@@ -20,6 +20,12 @@ Publish `index.html`, `styles.css`, the top-level JavaScript modules, `spar_jobs
 
 The job snapshot is generated separately; see [Updating job data](../README.md#updating-job-data). The footer shows how long ago the snapshot was written, with the exact Austrian local time on hover.
 
+### GitHub Pages
+
+In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**. The [GitHub Pages workflow](../.github/workflows/pages.yml) refreshes the jobs every six hours (at 00:17, 06:17, 12:17, and 18:17 UTC), on pushes to `main`, or when run manually from **Actions** on `main`. It deploys the refreshed snapshot as part of the Pages artifact without committing it back to the repository.
+
+Pull requests package the checked-in snapshot without contacting SPAR or deploying. Production runs use `update`, not location maintenance. If refreshing the snapshot fails, the workflow stops before deployment and the currently published site stays online.
+
 ## Source layout
 
 - `index.html` and `styles.css`: markup and styling. See the [SPAR Careers style guide](../docs/style-guide.md).
