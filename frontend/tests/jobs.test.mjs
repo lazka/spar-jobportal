@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { filterJobs, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs } from '../jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs } from '../jobs.js';
 
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
@@ -60,6 +60,24 @@ await test('radius results are closest first, preserving the original order for 
   assert.deepEqual(filterJobs(nearby, { center: vienna, radiusKm: 30 }),
     [nearby[1], nearby[3], nearby[2], nearby[0]]);
   assert.deepEqual(filterJobs(nearby, {}), nearby);
+});
+
+await test('the map view uses SPAR site coordinates and excludes unmapped jobs', () => {
+  assert.deepEqual(filterJobsInMapView(jobs, ([lat]) => lat >= 48), [jobs[0]]);
+  assert.deepEqual(filterJobsInMapView(jobs, ([lat]) => lat < 48), [jobs[1]]);
+  assert.deepEqual(filterJobsInMapView(jobs, () => true), jobs.slice(0, 2));
+  assert.deepEqual(filterJobsInMapView(jobs, () => false), []);
+});
+
+await test('the map view narrows existing filters without changing nearest-first order', () => {
+  const nearby = normalizeJobs([
+    { state: 'Wien', unit: { coordinates: [48.3, 16.37] } },
+    { state: 'Wien', unit: { coordinates: vienna } },
+    { state: 'Niederösterreich', unit: { coordinates: vienna } },
+    { state: 'Wien', unit: { coordinates: [48.24, 16.37] } },
+  ]);
+  const matches = filterJobs(nearby, { states: ['Wien'], center: vienna, radiusKm: 30 });
+  assert.deepEqual(filterJobsInMapView(matches, ([lat]) => lat < 48.25), [nearby[1], nearby[3]]);
 });
 
 await test('state filters match any selected state and include multi-state jobs only once', () => {

@@ -1,4 +1,16 @@
 {
+  "150723": {
+    "latitude": 47.2069765,
+    "longitude": 10.1402867,
+    "source": "© OpenStreetMap contributors: https://www.openstreetmap.org/node/505819935",
+    "note": "Mapped SPAR supermarket at Omesberg 211, 6764 Lech. Address confirmed by https://www.spar.at/standorte/spar-lech-6764-omesberg-haus-nr-211."
+  },
+  "162456": {
+    "latitude": 48.417341,
+    "longitude": 15.620187,
+    "source": "© OpenStreetMap contributors: https://www.openstreetmap.org/way/35214132",
+    "note": "Center of the MARIANDL shopping center footprint, not the center management office or an entrance. SES confirms Wiener Straße 91, 3500 Krems: https://www.ses-european.com/en/center/mariandl/."
+  },
   "161251": {
     "address": "Abelstraße 8, 4082 Aschach an der Donau",
     "note": "The official SPAR store page confirms this branch and address: https://www.spar.at/standorte/spar-aschach-4082-abelstrasse-8. Nominatim identifies the supermarket as OpenStreetMap way 561159156."

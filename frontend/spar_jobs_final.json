@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-25T21:49:21+00:00",
+  "lastUpdated": "2026-11-25T21:58:06+00:00",
   "jobs": [
     {
       "id": 8054,
@@ -15,9 +15,12 @@
       "unit": {
         "id": 161125,
         "name": "ES2-04-219 Wien, 21. Bez., Brünnerstr.",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Brünnerstraße 184, 1210 Wien, Österreich",
+        "addressSourceJobId": 8054,
+        "coordinates": [
+          48.2830702,
+          16.4139929
+        ]
       }
     },
     {
@@ -34,9 +37,12 @@
       "unit": {
         "id": 150723,
         "name": "SM2-01-277 Lech",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Omesberg Haus Nr. 211, 6764 Lech, Österreich",
+        "addressSourceJobId": 8050,
+        "coordinates": [
+          47.2069765,
+          10.1402867
+        ]
       }
     },
     {
@@ -8457,9 +8463,12 @@
       "unit": {
         "id": 153065,
         "name": "SM2-06-422 Bodensdorf",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Bundesstraße 34, 9551 Bodensdorf, Österreich",
+        "addressSourceJobId": 8061,
+        "coordinates": [
+          46.6822437,
+          13.9705879
+        ]
       }
     },
     {
@@ -8476,9 +8485,12 @@
       "unit": {
         "id": 153562,
         "name": "SM2-06-336 Moosburg",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Wachenbuchenerstraße 2, 9062 Moosburg, Österreich",
+        "addressSourceJobId": 8060,
+        "coordinates": [
+          46.6587086,
+          14.1790894
+        ]
       }
     },
     {
@@ -8495,9 +8507,12 @@
       "unit": {
         "id": 153562,
         "name": "SM2-06-336 Moosburg",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Wachenbuchenerstraße 2, 9062 Moosburg, Österreich",
+        "addressSourceJobId": 8060,
+        "coordinates": [
+          46.6587086,
+          14.1790894
+        ]
       }
     },
     {
@@ -8514,9 +8529,12 @@
       "unit": {
         "id": 153562,
         "name": "SM2-06-336 Moosburg",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Wachenbuchenerstraße 2, 9062 Moosburg, Österreich",
+        "addressSourceJobId": 8060,
+        "coordinates": [
+          46.6587086,
+          14.1790894
+        ]
       }
     },
     {
@@ -8533,9 +8551,12 @@
       "unit": {
         "id": 152783,
         "name": "SM2-06-321 Fürnitz",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Rosentalstraße 2, 9586 Fürnitz, Österreich",
+        "addressSourceJobId": 8057,
+        "coordinates": [
+          46.5666832,
+          13.8103801
+        ]
       }
     },
     {
@@ -8596,9 +8617,12 @@
       "unit": {
         "id": 151639,
         "name": "SM2-06-345 St. Kanzian",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Klopeinerstraße 2, 9122 St. Kanzian, Österreich",
+        "addressSourceJobId": 8052,
+        "coordinates": [
+          46.6151546,
+          14.5745541
+        ]
       }
     },
     {
@@ -8659,9 +8683,12 @@
       "unit": {
         "id": 151403,
         "name": "IM65 Wörgl",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Innsbruckerstraße 104, 6300 Wörgl, Österreich",
+        "addressSourceJobId": 8047,
+        "coordinates": [
+          47.4770073,
+          12.0452815
+        ]
       }
     },
     {
@@ -9624,9 +9651,12 @@
       "unit": {
         "id": 153065,
         "name": "SM2-06-422 Bodensdorf",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Bundesstraße 34, 9551 Bodensdorf, Österreich",
+        "addressSourceJobId": 8061,
+        "coordinates": [
+          46.6822437,
+          13.9705879
+        ]
       }
     },
     {
@@ -34195,9 +34225,12 @@
       "unit": {
         "id": 162456,
         "name": "MARIANDL / SES Center Management GmbH",
-        "address": null,
-        "addressSourceJobId": null,
-        "coordinates": null
+        "address": "Wienerstraße 91, 3500 Krems, Österreich",
+        "addressSourceJobId": 8046,
+        "coordinates": [
+          48.417341,
+          15.620187
+        ]
       }
     },
     {

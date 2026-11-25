@@ -197,5 +197,11 @@ export function createMap(container, onSelectSite) {
     clusters.zoomToShowLayer(marker, () => marker.openPopup());
   }
 
-  return { draw, fit, showSite, translate, closePopup: () => map.closePopup() };
+  return {
+    draw, fit, showSite, translate,
+    getBounds: () => map.getBounds(),
+    /** @param {() => void} callback */
+    onViewChange: callback => { map.on('moveend', callback); },
+    closePopup: () => map.closePopup()
+  };
 }

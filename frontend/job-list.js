@@ -150,15 +150,15 @@ export function createJobList({ list, more, count, selection, message }, onShowS
 
   /**
    * @param {Job[]} jobs
-   * @param {{selected: string | null, center?: Coordinates, preservePages?: boolean}} options
+   * @param {{selected: string | null, center?: Coordinates, preservePages?: boolean, limitToMapView?: boolean}} options
    */
-  function render(jobs, { selected, center: activeCenter, preservePages }) {
+  function render(jobs, { selected, center: activeCenter, preservePages, limitToMapView }) {
     shown = jobs;
     center = activeCenter;
     count.textContent = t('jobCount', { count: shown.length });
     selection.hidden = !selected;
     message.hidden = shown.length !== 0;
-    message.textContent = t('noJobs');
+    message.textContent = t(limitToMapView ? 'noJobsInMapView' : 'noJobs');
     list.replaceChildren();
     const size = preservePages ? Math.max(pageSize, rendered) : pageSize;
     rendered = 0;

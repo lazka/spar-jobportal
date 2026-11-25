@@ -115,6 +115,14 @@ export function filterJobs(jobs, { query = '', states = [], fields = [], working
   }).sort((a, b) => a.distance - b.distance).map(({ job }) => job);
 }
 
+/**
+ * @param {Job[]} jobs
+ * @param {(pair: Coordinates) => boolean} contains
+ */
+export function filterJobsInMapView(jobs, contains) {
+  return jobs.filter(job => job.siteKey && job.unit?.coordinates && contains(job.unit.coordinates));
+}
+
 /** @param {Job[]} jobs */
 export function groupSites(jobs) {
   /** @type {Map<string, Site>} */

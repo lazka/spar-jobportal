@@ -142,7 +142,7 @@
           <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Nicht auf der Karte: Standortdaten fehlen.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
           <div class="notice" id="selection" hidden>
             <p data-i18n="siteSelection">Nur Stellen am ausgewählten Kartenstandort</p>
-            <button type="button" id="clear-site" data-i18n="clearSite">Alle Standorte anzeigen</button>
+            <button type="button" id="clear-site" data-i18n="clearSite">Standortauswahl aufheben</button>
           </div>
           <p class="notice" id="message" hidden></p>
           <ul id="list"></ul>
@@ -153,7 +153,11 @@
             <h2 id="map-title" data-i18n="locations">Standorte</h2>
           </div>
           <div id="map" role="region" aria-label="Karte der SPAR-Standorte" data-i18n-aria-label="mapRegion"><p data-i18n="loadingMap">Karte wird geladen …</p></div>
-          <p class="map-note" data-i18n="mapNote">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt. Die Entfernung misst die Luftlinie zum SPAR-Standort, nicht unbedingt zu deinem Dienstort.</p>
+          <label class="map-view-filter" id="map-view-filter" hidden>
+            <input type="checkbox" id="filter-map-view" aria-controls="list" aria-describedby="map-view-note">
+            <span data-i18n="filterMapView">Liste auf Kartenausschnitt begrenzen</span>
+          </label>
+          <p class="map-note"><span data-i18n="mapNote">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt.</span> <span id="map-view-note" data-i18n="mapViewNote" hidden>Der Kartenfilter nutzt die eingezeichneten SPAR-Standorte und blendet Stellen ohne Kartenstandort aus.</span></p>
         </section>
       </div>
       <noscript>Diese Seite benötigt JavaScript, um Stellen und Karte anzuzeigen.</noscript>

@@ -1,6 +1,6 @@
 import { createJobList } from './job-list.js';
 import { createJobShare } from './job-share.js';
-import { filterJobs, formatDatasetAge, groupSites, loadJobs } from './jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, loadJobs } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
 import { changeLanguage, initLanguage, jobLabel, language, locale, t, translateMarkup } from './i18n.js';
@@ -144,6 +144,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   const clearPlace = control('clear-place', HTMLButtonElement);
   const unmappedButton = control('show-unmapped', HTMLButtonElement);
   const unmappedNote = $('unmapped-note');
+  const mapViewCheckbox = control('filter-map-view', HTMLInputElement);
+  mapViewCheckbox.checked = false;
+  const mapViewNote = $('map-view-note');
   const radius = () => Number(radiusSelect.value);
 
   advancedToggle.addEventListener('click', () => {
@@ -159,7 +162,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const map = createMap($('map'), key => {
     selected = key;
     renderList();
-    $('clear-site').focus();
+    (selected ? $('clear-site') : mapViewCheckbox).focus();
   });
 
   const jobCount = $('count');
@@ -207,10 +210,14 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderList(preservePages = false) {
+    const limitToMapView = mapViewCheckbox.checked;
+    const bounds = limitToMapView ? map?.getBounds() : undefined;
+    const visibleJobs = bounds ? filterJobsInMapView(matches, pair => bounds.contains(pair)) : matches;
     const site = selected ? sites.get(selected) : undefined;
+    if (site && bounds && !bounds.contains(site.pair)) selected = null;
     clearKeyword.hidden = !search.value;
     const activeFilters = [search.value.trim(), state.renderSummary(), field.renderSummary(),
-      employment.renderSummary(), showUnmapped].filter(Boolean).length;
+      employment.renderSummary(), showUnmapped, limitToMapView].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
     activeFilterActions.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
@@ -218,12 +225,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     unmappedButton.setAttribute('aria-pressed', String(showUnmapped));
     unmappedNote.hidden = !showUnmapped;
     $('unmapped-radius-note').hidden = !center;
-    jobList.render(site?.jobs ?? matches, {
-      selected, center: center?.pair, preservePages
+    mapViewNote.hidden = !limitToMapView;
+    jobList.render((selected && site) ? site.jobs : visibleJobs, {
+      selected, center: center?.pair, preservePages, limitToMapView
     });
   }
 
-  function applyFilters() {
+  function applyFilters(fitView = !mapViewCheckbox.checked) {
     const radiusKm = radius();
     const matchingFilters = filterJobs(jobs, {
       query: search.value.trim(),
@@ -238,7 +246,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     selected = null;
     sites = groupSites(matches);
     map?.draw(sites, activeCenter, radiusKm);
-    if (!showUnmapped) map?.fit();
+    if (fitView && !showUnmapped) map?.fit();
     renderList();
   }
 
@@ -253,7 +261,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     clearPlace.hidden = false;
     placeStatus = 'radiusStatus';
     renderPlaceStatus();
-    applyFilters();
+    applyFilters(true);
   }
 
   function renderPlaceStatus() {
@@ -325,6 +333,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   filters.addEventListener('reset', () => {
     if (document.activeElement === resetFilters) advancedToggle.focus();
     showUnmapped = false;
+    mapViewCheckbox.checked = false;
     window.clearTimeout(debounce);
     window.setTimeout(applyFilters, 0);
   });
@@ -336,8 +345,21 @@ window.addEventListener('DOMContentLoaded', async () => {
   });
   unmappedButton.addEventListener('click', () => {
     showUnmapped = !showUnmapped;
+    if (showUnmapped) mapViewCheckbox.checked = false;
     applyFilters();
   });
+  if (map) {
+    $('map-view-filter').hidden = false;
+    mapViewCheckbox.addEventListener('change', () => {
+      if (mapViewCheckbox.checked && showUnmapped) {
+        showUnmapped = false;
+        applyFilters();
+      } else {
+        renderList();
+      }
+    });
+    map.onViewChange(() => { if (mapViewCheckbox.checked) renderList(true); });
+  }
   $('nearby').addEventListener('submit', findPlace);
   radiusSelect.addEventListener('change', () => { if (center) selectPlace(center); });
   placeResult.addEventListener('change', () => {
