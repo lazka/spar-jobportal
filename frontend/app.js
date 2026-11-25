@@ -70,6 +70,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   /** @type {'' | 'radiusStatus' | 'noPlace' | 'placeError' | 'searchingPlace'} */
   let placeStatus = '';
   const search = control('search', HTMLInputElement);
+  const clearKeyword = control('clear-keyword', HTMLButtonElement);
   const state = control('state', HTMLDetailsElement);
   const stateControl = $('state-control');
   const stateSummary = state.querySelector('summary');
@@ -79,8 +80,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     .filter(input => input.checked).map(input => input.value);
   const field = control('field', HTMLSelectElement);
   const employment = control('employment', HTMLSelectElement);
-  const advancedSearch = control('advanced-search', HTMLDetailsElement);
+  const advancedToggle = control('advanced-title', HTMLButtonElement);
+  const filters = control('filters', HTMLFormElement);
+  const activeFilterActions = $('active-filter-actions');
   const filterCount = $('filter-count');
+  const resetFilters = control('reset-filters', HTMLButtonElement);
   const place = control('place', HTMLInputElement);
   const radiusSelect = control('radius', HTMLSelectElement);
   const placeResult = control('place-result', HTMLSelectElement);
@@ -89,6 +93,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   const unmappedButton = control('show-unmapped', HTMLButtonElement);
   const unmappedNote = $('unmapped-note');
   const radius = () => Number(radiusSelect.value);
+
+  advancedToggle.addEventListener('click', () => {
+    filters.hidden = !filters.hidden;
+    advancedToggle.setAttribute('aria-expanded', String(!filters.hidden));
+    if (filters.hidden) state.open = false;
+  });
 
   const map = createMap($('map'), key => {
     selected = key;
@@ -142,13 +152,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   function renderList(preservePages = false) {
     const site = selected ? sites.get(selected) : undefined;
+    clearKeyword.hidden = !search.value;
     const states = selectedStates();
     $('state-value').textContent = states.length === 1 ? jobLabel('state', states[0])
       : states.length ? t('selectedStates', { count: states.length }) : t('all');
     clearStates.hidden = states.length === 0;
     const activeFilters = [search.value.trim(), states.length, field.value, employment.value, showUnmapped].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
-    filterCount.hidden = activeFilters === 0;
+    activeFilterActions.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
     unmappedButton.textContent = t('unmappedCount', { count: unmapped.length });
     unmappedButton.setAttribute('aria-pressed', String(showUnmapped));
@@ -241,12 +252,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   loadState = 'ready';
   renderJobFilters();
-  $('filters').addEventListener('submit', event => event.preventDefault());
+  filters.addEventListener('submit', event => event.preventDefault());
   /** @type {number | undefined} */
   let debounce;
   search.addEventListener('input', () => {
+    clearKeyword.hidden = !search.value;
     window.clearTimeout(debounce);
     debounce = window.setTimeout(applyFilters, 160);
+  });
+  clearKeyword.addEventListener('click', () => {
+    search.value = '';
+    search.focus();
+    window.clearTimeout(debounce);
+    applyFilters();
   });
   for (const filter of [state, field, employment]) filter.addEventListener('change', () => {
     window.clearTimeout(debounce);
@@ -267,7 +285,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     window.clearTimeout(debounce);
     applyFilters();
   });
-  $('filters').addEventListener('reset', () => {
+  filters.addEventListener('reset', () => {
+    if (document.activeElement === resetFilters) advancedToggle.focus();
     showUnmapped = false;
     window.clearTimeout(debounce);
     window.setTimeout(applyFilters, 0);
@@ -276,7 +295,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     selected = null;
     map?.closePopup();
     renderList();
-    (advancedSearch.open ? search : place).focus();
+    (filters.hidden ? place : search).focus();
   });
   unmappedButton.addEventListener('click', () => {
     showUnmapped = !showUnmapped;

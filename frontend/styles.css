@@ -97,20 +97,31 @@ button, select { cursor: pointer; }
   border-top: 1px solid var(--line);
   border-radius: 0 0 var(--radius) var(--radius);
 }
-.advanced-search > summary {
-  cursor: pointer;
-  min-height: 2.75rem;
-  padding: .7rem 1rem;
-  border-radius: 0 0 var(--radius) var(--radius);
-  color: var(--deep-red);
-  font-size: .875rem;
-  font-weight: 700;
+.advanced-header, .active-filter-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: .625rem;
 }
-.advanced-search > summary:hover { text-decoration: underline; }
+.advanced-header { padding-inline: 1rem; }
+.advanced-header button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--deep-red);
+}
+.advanced-header button:enabled:hover { background: transparent; text-decoration: underline; }
+.advanced-toggle { display: inline-flex; align-items: center; gap: .5rem; }
+.advanced-toggle::before {
+  content: "";
+  border-block: .3rem solid transparent;
+  border-inline-start: .4rem solid currentColor;
+}
+.advanced-toggle[aria-expanded="true"]::before { rotate: 90deg; }
+.reset-filters { text-decoration: underline; text-underline-offset: .18em; }
 .advanced-search .filters { padding-top: 0; }
 #filters { grid-template-columns: minmax(12rem, 1.6fr) repeat(3, minmax(0, 1fr)); }
-.filter-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .5rem; }
-.filter-count { margin-inline-start: .5rem; }
+#show-unmapped { grid-column: 1 / -1; justify-self: start; }
 .state-filter { display: grid; gap: .25rem; min-width: 0; color: var(--black); font-size: .8125rem; font-weight: 700; }
 .state-control { position: relative; }
 #state summary {
@@ -181,8 +192,8 @@ button, select { cursor: pointer; }
 .nearby .wide { grid-column: 1 / -1; }
 .place-field { display: grid; gap: .25rem; min-width: 0; }
 .place-input { position: relative; }
-.place-input:has(.place-clear:not([hidden])) input { padding-inline-end: 2.75rem; }
-:is(.place-input .place-clear, .state-control .state-clear) {
+:is(.place-input:has(.place-clear:not([hidden])), .search-field:has(.keyword-clear:not([hidden]))) input { padding-inline-end: 2.75rem; }
+:is(.place-input .place-clear, .state-control .state-clear, .search-field .keyword-clear) {
   position: absolute;
   inset: 50% .25rem auto auto;
   translate: 0 -50%;
@@ -196,8 +207,8 @@ button, select { cursor: pointer; }
   background: transparent;
 }
 .state-control .state-clear { inset-inline-end: 0; width: 2.75rem; height: 2.75rem; }
-:is(.place-clear, .state-clear) svg { width: 1rem; height: 1rem; }
-:is(.place-clear, .state-clear):focus-visible { outline-offset: -2px; }
+:is(.place-clear, .state-clear, .keyword-clear) svg { width: 1rem; height: 1rem; }
+:is(.place-clear, .state-clear, .keyword-clear):focus-visible { outline-offset: -2px; }
 .nearby-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .place-info { position: relative; }
 .place-info summary {
@@ -233,9 +244,11 @@ button, select { cursor: pointer; }
 #place-status:not(:empty) { padding: 0 1rem .875rem; }
 label { display: grid; gap: .25rem; color: var(--black); font-size: .8125rem; font-weight: 700; min-width: 0; }
 .filter-label { padding-inline-start: calc(var(--control-inset) / 4); }
+.keyword-field { display: grid; gap: .25rem; min-width: 0; }
 .search-field { position: relative; min-width: 0; }
-.search-field svg { position: absolute; inset: 50% auto auto var(--control-inset); translate: 0 -50%; width: 1rem; pointer-events: none; }
+.search-field > svg { position: absolute; inset: 50% auto auto var(--control-inset); translate: 0 -50%; width: 1rem; pointer-events: none; }
 .search-field input { padding-inline-start: 2.35rem; }
+#search::-webkit-search-cancel-button { display: none; }
 
 input, select, button, .button {
   min-height: 2.75rem;
@@ -440,7 +453,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 
 @media (max-width: 960px) {
   #filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #filters > label:first-child { grid-column: 1 / -1; }
+  .keyword-field { grid-column: 1 / -1; }
 }
 
 @media (max-width: 760px) {
@@ -451,7 +464,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 
 @media (max-width: 550px) {
   .intro { padding-top: 1.1rem; }
-  .filters, .advanced-search > summary, #place-status:not(:empty) { padding-inline: .75rem; }
+  .filters, .advanced-header, #place-status:not(:empty) { padding-inline: .75rem; }
   .state-filter { grid-column: 1 / -1; }
   .nearby { grid-template-columns: minmax(0, 1fr) minmax(5rem, 28%); }
   .nearby-actions { grid-column: 1 / -1; position: relative; }

@@ -63,15 +63,25 @@
           </form>
           <p id="place-status" role="status"></p>
         </div>
-        <details class="advanced-search" id="advanced-search">
-          <summary id="advanced-title"><span data-i18n="advanced">Weitere Filter</span> <span class="tag filter-count" id="filter-count" hidden></span></summary>
-          <form class="filters" id="filters" role="search" aria-labelledby="advanced-title" autocomplete="off">
-            <label><span class="filter-label" data-i18n="keyword">Stichwort</span>
-              <span class="search-field">
+        <div class="advanced-search">
+          <div class="advanced-header">
+            <button class="advanced-toggle" id="advanced-title" type="button" aria-expanded="false" aria-controls="filters"><span data-i18n="advanced">Weitere Filter</span></button>
+            <div class="active-filter-actions" id="active-filter-actions" hidden>
+              <span class="tag" id="filter-count"></span>
+              <button class="reset-filters" id="reset-filters" type="reset" form="filters" data-i18n="resetFilters">Filter zurücksetzen</button>
+            </div>
+          </div>
+          <form class="filters" id="filters" role="search" aria-labelledby="advanced-title" autocomplete="off" hidden>
+            <div class="keyword-field">
+              <label class="filter-label" for="search" data-i18n="keyword">Stichwort</label>
+              <div class="search-field">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
                 <input id="search" type="search" placeholder="z. B. Feinkost oder Graz" data-i18n-placeholder="keywordPlaceholder">
-              </span>
-            </label>
+                <button id="clear-keyword" class="keyword-clear" type="button" title="Stichwort löschen" aria-label="Stichwort löschen" data-i18n-title="clearKeyword" data-i18n-aria-label="clearKeyword" hidden>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                </button>
+              </div>
+            </div>
             <div class="state-filter">
               <span class="filter-label" id="state-label" data-i18n="state">Bundesländer</span>
               <div class="state-control" id="state-control">
@@ -86,12 +96,9 @@
             </div>
             <label><span class="filter-label" data-i18n="field">Berufsfeld</span><select id="field"><option value="" data-i18n="all">Alle</option></select></label>
             <label><span class="filter-label" data-i18n="employment">Arbeitszeit</span><select id="employment"><option value="" data-i18n="all">Alle</option></select></label>
-            <div class="filter-actions">
-              <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
-              <button type="reset" data-i18n="resetFilters">Filter zurücksetzen</button>
-            </div>
+            <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
           </form>
-        </details>
+        </div>
       </div>
       <div class="layout">
         <section class="panel" aria-labelledby="jobs-title">
