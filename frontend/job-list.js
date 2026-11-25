@@ -1,9 +1,17 @@
 import { node, number } from './dom.js';
 import { distanceKm } from './jobs.js';
 
+/** @import { Coordinates, Job } from './jobs.js' */
+/** @typedef {((key: string) => void) | null} ShowSite */
+
 const pageSize = 25;
 
+/**
+ * @param {string | null | undefined} url
+ * @param {string} label
+ */
 function jobLink(url, label) {
+  if (!url) return node('span', label);
   try {
     const target = new URL(url);
     if (target.protocol !== 'https:' || target.hostname !== 'jobs.spar.at') return node('span', label);
@@ -17,6 +25,11 @@ function jobLink(url, label) {
   }
 }
 
+/**
+ * @param {Job} job
+ * @param {Coordinates | undefined} center
+ * @param {ShowSite} onShowSite
+ */
 function jobCard(job, center, onShowSite) {
   const item = node('li', '', 'card');
   if (job.jobField) item.append(node('span', job.jobField, 'tag'));
@@ -24,22 +37,33 @@ function jobCard(job, center, onShowSite) {
   title.append(jobLink(job.detailUrl, job.title || 'Stellenangebot'));
   item.append(title, node('p', job.location ? `Dienstort: ${job.location}` : 'Kein Dienstort angegeben'));
   const details = [job.state, job.employmentType, job.start ? `Eintritt: ${job.start}` : ''].filter(Boolean);
-  if (center && job.siteKey) details.push(`${number.format(Math.round(distanceKm(center, job.unit.coordinates)))} km Luftlinie zur Einheit`);
+  if (center && job.siteKey && job.unit?.coordinates) {
+    details.push(`${number.format(Math.round(distanceKm(center, job.unit.coordinates)))} km Luftlinie zur Einheit`);
+  }
   if (details.length) item.append(node('p', details.join(' · '), 'muted'));
   const actions = node('div', '', 'actions');
   if (job.applicationUrl) actions.append(jobLink(job.applicationUrl, 'Bewerben ↗'));
-  if (onShowSite && job.siteKey) {
+  const siteKey = job.siteKey;
+  if (onShowSite && siteKey) {
     const button = node('button', 'Einheit auf Karte');
     button.type = 'button';
-    button.addEventListener('click', () => onShowSite(job.siteKey));
+    button.addEventListener('click', () => onShowSite(siteKey));
     actions.append(button);
   }
   if (actions.childElementCount) item.append(actions);
   return item;
 }
 
+/**
+ * @param {{list: HTMLElement, more: HTMLElement, count: HTMLElement, selection: HTMLElement, message: HTMLElement}} elements
+ * @param {ShowSite} onShowSite
+ */
 export function createJobList({ list, more, count, selection, message }, onShowSite) {
-  let shown = [], rendered = 0, center = null;
+  /** @type {Job[]} */
+  let shown = [];
+  let rendered = 0;
+  /** @type {Coordinates | undefined} */
+  let center;
 
   function appendPage() {
     const next = shown.slice(rendered, rendered + pageSize);
@@ -52,9 +76,14 @@ export function createJobList({ list, more, count, selection, message }, onShowS
   more.addEventListener('click', () => {
     const firstNew = rendered;
     appendPage();
-    list.children[firstNew]?.querySelector('h3 a')?.focus();
+    const link = list.children[firstNew]?.querySelector('h3 a');
+    if (link instanceof HTMLAnchorElement) link.focus();
   });
 
+  /**
+   * @param {Job[]} jobs
+   * @param {{selected: string | null, center?: Coordinates}} options
+   */
   function render(jobs, { selected, center: activeCenter }) {
     shown = jobs;
     center = activeCenter;

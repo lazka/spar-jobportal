@@ -1,13 +1,36 @@
+/** @typedef {[number, number]} Coordinates */
+/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null}} JobUnit */
+/**
+ * @typedef {object} RawJob
+ * @property {string | null} [title]
+ * @property {string | null} [location]
+ * @property {string | null} [state]
+ * @property {string | null} [jobField]
+ * @property {string | null} [employmentType]
+ * @property {string | null} [start]
+ * @property {string | null} [detailUrl]
+ * @property {string | null} [applicationUrl]
+ * @property {JobUnit | null} [unit]
+ */
+/** @typedef {RawJob & {state: string, times: string[], siteKey: string | null, searchText: string}} Job */
+/** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
+
+/** @param {string | null | undefined} text */
 export function normalizeSearch(text) {
-  return String(text ?? '').normalize('NFKD').replace(/\p{M}/gu, '')
+  return (text ?? '').normalize('NFKD').replace(/\p{M}/gu, '')
     .toLocaleLowerCase('de-AT').replaceAll('ß', 'ss');
 }
 
+/** @param {unknown} pair */
 export function coordinateKey(pair) {
   return Array.isArray(pair) && pair.length === 2 && pair.every(Number.isFinite) &&
     Math.abs(pair[0]) <= 90 && Math.abs(pair[1]) <= 180 ? pair.join(',') : null;
 }
 
+/**
+ * @param {Coordinates} from
+ * @param {Coordinates} to
+ */
 export function distanceKm([lat1, lon1], [lat2, lon2]) {
   const rad = Math.PI / 180;
   const hav = Math.sin((lat2 - lat1) * rad / 2) ** 2 +
@@ -15,6 +38,10 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
   return 2 * 6371 * Math.asin(Math.sqrt(Math.min(1, hav)));
 }
 
+/**
+ * @param {RawJob[]} data
+ * @returns {Job[]}
+ */
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
   return data.map(job => ({
@@ -27,24 +54,37 @@ export function normalizeJobs(data) {
 }
 
 export async function loadJobs() {
-  const response = await fetch(new URL('../spar_jobs_final.json', import.meta.url));
+  const response = await fetch(new URL('./spar_jobs_final.json', import.meta.url));
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  return normalizeJobs(await response.json());
+  /** @type {RawJob[]} */
+  const data = await response.json();
+  return normalizeJobs(data);
 }
 
-export function filterJobs(jobs, { query = '', state, field, time, center, radiusKm }) {
+/**
+ * @param {Job[]} jobs
+ * @param {{query?: string, state?: string, field?: string, time?: string, center?: Coordinates, radiusKm?: number}} filters
+ */
+export function filterJobs(jobs, { query = '', state, field, time, center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
   return jobs.filter(job => (!state || job.state === state) && (!field || job.jobField === field) &&
     (!time || job.times.includes(time)) && words.every(word => job.searchText.includes(word)) &&
-    (!center || (job.siteKey && distanceKm(center, job.unit.coordinates) <= radiusKm)));
+    (!center || (job.siteKey && job.unit?.coordinates && distanceKm(center, job.unit.coordinates) <= radiusKm)));
 }
 
+/** @param {Job[]} jobs */
 export function groupSites(jobs) {
+  /** @type {Map<string, Site>} */
   const sites = new Map();
   for (const job of jobs) {
-    if (!job.siteKey) continue;
-    if (!sites.has(job.siteKey)) sites.set(job.siteKey, { pair: job.unit.coordinates, jobs: [] });
-    sites.get(job.siteKey).jobs.push(job);
+    const pair = job.unit?.coordinates;
+    if (!job.siteKey || !pair) continue;
+    let site = sites.get(job.siteKey);
+    if (!site) {
+      site = { pair, jobs: [] };
+      sites.set(job.siteKey, site);
+    }
+    site.jobs.push(job);
   }
   return sites;
 }

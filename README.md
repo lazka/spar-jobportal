@@ -1,16 +1,20 @@
 # SPAR Jobkarte
 
-The job portal is a static page. From the repository root, run:
+The job portal is a static page in `frontend/`. From the repository root, start the local server with:
 
 ```sh
-python3 -m http.server 8000
+npm --prefix frontend run dev
 ```
 
-Open <http://localhost:8000/>. Use HTTP rather than opening `index.html` directly: the browser loads JavaScript modules and fetches `spar_jobs_final.json`. Static hosting needs `index.html`, `frontend/`, and that generated JSON file in the same relative layout. Leaflet, basemap.at tiles, and Nominatim place search are loaded over the network.
+Open <http://127.0.0.1:8000/>. The command uses Python 3 and needs no `npm install`. If you don't have npm, run `python3 -m http.server 8000 --bind 127.0.0.1 --directory frontend` instead. Use HTTP rather than opening `index.html` directly: the browser loads JavaScript modules and fetches `spar_jobs_final.json`.
+
+For static hosting, publish `index.html`, `styles.css`, the JavaScript modules, and `spar_jobs_final.json` from `frontend/`. The npm tooling and tests are not needed on the host. Leaflet, basemap.at tiles, and Nominatim place search are loaded over the network.
+
+To regenerate `frontend/spar_jobs_final.json`, run `python3 build_spar_jobs_final.py` from the repository root. The Python scripts and their intermediate data stay at the root.
 
 ## Frontend structure
 
-- `index.html` and `frontend/styles.css`: page markup and styling.
+- `frontend/index.html` and `frontend/styles.css`: page markup and styling.
 - `frontend/app.js`: page state, event handlers, and coordination between the map and list.
 - `frontend/jobs.js`: loading, normalization, filtering, distance calculations, and site grouping.
 - `frontend/job-list.js`: job cards and pagination.
@@ -20,12 +24,13 @@ Open <http://localhost:8000/>. Use HTTP rather than opening `index.html` directl
 
 ## Linting and tests
 
-With Node.js 22.12 or newer, install the development tools and run the checks:
+With Node.js 22.12 or newer, run these commands from the repository root:
 
 ```sh
+cd frontend
 npm ci
 npm run lint
 npm test
 ```
 
-Node.js is only needed for linting and tests; there is no frontend build step.
+`npm run lint` runs Oxlint's type-aware rules and checks the JavaScript and tests against `frontend/tsconfig.json`. No code is compiled or emitted; there is no frontend build step.

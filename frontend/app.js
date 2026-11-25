@@ -3,25 +3,68 @@ import { filterJobs, groupSites, loadJobs } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
 
-const $ = id => document.getElementById(id);
+/** @import { Job } from './jobs.js' */
+/** @import { Place } from './place-search.js' */
 
-function addOptions(id, values) {
-  for (const value of [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de-AT'))) {
-    $(id).add(new Option(value, value));
+/** @param {string} id */
+function $(id) {
+  const element = document.getElementById(id);
+  if (!element) throw new Error(`Missing page element: #${id}`);
+  return element;
+}
+
+/**
+ * @template {HTMLElement} T
+ * @param {string} id
+ * @param {new () => T} type
+ */
+function control(id, type) {
+  const element = $(id);
+  if (!(element instanceof type)) throw new Error(`Unexpected control type: #${id}`);
+  return element;
+}
+
+/**
+ * @param {HTMLSelectElement} select
+ * @param {(string | null | undefined)[]} values
+ */
+function addOptions(select, values) {
+  const labels = values.filter(/** @returns {value is string} */ value => typeof value === 'string' && value !== '');
+  for (const value of [...new Set(labels)].sort((a, b) => a.localeCompare(b, 'de-AT'))) {
+    select.add(new Option(value, value));
   }
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  let jobs, matches = [], sites = new Map(), selected = null;
-  let center = null, placeResults = [];
-  const radius = () => Number($('radius').value);
+  /** @type {Job[]} */
+  let jobs;
+  /** @type {Job[]} */
+  let matches = [];
+  let sites = groupSites(matches);
+  /** @type {string | null} */
+  let selected = null;
+  /** @type {Place | null} */
+  let center = null;
+  /** @type {Place[]} */
+  let placeResults = [];
+  const search = control('search', HTMLInputElement);
+  const state = control('state', HTMLSelectElement);
+  const field = control('field', HTMLSelectElement);
+  const employment = control('employment', HTMLSelectElement);
+  const place = control('place', HTMLInputElement);
+  const radiusSelect = control('radius', HTMLSelectElement);
+  const placeResult = control('place-result', HTMLSelectElement);
+  const findPlaceButton = control('find-place', HTMLButtonElement);
+  const clearPlace = control('clear-place', HTMLButtonElement);
+  const fit = control('fit', HTMLButtonElement);
+  const radius = () => Number(radiusSelect.value);
 
   const map = createMap($('map'), key => {
     selected = key;
     renderList();
     $('clear-site').focus();
   });
-  $('fit').disabled = !map;
+  fit.disabled = !map;
 
   const jobList = createJobList({
     list: $('list'), more: $('more'), count: $('count'),
@@ -32,7 +75,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   } : null);
 
   function renderList() {
-    jobList.render(selected ? sites.get(selected).jobs : matches, {
+    const site = selected ? sites.get(selected) : undefined;
+    jobList.render(site?.jobs ?? matches, {
       selected, center: center?.pair
     });
   }
@@ -40,10 +84,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   function applyFilters() {
     const radiusKm = radius();
     matches = filterJobs(jobs, {
-      query: $('search').value,
-      state: $('state').value,
-      field: $('field').value,
-      time: $('employment').value,
+      query: search.value,
+      state: state.value,
+      field: field.value,
+      time: employment.value,
       center: center?.pair,
       radiusKm
     });
@@ -54,24 +98,27 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderList();
   }
 
-  function selectPlace(place) {
-    center = place;
-    $('clear-place').hidden = false;
-    $('place-status').textContent = `Umkreis: ${radius()} km um ${place.label}`;
+  /** @param {Place} result */
+  function selectPlace(result) {
+    center = result;
+    clearPlace.hidden = false;
+    $('place-status').textContent = `Umkreis: ${radius()} km um ${result.label}`;
     applyFilters();
   }
 
+  /** @param {string} message */
   function showPlaceError(message) {
     $('place-status').textContent = message +
       (center ? ` Der bisherige Umkreis um ${center.label} bleibt aktiv.` : '');
   }
 
+  /** @param {Event} event */
   async function findPlace(event) {
     event.preventDefault();
-    const query = $('place').value.trim();
-    if (!query || $('find-place').disabled) return;
-    $('find-place').disabled = true;
-    $('clear-place').disabled = true;
+    const query = place.value.trim();
+    if (!query || findPlaceButton.disabled) return;
+    findPlaceButton.disabled = true;
+    clearPlace.disabled = true;
     $('place-status').textContent = 'Ort wird gesucht …';
     $('place-choices').hidden = true;
     try {
@@ -81,7 +128,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         return;
       }
       if (placeResults.length > 1) {
-        $('place-result').replaceChildren(...placeResults.map((place, i) => new Option(place.label, String(i))));
+        placeResult.replaceChildren(...placeResults.map((result, i) => new Option(result.label, String(i))));
         $('place-choices').hidden = false;
       }
       selectPlace(placeResults[0]);
@@ -89,8 +136,8 @@ window.addEventListener('DOMContentLoaded', async () => {
       showPlaceError('Die Ortssuche ist gerade nicht erreichbar. Bitte versuche es später erneut.');
       console.error(error);
     } finally {
-      $('find-place').disabled = false;
-      $('clear-place').disabled = false;
+      findPlaceButton.disabled = false;
+      clearPlace.disabled = false;
     }
   }
 
@@ -102,41 +149,45 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  addOptions('state', jobs.map(job => job.state));
-  addOptions('field', jobs.map(job => job.jobField));
-  addOptions('employment', jobs.flatMap(job => job.times));
+  addOptions(state, jobs.map(job => job.state));
+  addOptions(field, jobs.map(job => job.jobField));
+  addOptions(employment, jobs.flatMap(job => job.times));
   $('filters').addEventListener('submit', event => event.preventDefault());
+  /** @type {number | undefined} */
   let debounce;
-  $('search').addEventListener('input', () => {
-    clearTimeout(debounce);
-    debounce = setTimeout(applyFilters, 160);
+  search.addEventListener('input', () => {
+    window.clearTimeout(debounce);
+    debounce = window.setTimeout(applyFilters, 160);
   });
-  for (const id of ['state', 'field', 'employment']) $(id).addEventListener('change', () => {
-    clearTimeout(debounce);
+  for (const filter of [state, field, employment]) filter.addEventListener('change', () => {
+    window.clearTimeout(debounce);
     applyFilters();
   });
   $('filters').addEventListener('reset', () => {
-    clearTimeout(debounce);
-    setTimeout(applyFilters, 0);
+    window.clearTimeout(debounce);
+    window.setTimeout(applyFilters, 0);
   });
   $('clear-site').addEventListener('click', () => {
     selected = null;
     map?.closePopup();
     renderList();
-    $('search').focus();
+    search.focus();
   });
-  $('fit').addEventListener('click', () => map?.fit());
+  fit.addEventListener('click', () => map?.fit());
   $('nearby').addEventListener('submit', findPlace);
-  $('radius').addEventListener('change', () => { if (center) selectPlace(center); });
-  $('place-result').addEventListener('change', () => selectPlace(placeResults[Number($('place-result').value)]));
-  $('clear-place').addEventListener('click', () => {
+  radiusSelect.addEventListener('change', () => { if (center) selectPlace(center); });
+  placeResult.addEventListener('change', () => {
+    const result = placeResults[Number(placeResult.value)];
+    if (result) selectPlace(result);
+  });
+  clearPlace.addEventListener('click', () => {
     center = null;
-    $('clear-place').hidden = true;
+    clearPlace.hidden = true;
     $('place-choices').hidden = true;
     $('place-status').textContent = '';
-    $('place').value = '';
+    place.value = '';
     applyFilters();
-    $('place').focus();
+    place.focus();
   });
   applyFilters();
 });

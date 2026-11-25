@@ -21,7 +21,7 @@ def main() -> int:
     parser.add_argument("--units", type=Path, default=Path("spar_unit_addresses.json"))
     parser.add_argument("--geocoded", type=Path, default=Path("spar_unit_locations.json"))
     parser.add_argument("--report", type=Path, help="Detailed unit report; defaults to the geocoded filename with _report before its extension.")
-    parser.add_argument("--output", type=Path, default=Path("spar_jobs_final.json"))
+    parser.add_argument("--output", type=Path, default=Path("frontend/spar_jobs_final.json"))
     args = parser.parse_args()
 
     try:

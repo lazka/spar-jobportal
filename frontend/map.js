@@ -1,7 +1,15 @@
 import { node, number } from './dom.js';
 
+/** @import { Coordinates, Site } from './jobs.js' */
+/** @import { Circle, LatLngBoundsLiteral, Marker } from 'leaflet' */
+
+/** @type {LatLngBoundsLiteral} */
 const austria = [[46.35, 9.48], [49.03, 17.2]];
 
+/**
+ * @param {HTMLElement} container
+ * @param {(key: string) => void} onSelectSite
+ */
 export function createMap(container, onSelectSite) {
   const L = window.L;
   if (!L?.markerClusterGroup) {
@@ -9,10 +17,14 @@ export function createMap(container, onSelectSite) {
     return null;
   }
 
-  function pin(count, size, cluster = false) {
+  /**
+   * @param {number} count
+   * @param {number} size
+   */
+  const pin = (count, size, cluster = false) => {
     const label = node('span', number.format(count));
     return L.divIcon({ html: label, className: cluster ? 'pin cluster' : 'pin', iconSize: [size, size] });
-  }
+  };
 
   container.replaceChildren();
   const map = L.map(container, { scrollWheelZoom: true, maxZoom: 19 }).fitBounds(austria);
@@ -22,16 +34,25 @@ export function createMap(container, onSelectSite) {
   };
   const street = L.tileLayer('https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', tileOptions).addTo(map);
   const aerial = L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg', tileOptions);
-  L.control.layers({ 'Karte': street, 'Luftbild': aerial }, null, { collapsed: false }).addTo(map);
+  L.control.layers({ 'Karte': street, 'Luftbild': aerial }, undefined, { collapsed: false }).addTo(map);
+  /** @type {WeakMap<Marker, number>} */
+  const jobCounts = new WeakMap();
   const clusters = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 50,
-    iconCreateFunction: group => pin(group.getAllChildMarkers().reduce((sum, marker) => sum + marker.options.jobCount, 0), 44, true)
+    iconCreateFunction: group => pin(group.getAllChildMarkers().reduce((sum, marker) => sum + (jobCounts.get(marker) ?? 0), 0), 44, true)
   }).addTo(map);
 
+  /** @type {Map<string, Marker>} */
   const markers = new Map();
-  let radiusLayer;
+  /** @type {Circle | null} */
+  let radiusLayer = null;
 
+  /**
+   * @param {Map<string, Site>} sites
+   * @param {Coordinates | undefined} center
+   * @param {number} radiusKm
+   */
   function draw(sites, center, radiusKm) {
     map.closePopup();
     clusters.clearLayers();
@@ -43,11 +64,13 @@ export function createMap(container, onSelectSite) {
     for (const [key, site] of sites) {
       const count = site.jobs.length;
       const addresses = [...new Set(site.jobs.map(job => job.unit?.address).filter(Boolean))];
-      const label = `${addresses.length === 1 ? addresses[0] : 'Standort'}: ${count} ${count === 1 ? 'Stelle' : 'Stellen'}`;
-      const marker = L.marker(site.pair, { title: label, icon: pin(count, 29), jobCount: count });
+      const address = addresses.length === 1 ? addresses[0] : undefined;
+      const label = `${address || 'Standort'}: ${count} ${count === 1 ? 'Stelle' : 'Stellen'}`;
+      const marker = L.marker(site.pair, { title: label, icon: pin(count, 29) });
+      jobCounts.set(marker, count);
       const popup = node('div');
       popup.append(node('strong', `${number.format(count)} ${count === 1 ? 'Stelle' : 'Stellen'} an diesem Standort`));
-      if (addresses.length === 1) popup.append(node('p', addresses[0]));
+      if (address) popup.append(node('p', address));
       const button = node('button', 'Stellen am Standort anzeigen');
       button.type = 'button';
       button.addEventListener('click', () => onSelectSite(key));
@@ -63,6 +86,7 @@ export function createMap(container, onSelectSite) {
     map.fitBounds(bounds.isValid() ? bounds : austria, { padding: [30, 30], maxZoom: 12 });
   }
 
+  /** @param {string} key */
   function showSite(key) {
     const marker = markers.get(key);
     if (marker) clusters.zoomToShowLayer(marker, () => marker.openPopup());
