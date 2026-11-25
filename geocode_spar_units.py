@@ -298,7 +298,9 @@ def main() -> int:
     queried_this_run: dict[str, dict[str, Any]] = {}
     report: dict[str, Any] = {}
 
-    for unit_id, unit in units.items():
+    # Verified corrections can also supply locations absent from the address cache.
+    for unit_id in dict.fromkeys([*units, *corrections]):
+        unit = units.get(unit_id, {})
         requested = False
         valid_unit = isinstance(unit, dict)
         unit = unit if valid_unit else {}

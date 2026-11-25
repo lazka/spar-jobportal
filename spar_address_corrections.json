@@ -1,4 +1,8 @@
 {
+  "161251": {
+    "address": "Abelstraße 8, 4082 Aschach an der Donau",
+    "note": "The official SPAR store page confirms this branch and address: https://www.spar.at/standorte/spar-aschach-4082-abelstrasse-8. Nominatim identifies the supermarket as OpenStreetMap way 561159156."
+  },
   "867460": {
     "latitude": 48.390979,
     "longitude": 16.378529,

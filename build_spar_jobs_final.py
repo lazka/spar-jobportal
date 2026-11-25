@@ -61,6 +61,14 @@ def main() -> int:
         geo = geo if isinstance(geo, dict) else {}
 
         address = geocode_entry.get("address") or address_entry.get("address")
+        correction = geocode_entry.get("addressCorrection")
+        if (
+            not address
+            and geo.get("status") == "matched"
+            and isinstance(correction, dict)
+            and correction.get("applied")
+        ):
+            address = correction.get("address")
         pair = geo if legacy else location
         latitude = pair.get("latitude")
         longitude = pair.get("longitude")

@@ -18887,5 +18887,34 @@
     "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
     "checkedAtUtc": "2026-11-24T22:48:17.503425+00:00",
     "attribution": "© OpenStreetMap contributors"
+  },
+  "abelstrasse 8, 4082 aschach an der donau": {
+    "status": "matched",
+    "query": "Abelstraße 8, 4082 Aschach an der Donau",
+    "provider": "Nominatim",
+    "latitude": 48.3640051,
+    "longitude": 14.0231687,
+    "precision": "address",
+    "displayName": "Spar, 8, Abelstraße, Ruprechting, Aschach an der Donau, Bezirk Eferding, Oberösterreich, 4082, Österreich",
+    "osmType": "way",
+    "osmId": 561159156,
+    "category": "shop",
+    "type": "supermarket",
+    "address": {
+      "shop": "Spar",
+      "house_number": "8",
+      "road": "Abelstraße",
+      "hamlet": "Ruprechting",
+      "village": "Aschach an der Donau",
+      "county": "Bezirk Eferding",
+      "state": "Oberösterreich",
+      "ISO3166-2-lvl4": "AT-4",
+      "postcode": "4082",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "checkedAtUtc": "2026-11-25T21:19:29.472884+00:00",
+    "attribution": "© OpenStreetMap contributors"
   }
 }

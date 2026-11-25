@@ -8263,9 +8263,12 @@
     "unit": {
       "id": 161251,
       "name": "SM3-03-720 Aschach",
-      "address": null,
+      "address": "Abelstraße 8, 4082 Aschach an der Donau",
       "addressSourceJobId": null,
-      "coordinates": null
+      "coordinates": [
+        48.3640051,
+        14.0231687
+      ]
     }
   },
   {
@@ -13254,9 +13257,12 @@
     "unit": {
       "id": 161251,
       "name": "SM3-03-720 Aschach",
-      "address": null,
+      "address": "Abelstraße 8, 4082 Aschach an der Donau",
       "addressSourceJobId": null,
-      "coordinates": null
+      "coordinates": [
+        48.3640051,
+        14.0231687
+      ]
     }
   },
   {
@@ -31709,9 +31715,12 @@
     "unit": {
       "id": 161251,
       "name": "SM3-03-720 Aschach",
-      "address": null,
+      "address": "Abelstraße 8, 4082 Aschach an der Donau",
       "addressSourceJobId": null,
-      "coordinates": null
+      "coordinates": [
+        48.3640051,
+        14.0231687
+      ]
     }
   },
   {
