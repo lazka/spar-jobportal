@@ -28,11 +28,10 @@ uv run update-spar-jobs maintain
 
 `maintain` uses the latest local job dataset and works only on units without coordinates. It tries the `Ort` field of a representative job's detail page when it has no cached address or correction. It does not use the job's free-text `Dienstort` as the site address. It caches Nominatim results (including misses), rejects area- and street-level results, prints unresolved unit IDs, and rebuilds the frontend JSON without refreshing the listings.
 
-- Edit [`data/spar_address_corrections.json`](data/spar_address_corrections.json), keyed by unit ID, to provide either `{"address": "…", "note": "…"}` for a better lookup or `{"latitude": 48.0, "longitude": 14.0, "source": "…", "note": "…"}` for a verified point. A coordinate override can also include an `address` to display. `note` is optional.
-- Rerun `maintain` after editing. Use `maintain --max-requests 0` to apply corrections and cached results offline. A cached miss is not queried again; provide a different verified query or a coordinate override.
+- See the [address corrections guide](docs/address-corrections.md) for how to investigate a missing or wrong pin, record a correction, and verify it.
 - By default, maintenance makes up to 10 new Nominatim queries per run, spaced more than 15 seconds apart. It is intended for occasional maintenance, not as part of the job refresh.
 
-The Python implementation lives in `spar_jobportal/`, and the active caches are in `data/`. Old scripts, exports, and reports are archived in `legacy/` and are not needed by either command.
+The Python implementation lives in `spar_jobportal/`, and the caches are in `data/`. Superseded scripts, exports, and reports are available in Git history.
 
 ### Python development
 
@@ -46,11 +45,11 @@ uv run --locked ty check
 uv run --locked pytest
 ```
 
-Ruff and ty check the active Python code, not `legacy/`. Pytest discovers tests in `tests/`. The updater has no runtime dependencies.
+Pytest discovers tests in `tests/`. The updater has no runtime dependencies.
 
 ## Frontend structure
 
-The original [SPAR Careers style guide](legacy/STYLE_GUIDE.md) is archived for reference.
+The [SPAR Careers style guide](docs/style-guide.md) is available for reference.
 
 - `frontend/fonts/`: self-hosted [Be Vietnam Pro](https://github.com/google/fonts/tree/main/ofl/bevietnampro) (SIL Open Font License), used for both body text and headings.
 - `frontend/index.html` and `frontend/styles.css`: page markup and styling.
