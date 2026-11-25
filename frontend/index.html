@@ -72,7 +72,18 @@
                 <input id="search" type="search" placeholder="z. B. Feinkost oder Graz" data-i18n-placeholder="keywordPlaceholder">
               </span>
             </label>
-            <label><span class="filter-label" data-i18n="state">Bundesland</span><select id="state"><option value="" data-i18n="all">Alle</option></select></label>
+            <div class="state-filter">
+              <span class="filter-label" id="state-label" data-i18n="state">Bundesländer</span>
+              <div class="state-control" id="state-control">
+                <details id="state">
+                  <summary aria-labelledby="state-label state-value"><span id="state-value" data-i18n="all">Alle</span></summary>
+                  <div class="state-options" id="state-options" role="group" aria-labelledby="state-label"></div>
+                </details>
+                <button id="clear-states" class="state-clear" type="button" title="Bundeslandauswahl aufheben" aria-label="Bundeslandauswahl aufheben" data-i18n-title="clearStates" data-i18n-aria-label="clearStates" hidden>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                </button>
+              </div>
+            </div>
             <label><span class="filter-label" data-i18n="field">Berufsfeld</span><select id="field"><option value="" data-i18n="all">Alle</option></select></label>
             <label><span class="filter-label" data-i18n="employment">Arbeitszeit</span><select id="employment"><option value="" data-i18n="all">Alle</option></select></label>
             <div class="filter-actions">
@@ -88,7 +99,7 @@
             <h2 id="jobs-title" data-i18n="jobs">Offene Stellen</h2>
             <p class="muted" id="count" role="status">Stellen werden geladen …</p>
           </div>
-          <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Diese Stellen können nicht auf der Karte angezeigt werden.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
+          <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Nicht auf der Karte: Standortdaten fehlen.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
           <div class="notice" id="selection" hidden>
             <p data-i18n="siteSelection">Nur Stellen am ausgewählten Kartenstandort</p>
             <button type="button" id="clear-site" data-i18n="clearSite">Alle Standorte anzeigen</button>

@@ -23,7 +23,7 @@ await test('German and English use their own labels, plurals and number formatti
 
 await test('keywords match both original and translated categories without changing filter values', () => {
   const jobs = normalizeJobs([{ title: 'Verkäufer:in', state: 'Wien', jobField: 'Verkauf' }]);
-  assert.deepEqual(filterJobs(jobs, { query: 'Vienna retail', state: 'Wien', field: 'Verkauf' }), jobs);
+  assert.deepEqual(filterJobs(jobs, { query: 'Vienna retail', states: ['Wien'], field: 'Verkauf' }), jobs);
   assert.deepEqual(filterJobs(jobs, { query: 'Wien Verkauf' }), jobs);
   assert.equal(normalizeJobs([{ state: [] }])[0].state, '');
 });

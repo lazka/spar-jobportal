@@ -13,7 +13,7 @@ const jobs = normalizeJobs([
 ]);
 
 await test('keyword search matches accents and ß and combines with dropdown filters', () => {
-  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', state: 'Wien', field: 'Verkauf', time: 'Teilzeit' };
+  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], field: 'Verkauf', time: 'Teilzeit' };
   assert.deepEqual(filterJobs(jobs, filters), [jobs[0]]);
   assert.deepEqual(filterJobs(jobs, { ...filters, time: 'Geringfügig' }), []);
   assert.deepEqual(filterJobs(jobs, { ...filters, query: 'verkaufer fehlt' }), []);
@@ -22,7 +22,22 @@ await test('keyword search matches accents and ß and combines with dropdown fil
 await test('radius search excludes distant jobs and jobs without coordinates', () => {
   assert.deepEqual(filterJobs(jobs, { center: vienna, radiusKm: 30 }), [jobs[0]]);
   assert.deepEqual(filterJobs(jobs, { center: vienna, radiusKm: 200 }), jobs.slice(0, 2));
-  assert.deepEqual(filterJobs(jobs, { state: 'Wien' }), [jobs[0], jobs[2]]);
+});
+
+await test('state filters match any selected state and include multi-state jobs only once', () => {
+  const regionalJobs = normalizeJobs([
+    { state: ' Wien,Steiermark, Wien ' },
+    { state: ['Tirol', 'Steiermark'] },
+    { state: 'Oberösterreich' },
+    { state: [] },
+  ]);
+  assert.deepEqual(regionalJobs.map(job => job.states), [
+    ['Wien', 'Steiermark'], ['Tirol', 'Steiermark'], ['Oberösterreich'], []
+  ]);
+  assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien'] }), [regionalJobs[0]]);
+  assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien', 'Steiermark'] }), regionalJobs.slice(0, 2));
+  assert.deepEqual(filterJobs(regionalJobs, { states: [] }), regionalJobs);
+  assert.deepEqual(filterJobs(regionalJobs, { query: 'Styria' }), regionalJobs.slice(0, 2));
 });
 
 await test('site grouping combines jobs with shared coordinates and skips unmapped jobs', () => {

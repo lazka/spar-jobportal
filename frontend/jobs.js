@@ -14,7 +14,7 @@ import { englishLabel } from './translations.js';
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {state: string, times: string[], siteKey: string | null, searchText: string}} Job */
+/** @typedef {RawJob & {state: string, states: string[], times: string[], siteKey: string | null, searchText: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
 
 /** @param {string | null | undefined} text */
@@ -47,10 +47,13 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
   return data.map(job => {
-    const state = typeof job.state === 'string' ? job.state : '';
+    const states = [...new Set((Array.isArray(job.state) ? job.state : [job.state ?? ''])
+      .flatMap(value => value.split(',')).map(value => value.trim()).filter(Boolean))];
+    const state = states.join(', ');
     return {
       ...job,
       state,
+      states,
       times: (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean),
       siteKey: coordinateKey(job.unit?.coordinates),
       searchText: normalizeSearch([
@@ -71,11 +74,13 @@ export async function loadJobs() {
 
 /**
  * @param {Job[]} jobs
- * @param {{query?: string, state?: string, field?: string, time?: string, center?: Coordinates, radiusKm?: number}} filters
+ * @param {{query?: string, states?: string[], field?: string, time?: string, center?: Coordinates, radiusKm?: number}} filters
  */
-export function filterJobs(jobs, { query = '', state, field, time, center, radiusKm = 0 }) {
+export function filterJobs(jobs, { query = '', states = [], field, time, center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
-  return jobs.filter(job => (!state || job.state === state) && (!field || job.jobField === field) &&
+  const selectedStates = new Set(states);
+  return jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
+    (!field || job.jobField === field) &&
     (!time || job.times.includes(time)) && words.every(word => job.searchText.includes(word)) &&
     (!center || (job.siteKey && job.unit?.coordinates && distanceKm(center, job.unit.coordinates) <= radiusKm)));
 }

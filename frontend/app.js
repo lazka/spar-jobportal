@@ -70,7 +70,13 @@ window.addEventListener('DOMContentLoaded', async () => {
   /** @type {'' | 'radiusStatus' | 'noPlace' | 'placeError' | 'searchingPlace'} */
   let placeStatus = '';
   const search = control('search', HTMLInputElement);
-  const state = control('state', HTMLSelectElement);
+  const state = control('state', HTMLDetailsElement);
+  const stateControl = $('state-control');
+  const stateSummary = state.querySelector('summary');
+  const clearStates = control('clear-states', HTMLButtonElement);
+  const stateOptions = $('state-options');
+  const selectedStates = () => Array.from(stateOptions.querySelectorAll('input'))
+    .filter(input => input.checked).map(input => input.value);
   const field = control('field', HTMLSelectElement);
   const employment = control('employment', HTMLSelectElement);
   const advancedSearch = control('advanced-search', HTMLDetailsElement);
@@ -116,14 +122,31 @@ window.addEventListener('DOMContentLoaded', async () => {
     const coverageNote = $('map-coverage-note');
     coverageNote.textContent = t('mapCoverage', { count: jobs.filter(job => !job.siteKey).length });
     coverageNote.hidden = false;
-    setOptions(state, jobs.map(job => job.state), 'state');
+    const checked = new Set(selectedStates());
+    const collator = new Intl.Collator(locale());
+    const options = Array.from(new Set(jobs.flatMap(job => job.states)), value => ({
+      value, text: jobLabel('state', value)
+    })).sort((a, b) => collator.compare(a.text, b.text));
+    stateOptions.replaceChildren(...options.map(({ value, text }) => {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = value;
+      input.checked = checked.has(value);
+      label.append(input, text);
+      return label;
+    }));
     setOptions(field, jobs.map(job => job.jobField), 'field');
     setOptions(employment, jobs.flatMap(job => job.times), 'employment');
   }
 
   function renderList(preservePages = false) {
     const site = selected ? sites.get(selected) : undefined;
-    const activeFilters = [search.value.trim(), state.value, field.value, employment.value, showUnmapped].filter(Boolean).length;
+    const states = selectedStates();
+    $('state-value').textContent = states.length === 1 ? jobLabel('state', states[0])
+      : states.length ? t('selectedStates', { count: states.length }) : t('all');
+    clearStates.hidden = states.length === 0;
+    const activeFilters = [search.value.trim(), states.length, field.value, employment.value, showUnmapped].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
     filterCount.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
@@ -140,7 +163,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const radiusKm = radius();
     const matchingFilters = filterJobs(jobs, {
       query: search.value.trim(),
-      state: state.value,
+      states: selectedStates(),
       field: field.value,
       time: employment.value
     });
@@ -226,6 +249,21 @@ window.addEventListener('DOMContentLoaded', async () => {
     debounce = window.setTimeout(applyFilters, 160);
   });
   for (const filter of [state, field, employment]) filter.addEventListener('change', () => {
+    window.clearTimeout(debounce);
+    applyFilters();
+  });
+  document.addEventListener('click', event => {
+    if (state.open && event.target instanceof Node && !stateControl.contains(event.target)) state.open = false;
+  });
+  stateControl.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !state.open) return;
+    event.preventDefault();
+    state.open = false;
+    stateSummary?.focus();
+  });
+  clearStates.addEventListener('click', () => {
+    for (const input of stateOptions.querySelectorAll('input')) input.checked = false;
+    stateSummary?.focus();
     window.clearTimeout(debounce);
     applyFilters();
   });
