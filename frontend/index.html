@@ -15,13 +15,12 @@
       // Leave the German page visible when storage is unavailable.
     }
   </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script defer src="./vendor/leaflet/leaflet.js"></script>
+  <script defer src="./vendor/leaflet.markercluster/leaflet.markercluster-global.js"></script>
   <script type="importmap">
-    {"imports":{"i18next":"https://cdn.jsdelivr.net/npm/i18next@27.2.9/dist/esm/i18next.js","qrcode-generator":"https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.mjs"}}
+    {"imports":{"i18next":"./vendor/i18next/i18next.js","uqr":"./vendor/uqr/index.mjs"}}
   </script>
   <script type="module" src="./app.js" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
 </head>

@@ -38,12 +38,10 @@ export function createJobShare(dialog) {
     dialog.showModal();
 
     try {
-      const { default: qrcode } = await import('qrcode-generator');
+      const { renderSVG } = await import('uqr');
       if (!dialog.open || current !== request) return;
-      const code = qrcode(0, 'M');
-      code.addData(url);
-      code.make();
-      image.src = code.createDataURL(4);
+      const svg = renderSVG(url, { ecc: 'M', border: 4, pixelSize: 1 });
+      image.src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
       image.alt = t('shareQrAlt');
       image.hidden = false;
       qrStatus.textContent = '';

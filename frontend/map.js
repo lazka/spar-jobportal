@@ -13,7 +13,7 @@ const austria = [[46.35, 9.48], [49.03, 17.2]];
  */
 export function createMap(container, onSelectSite) {
   const L = window.L;
-  if (!L?.markerClusterGroup) {
+  if (!L?.MarkerClusterGroup) {
     const notice = node('p', t('mapLoadError'));
     notice.dataset.i18n = 'mapLoadError';
     container.replaceChildren(notice);
@@ -42,7 +42,7 @@ export function createMap(container, onSelectSite) {
   const layers = L.control.layers({ [t('streetMap')]: street, [t('aerialMap')]: aerial }, undefined, { collapsed: false }).addTo(map);
   /** @type {WeakMap<Marker, number>} */
   const jobCounts = new WeakMap();
-  const clusters = L.markerClusterGroup({
+  const clusters = new L.MarkerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 50,
     iconCreateFunction: group => pin(group.getAllChildMarkers().reduce((sum, marker) => sum + (jobCounts.get(marker) ?? 0), 0), 44, true)

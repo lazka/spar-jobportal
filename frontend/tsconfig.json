@@ -9,5 +9,6 @@
     "lib": ["ES2022", "DOM"],
     "types": ["node", "leaflet.markercluster"]
   },
-  "include": ["**/*.js", "**/*.mjs"]
+  "include": ["**/*.js", "**/*.mjs"],
+  "exclude": ["node_modules", "vendor"]
 }
