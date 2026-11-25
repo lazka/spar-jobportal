@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de-AT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPAR Jobkarte · Österreich</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <style>
+    :root { color-scheme: light; --ink: #183029; --muted: #50655e; --pine: #103e31; --green: #006a50; --line: #dbe4df; --paper: #f4f7f4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.5 system-ui, sans-serif; }
+    h1, h2, h3, p { margin: 0; }
+    a { color: var(--green); }
+    button, input, select { font: inherit; }
+    button, select { cursor: pointer; }
+    :focus-visible { outline: 3px solid #08795d; outline-offset: 3px; }
+    .hero { background: var(--pine); color: white; padding: 2.5rem clamp(1rem, 4vw, 4rem) 2rem; }
+    .hero-inner, main { max-width: 90rem; margin: auto; }
+    .eyebrow { color: #bdf0d6; font-size: .76rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -.045em; line-height: 1.12; margin: .3rem 0 .6rem; }
+    .hero p:last-child { color: #d5e9df; }
+    main { padding: 1.25rem clamp(1rem, 3vw, 2.5rem) 2.5rem; }
+    .filters, .panel { background: white; border: 1px solid var(--line); border-radius: 1rem; }
+    .filters { display: grid; grid-template-columns: minmax(12rem, 2fr) repeat(3, minmax(0, 1fr)) auto; align-items: end; gap: .7rem; padding: 1rem; margin-bottom: 1rem; }
+    .nearby { grid-template-columns: minmax(12rem, 2fr) minmax(7rem, 1fr) auto auto; }
+    .nearby .wide { grid-column: 1 / -1; }
+    .nearby [hidden] { display: none; }
+    label { display: grid; gap: .25rem; font-weight: 650; font-size: .85rem; min-width: 0; }
+    input, select, button { min-height: 2.65rem; border: 1px solid #aabcb2; border-radius: .55rem; background: white; color: var(--ink); padding: .45rem .65rem; }
+    input, select { width: 100%; font-weight: 450; font-size: .95rem; }
+    button { font-weight: 650; }
+    button:hover { background: #e9f3ed; }
+    .layout { display: grid; grid-template-columns: minmax(19rem, 2fr) minmax(0, 3fr); align-items: start; gap: 1rem; }
+    .panel { min-width: 0; }
+    .panel-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .95rem 1rem; }
+    h2 { font-size: 1.17rem; }
+    .muted { color: var(--muted); font-size: .88rem; }
+    .map-panel { position: sticky; top: 1rem; }
+    #map { height: clamp(24rem, 65vh, 44rem); background: #e5eee8; z-index: 0; }
+    #map > p { padding: 1rem; }
+    .map-note { padding: .8rem 1rem; }
+    .notice { padding: .8rem 1rem; border-top: 1px solid var(--line); }
+    .notice button { margin-top: .45rem; }
+    #list { list-style: none; margin: 0; padding: 0; }
+    .card { padding: .95rem 1rem; border-top: 1px solid var(--line); }
+    .card:hover { background: #f8fbf9; }
+    .card h3 { font-size: 1rem; line-height: 1.35; margin: .18rem 0 .3rem; }
+    .card h3 a { color: var(--ink); text-decoration: none; }
+    .card h3 a:hover { text-decoration: underline; }
+    .tag { display: inline-block; background: #e6f4ec; color: #15543f; font-size: .75rem; font-weight: 700; padding: .12rem .5rem; border-radius: 1rem; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: .45rem; font-size: .87rem; }
+    .actions button { min-height: 2rem; padding: .15rem .5rem; }
+    #more { display: block; margin: 1rem auto; }
+    #more[hidden] { display: none; }
+    .pin span { display: grid; place-items: center; width: 100%; height: 100%; background: var(--green); color: white; border: 2px solid white; border-radius: 100%; box-shadow: 0 1px 6px #16362c65; font: 700 12px/1 system-ui, sans-serif; }
+    .pin.cluster span { background: var(--pine); font-size: .9rem; }
+    button:disabled { cursor: default; opacity: .55; }
+    @media (max-width: 850px) {
+      .filters { grid-template-columns: 1fr 1fr; }
+      .filters label:first-child { grid-column: 1 / -1; }
+      .layout { grid-template-columns: 1fr; }
+      .map-panel { grid-row: 1; position: static; }
+      #map { height: 45vh; min-height: 16rem; }
+    }
+  </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Österreich · Stellenübersicht</p>
+      <h1>SPAR Jobkarte</h1>
+      <p>Stellen entdecken, nach Region filtern und Standorte auf der Karte ansehen.</p>
+    </div>
+  </header>
+  <main>
+    <form class="filters" id="filters" role="search" autocomplete="off">
+      <label>Stichwort<input id="search" type="search" placeholder="z. B. Feinkost oder Graz"></label>
+      <label>Bundesland<select id="state"><option value="">Alle Bundesländer</option></select></label>
+      <label>Tätigkeitsbereich<select id="field"><option value="">Alle Bereiche</option></select></label>
+      <label>Arbeitszeit<select id="employment"><option value="">Alle Arbeitszeiten</option></select></label>
+      <button type="reset">Zurücksetzen</button>
+    </form>
+    <form class="filters nearby" id="nearby" aria-label="Umkreissuche" autocomplete="off">
+      <label>Ort oder Postleitzahl<input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100"></label>
+      <label>Umkreis<select id="radius">
+        <option value="5">5 km</option>
+        <option value="10">10 km</option>
+        <option value="20">20 km</option>
+        <option value="30" selected>30 km</option>
+        <option value="50">50 km</option>
+        <option value="75">75 km</option>
+        <option value="100">100 km</option>
+      </select></label>
+      <button id="find-place" type="submit">Im Umkreis suchen</button>
+      <button id="clear-place" type="button" hidden>Umkreis entfernen</button>
+      <label class="wide" id="place-choices" hidden>Gefundener Ort<select id="place-result"></select></label>
+      <p class="wide muted" id="place-status" role="status"></p>
+      <p class="wide muted">Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Bitte keine Privatadresse eingeben.</p>
+    </form>
+    <div class="layout">
+      <section class="panel" aria-labelledby="jobs-title">
+        <div class="panel-head">
+          <h2 id="jobs-title">Stellenangebote</h2>
+          <p class="muted" id="count" role="status">Stellen werden geladen …</p>
+        </div>
+        <div class="notice" id="selection" hidden>
+          <p id="selection-label"></p>
+          <button type="button" id="clear-site">Alle Standorte anzeigen</button>
+        </div>
+        <p class="notice" id="message" hidden></p>
+        <ul id="list"></ul>
+        <button type="button" id="more" hidden>Weitere Stellen anzeigen</button>
+      </section>
+      <section class="panel map-panel" aria-labelledby="map-title">
+        <div class="panel-head">
+          <h2 id="map-title">Standorte</h2>
+          <button type="button" id="fit" disabled>Übersicht</button>
+        </div>
+        <div id="map" role="region" aria-label="Karte der SPAR-Organisationseinheiten"><p>Karte wird geladen …</p></div>
+        <p class="map-note muted">Die Zahlen zeigen Stellen pro Standort oder Kartengruppe. Entfernungen sind Luftlinie zur Organisationseinheit, nicht zwingend zum Dienstort. Ohne Pin ist eine Stelle nur außerhalb der Umkreissuche sichtbar.</p>
+      </section>
+    </div>
+    <noscript>Diese Seite benötigt JavaScript, um Stellen und Karte anzuzeigen.</noscript>
+  </main>
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const $ = id => document.getElementById(id);
+      const number = new Intl.NumberFormat('de-AT');
+      const austria = [[46.35, 9.48], [49.03, 17.2]];
+      const pageSize = 25;
+      let jobs = [], matches = [], selected = null, rendered = 0, map, clusters;
+      let sites = new Map(), markers = new Map();
+      let center = null, radiusLayer, placeResults = [], lastPlaceRequest = 0;
+      const placeCache = new Map();
+      const fold = text => String(text ?? '').normalize('NFKD').replace(/\p{M}/gu, '')
+        .toLocaleLowerCase('de-AT').replaceAll('ß', 'ss');
+      const employment = job => (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
+      const keyFor = pair => Array.isArray(pair) && pair.length === 2 &&
+        pair.every(Number.isFinite) && Math.abs(pair[0]) <= 90 && Math.abs(pair[1]) <= 180 ? pair.join(',') : null;
+      const radius = () => Number($('radius').value);
+
+      function distanceKm([lat1, lon1], [lat2, lon2]) {
+        const rad = Math.PI / 180;
+        const hav = Math.sin((lat2 - lat1) * rad / 2) ** 2 +
+          Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin((lon2 - lon1) * rad / 2) ** 2;
+        return 2 * 6371 * Math.asin(Math.sqrt(Math.min(1, hav)));
+      }
+
+      function node(tag, text, className) {
+        const element = document.createElement(tag);
+        if (text) element.textContent = text;
+        if (className) element.className = className;
+        return element;
+      }
+
+      function jobLink(url, label) {
+        try {
+          const target = new URL(url);
+          if (target.protocol !== 'https:' || target.hostname !== 'jobs.spar.at') return node('span', label);
+          const anchor = node('a', label);
+          anchor.href = target.href;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          return anchor;
+        } catch {
+          return node('span', label);
+        }
+      }
+
+      function addOptions(id, values) {
+        for (const value of [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de-AT'))) {
+          $(id).add(new Option(value, value));
+        }
+      }
+
+      function pin(count, size, cluster = false) {
+        const label = node('span', number.format(count));
+        return L.divIcon({ html: label, className: cluster ? 'pin cluster' : 'pin', iconSize: [size, size] });
+      }
+
+      function startMap() {
+        if (!window.L || !L.markerClusterGroup) {
+          $('map').replaceChildren(node('p', 'Die Karte konnte nicht geladen werden. Die Stellensuche funktioniert trotzdem.'));
+          return;
+        }
+        $('map').replaceChildren();
+        map = L.map('map', { scrollWheelZoom: true, maxZoom: 19 }).fitBounds(austria);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>',
+          maxZoom: 19
+        }).addTo(map);
+        clusters = L.markerClusterGroup({
+          showCoverageOnHover: false,
+          maxClusterRadius: 50,
+          iconCreateFunction: group => pin(group.getAllChildMarkers().reduce((sum, marker) => sum + marker.options.jobCount, 0), 44, true)
+        }).addTo(map);
+        $('fit').disabled = false;
+      }
+
+      function fitMap() {
+        if (!map) return;
+        const bounds = radiusLayer ? radiusLayer.getBounds() : clusters.getBounds();
+        map.fitBounds(bounds.isValid() ? bounds : austria, { padding: [30, 30], maxZoom: 12 });
+      }
+
+      function drawMap() {
+        if (!map) return;
+        map.closePopup();
+        clusters.clearLayers();
+        if (radiusLayer) radiusLayer.remove();
+        radiusLayer = center ? L.circle(center.pair, {
+          radius: radius() * 1000, color: '#006a50', fillOpacity: .08, weight: 2, interactive: false
+        }).addTo(map) : null;
+        markers = new Map();
+        for (const [key, site] of sites) {
+          const count = site.jobs.length;
+          const addresses = [...new Set(site.jobs.map(job => job.unit?.address).filter(Boolean))];
+          const label = `${addresses.length === 1 ? addresses[0] : 'Standort'}: ${count} ${count === 1 ? 'Stelle' : 'Stellen'}`;
+          const marker = L.marker(site.pair, { title: label, icon: pin(count, 29), jobCount: count });
+          const popup = node('div');
+          popup.append(node('strong', `${number.format(count)} ${count === 1 ? 'Stelle' : 'Stellen'} an diesem Standort`));
+          if (addresses.length === 1) popup.append(node('p', addresses[0]));
+          const button = node('button', 'Stellen am Standort anzeigen');
+          button.type = 'button';
+          button.addEventListener('click', () => {
+            selected = key;
+            renderList();
+            $('clear-site').focus();
+          });
+          popup.append(button);
+          marker.bindPopup(popup);
+          markers.set(key, marker);
+        }
+        clusters.addLayers([...markers.values()]);
+      }
+
+      function jobCard(job) {
+        const item = node('li', '', 'card');
+        if (job.jobField) item.append(node('span', job.jobField, 'tag'));
+        const title = node('h3');
+        title.append(jobLink(job.detailUrl, job.title || 'Stellenangebot'));
+        item.append(title, node('p', job.location ? `Dienstort: ${job.location}` : 'Kein Dienstort angegeben'));
+        const details = [job.state, job.employmentType, job.start ? `Eintritt: ${job.start}` : ''].filter(Boolean);
+        if (center && job.siteKey) details.push(`${number.format(Math.round(distanceKm(center.pair, job.unit.coordinates)))} km Luftlinie zur Einheit`);
+        if (details.length) item.append(node('p', details.join(' · '), 'muted'));
+        const actions = node('div', '', 'actions');
+        if (job.applicationUrl) actions.append(jobLink(job.applicationUrl, 'Bewerben ↗'));
+        const marker = markers.get(job.siteKey);
+        if (marker) {
+          const button = node('button', 'Einheit auf Karte');
+          button.type = 'button';
+          button.addEventListener('click', () => {
+            $('map-title').scrollIntoView({ block: 'nearest' });
+            clusters.zoomToShowLayer(marker, () => marker.openPopup());
+          });
+          actions.append(button);
+        }
+        if (actions.childElementCount) item.append(actions);
+        return item;
+      }
+
+      const visibleJobs = () => selected ? sites.get(selected).jobs : matches;
+
+      function appendPage() {
+        const shown = visibleJobs();
+        const next = shown.slice(rendered, rendered + pageSize);
+        $('list').append(...next.map(jobCard));
+        rendered += next.length;
+        $('more').hidden = rendered >= shown.length;
+        if (!$('more').hidden) $('more').textContent = `Weitere Stellen anzeigen (${number.format(shown.length - rendered)})`;
+      }
+
+      function renderList() {
+        const shown = visibleJobs();
+        const unmapped = shown.filter(job => !job.siteKey).length;
+        $('count').textContent = `${number.format(shown.length)} ${shown.length === 1 ? 'Stelle' : 'Stellen'}` +
+          (unmapped ? ` · ${number.format(unmapped)} ohne Pin` : '');
+        $('selection').hidden = !selected;
+        if (selected) $('selection-label').textContent = 'Nur Stellen am ausgewählten Kartenstandort';
+        $('message').hidden = shown.length !== 0;
+        $('message').textContent = 'Keine passenden Stellen. Versuche es mit einem anderen Suchbegriff oder weniger Filtern.';
+        $('list').replaceChildren();
+        rendered = 0;
+        appendPage();
+      }
+
+      function applyFilters(refit = false) {
+        const words = fold($('search').value).trim().split(/\s+/).filter(Boolean);
+        const state = $('state').value, field = $('field').value, time = $('employment').value;
+        matches = jobs.filter(job => (!state || job.state === state) && (!field || job.jobField === field) &&
+          (!time || job.times.includes(time)) && words.every(word => job.searchText.includes(word)) &&
+          (!center || (job.siteKey && distanceKm(center.pair, job.unit.coordinates) <= radius())));
+        selected = null;
+        sites = new Map();
+        for (const job of matches) {
+          if (!job.siteKey) continue;
+          if (!sites.has(job.siteKey)) sites.set(job.siteKey, { pair: job.unit.coordinates, jobs: [] });
+          sites.get(job.siteKey).jobs.push(job);
+        }
+        drawMap();
+        if (refit) fitMap();
+        renderList();
+      }
+
+      function selectPlace(place) {
+        center = place;
+        $('clear-place').hidden = false;
+        $('place-status').textContent = `Umkreis: ${radius()} km um ${place.label}`;
+        applyFilters(true);
+      }
+
+      async function findPlace(event) {
+        event.preventDefault();
+        const query = $('place').value.trim();
+        if (!query || $('find-place').disabled) return;
+        $('find-place').disabled = true;
+        $('clear-place').disabled = true;
+        $('place-status').textContent = 'Ort wird gesucht …';
+        $('place-choices').hidden = true;
+        try {
+          const cacheKey = query.toLocaleLowerCase('de-AT').replace(/\s+/g, ' ');
+          placeResults = placeCache.get(cacheKey);
+          if (!placeResults) {
+            const now = Date.now();
+            if (now - lastPlaceRequest < 1100) {
+              await new Promise(resolve => setTimeout(resolve, 1100 - (now - lastPlaceRequest)));
+            }
+            lastPlaceRequest = Date.now();
+            const params = new URLSearchParams({
+              q: query, countrycodes: 'at', format: 'jsonv2', limit: '5', 'accept-language': 'de'
+            });
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, {
+              referrerPolicy: 'strict-origin-when-cross-origin',
+              signal: AbortSignal.timeout(12000)
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            placeResults = (await response.json()).map(result => ({
+              label: result.display_name, pair: [parseFloat(result.lat), parseFloat(result.lon)]
+            })).filter(place => place.label && keyFor(place.pair));
+            placeCache.set(cacheKey, placeResults);
+          }
+          if (!placeResults.length) {
+            $('place-status').textContent = 'Kein Ort in Österreich gefunden. Versuche es mit Ort und Postleitzahl.';
+            if (center) $('place-status').textContent += ` Der bisherige Umkreis um ${center.label} bleibt aktiv.`;
+            return;
+          }
+          if (placeResults.length > 1) {
+            $('place-result').replaceChildren(...placeResults.map((place, i) => new Option(place.label, String(i))));
+            $('place-choices').hidden = false;
+          }
+          selectPlace(placeResults[0]);
+        } catch (error) {
+          $('place-status').textContent = 'Die Ortssuche ist gerade nicht erreichbar. Bitte versuche es später erneut.';
+          if (center) $('place-status').textContent += ` Der bisherige Umkreis um ${center.label} bleibt aktiv.`;
+          console.error(error);
+        } finally {
+          $('find-place').disabled = false;
+          $('clear-place').disabled = false;
+        }
+      }
+
+      startMap();
+      try {
+        const response = await fetch('./spar_jobs_final.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
+        jobs = data.map(job => ({
+          ...job,
+          state: typeof job.state === 'string' ? job.state : '',
+          times: employment(job),
+          siteKey: keyFor(job.unit?.coordinates),
+          searchText: fold([job.title, job.location, job.state, job.jobField, job.unit?.name, job.unit?.address].join(' '))
+        }));
+      } catch (error) {
+        $('count').textContent = 'Keine Daten geladen';
+        $('message').hidden = false;
+        $('message').textContent = location.protocol === 'file:' ?
+          'Bitte die Seite über einen lokalen Webserver öffnen (python -m http.server 8000).' :
+          'spar_jobs_final.json konnte nicht geladen werden.';
+        console.error(error);
+        return;
+      }
+
+      addOptions('state', jobs.map(job => job.state));
+      addOptions('field', jobs.map(job => job.jobField));
+      addOptions('employment', jobs.flatMap(job => job.times));
+      $('filters').addEventListener('submit', event => event.preventDefault());
+      let debounce;
+      $('search').addEventListener('input', () => {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => applyFilters(true), 160);
+      });
+      for (const id of ['state', 'field', 'employment']) $(id).addEventListener('change', () => {
+        clearTimeout(debounce);
+        applyFilters(true);
+      });
+      $('filters').addEventListener('reset', () => {
+        clearTimeout(debounce);
+        setTimeout(() => applyFilters(true), 0);
+      });
+      $('more').addEventListener('click', () => {
+        const firstNew = rendered;
+        appendPage();
+        $('list').children[firstNew]?.querySelector('h3 a')?.focus();
+      });
+      $('clear-site').addEventListener('click', () => {
+        selected = null;
+        map?.closePopup();
+        renderList();
+        $('search').focus();
+      });
+      $('fit').addEventListener('click', fitMap);
+      $('nearby').addEventListener('submit', findPlace);
+      $('radius').addEventListener('change', () => { if (center) selectPlace(center); });
+      $('place-result').addEventListener('change', () => selectPlace(placeResults[Number($('place-result').value)]));
+      $('clear-place').addEventListener('click', () => {
+        center = null;
+        $('clear-place').hidden = true;
+        $('place-choices').hidden = true;
+        $('place-status').textContent = '';
+        $('place').value = '';
+        applyFilters(true);
+        $('place').focus();
+      });
+      applyFilters(true);
+    });
+  </script>
+</body>
+</html>

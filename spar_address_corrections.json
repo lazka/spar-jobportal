@@ -1,0 +1,704 @@
+{
+  "867460": {
+    "latitude": 48.390979,
+    "longitude": 16.378529,
+    "source": "© Österreichisches Adressregister, Stichtagsdaten vom 01.10.2026 (via geocode.at)",
+    "note": "Address point for Am Platzgraben 1, 2111 Harmannsdorf (address ID 7708535). The job listing confirms the address; the point is not a verified store entrance."
+  },
+  "153135": {
+    "address": "Spar-Straße 1, 9063 Maria Saal",
+    "note": "SPAR's logistics handbook identifies this address as ZN 06. This is the unit's regional base, not the workplace for listings covering Kärnten and Osttirol. The Wutschein 40 alias was not officially verified."
+  },
+  "155726": {
+    "address": "Dornbacher Straße 40, 1170 Wien",
+    "note": "House 40 is within the job portal's 38-40 range and about 13 m from SPAR's catalogue pin for the Vollbadgasse branch."
+  },
+  "161680": {
+    "address": "Polling 201, 6404 Polling in Tirol",
+    "note": "Nominatim returns SPAR at house 201; SPAR's store information confirms postcode 6404 for the Knabl store."
+  },
+  "162046": {
+    "address": "Wallenmahd 46, 6850 Dornbirn",
+    "note": "Confirmed address of the SPAR regional headquarters and insurance branch. This is the field team's base, not its work territory."
+  },
+  "150986": {
+    "latitude": 47.3557971,
+    "longitude": 10.1834557,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Plangger Riezlern at Walserstraße 74/1, 6991; the catalogue lists the municipality as Mittelberg."
+  },
+  "160282": {
+    "latitude": 47.646113,
+    "longitude": 13.615336,
+    "source": "SPAR store catalogue",
+    "note": "SPAR's job ad confirms EUROSPAR Kropf & Sohn at Sparstraße 1, 4822 Bad Goisern."
+  },
+  "150181": {
+    "latitude": 47.984777,
+    "longitude": 12.926183,
+    "source": "SPAR store catalogue",
+    "note": "The unit address matches EUROSPAR Bürmoos at Ignaz-Glaser-Straße 2, 5111 Bürmoos."
+  },
+  "161190": {
+    "latitude": 48.2520368,
+    "longitude": 14.3218394,
+    "source": "SPAR store catalogue",
+    "note": "SPAR confirms EUROSPAR at Wiener Straße 428, 4030 Linz; the job ad's workplace field gives 4020."
+  },
+  "151442": {
+    "latitude": 48.0349254,
+    "longitude": 16.807495,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at ECO Plus Park, 4te. Straße, 2460 Bruck/Leitha."
+  },
+  "417343": {
+    "latitude": 47.018734,
+    "longitude": 15.501806,
+    "source": "SPAR store catalogue",
+    "note": "SPAR confirms Teslastraße 1, 8074 Raaba-Grambach; the job portal lists 8047."
+  },
+  "151500": {
+    "latitude": 47.261967,
+    "longitude": 11.430118,
+    "source": "SPAR store catalogue",
+    "note": "Host INTERSPAR DEZ store pin for the TANN unit at Amraser Seestraße 56a, 6020 Innsbruck."
+  },
+  "155466": {
+    "latitude": 47.164156,
+    "longitude": 16.0130448,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Rauch at Bad Waltersdorf 246, 8271 Bad Waltersdorf."
+  },
+  "161194": {
+    "latitude": 48.1527422,
+    "longitude": 14.0333355,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR Thalheim bei Wels at P.-B. Rodlberger-Straße 26, 4600."
+  },
+  "159831": {
+    "latitude": 46.830348,
+    "longitude": 12.802079,
+    "source": "SPAR store catalogue",
+    "note": "INTERSPAR restaurant at Großglocknerstraße 1, 9990 Nußdorf/Debant."
+  },
+  "150803": {
+    "latitude": 46.90528031251969,
+    "longitude": 13.529770947493782,
+    "source": "SPAR store catalogue",
+    "note": "SPAR confirms Untere Vorstadt 40, 9852 Gmünd; the job portal lists 9853."
+  },
+  "502764": {
+    "latitude": 48.695607,
+    "longitude": 15.959977,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Nr. 273, 2051 Zellerndorf."
+  },
+  "153064": {
+    "latitude": 48.224477,
+    "longitude": 15.338546,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Löwenpark 1, Top 15, 3390 Melk; the job portal uses 1/15."
+  },
+  "150919": {
+    "latitude": 47.3467109,
+    "longitude": 13.2014871,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Hans-Kappacher-Straße 1, 5600 St. Johann im Pongau."
+  },
+  "153478": {
+    "address": "Pregartener Straße 1a, 4284 Tragwein",
+    "note": "Nominatim returns SPAR Gusenbauer at 1a/1, confirmed by SPAR's store page and job ad."
+  },
+  "160162": {
+    "latitude": 47.50965,
+    "longitude": 11.703256,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Eder at Oberaudorfstraße 75, 6215 Achenkirch."
+  },
+  "160672": {
+    "latitude": 48.416758,
+    "longitude": 15.620327,
+    "source": "SPAR store catalogue",
+    "note": "Host INTERSPAR Krems store pin for the TANN unit at Wienerstraße 91, 3500 Krems."
+  },
+  "152109": {
+    "latitude": 48.1925646,
+    "longitude": 14.0884876,
+    "source": "Google Maps (public business listing)",
+    "note": "INTERSPAR Bäckerei Marchtrenk building pin at Pascalstraße 2, 4614 Marchtrenk; SPAR's job ad confirms the address."
+  },
+  "153466": {
+    "latitude": 48.052746662952764,
+    "longitude": 14.441510968556091,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Hans-Wagner-Straße 2-4, 4400 Steyr."
+  },
+  "150202": {
+    "latitude": 48.0087171,
+    "longitude": 13.6514307,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Anton Hesch-Gasse 2, 4840 Vöcklabruck."
+  },
+  "161246": {
+    "latitude": 47.9609264,
+    "longitude": 14.7739534,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Freisinger Berg 6, 3340 Waidhofen an der Ybbs."
+  },
+  "151323": {
+    "latitude": 48.3327198,
+    "longitude": 13.7712316,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Bruck an der Aschach 34, 4722 Peuerbach."
+  },
+  "152172": {
+    "latitude": 48.4063832,
+    "longitude": 13.776295,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Hauserstraße 15a, 4724 Neukirchen am Walde."
+  },
+  "161249": {
+    "latitude": 48.3338981,
+    "longitude": 14.2997299,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Griesmayrstraße 21, 4040 Linz-Urfahr."
+  },
+  "151371": {
+    "latitude": 48.1689186,
+    "longitude": 14.4726314,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Eisenstraße 45, 4484 Kronstorf."
+  },
+  "161243": {
+    "latitude": 48.4967117,
+    "longitude": 14.5052571,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Maderspergerstraße 3, 4240 Freistadt."
+  },
+  "150416": {
+    "latitude": 47.71399,
+    "longitude": 16.03921,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Werkstraße 9, 2630 Ternitz."
+  },
+  "150648": {
+    "latitude": 47.8221097,
+    "longitude": 16.2368436,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Fischauergasse 58b, 2700 Wiener Neustadt."
+  },
+  "160459": {
+    "latitude": 47.261967,
+    "longitude": 11.430118,
+    "source": "SPAR store catalogue",
+    "note": "INTERSPAR DEZ at Amraser Seestraße 56a, 6020 Innsbruck."
+  },
+  "151840": {
+    "latitude": 47.14264,
+    "longitude": 15.49954,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Niederschöckelstraße 54a, 8044 Weinitzen."
+  },
+  "157336": {
+    "latitude": 47.87032,
+    "longitude": 13.43285,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Feurhuber at Oberwang Nr. 187, 4882 Oberwang."
+  },
+  "150201": {
+    "latitude": 48.0849532,
+    "longitude": 13.8689555,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Stelzhammerstraße 15, 4651 Stadl-Paura."
+  },
+  "150578": {
+    "latitude": 46.855426002596595,
+    "longitude": 13.353391628842857,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Mühldorf 270, 9814 Mühldorf in Kärnten."
+  },
+  "161048": {
+    "latitude": 48.330362,
+    "longitude": 16.066796,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Langenlebarner Straße 55-57, 3430 Tulln."
+  },
+  "150508": {
+    "latitude": 47.12664,
+    "longitude": 16.26393,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Gether at Oberwarter Straße 339, 7535 St. Michael im Burgenland."
+  },
+  "152203": {
+    "latitude": 48.182789,
+    "longitude": 16.089363,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Hauptstraße 11a-15, 3021 Pressbaum."
+  },
+  "151304": {
+    "latitude": 47.321109,
+    "longitude": 13.151331,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Marktplatz 1, 5620 Schwarzach im Pongau."
+  },
+  "162634": {
+    "latitude": 47.398203,
+    "longitude": 11.941321,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Reichsöllner at Nr. 785, 6236 Alpbach."
+  },
+  "153572": {
+    "latitude": 46.67172442,
+    "longitude": 13.00157508,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Nr. 554, 9640 Kötschach."
+  },
+  "153945": {
+    "latitude": 48.35021157352043,
+    "longitude": 14.410870169394958,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Linzerberg 19, 4209 Engerwitzdorf."
+  },
+  "153522": {
+    "latitude": 46.816287,
+    "longitude": 13.50952,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Hauptstraße 26, 9871 Seeboden."
+  },
+  "153977": {
+    "latitude": 47.9638917,
+    "longitude": 14.0098065,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR at Almtalstr. 1, 4643 Pettenbach."
+  },
+  "799029": {
+    "latitude": 47.77064472,
+    "longitude": 13.0878324,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Aicher at F.-W.-Raiffeisen-Straße 1b, 5061 Elsbethen."
+  },
+  "417329": {
+    "latitude": 47.803007,
+    "longitude": 13.04617,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Rama at Linzergasse 17-19, 5020 Salzburg."
+  },
+  "150806": {
+    "latitude": 46.832399,
+    "longitude": 14.539788,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Bundesstraße 19, 9373 Klein St. Paul."
+  },
+  "165498": {
+    "latitude": 48.146104,
+    "longitude": 13.972235,
+    "source": "SPAR store catalogue",
+    "note": "Maximarkt at Gunskirchnerstraße 7, 4600 Wels."
+  },
+  "150515": {
+    "latitude": 47.39151,
+    "longitude": 13.68329,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Gruber at Lendplatz 395, 8970 Schladming."
+  },
+  "153152": {
+    "latitude": 48.0708693,
+    "longitude": 13.1795655,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Gewerbepark 1, 5222 Munderfing."
+  },
+  "159743": {
+    "latitude": 47.095283,
+    "longitude": 15.405305,
+    "source": "SPAR store catalogue",
+    "note": "INTERSPAR Graz-Nord at Wienerstraße 286, 8051 Graz."
+  },
+  "155015": {
+    "latitude": 47.0665189,
+    "longitude": 15.4408776,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Radetzkystraße 1-3, 8010 Graz."
+  },
+  "161203": {
+    "latitude": 47.23073711,
+    "longitude": 12.9927059,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Vogelmaierweg 5, 5661 Rauris."
+  },
+  "159914": {
+    "latitude": 47.22845123,
+    "longitude": 10.74478485,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Langgasse 78/80, 6460 Imst."
+  },
+  "151204": {
+    "latitude": 47.156012,
+    "longitude": 9.820197,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Bludenz-Kronenhaus at Werdenbergstraße 34, 6700 Bludenz."
+  },
+  "156456": {
+    "latitude": 47.40124,
+    "longitude": 9.736366,
+    "source": "SPAR store catalogue",
+    "note": "EUROSPAR Dornbirn-Rose at Arlbergstraße 2, 6850 Dornbirn."
+  },
+  "154441": {
+    "latitude": 48.0794862,
+    "longitude": 13.956531,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Leithenmair at Landstraße 6, 4652 Steinerkirchen."
+  },
+  "159732": {
+    "latitude": 48.416758,
+    "longitude": 15.620327,
+    "source": "SPAR store catalogue",
+    "note": "INTERSPAR Krems at Wienerstraße 91, 3500 Krems."
+  },
+  "156214": {
+    "latitude": 46.64154467516718,
+    "longitude": 14.448989299749273,
+    "source": "SPAR store catalogue",
+    "note": "SPAR at Landesstraße 1, 9130 Poggersdorf."
+  },
+  "150417": {
+    "latitude": 47.6973,
+    "longitude": 13.12438,
+    "source": "SPAR store catalogue",
+    "note": "SPAR Brennsteiner at Adnet 400, 5421 Adnet."
+  },
+  "150596": {
+    "latitude": 48.4307614,
+    "longitude": 15.9009947,
+    "source": "SPAR store catalogue",
+    "note": "Store pin for Kremser Straße 5, 3470 Kirchberg am Wagram. SPAR and the municipality confirm the address; Nominatim did not return the correct site."
+  },
+  "154035": {
+    "address": "Wiener Straße 2, 5301 Eugendorf",
+    "note": "The spaced street spelling returns the supermarket at house 2 in postcode 5301."
+  },
+  "161149": {
+    "address": "Donaufelder Straße 2, 1210 Wien",
+    "note": "House 2 is in 1210 Wien, about 46 m from the store pin for Donaufelderstraße 2–4. The query for house 4 returned a different address in 1220 Wien."
+  },
+  "151439": {
+    "address": "SPAR Kottingbrunn",
+    "note": "The shop pin is about 4 m from SPAR's pin for August-Resch-Straße 1, despite Nominatim labeling it Wiener Neustädter Straße."
+  },
+  "151464": {
+    "address": "SPAR Lockenhaus",
+    "note": "Matches the supermarket at house 75 in 7442 Lockenhaus."
+  },
+  "159902": {
+    "address": "Galgenulerstraße 3a, 6791 St. Gallenkirch",
+    "note": "Matches the retail building at the published store address."
+  },
+  "153961": {
+    "address": "Mühlbach 60, 5505 Mühlbach am Hochkönig",
+    "note": "SPAR lists its Pro Mente store at this address. Nominatim returns house 60 in 5505 with the updated filter."
+  },
+  "160468": {
+    "address": "Helmholtzstraße 15, 4020 Linz",
+    "note": "Matches the INTERSPAR Linz-Wegscheid building."
+  },
+  "160032": {
+    "address": "Helmholtzstraße 15, 4020 Linz",
+    "note": "The restaurant shares the INTERSPAR Linz-Wegscheid address."
+  },
+  "160676": {
+    "address": "Helmholtzstraße 15, 4020 Linz",
+    "note": "This TANN unit shares the INTERSPAR Linz-Wegscheid address."
+  },
+  "150904": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "151407": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "151829": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152580": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152598": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152599": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152600": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152608": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152659": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152666": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "152706": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "153404": {
+    "address": "Spar-Straße 1, 6300 Wörgl",
+    "note": "SPAR's published Wörgl headquarters address; this is the unit base, not necessarily the job location."
+  },
+  "151443": {
+    "address": "Wiener Straße 65, 7100 Neusiedl",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Neusiedl, Wiener Straße, Wiener Straße 65, 7100 Neusiedl."
+  },
+  "160454": {
+    "address": "Leonhardsplatz 4, 6800 Feldkirch",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Feldkirch-Illpark, Leonhardsplatz 4, 6800 Feldkirch."
+  },
+  "152023": {
+    "address": "Glocknerstraße 1, 9990 Lienz-Nussdorf",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Lienz-Nußdorf/Debant, Glocknerstraße 1, 9990 Lienz-Nussdorf."
+  },
+  "162659": {
+    "address": "Dr. Adolf-Schärf-Straße 5, 3107 St. Pölten",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt St. Pölten, Traisenpark, Dr. Adolf-Schärf-Straße 5, 3107 St. Pölten."
+  },
+  "161651": {
+    "address": "Seestraße 1, 8642 St. Lorenzen im Mürztal",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt St. Lorenzen im Mürztal, Seestraße 1, 8642 St. Lorenzen im Mürztal."
+  },
+  "152751": {
+    "address": "Oberdorfer Straße 26, 8600 Bruck an der Mur",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Bruck an der Mur, Oberdorfer Straße 26, 8600 Bruck an der Mur."
+  },
+  "160724": {
+    "address": "Weblinger Gürtel 25, 8054 Graz",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Graz, SCW, Weblinger Gürtel 25, 8054 Graz."
+  },
+  "161326": {
+    "address": "Wiener Straße 24, 8820 Neumarkt",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Neumarkt, Wiener Straße 24, 8820 Neumarkt."
+  },
+  "153371": {
+    "address": "Dreschnigstraße 34, 9500 Villach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Villach, Dreschnigstraße, Dreschnigstraße 34, 9500 Villach."
+  },
+  "155862": {
+    "address": "Paul-Gerhardt-Straße 18, 9020 Klagenfurt",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR-Supermarkt Klgft., Paul-Gerhardt-Straße, Paul-Gerhardt-Straße 18, 9020 Klagenfurt."
+  },
+  "152301": {
+    "address": "Dreschnigstraße 34, 9500 Villach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Villach, Dreschnigstraße, Dreschnigstraße 34, 9500 Villach."
+  },
+  "151499": {
+    "address": "Museumstraße 38, 6021 Innsbruck",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Innsbruck, Sillpark, Museumstraße 38, 6021 Innsbruck."
+  },
+  "161212": {
+    "address": "Wildkogelbahnstraße 315, 5741 Neukirchen",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Neukirchen, Wildkogelbahnstraße 315, 5741 Neukirchen."
+  },
+  "154903": {
+    "address": "Dr. Adolf-Schärf-Straße 5, 3107 St. Pölten",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt St. Pölten, Traisenpark, Dr. Adolf-Schärf-Straße 5, 3107 St. Pölten."
+  },
+  "160887": {
+    "address": "Salzburgerstraße 29a, 6380 St. Johann",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR St. Johann/Tirol, Salzburgerstraße, Salzburgerstraße 29a, 6380 St. Johann."
+  },
+  "157346": {
+    "address": "Nauders 561, 6543 Nauders",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Nauders, Nauders 561, 6543 Nauders."
+  },
+  "153117": {
+    "address": "Jochberger Straße 66, 6370 Kitzbühel",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Kitzbühel, Jochberger Straße 66, 6370 Kitzbühel."
+  },
+  "159911": {
+    "address": "Urichstraße 43, 6500 Landeck",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Landeck, Urichstraße, Urichstraße 43, 6500 Landeck."
+  },
+  "151502": {
+    "address": "Schumacherstraße 15, 5020 Salzburg-Lehen",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Salzburg Lehen, Schumacherstraße 15, 5020 Salzburg-Lehen."
+  },
+  "157166": {
+    "address": "Dorfstraße 81, 6271 Uderns",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Uderns, Dorfstraße 81, 6271 Uderns."
+  },
+  "153196": {
+    "address": "Statz 90, 6143 Matrei am Brenner",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Matrei, Statz 90, 6143 Matrei am Brenner."
+  },
+  "150757": {
+    "address": "Leutbühel 2, 6900 Bregenz",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Bregenz-GWL, Leutbühel 2, 6900 Bregenz."
+  },
+  "160766": {
+    "address": "Glocknerstraße 1, 9990 Lienz-Nussdorf",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Lienz-Nußdorf/Debant, Glocknerstraße 1, 9990 Lienz-Nussdorf."
+  },
+  "161318": {
+    "address": "Wiener Straße 6, 7551 Stegersbach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Stegersbach, Wiener Straße 6, 7551 Stegersbach."
+  },
+  "153582": {
+    "address": "Unterrotte 60, 9963 St. Jakob in Defereggen",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR-Supermarkt St. Jakob in Defereggen, Unterrotte 60, 9963 St. Jakob in Defereggen."
+  },
+  "161339": {
+    "address": "Conrad-v.-Hötzendorf-Straße 37a, 8010 Graz",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Graz, Conrad-v.-Hötzendorf-Straße, Conrad-v.-Hötzendorf-Straße 37a, 8010 Graz."
+  },
+  "156652": {
+    "address": "Nöbauerstraße 2, 4040 Gramastetten",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Gramastetten-Pöstlingberg, Nöbauerstraße 2, 4040 Gramastetten."
+  },
+  "161215": {
+    "address": "Werkstraße 34, 4300 St. Valentin",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR St. Valentin, Werkstraße, Werkstraße 34, 4300 St. Valentin."
+  },
+  "153596": {
+    "address": "Landstrasser Hauptstraße 1b, 1030 Wien",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Wien Mitte - The Mall, Landstrasser Hauptstraße 1b, 1030 Wien."
+  },
+  "160679": {
+    "address": "Industriezeile 76, 4020 Linz",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Linz, Industriezeile 76, 4020 Linz."
+  },
+  "161254": {
+    "address": "Pyhrnstraße 5, 4580 Windischgarsten",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Windischgarsten, Pyhrnstraße 5, 4580 Windischgarsten."
+  },
+  "162433": {
+    "address": "Wagramer Straße 195, 1210 Wien",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Wien-Citygate, Wagramer Straße 195, 1210 Wien."
+  },
+  "152159": {
+    "address": "Kaprunerstraße 50, 5671 Bruck",
+    "note": "Manually verified Nominatim match against the catalogue: Maximarkt Bruck, Kaprunerstraße 50, 5671 Bruck."
+  },
+  "161435": {
+    "address": "Floßlendstraße 3, 8020 Graz",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Graz, Floßlendplatz, Floßlendstraße 3, 8020 Graz."
+  },
+  "153479": {
+    "address": "Schulstraße 19, 4720 Neumarkt",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Mairhuber Neumarkt, Schulstraße 19, 4720 Neumarkt."
+  },
+  "155387": {
+    "address": "Kaprunerstraße 50, 5671 Bruck",
+    "note": "Manually verified Nominatim match against the catalogue: maxi.restaurant Bruck a.d. Glocknerstraße, Kaprunerstraße 50, 5671 Bruck."
+  },
+  "152986": {
+    "address": "Mühlbachweg 9, 5760 Saalfelden",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Saalfelden, Mühlbachweg, Mühlbachweg 9, 5760 Saalfelden."
+  },
+  "163122": {
+    "address": "Plüddemanngasse 85, 8010 Graz",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Graz, Plüddemanngasse, Plüddemanngasse 85, 8010 Graz."
+  },
+  "150377": {
+    "address": "Kaltenbacher Landstraße 28, 6272 Kaltenbach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Kaltenbach, Kaltenbacher Landstraße 28, 6272 Kaltenbach."
+  },
+  "151531": {
+    "address": "Innsbruckerstraße 83, 6060 Hall in Tirol",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Hall, Innsbruckerstraße, Innsbruckerstraße 83, 6060 Hall in Tirol."
+  },
+  "152018": {
+    "address": "Kärntner Straße 34, 9500 Villach",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt Villach, ATRIO, Kärntner Straße 34, 9500 Villach."
+  },
+  "160767": {
+    "address": "Völkermarkter Straße 38, 9300 St. Veit / Glan",
+    "note": "Manually verified Nominatim match against the catalogue: INTERSPAR-Hypermarkt St. Veit/Glan, Völkermarkter Straße 38, 9300 St. Veit / Glan."
+  },
+  "161801": {
+    "address": "Steinberg 237a, 8563 Ligist",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Ligist, Steinberg 237a, 8563 Ligist."
+  },
+  "155673": {
+    "address": "Südtirolerstraße 79a, 5500 Bischofshofen",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Ebner Bischofshofen, Südtirolerstraße 79a, 5500 Bischofshofen."
+  },
+  "161204": {
+    "address": "Brixentalerstraße 2, 6361 Hopfgarten",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Hopfgarten, Brixentalerstraße 2, 6361 Hopfgarten."
+  },
+  "154050": {
+    "address": "Kelchsau-Unterdorf 63a, 6361 Hopfgarten",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Nahversorgung Kelchsau Hopfgarten, Kelchsau-Unterdorf 63a, 6361 Hopfgarten."
+  },
+  "161244": {
+    "address": "Leopold-Werndl-Straße 25, 4400 Steyr",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Steyr, Leopold-Werndl-Straße, Leopold-Werndl-Straße 25, 4400 Steyr."
+  },
+  "150650": {
+    "address": "Brauhausstraße 92, 2320 Schwechat-Rannersdorf",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Schwechat-Rannersdorf, Brauhausstraße, Brauhausstraße 92, 2320 Schwechat-Rannersdorf."
+  },
+  "150655": {
+    "address": "Wiener Straße 123, 2345 Brunn am Gebirge",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Brunn am Gebirge, Wiener Straße 123, 2345 Brunn am Gebirge."
+  },
+  "161217": {
+    "address": "Wehrgrabengasse 18, 4400 Steyr",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Steyr, Wehrgrabengasse, Wehrgrabengasse 18, 4400 Steyr."
+  },
+  "161763": {
+    "address": "Passauer Straße 35, 4780 Schärding",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Schärding, Passauer Straße, Passauer Straße 35, 4780 Schärding."
+  },
+  "151702": {
+    "address": "Falkenweg 9, 4901 Ottnang am Hausruck",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Ottnang, Falkenweg 9, 4901 Ottnang am Hausruck."
+  },
+  "153391": {
+    "address": "Johann-Wilhelm-Klein-Straße 13, 4040 Linz",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Linz, Johann-Wilhelm-Klein-Straße, Johann-Wilhelm-Klein-Straße 13, 4040 Linz."
+  },
+  "161259": {
+    "address": "Kursaalgasse 5, 4810 Gmunden",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Gmunden, Esplanade, Kursaalgasse 5, 4810 Gmunden."
+  },
+  "151736": {
+    "address": "Zentrum 32, 6233 Kramsach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Kramsach, Zentrum 32, 6233 Kramsach."
+  },
+  "156366": {
+    "address": "Neutorstraße 21, 5020 Salzburg",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Rama Salzburg, Neutorstraße 21, 5020 Salzburg."
+  },
+  "155860": {
+    "address": "Reintalstraße 1, 5162 Obertrum",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Obertrum, Reintalstraße 1, 5162 Obertrum."
+  },
+  "150671": {
+    "address": "Lanzendorfer Straße 11, 2481 Achau",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Achau, Lanzendorfer Straße 11, 2481 Achau."
+  },
+  "161206": {
+    "address": "Zillerweg 6, 6263 Fügen",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Fügen, Zillerweg, Zillerweg 6, 6263 Fügen."
+  },
+  "152827": {
+    "address": "Reintalstraße 1, 5162 Obertrum",
+    "note": "Manually verified Nominatim match against the catalogue: EUROSPAR Obertrum, Reintalstraße 1, 5162 Obertrum."
+  },
+  "160262": {
+    "address": "Dorfstraße 40, 6212 Maurach",
+    "note": "Manually verified Nominatim match against the catalogue: SPAR Buchauer Maurach, Dorfstraße 40, 6212 Maurach."
+  }
+}
