@@ -21,42 +21,47 @@
     </section>
     <div class="page-width workspace">
       <div class="search-panel">
-        <form class="filters" id="filters" role="search" aria-label="Stellensuche" autocomplete="off">
-          <label>Stichwort
-            <span class="search-field">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
-              <input id="search" type="search" placeholder="z. B. Feinkost oder Graz">
-            </span>
-          </label>
-          <label>Bundesland<select id="state"><option value="">Alle</option></select></label>
-          <label>Berufsfeld<select id="field"><option value="">Alle</option></select></label>
-          <label>Arbeitszeit<select id="employment"><option value="">Alle</option></select></label>
-          <button type="reset">Zurücksetzen</button>
-        </form>
         <div class="nearby-panel">
-          <details>
-            <summary>Umkreissuche</summary>
-            <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" autocomplete="off">
-              <label>Ort oder Postleitzahl<input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100"></label>
-              <label>Umkreis<select id="radius">
-                <option value="5">5 km</option>
-                <option value="10">10 km</option>
-                <option value="20">20 km</option>
-                <option value="30" selected>30 km</option>
-                <option value="50">50 km</option>
-                <option value="75">75 km</option>
-                <option value="100">100 km</option>
-              </select></label>
-              <div class="nearby-actions">
-                <button class="button-primary" id="find-place" type="submit">Im Umkreis suchen</button>
-                <button id="clear-place" type="button" hidden>Umkreis entfernen</button>
-              </div>
-              <label class="wide" id="place-choices" hidden>Gefundener Ort<select id="place-result"></select></label>
-              <p class="wide muted search-note">Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
-            </form>
-          </details>
+          <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" autocomplete="off">
+            <label><span class="filter-label">Ort oder Postleitzahl</span><input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100"></label>
+            <label><span class="filter-label">Umkreis</span><select id="radius">
+              <option value="5">5 km</option>
+              <option value="10">10 km</option>
+              <option value="20">20 km</option>
+              <option value="30" selected>30 km</option>
+              <option value="50">50 km</option>
+              <option value="75">75 km</option>
+              <option value="100">100 km</option>
+            </select></label>
+            <div class="nearby-actions">
+              <details class="place-info">
+                <summary aria-label="Datenschutzhinweis zur Ortssuche">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
+                </summary>
+                <p class="muted search-note">Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
+              </details>
+              <button class="button-primary" id="find-place" type="submit">Suchen</button>
+              <button id="clear-place" type="button" hidden>Umkreis entfernen</button>
+            </div>
+            <label class="wide" id="place-choices" hidden><span class="filter-label">Gefundener Ort</span><select id="place-result"></select></label>
+          </form>
           <p id="place-status" role="status"></p>
         </div>
+        <details class="advanced-search" id="advanced-search">
+          <summary id="advanced-title">Weitere Filter <span class="tag filter-count" id="filter-count" hidden></span></summary>
+          <form class="filters" id="filters" role="search" aria-labelledby="advanced-title" autocomplete="off">
+            <label><span class="filter-label">Stichwort</span>
+              <span class="search-field">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="search" type="search" placeholder="z. B. Feinkost oder Graz">
+              </span>
+            </label>
+            <label><span class="filter-label">Bundesland</span><select id="state"><option value="">Alle</option></select></label>
+            <label><span class="filter-label">Berufsfeld</span><select id="field"><option value="">Alle</option></select></label>
+            <label><span class="filter-label">Arbeitszeit</span><select id="employment"><option value="">Alle</option></select></label>
+            <button type="reset">Filter zurücksetzen</button>
+          </form>
+        </details>
       </div>
       <div class="layout">
         <section class="panel" aria-labelledby="jobs-title">

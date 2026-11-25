@@ -51,6 +51,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   const state = control('state', HTMLSelectElement);
   const field = control('field', HTMLSelectElement);
   const employment = control('employment', HTMLSelectElement);
+  const advancedSearch = control('advanced-search', HTMLDetailsElement);
+  const filterCount = $('filter-count');
   const place = control('place', HTMLInputElement);
   const radiusSelect = control('radius', HTMLSelectElement);
   const placeResult = control('place-result', HTMLSelectElement);
@@ -83,8 +85,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   function applyFilters() {
     const radiusKm = radius();
+    const query = search.value.trim();
+    const activeFilters = [query, state.value, field.value, employment.value].filter(Boolean).length;
+    filterCount.textContent = `${activeFilters} Filter aktiv`;
+    filterCount.hidden = activeFilters === 0;
     matches = filterJobs(jobs, {
-      query: search.value,
+      query,
       state: state.value,
       field: field.value,
       time: employment.value,
@@ -171,7 +177,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     selected = null;
     map?.closePopup();
     renderList();
-    search.focus();
+    (advancedSearch.open ? search : place).focus();
   });
   fit.addEventListener('click', () => map?.fit());
   $('nearby').addEventListener('submit', findPlace);
