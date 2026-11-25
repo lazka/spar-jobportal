@@ -39,6 +39,9 @@
     .map-panel { position: sticky; top: 1rem; }
     #map { height: clamp(24rem, 65vh, 44rem); background: #e5eee8; z-index: 0; }
     #map > p { padding: 1rem; }
+    #map .leaflet-control-layers label { padding: .25rem 0; cursor: pointer; }
+    #map .leaflet-control-layers label > span { display: flex; align-items: center; gap: .35rem; }
+    #map .leaflet-control-layers-selector { top: 0; width: auto; min-height: 0; margin: 0; padding: 0; cursor: pointer; }
     .map-note { padding: .8rem 1rem; }
     .notice { padding: .8rem 1rem; border-top: 1px solid var(--line); }
     .notice button { margin-top: .45rem; }
@@ -188,10 +191,13 @@
         }
         $('map').replaceChildren();
         map = L.map('map', { scrollWheelZoom: true, maxZoom: 19 }).fitBounds(austria);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>',
+        const tileOptions = {
+          attribution: 'Datenquelle: <a href="https://basemap.at/en/">basemap.at</a>',
           maxZoom: 19
-        }).addTo(map);
+        };
+        const street = L.tileLayer('https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', tileOptions).addTo(map);
+        const aerial = L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg', tileOptions);
+        L.control.layers({ 'Karte': street, 'Luftbild': aerial }, null, { collapsed: false }).addTo(map);
         clusters = L.markerClusterGroup({
           showCoverageOnHover: false,
           maxClusterRadius: 50,
