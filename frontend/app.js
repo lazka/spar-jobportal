@@ -40,8 +40,69 @@ function setOptions(select, values, category) {
   select.value = selected;
 }
 
+/**
+ * @param {'state' | 'field'} category
+ * @param {'allStates' | 'allFields'} emptyLabel
+ * @param {() => void} onChange
+ */
+function createMultiSelect(category, emptyLabel, onChange) {
+  const details = control(category, HTMLDetailsElement);
+  const wrapper = $(`${category}-control`);
+  const options = $(`${category}-options`);
+  const valueLabel = $(`${category}-value`);
+  const summary = details.querySelector('summary');
+  const clear = control(`clear-${category}s`, HTMLButtonElement);
+  const values = () => Array.from(options.querySelectorAll('input'))
+    .filter(input => input.checked).map(input => input.value);
+  const close = () => { details.open = false; };
+
+  options.addEventListener('change', onChange);
+  document.addEventListener('click', event => {
+    if (details.open && event.target instanceof Node && !wrapper.contains(event.target)) close();
+  });
+  wrapper.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !details.open) return;
+    event.preventDefault();
+    close();
+    summary?.focus();
+  });
+  clear.addEventListener('click', () => {
+    for (const input of options.querySelectorAll('input')) input.checked = false;
+    summary?.focus();
+    onChange();
+  });
+
+  return {
+    values,
+    close,
+    /** @param {(string | null | undefined)[]} items */
+    setOptions(items) {
+      const checked = new Set(values());
+      const collator = new Intl.Collator(locale());
+      const unique = new Set(items.filter(/** @returns {value is string} */ value => typeof value === 'string' && value !== ''));
+      const labels = Array.from(unique, value => ({ value, text: jobLabel(category, value) }))
+        .sort((a, b) => collator.compare(a.text, b.text));
+      options.replaceChildren(...labels.map(({ value, text }) => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.value = value;
+        input.checked = checked.has(value);
+        label.append(input, text);
+        return label;
+      }));
+    },
+    renderSummary() {
+      const selected = values();
+      valueLabel.textContent = selected.length === 1 ? jobLabel(category, selected[0])
+        : selected.length ? t('selectedOptions', { count: selected.length }) : t(emptyLabel);
+      clear.hidden = selected.length === 0;
+      return selected.length;
+    },
+  };
+}
+
 window.addEventListener('DOMContentLoaded', async () => {
-  await initLanguage();
   const languageToggle = control('language', HTMLButtonElement);
   function translatePage() {
     document.documentElement.lang = locale();
@@ -50,7 +111,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     languageToggle.textContent = language() === 'en' ? 'DE' : 'EN';
     languageToggle.setAttribute('aria-label', t('switchLanguage'));
   }
-  translatePage();
+  try {
+    await initLanguage();
+    translatePage();
+    languageToggle.hidden = false;
+  } finally {
+    document.documentElement.classList.remove('awaiting-language');
+  }
 
   /** @type {Job[]} */
   let jobs;
@@ -69,16 +136,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   let placeResults = [];
   /** @type {'' | 'radiusStatus' | 'noPlace' | 'placeError' | 'searchingPlace'} */
   let placeStatus = '';
+  /** @type {number | undefined} */
+  let debounce;
   const search = control('search', HTMLInputElement);
   const clearKeyword = control('clear-keyword', HTMLButtonElement);
-  const state = control('state', HTMLDetailsElement);
-  const stateControl = $('state-control');
-  const stateSummary = state.querySelector('summary');
-  const clearStates = control('clear-states', HTMLButtonElement);
-  const stateOptions = $('state-options');
-  const selectedStates = () => Array.from(stateOptions.querySelectorAll('input'))
-    .filter(input => input.checked).map(input => input.value);
-  const field = control('field', HTMLSelectElement);
+  const state = createMultiSelect('state', 'allStates', refreshFilters);
+  const field = createMultiSelect('field', 'allFields', refreshFilters);
   const employment = control('employment', HTMLSelectElement);
   const advancedToggle = control('advanced-title', HTMLButtonElement);
   const filters = control('filters', HTMLFormElement);
@@ -97,7 +160,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   advancedToggle.addEventListener('click', () => {
     filters.hidden = !filters.hidden;
     advancedToggle.setAttribute('aria-expanded', String(!filters.hidden));
-    if (filters.hidden) state.open = false;
+    if (filters.hidden) {
+      state.close();
+      field.close();
+    }
   });
 
   const map = createMap($('map'), key => {
@@ -106,15 +172,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     $('clear-site').focus();
   });
 
+  const jobCount = $('count');
   const jobList = createJobList({
-    list: $('list'), more: $('more'), count: $('count'),
+    list: $('list'), more: $('more'), count: jobCount,
     selection: $('selection'), message: $('message')
   }, map ? key => {
     $('map-title').scrollIntoView({ block: 'nearest' });
     map.showSite(key);
   } : null);
 
-  languageToggle.hidden = false;
   languageToggle.addEventListener('click', async () => {
     await changeLanguage(language() === 'en' ? 'de' : 'en');
     translatePage();
@@ -132,32 +198,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     const coverageNote = $('map-coverage-note');
     coverageNote.textContent = t('mapCoverage', { count: jobs.filter(job => !job.siteKey).length });
     coverageNote.hidden = false;
-    const checked = new Set(selectedStates());
-    const collator = new Intl.Collator(locale());
-    const options = Array.from(new Set(jobs.flatMap(job => job.states)), value => ({
-      value, text: jobLabel('state', value)
-    })).sort((a, b) => collator.compare(a.text, b.text));
-    stateOptions.replaceChildren(...options.map(({ value, text }) => {
-      const label = document.createElement('label');
-      const input = document.createElement('input');
-      input.type = 'checkbox';
-      input.value = value;
-      input.checked = checked.has(value);
-      label.append(input, text);
-      return label;
-    }));
-    setOptions(field, jobs.map(job => job.jobField), 'field');
+    state.setOptions(jobs.flatMap(job => job.states));
+    field.setOptions(jobs.map(job => job.jobField));
     setOptions(employment, jobs.flatMap(job => job.times), 'employment');
   }
 
   function renderList(preservePages = false) {
     const site = selected ? sites.get(selected) : undefined;
     clearKeyword.hidden = !search.value;
-    const states = selectedStates();
-    $('state-value').textContent = states.length === 1 ? jobLabel('state', states[0])
-      : states.length ? t('selectedStates', { count: states.length }) : t('all');
-    clearStates.hidden = states.length === 0;
-    const activeFilters = [search.value.trim(), states.length, field.value, employment.value, showUnmapped].filter(Boolean).length;
+    const activeFilters = [search.value.trim(), state.renderSummary(), field.renderSummary(),
+      employment.value, showUnmapped].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
     activeFilterActions.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
@@ -174,8 +224,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     const radiusKm = radius();
     const matchingFilters = filterJobs(jobs, {
       query: search.value.trim(),
-      states: selectedStates(),
-      field: field.value,
+      states: state.values(),
+      fields: field.values(),
       time: employment.value
     });
     unmapped = matchingFilters.filter(job => !job.siteKey);
@@ -187,6 +237,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     map?.draw(sites, activeCenter, radiusKm);
     if (!showUnmapped) map?.fit();
     renderList();
+  }
+
+  function refreshFilters() {
+    window.clearTimeout(debounce);
+    applyFilters();
   }
 
   /** @param {Place} result */
@@ -248,13 +303,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     jobList.showLoadError();
     console.error(error);
     return;
+  } finally {
+    delete jobCount.dataset.i18n;
   }
 
   loadState = 'ready';
   renderJobFilters();
   filters.addEventListener('submit', event => event.preventDefault());
-  /** @type {number | undefined} */
-  let debounce;
   search.addEventListener('input', () => {
     clearKeyword.hidden = !search.value;
     window.clearTimeout(debounce);
@@ -263,28 +318,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   clearKeyword.addEventListener('click', () => {
     search.value = '';
     search.focus();
-    window.clearTimeout(debounce);
-    applyFilters();
+    refreshFilters();
   });
-  for (const filter of [state, field, employment]) filter.addEventListener('change', () => {
-    window.clearTimeout(debounce);
-    applyFilters();
-  });
-  document.addEventListener('click', event => {
-    if (state.open && event.target instanceof Node && !stateControl.contains(event.target)) state.open = false;
-  });
-  stateControl.addEventListener('keydown', event => {
-    if (event.key !== 'Escape' || !state.open) return;
-    event.preventDefault();
-    state.open = false;
-    stateSummary?.focus();
-  });
-  clearStates.addEventListener('click', () => {
-    for (const input of stateOptions.querySelectorAll('input')) input.checked = false;
-    stateSummary?.focus();
-    window.clearTimeout(debounce);
-    applyFilters();
-  });
+  employment.addEventListener('change', refreshFilters);
   filters.addEventListener('reset', () => {
     if (document.activeElement === resetFilters) advancedToggle.focus();
     showUnmapped = false;

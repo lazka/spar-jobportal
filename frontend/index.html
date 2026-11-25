@@ -4,6 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inoffizielles SPAR-Jobportal</title>
+  <style>.awaiting-language body { visibility: hidden; }</style>
+  <script>
+    try {
+      // The HTML already uses the default language; only a saved English preference needs to wait.
+      if (localStorage.getItem('spar-jobportal-language') === 'en') {
+        document.documentElement.classList.add('awaiting-language');
+      }
+    } catch {
+      // Leave the German page visible when storage is unavailable.
+    }
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
   <link rel="stylesheet" href="./styles.css">
@@ -12,7 +23,7 @@
   <script type="importmap">
     {"imports":{"i18next":"https://cdn.jsdelivr.net/npm/i18next@27.2.9/dist/esm/i18next.js"}}
   </script>
-  <script type="module" src="./app.js"></script>
+  <script type="module" src="./app.js" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
 </head>
 <body>
   <main>
@@ -34,7 +45,7 @@
               <div class="place-input">
                 <input id="place" placeholder="z. B. Graz oder 8010" data-i18n-placeholder="placePlaceholder" required maxlength="100">
                 <button id="clear-place" class="place-clear" type="button" title="Umkreis entfernen" aria-label="Umkreis entfernen" data-i18n-title="clearRadius" data-i18n-aria-label="clearRadius" hidden>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
                 </button>
               </div>
             </div>
@@ -78,23 +89,34 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
                 <input id="search" type="search" placeholder="z. B. Feinkost oder Graz" data-i18n-placeholder="keywordPlaceholder">
                 <button id="clear-keyword" class="keyword-clear" type="button" title="Stichwort löschen" aria-label="Stichwort löschen" data-i18n-title="clearKeyword" data-i18n-aria-label="clearKeyword" hidden>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
                 </button>
               </div>
             </div>
-            <div class="state-filter">
+            <div class="multi-select-filter">
               <span class="filter-label" id="state-label" data-i18n="state">Bundesländer</span>
-              <div class="state-control" id="state-control">
+              <div class="multi-select-control" id="state-control">
                 <details id="state">
-                  <summary aria-labelledby="state-label state-value"><span id="state-value" data-i18n="all">Alle</span></summary>
-                  <div class="state-options" id="state-options" role="group" aria-labelledby="state-label"></div>
+                  <summary aria-labelledby="state-label state-value"><span id="state-value" data-i18n="allStates">Alle Bundesländer</span></summary>
+                  <div class="multi-select-options" id="state-options" role="group" aria-labelledby="state-label"></div>
                 </details>
-                <button id="clear-states" class="state-clear" type="button" title="Bundeslandauswahl aufheben" aria-label="Bundeslandauswahl aufheben" data-i18n-title="clearStates" data-i18n-aria-label="clearStates" hidden>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                <button id="clear-states" class="multi-select-clear" type="button" title="Bundeslandauswahl aufheben" aria-label="Bundeslandauswahl aufheben" data-i18n-title="clearStates" data-i18n-aria-label="clearStates" hidden>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
                 </button>
               </div>
             </div>
-            <label><span class="filter-label" data-i18n="field">Berufsfeld</span><select id="field"><option value="" data-i18n="all">Alle</option></select></label>
+            <div class="multi-select-filter">
+              <span class="filter-label" id="field-label" data-i18n="field">Berufsfelder</span>
+              <div class="multi-select-control" id="field-control">
+                <details id="field">
+                  <summary aria-labelledby="field-label field-value"><span id="field-value" data-i18n="allFields">Alle Berufsfelder</span></summary>
+                  <div class="multi-select-options" id="field-options" role="group" aria-labelledby="field-label"></div>
+                </details>
+                <button id="clear-fields" class="multi-select-clear" type="button" title="Berufsfeldauswahl aufheben" aria-label="Berufsfeldauswahl aufheben" data-i18n-title="clearFields" data-i18n-aria-label="clearFields" hidden>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
+                </button>
+              </div>
+            </div>
             <label><span class="filter-label" data-i18n="employment">Arbeitszeit</span><select id="employment"><option value="" data-i18n="all">Alle</option></select></label>
             <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
           </form>
@@ -104,7 +126,7 @@
         <section class="panel" aria-labelledby="jobs-title">
           <div class="panel-head">
             <h2 id="jobs-title" data-i18n="jobs">Offene Stellen</h2>
-            <p class="muted" id="count" role="status">Stellen werden geladen …</p>
+            <p class="muted" id="count" role="status" data-i18n="loadingJobs">Stellen werden geladen …</p>
           </div>
           <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Nicht auf der Karte: Standortdaten fehlen.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
           <div class="notice" id="selection" hidden>

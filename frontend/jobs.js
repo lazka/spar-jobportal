@@ -74,13 +74,14 @@ export async function loadJobs() {
 
 /**
  * @param {Job[]} jobs
- * @param {{query?: string, states?: string[], field?: string, time?: string, center?: Coordinates, radiusKm?: number}} filters
+ * @param {{query?: string, states?: string[], fields?: string[], time?: string, center?: Coordinates, radiusKm?: number}} filters
  */
-export function filterJobs(jobs, { query = '', states = [], field, time, center, radiusKm = 0 }) {
+export function filterJobs(jobs, { query = '', states = [], fields = [], time, center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
   const selectedStates = new Set(states);
+  const selectedFields = new Set(fields);
   return jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
-    (!field || job.jobField === field) &&
+    (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
     (!time || job.times.includes(time)) && words.every(word => job.searchText.includes(word)) &&
     (!center || (job.siteKey && job.unit?.coordinates && distanceKm(center, job.unit.coordinates) <= radiusKm)));
 }

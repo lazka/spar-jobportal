@@ -13,7 +13,7 @@ const jobs = normalizeJobs([
 ]);
 
 await test('keyword search matches accents and ß and combines with dropdown filters', () => {
-  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], field: 'Verkauf', time: 'Teilzeit' };
+  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], time: 'Teilzeit' };
   assert.deepEqual(filterJobs(jobs, filters), [jobs[0]]);
   assert.deepEqual(filterJobs(jobs, { ...filters, time: 'Geringfügig' }), []);
   assert.deepEqual(filterJobs(jobs, { ...filters, query: 'verkaufer fehlt' }), []);
@@ -38,6 +38,20 @@ await test('state filters match any selected state and include multi-state jobs 
   assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien', 'Steiermark'] }), regionalJobs.slice(0, 2));
   assert.deepEqual(filterJobs(regionalJobs, { states: [] }), regionalJobs);
   assert.deepEqual(filterJobs(regionalJobs, { query: 'Styria' }), regionalJobs.slice(0, 2));
+});
+
+await test('job category filters match any selected category and combine with the states filter', () => {
+  const categorized = normalizeJobs([
+    { state: 'Wien', jobField: 'Verkauf' },
+    { state: 'Wien', jobField: 'Gastronomie' },
+    { state: 'Tirol', jobField: 'Verkauf' },
+    { state: 'Wien', jobField: 'Lehrlinge' },
+    { state: 'Wien' },
+  ]);
+  const fields = ['Verkauf', 'Gastronomie'];
+  assert.deepEqual(filterJobs(categorized, { fields }), categorized.slice(0, 3));
+  assert.deepEqual(filterJobs(categorized, { fields, states: ['Wien'] }), categorized.slice(0, 2));
+  assert.deepEqual(filterJobs(categorized, { fields: [] }), categorized);
 });
 
 await test('site grouping combines jobs with shared coordinates and skips unmapped jobs', () => {
