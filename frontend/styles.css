@@ -434,11 +434,9 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   accent-color: var(--spar-red);
 }
 .map-note {
-  margin-top: .65rem;
   color: #666;
   font-size: .8125rem;
 }
-.map-view-filter:not([hidden]) + .map-note { margin-top: 0; }
 .notice { padding: .8rem 1rem; border-radius: var(--radius); background: var(--pale-red); margin-bottom: .75rem; }
 .notice button { margin-top: .5rem; }
 #list { list-style: none; margin: 0; padding: 0; }
