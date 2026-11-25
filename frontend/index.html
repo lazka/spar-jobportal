@@ -23,7 +23,15 @@
       <div class="search-panel">
         <div class="nearby-panel">
           <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" autocomplete="off">
-            <label><span class="filter-label">Ort oder Postleitzahl</span><input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100"></label>
+            <div class="place-field">
+              <label class="filter-label" for="place">Ort oder Postleitzahl</label>
+              <div class="place-input">
+                <input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100">
+                <button id="clear-place" class="place-clear" type="button" title="Umkreis entfernen" aria-label="Umkreis entfernen" hidden>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                </button>
+              </div>
+            </div>
             <label><span class="filter-label">Umkreis</span><select id="radius">
               <option value="5">5 km</option>
               <option value="10">10 km</option>
@@ -41,7 +49,6 @@
                 <p class="muted search-note">Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
               </details>
               <button class="button-primary" id="find-place" type="submit">Suchen</button>
-              <button id="clear-place" type="button" hidden>Umkreis entfernen</button>
             </div>
             <label class="wide" id="place-choices" hidden><span class="filter-label">Gefundener Ort</span><select id="place-result"></select></label>
           </form>
