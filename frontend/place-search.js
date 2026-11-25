@@ -1,7 +1,7 @@
 import { coordinateKey } from './jobs.js';
 
 /** @import { Coordinates } from './jobs.js' */
-/** @typedef {{label: string, fullLabel: string, pair: Coordinates}} Place */
+/** @typedef {{label: string, pair: Coordinates}} Place */
 /** @typedef {{road?: string, pedestrian?: string, house_number?: string, postcode?: string, city?: string, town?: string, village?: string, hamlet?: string, municipality?: string, state?: string}} PlaceAddress */
 /** @typedef {{display_name: string, name?: string, address?: PlaceAddress, lat: string, lon: string}} NominatimResult */
 
@@ -45,9 +45,17 @@ export async function searchPlaces(query, language) {
 
   /** @type {NominatimResult[]} */
   const data = await response.json();
-  const results = data.map(/** @returns {Place} */ result => ({
-    label: compactPlaceLabel(result), fullLabel: result.display_name, pair: [parseFloat(result.lat), parseFloat(result.lon)]
-  })).filter(place => place.label && coordinateKey(place.pair));
+  /** @type {Place[]} */
+  const results = [];
+  const seen = new Set();
+  for (const result of data) {
+    const label = compactPlaceLabel(result);
+    /** @type {Coordinates} */
+    const pair = [parseFloat(result.lat), parseFloat(result.lon)];
+    if (!label || seen.has(label) || !coordinateKey(pair)) continue;
+    seen.add(label);
+    results.push({ label, pair });
+  }
   cache.set(cacheKey, results);
   return results;
 }

@@ -267,11 +267,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         return;
       }
       if (placeResults.length > 1) {
-        const duplicates = new Set(placeResults.filter((result, i) =>
-          placeResults.some((other, j) => j !== i && other.label === result.label)
-        ).map(result => result.label));
         placeResult.replaceChildren(...placeResults.map((result, i) =>
-          new Option(duplicates.has(result.label) ? result.fullLabel : result.label, String(i))));
+          new Option(result.label, String(i))));
         $('place-choices').hidden = false;
       }
       selectPlace(placeResults[0]);
