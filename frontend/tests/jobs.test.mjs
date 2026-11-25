@@ -5,18 +5,26 @@ import { filterJobs, groupSites, normalizeJobs } from '../jobs.js';
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
 const jobs = normalizeJobs([
-  { title: 'Verkäufer:in', state: 'Wien', jobField: 'Verkauf', employmentType: 'Vollzeit / Teilzeit',
-    unit: { address: 'Beispielstraße', coordinates: vienna } },
+  { title: 'Verkäufer:in in der Thaliastraße', state: 'Wien', location: 'Ottakring', jobField: 'Verkauf',
+    employmentType: 'Vollzeit / Teilzeit', unit: { address: 'Beispielstraße', name: 'INTERSPAR', coordinates: vienna } },
   { title: 'Feinkost', state: 'Steiermark', jobField: 'Verkauf', employmentType: 'Vollzeit',
     unit: { coordinates: [47.0707, 15.4395] } },
   { title: 'Kassa', state: 'Wien', jobField: 'Verkauf', employmentType: 'Teilzeit' }
 ]);
 
-await test('keyword search matches accents and ß and combines with dropdown filters', () => {
-  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], workingHours: ['Teilzeit'] };
+await test('title search matches accents and ß and combines with dropdown filters', () => {
+  const filters = { query: '  THALIASTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], workingHours: ['Teilzeit'] };
   assert.deepEqual(filterJobs(jobs, filters), [jobs[0]]);
   assert.deepEqual(filterJobs(jobs, { ...filters, workingHours: ['Geringfügig'] }), []);
   assert.deepEqual(filterJobs(jobs, { ...filters, query: 'verkaufer fehlt' }), []);
+});
+
+await test('title search ignores locations, work hours, site details, and category labels', () => {
+  for (const query of ['Ottakring', 'Wien', 'Teilzeit', 'Beispielstraße', 'Interspar', 'Retail sales', 'Styria']) {
+    assert.deepEqual(filterJobs(jobs, { query }), [], query);
+  }
+  assert.deepEqual(filterJobs(jobs, { query: 'Beispielstraße verkaufer' }), []);
+  assert.deepEqual(filterJobs(jobs, { query: 'Verkauf' }), [jobs[0]]);
 });
 
 await test('radius search excludes distant jobs and jobs without coordinates', () => {
@@ -49,7 +57,6 @@ await test('state filters match any selected state and include multi-state jobs 
   assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien'] }), [regionalJobs[0]]);
   assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien', 'Steiermark'] }), regionalJobs.slice(0, 2));
   assert.deepEqual(filterJobs(regionalJobs, { states: [] }), regionalJobs);
-  assert.deepEqual(filterJobs(regionalJobs, { query: 'Styria' }), regionalJobs.slice(0, 2));
 });
 
 await test('job category filters match any selected category and combine with the states filter', () => {

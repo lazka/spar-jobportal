@@ -188,7 +188,7 @@ export function createMap(container, onSelectSite) {
     }
     pendingSite = null;
     map.closePopup();
-    map.setView(marker.getLatLng(), Math.max(map.getZoom(), 18), { animate: false });
+    map.setView(marker.getLatLng(), Math.max(map.getZoom(), 17), { animate: false });
     // A cluster animation can delay adding markers after a pan at the same zoom.
     if (!clusters.getVisibleParent(marker)) {
       pendingSite = key;

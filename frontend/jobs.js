@@ -1,5 +1,3 @@
-import { englishLabel } from './translations.js';
-
 /** @typedef {[number, number]} Coordinates */
 /** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null}} JobUnit */
 /**
@@ -14,7 +12,7 @@ import { englishLabel } from './translations.js';
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], siteKey: string | null, searchText: string}} Job */
+/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], siteKey: string | null, searchTitle: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
 
 /** @param {string | null | undefined} text */
@@ -60,10 +58,7 @@ export function normalizeJobs(data) {
       times,
       workingHours,
       siteKey: coordinateKey(job.unit?.coordinates),
-      searchText: normalizeSearch([
-        job.title, job.location, state, job.jobField, job.unit?.name, job.unit?.address,
-        englishLabel('state', state), englishLabel('field', job.jobField ?? ''),
-      ].join(' '))
+      searchTitle: normalizeSearch(job.title)
     };
   });
 }
@@ -88,7 +83,7 @@ export function filterJobs(jobs, { query = '', states = [], fields = [], working
   const matches = jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
     (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
     (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
-    words.every(word => job.searchText.includes(word)));
+    words.every(word => job.searchTitle.includes(word)));
   if (!center) return matches;
 
   return matches.flatMap(job => {
