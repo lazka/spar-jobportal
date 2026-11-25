@@ -1,4 +1,5 @@
 import { createJobList } from './job-list.js';
+import { createJobShare } from './job-share.js';
 import { filterJobs, groupSites, loadJobs } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
@@ -160,13 +161,14 @@ window.addEventListener('DOMContentLoaded', async () => {
   });
 
   const jobCount = $('count');
+  const shareJob = createJobShare(control('share-dialog', HTMLDialogElement));
   const jobList = createJobList({
     list: $('list'), more: $('more'), count: jobCount,
     selection: $('selection'), message: $('message')
   }, map ? key => {
     $('map-title').scrollIntoView({ block: 'nearest' });
     map.showSite(key);
-  } : null);
+  } : null, shareJob);
 
   languageToggle.addEventListener('click', async () => {
     await changeLanguage(language() === 'en' ? 'de' : 'en');

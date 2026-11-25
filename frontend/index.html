@@ -21,7 +21,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script type="importmap">
-    {"imports":{"i18next":"https://cdn.jsdelivr.net/npm/i18next@27.2.9/dist/esm/i18next.js"}}
+    {"imports":{"i18next":"https://cdn.jsdelivr.net/npm/i18next@27.2.9/dist/esm/i18next.js","qrcode-generator":"https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.mjs"}}
   </script>
   <script type="module" src="./app.js" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
 </head>
@@ -164,5 +164,27 @@
       <a href="https://github.com/lazka/spar-jobportal" data-i18n="sourceCode">Quellcode auf GitHub</a>
     </div>
   </footer>
+  <dialog class="share-dialog" id="share-dialog" aria-labelledby="share-title">
+    <div class="share-heading">
+      <h2 id="share-title" data-i18n="shareTitle">Stelle teilen</h2>
+      <form method="dialog">
+        <button class="share-close" type="submit" autofocus aria-label="Schließen" title="Schließen" data-i18n-aria-label="shareClose" data-i18n-title="shareClose">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
+        </button>
+      </form>
+    </div>
+    <p class="share-job-title" id="share-job-title"></p>
+    <p data-i18n="shareInstructions">Scanne den QR-Code, um die Stellenanzeige zu öffnen.</p>
+    <div class="share-preview">
+      <img id="share-code" alt="QR-Code zur Stellenanzeige" width="240" height="240" hidden>
+      <p id="share-qr-status" role="status"></p>
+    </div>
+    <label for="share-url" data-i18n="shareLink">Link zur Stellenanzeige</label>
+    <div class="share-link">
+      <input id="share-url" type="url" readonly>
+      <button id="copy-share-url" type="button" data-i18n="shareCopy">Link kopieren</button>
+    </div>
+    <p class="share-copy-status" id="share-copy-status" role="status"></p>
+  </dialog>
 </body>
 </html>

@@ -4,6 +4,7 @@ import { distanceKm } from './jobs.js';
 
 /** @import { Coordinates, Job } from './jobs.js' */
 /** @typedef {((key: string) => void) | null} ShowSite */
+/** @typedef {(url: string, title: Job['title']) => Promise<void>} ShareJob */
 
 const pageSize = 25;
 
@@ -26,7 +27,8 @@ function jobLink(url, label) {
   }
 }
 
-function targetIcon() {
+/** @param {string} pathData */
+function actionIcon(pathData) {
   const ns = 'http://www.w3.org/2000/svg';
   const icon = document.createElementNS(ns, 'svg');
   icon.setAttribute('viewBox', '0 0 24 24');
@@ -38,7 +40,7 @@ function targetIcon() {
   icon.setAttribute('stroke-linecap', 'round');
   icon.setAttribute('aria-hidden', 'true');
   const target = document.createElementNS(ns, 'path');
-  target.setAttribute('d', 'M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM12 2v5m0 10v5M2 12h5m10 0h5');
+  target.setAttribute('d', pathData);
   icon.append(target);
   return icon;
 }
@@ -47,8 +49,9 @@ function targetIcon() {
  * @param {Job} job
  * @param {Coordinates | undefined} center
  * @param {ShowSite} onShowSite
+ * @param {ShareJob} onShare
  */
-function jobCard(job, center, onShowSite) {
+function jobCard(job, center, onShowSite, onShare) {
   const item = node('li', '', 'card');
   if (job.jobField) item.append(node('span', jobLabel('field', job.jobField), 'tag'));
   const title = node('h3', job.title || t('untitledJob'));
@@ -94,8 +97,21 @@ function jobCard(job, center, onShowSite) {
     button.type = 'button';
     button.title = t('showSite');
     button.setAttribute('aria-label', button.title);
-    button.append(targetIcon());
+    button.append(actionIcon('M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM12 2v5m0 10v5M2 12h5m10 0h5'));
     button.addEventListener('click', () => onShowSite(siteKey));
+    actions.append(button);
+  }
+  if (posting) {
+    const button = node('button', '', 'share-job');
+    button.type = 'button';
+    button.title = t('shareJob');
+    button.setAttribute('aria-label', button.title);
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.append(actionIcon('M18 2a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM6 9a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM18 16a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM8.6 10.5l6.8-4M8.6 13.5l6.8 4'));
+    button.addEventListener('click', () => {
+      button.focus();
+      void onShare(posting.href, job.title);
+    });
     actions.append(button);
   }
   if (actions.childElementCount) item.append(actions);
@@ -105,8 +121,9 @@ function jobCard(job, center, onShowSite) {
 /**
  * @param {{list: HTMLElement, more: HTMLElement, count: HTMLElement, selection: HTMLElement, message: HTMLElement}} elements
  * @param {ShowSite} onShowSite
+ * @param {ShareJob} onShare
  */
-export function createJobList({ list, more, count, selection, message }, onShowSite) {
+export function createJobList({ list, more, count, selection, message }, onShowSite, onShare) {
   /** @type {Job[]} */
   let shown = [];
   let rendered = 0;
@@ -115,7 +132,7 @@ export function createJobList({ list, more, count, selection, message }, onShowS
 
   function appendPage(size = pageSize) {
     const next = shown.slice(rendered, rendered + size);
-    list.append(...next.map(job => jobCard(job, center, onShowSite)));
+    list.append(...next.map(job => jobCard(job, center, onShowSite, onShare)));
     rendered += next.length;
     more.hidden = rendered >= shown.length;
     if (!more.hidden) more.textContent = t('moreJobsCount', { count: shown.length - rendered });

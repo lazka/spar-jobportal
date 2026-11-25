@@ -17,6 +17,7 @@
     "oxlint-tsgolint": "^7.0.2008"
   },
   "dependencies": {
-    "i18next": "27.2.9"
+    "i18next": "27.2.9",
+    "qrcode-generator": "2.0.4"
   }
 }
