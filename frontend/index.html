@@ -43,10 +43,13 @@
             </select></label>
             <div class="nearby-actions">
               <details class="place-info">
-                <summary aria-label="Datenschutzhinweis zur Ortssuche">
+                <summary aria-label="Hinweise zur Ortssuche">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
                 </summary>
-                <p class="muted search-note">Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
+                <div class="muted search-note">
+                  <p>Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
+                  <p id="map-coverage-note" hidden></p>
+                </div>
               </details>
               <button class="button-primary" id="find-place" type="submit">Suchen</button>
             </div>
@@ -66,7 +69,10 @@
             <label><span class="filter-label">Bundesland</span><select id="state"><option value="">Alle</option></select></label>
             <label><span class="filter-label">Berufsfeld</span><select id="field"><option value="">Alle</option></select></label>
             <label><span class="filter-label">Arbeitszeit</span><select id="employment"><option value="">Alle</option></select></label>
-            <button type="reset">Filter zurücksetzen</button>
+            <div class="filter-actions">
+              <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden>Nicht auf der Karte</button>
+              <button type="reset">Filter zurücksetzen</button>
+            </div>
           </form>
         </details>
       </div>
@@ -76,6 +82,7 @@
             <h2 id="jobs-title">Offene Stellen</h2>
             <p class="muted" id="count" role="status">Stellen werden geladen …</p>
           </div>
+          <p class="notice muted" id="unmapped-note" hidden>Diese Stellen können nicht auf der Karte angezeigt werden. <span id="unmapped-radius-note" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
           <div class="notice" id="selection" hidden>
             <p>Nur Stellen am ausgewählten Kartenstandort</p>
             <button type="button" id="clear-site">Alle Standorte anzeigen</button>
@@ -89,7 +96,7 @@
             <h2 id="map-title">Standorte</h2>
           </div>
           <div id="map" role="region" aria-label="Karte der SPAR-Organisationseinheiten"><p>Karte wird geladen …</p></div>
-          <p class="map-note muted">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt. Die Entfernung misst die Luftlinie zur SPAR-Einheit, nicht unbedingt zu deinem Dienstort. Stellen ohne Pin findest du nur ohne Umkreissuche.</p>
+          <p class="map-note muted">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt. Die Entfernung misst die Luftlinie zur SPAR-Einheit, nicht unbedingt zu deinem Dienstort.</p>
         </section>
       </div>
       <noscript>Diese Seite benötigt JavaScript, um Stellen und Karte anzuzeigen.</noscript>

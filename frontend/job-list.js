@@ -115,9 +115,7 @@ export function createJobList({ list, more, count, selection, message }, onShowS
   function render(jobs, { selected, center: activeCenter }) {
     shown = jobs;
     center = activeCenter;
-    const unmapped = shown.filter(job => !job.siteKey).length;
-    count.textContent = `${number.format(shown.length)} ${shown.length === 1 ? 'Stelle' : 'Stellen'}` +
-      (unmapped ? ` · ${number.format(unmapped)} ohne Pin` : '');
+    count.textContent = `${number.format(shown.length)} ${shown.length === 1 ? 'Stelle' : 'Stellen'}`;
     selection.hidden = !selected;
     message.hidden = shown.length !== 0;
     message.textContent = 'Keine passenden Stellen. Versuche es mit einem anderen Suchbegriff oder weniger Filtern.';
