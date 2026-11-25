@@ -490,8 +490,15 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 .pin.cluster span { font-size: .875rem; }
 
 .site-footer { background: var(--spar-green); color: var(--white); }
-.footer-inner { padding-block: 1rem; }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .75rem;
+  padding-block: 1rem;
+}
 .site-footer a { color: inherit; }
+.footer-update { margin: 0; margin-inline-start: auto; text-align: end; font-size: .875rem; opacity: .8; }
 .site-footer :focus-visible { outline-color: var(--white); }
 
 @media (max-width: 960px) {

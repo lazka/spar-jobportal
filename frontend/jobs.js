@@ -63,12 +63,34 @@ export function normalizeJobs(data) {
   });
 }
 
+/** @param {RawJob[] | { jobs: RawJob[], lastUpdated?: unknown }} data */
+export function normalizeJobDataset(data) {
+  if (Array.isArray(data)) return { jobs: normalizeJobs(data), lastUpdated: null };
+  const lastUpdated = data?.lastUpdated;
+  return {
+    jobs: normalizeJobs(data?.jobs),
+    lastUpdated: typeof lastUpdated === 'string' && Number.isFinite(Date.parse(lastUpdated)) ? lastUpdated : null
+  };
+}
+
+/**
+ * @param {string} timestamp A valid ISO timestamp
+ * @param {string} locale
+ * @param {number} [now]
+ */
+export function formatDatasetAge(timestamp, locale, now = Date.now()) {
+  const minutes = (Date.parse(timestamp) - now) / 60_000;
+  const formatter = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+  if (Math.abs(minutes) >= 1440) return formatter.format(Math.trunc(minutes / 1440), 'day');
+  if (Math.abs(minutes) >= 60) return formatter.format(Math.trunc(minutes / 60), 'hour');
+  if (Math.abs(minutes) >= 1) return formatter.format(Math.trunc(minutes), 'minute');
+  return formatter.format(0, 'second');
+}
+
 export async function loadJobs() {
   const response = await fetch(new URL('./spar_jobs_final.json', import.meta.url));
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  /** @type {RawJob[]} */
-  const data = await response.json();
-  return normalizeJobs(data);
+  return normalizeJobDataset(await response.json());
 }
 
 /**

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { filterJobs, groupSites, normalizeJobs } from '../jobs.js';
+import { filterJobs, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs } from '../jobs.js';
 
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
@@ -11,6 +11,24 @@ const jobs = normalizeJobs([
     unit: { coordinates: [47.0707, 15.4395] } },
   { title: 'Kassa', state: 'Wien', jobField: 'Verkauf', employmentType: 'Teilzeit' }
 ]);
+
+await test('job dataset preserves its timestamp and accepts older data without one', () => {
+  const rawJobs = [{ title: 'Feinkost' }];
+  const lastUpdated = '2026-11-25T21:21:10+00:00';
+  assert.deepEqual(normalizeJobDataset({ jobs: rawJobs, lastUpdated }), {
+    jobs: normalizeJobs(rawJobs), lastUpdated,
+  });
+  assert.equal(normalizeJobDataset({ jobs: rawJobs, lastUpdated: 'invalid' }).lastUpdated, null);
+  assert.equal(normalizeJobDataset(rawJobs).lastUpdated, null);
+});
+
+await test('dataset age is relative and localized', () => {
+  const lastUpdated = '2026-11-25T11:00:00+00:00';
+  const fourHoursLater = Date.parse('2026-11-25T15:12:00Z');
+  assert.equal(formatDatasetAge(lastUpdated, 'en-GB', fourHoursLater), '4 hours ago');
+  assert.equal(formatDatasetAge(lastUpdated, 'de-AT', fourHoursLater), 'vor 4 Stunden');
+  assert.equal(formatDatasetAge(lastUpdated, 'en-GB', Date.parse(lastUpdated)), 'now');
+});
 
 await test('title search matches accents and ß and combines with dropdown filters', () => {
   const filters = { query: '  THALIASTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], workingHours: ['Teilzeit'] };

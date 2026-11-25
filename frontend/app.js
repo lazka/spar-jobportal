@@ -1,6 +1,6 @@
 import { createJobList } from './job-list.js';
 import { createJobShare } from './job-share.js';
-import { filterJobs, groupSites, loadJobs } from './jobs.js';
+import { filterJobs, formatDatasetAge, groupSites, loadJobs } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
 import { changeLanguage, initLanguage, jobLabel, language, locale, t, translateMarkup } from './i18n.js';
@@ -108,6 +108,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   /** @type {Job[]} */
   let jobs;
+  /** @type {string | null} */
+  let lastUpdated = null;
   let loadState = 'loading';
   /** @type {Job[]} */
   let matches = [];
@@ -173,6 +175,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   languageToggle.addEventListener('click', async () => {
     await changeLanguage(language() === 'en' ? 'de' : 'en');
     translatePage();
+    renderLastUpdated();
     map?.translate();
     renderPlaceStatus();
     if (loadState === 'ready') {
@@ -182,6 +185,17 @@ window.addEventListener('DOMContentLoaded', async () => {
       jobList.showLoadError();
     }
   });
+
+  function renderLastUpdated() {
+    if (!lastUpdated) return;
+    const time = control('jobs-last-updated', HTMLTimeElement);
+    time.dateTime = lastUpdated;
+    time.textContent = formatDatasetAge(lastUpdated, locale());
+    time.title = new Intl.DateTimeFormat(locale(), {
+      dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Vienna'
+    }).format(new Date(lastUpdated));
+    $('footer-update').hidden = false;
+  }
 
   function renderJobFilters() {
     const coverageNote = $('map-coverage-note');
@@ -283,7 +297,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    jobs = await loadJobs();
+    ({ jobs, lastUpdated } = await loadJobs());
   } catch (error) {
     loadState = 'error';
     jobList.showLoadError();
@@ -294,6 +308,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   loadState = 'ready';
+  renderLastUpdated();
+  if (lastUpdated) window.setInterval(renderLastUpdated, 60_000);
   renderJobFilters();
   filters.addEventListener('submit', event => event.preventDefault());
   search.addEventListener('input', () => {
