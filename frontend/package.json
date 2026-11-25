@@ -15,5 +15,8 @@
     "@types/node": "^22.20.7",
     "oxlint": "^1.95.0",
     "oxlint-tsgolint": "^7.0.2008"
+  },
+  "dependencies": {
+    "i18next": "27.2.9"
   }
 }

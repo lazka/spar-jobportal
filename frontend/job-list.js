@@ -1,4 +1,5 @@
-import { node, number } from './dom.js';
+import { node } from './dom.js';
+import { jobLabel, t } from './i18n.js';
 import { distanceKm } from './jobs.js';
 
 /** @import { Coordinates, Job } from './jobs.js' */
@@ -49,18 +50,40 @@ function targetIcon() {
  */
 function jobCard(job, center, onShowSite) {
   const item = node('li', '', 'card');
-  if (job.jobField) item.append(node('span', job.jobField, 'tag'));
-  item.append(node('h3', job.title || 'Stellenangebot'),
-    node('p', job.location ? `Dienstort: ${job.location}` : 'Kein Dienstort angegeben'));
-  const details = [job.state, job.employmentType, job.start ? `Eintritt: ${job.start}` : ''].filter(Boolean);
-  if (center && job.siteKey && job.unit?.coordinates) {
-    details.push(`${number.format(Math.round(distanceKm(center, job.unit.coordinates)))} km Luftlinie zur Einheit`);
+  if (job.jobField) item.append(node('span', jobLabel('field', job.jobField), 'tag'));
+  const title = node('h3', job.title || t('untitledJob'));
+  if (job.title) title.lang = 'de-AT';
+  const location = node('p', job.location ? `${t('workLocation')} ` : t('noWorkLocation'));
+  if (job.location) {
+    const sourceLocation = node('span', job.location);
+    sourceLocation.lang = 'de-AT';
+    location.append(sourceLocation);
   }
-  if (details.length) item.append(node('p', details.join(' · '), 'muted'));
+  item.append(title, location);
+  /** @type {(string | HTMLElement)[]} */
+  const details = [jobLabel('state', job.state), job.times.map(value => jobLabel('employment', value)).join(' / ')].filter(Boolean);
+  if (job.start) {
+    const sourceStart = node('span', job.start);
+    sourceStart.lang = 'de-AT';
+    const start = node('span', `${t('start')} `);
+    start.append(sourceStart);
+    details.push(start);
+  }
+  if (center && job.siteKey && job.unit?.coordinates) {
+    details.push(t('distance', { distance: Math.round(distanceKm(center, job.unit.coordinates)) }));
+  }
+  if (details.length) {
+    const metadata = node('p', '', 'muted');
+    details.forEach((detail, index) => {
+      if (index > 0) metadata.append(' · ');
+      metadata.append(detail);
+    });
+    item.append(metadata);
+  }
   const actions = node('div', '', 'actions');
-  const posting = jobLink(job.detailUrl, 'Stellenanzeige ↗');
+  const posting = jobLink(job.detailUrl, t('posting'));
   if (posting) actions.append(posting);
-  const apply = jobLink(job.applicationUrl, 'Jetzt bewerben ↗');
+  const apply = jobLink(job.applicationUrl, t('apply'));
   if (apply) {
     apply.classList.add('button-primary');
     actions.append(apply);
@@ -69,7 +92,7 @@ function jobCard(job, center, onShowSite) {
   if (onShowSite && siteKey) {
     const button = node('button', '', 'show-site');
     button.type = 'button';
-    button.title = 'Einheit auf Karte anzeigen';
+    button.title = t('showSite');
     button.setAttribute('aria-label', button.title);
     button.append(targetIcon());
     button.addEventListener('click', () => onShowSite(siteKey));
@@ -90,12 +113,12 @@ export function createJobList({ list, more, count, selection, message }, onShowS
   /** @type {Coordinates | undefined} */
   let center;
 
-  function appendPage() {
-    const next = shown.slice(rendered, rendered + pageSize);
+  function appendPage(size = pageSize) {
+    const next = shown.slice(rendered, rendered + size);
     list.append(...next.map(job => jobCard(job, center, onShowSite)));
     rendered += next.length;
     more.hidden = rendered >= shown.length;
-    if (!more.hidden) more.textContent = `Weitere Stellen anzeigen (${number.format(shown.length - rendered)})`;
+    if (!more.hidden) more.textContent = t('moreJobsCount', { count: shown.length - rendered });
   }
 
   more.addEventListener('click', () => {
@@ -110,24 +133,25 @@ export function createJobList({ list, more, count, selection, message }, onShowS
 
   /**
    * @param {Job[]} jobs
-   * @param {{selected: string | null, center?: Coordinates}} options
+   * @param {{selected: string | null, center?: Coordinates, preservePages?: boolean}} options
    */
-  function render(jobs, { selected, center: activeCenter }) {
+  function render(jobs, { selected, center: activeCenter, preservePages }) {
     shown = jobs;
     center = activeCenter;
-    count.textContent = `${number.format(shown.length)} ${shown.length === 1 ? 'Stelle' : 'Stellen'}`;
+    count.textContent = t('jobCount', { count: shown.length });
     selection.hidden = !selected;
     message.hidden = shown.length !== 0;
-    message.textContent = 'Keine passenden Stellen. Versuche es mit einem anderen Suchbegriff oder weniger Filtern.';
+    message.textContent = t('noJobs');
     list.replaceChildren();
+    const size = preservePages ? Math.max(pageSize, rendered) : pageSize;
     rendered = 0;
-    appendPage();
+    appendPage(size);
   }
 
   function showLoadError() {
-    count.textContent = 'Keine Daten geladen';
+    count.textContent = t('jobsNotLoaded');
     message.hidden = false;
-    message.textContent = 'spar_jobs_final.json konnte nicht geladen werden.';
+    message.textContent = t('jobsLoadError');
   }
 
   return { render, showLoadError };

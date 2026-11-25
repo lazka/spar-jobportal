@@ -2,7 +2,7 @@ import { createJobList } from './job-list.js';
 import { filterJobs, groupSites, loadJobs } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
-import { number } from './dom.js';
+import { changeLanguage, initLanguage, jobLabel, language, locale, t, translateMarkup } from './i18n.js';
 
 /** @import { Job } from './jobs.js' */
 /** @import { Place } from './place-search.js' */
@@ -28,17 +28,33 @@ function control(id, type) {
 /**
  * @param {HTMLSelectElement} select
  * @param {(string | null | undefined)[]} values
+ * @param {Parameters<typeof jobLabel>[0]} category
  */
-function addOptions(select, values) {
-  const labels = values.filter(/** @returns {value is string} */ value => typeof value === 'string' && value !== '');
-  for (const value of [...new Set(labels)].sort((a, b) => a.localeCompare(b, 'de-AT'))) {
-    select.add(new Option(value, value));
-  }
+function setOptions(select, values, category) {
+  const selected = select.value;
+  const unique = new Set(values.filter(/** @returns {value is string} */ value => typeof value === 'string' && value !== ''));
+  const options = Array.from(unique, value => new Option(jobLabel(category, value), value));
+  const collator = new Intl.Collator(locale());
+  options.sort((a, b) => collator.compare(a.text, b.text));
+  select.replaceChildren(select.options[0], ...options);
+  select.value = selected;
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
+  await initLanguage();
+  const languageToggle = control('language', HTMLButtonElement);
+  function translatePage() {
+    document.documentElement.lang = locale();
+    translateMarkup(document);
+    document.title = t('title');
+    languageToggle.textContent = language() === 'en' ? 'DE' : 'EN';
+    languageToggle.setAttribute('aria-label', t('switchLanguage'));
+  }
+  translatePage();
+
   /** @type {Job[]} */
   let jobs;
+  let loadState = 'loading';
   /** @type {Job[]} */
   let matches = [];
   /** @type {Job[]} */
@@ -51,6 +67,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   let center = null;
   /** @type {Place[]} */
   let placeResults = [];
+  /** @type {'' | 'radiusStatus' | 'noPlace' | 'placeError' | 'searchingPlace'} */
+  let placeStatus = '';
   const search = control('search', HTMLInputElement);
   const state = control('state', HTMLSelectElement);
   const field = control('field', HTMLSelectElement);
@@ -80,18 +98,41 @@ window.addEventListener('DOMContentLoaded', async () => {
     map.showSite(key);
   } : null);
 
-  function renderList() {
+  languageToggle.hidden = false;
+  languageToggle.addEventListener('click', async () => {
+    await changeLanguage(language() === 'en' ? 'de' : 'en');
+    translatePage();
+    map?.translate();
+    renderPlaceStatus();
+    if (loadState === 'ready') {
+      renderJobFilters();
+      renderList(true);
+    } else if (loadState === 'error') {
+      jobList.showLoadError();
+    }
+  });
+
+  function renderJobFilters() {
+    const coverageNote = $('map-coverage-note');
+    coverageNote.textContent = t('mapCoverage', { count: jobs.filter(job => !job.siteKey).length });
+    coverageNote.hidden = false;
+    setOptions(state, jobs.map(job => job.state), 'state');
+    setOptions(field, jobs.map(job => job.jobField), 'field');
+    setOptions(employment, jobs.flatMap(job => job.times), 'employment');
+  }
+
+  function renderList(preservePages = false) {
     const site = selected ? sites.get(selected) : undefined;
     const activeFilters = [search.value.trim(), state.value, field.value, employment.value, showUnmapped].filter(Boolean).length;
-    filterCount.textContent = `${activeFilters} Filter aktiv`;
+    filterCount.textContent = t('activeFilters', { count: activeFilters });
     filterCount.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
-    unmappedButton.textContent = `Nicht auf der Karte (${number.format(unmapped.length)})`;
+    unmappedButton.textContent = t('unmappedCount', { count: unmapped.length });
     unmappedButton.setAttribute('aria-pressed', String(showUnmapped));
     unmappedNote.hidden = !showUnmapped;
     $('unmapped-radius-note').hidden = !center;
     jobList.render(site?.jobs ?? matches, {
-      selected, center: center?.pair
+      selected, center: center?.pair, preservePages
     });
   }
 
@@ -118,14 +159,16 @@ window.addEventListener('DOMContentLoaded', async () => {
   function selectPlace(result) {
     center = result;
     clearPlace.hidden = false;
-    $('place-status').textContent = `Umkreis: ${radius()} km um ${result.label}`;
+    placeStatus = 'radiusStatus';
+    renderPlaceStatus();
     applyFilters();
   }
 
-  /** @param {string} message */
-  function showPlaceError(message) {
-    $('place-status').textContent = message +
-      (center ? ` Der bisherige Umkreis um ${center.label} bleibt aktiv.` : '');
+  function renderPlaceStatus() {
+    const status = placeStatus ? t(placeStatus, { radius: radius(), place: center?.label ?? '' }) : '';
+    const keptRadius = center && (placeStatus === 'noPlace' || placeStatus === 'placeError')
+      ? ` ${t('radiusKept', { place: center.label })}` : '';
+    $('place-status').textContent = status + keptRadius;
   }
 
   /** @param {Event} event */
@@ -135,21 +178,28 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (!query || findPlaceButton.disabled) return;
     findPlaceButton.disabled = true;
     clearPlace.disabled = true;
-    $('place-status').textContent = 'Ort wird gesucht …';
+    placeStatus = 'searchingPlace';
+    renderPlaceStatus();
     $('place-choices').hidden = true;
     try {
-      placeResults = await searchPlaces(query);
+      placeResults = await searchPlaces(query, language());
       if (!placeResults.length) {
-        showPlaceError('Kein Ort in Österreich gefunden. Versuche es mit Ort und Postleitzahl.');
+        placeStatus = 'noPlace';
+        renderPlaceStatus();
         return;
       }
       if (placeResults.length > 1) {
-        placeResult.replaceChildren(...placeResults.map((result, i) => new Option(result.label, String(i))));
+        const duplicates = new Set(placeResults.filter((result, i) =>
+          placeResults.some((other, j) => j !== i && other.label === result.label)
+        ).map(result => result.label));
+        placeResult.replaceChildren(...placeResults.map((result, i) =>
+          new Option(duplicates.has(result.label) ? result.fullLabel : result.label, String(i))));
         $('place-choices').hidden = false;
       }
       selectPlace(placeResults[0]);
     } catch (error) {
-      showPlaceError('Die Ortssuche ist gerade nicht erreichbar. Bitte versuche es später erneut.');
+      placeStatus = 'placeError';
+      renderPlaceStatus();
       console.error(error);
     } finally {
       findPlaceButton.disabled = false;
@@ -160,21 +210,14 @@ window.addEventListener('DOMContentLoaded', async () => {
   try {
     jobs = await loadJobs();
   } catch (error) {
+    loadState = 'error';
     jobList.showLoadError();
     console.error(error);
     return;
   }
 
-  const unmappedTotal = jobs.filter(job => !job.siteKey).length;
-  const coverageNote = $('map-coverage-note');
-  coverageNote.textContent = unmappedTotal
-    ? `${number.format(unmappedTotal)} ${unmappedTotal === 1 ? 'Stelle kann' : 'Stellen können'} nicht auf der Karte angezeigt werden. Unter „Weitere Filter“ findest du sie mit „Nicht auf der Karte“.`
-    : 'Alle Stellen können auf der Karte angezeigt werden.';
-  coverageNote.hidden = false;
-
-  addOptions(state, jobs.map(job => job.state));
-  addOptions(field, jobs.map(job => job.jobField));
-  addOptions(employment, jobs.flatMap(job => job.times));
+  loadState = 'ready';
+  renderJobFilters();
   $('filters').addEventListener('submit', event => event.preventDefault());
   /** @type {number | undefined} */
   let debounce;
@@ -211,7 +254,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     center = null;
     clearPlace.hidden = true;
     $('place-choices').hidden = true;
-    $('place-status').textContent = '';
+    placeStatus = '';
+    renderPlaceStatus();
     place.value = '';
     applyFilters();
     place.focus();

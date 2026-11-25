@@ -9,30 +9,36 @@
   <link rel="stylesheet" href="./styles.css">
   <script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script type="importmap">
+    {"imports":{"i18next":"https://cdn.jsdelivr.net/npm/i18next@27.2.9/dist/esm/i18next.js"}}
+  </script>
   <script type="module" src="./app.js"></script>
 </head>
 <body>
   <main>
     <section class="intro">
       <div class="page-width">
-        <h1>Inoffizielles SPAR-Jobportal</h1>
-        <p>Finde offene Stellen bei SPAR</p>
+        <div class="intro-heading">
+          <h1 data-i18n="title">Inoffizielles SPAR-Jobportal</h1>
+          <button class="language-toggle" id="language" type="button" aria-label="Auf Englisch wechseln" hidden>EN</button>
+        </div>
+        <p data-i18n="subtitle">Finde offene Stellen bei SPAR</p>
       </div>
     </section>
     <div class="page-width workspace">
       <div class="search-panel">
         <div class="nearby-panel">
-          <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" autocomplete="off">
+          <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" data-i18n-aria-label="nearbySearch" autocomplete="off">
             <div class="place-field">
-              <label class="filter-label" for="place">Ort oder Postleitzahl</label>
+              <label class="filter-label" for="place" data-i18n="place">Ort oder Postleitzahl</label>
               <div class="place-input">
-                <input id="place" placeholder="z. B. Graz oder 8010" required maxlength="100">
-                <button id="clear-place" class="place-clear" type="button" title="Umkreis entfernen" aria-label="Umkreis entfernen" hidden>
+                <input id="place" placeholder="z. B. Graz oder 8010" data-i18n-placeholder="placePlaceholder" required maxlength="100">
+                <button id="clear-place" class="place-clear" type="button" title="Umkreis entfernen" aria-label="Umkreis entfernen" data-i18n-title="clearRadius" data-i18n-aria-label="clearRadius" hidden>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
                 </button>
               </div>
             </div>
-            <label><span class="filter-label">Umkreis</span><select id="radius">
+            <label><span class="filter-label" data-i18n="radius">Umkreis</span><select id="radius">
               <option value="5">5 km</option>
               <option value="10">10 km</option>
               <option value="20">20 km</option>
@@ -43,35 +49,35 @@
             </select></label>
             <div class="nearby-actions">
               <details class="place-info">
-                <summary aria-label="Hinweise zur Ortssuche">
+                <summary aria-label="Hinweise zur Ortssuche" data-i18n-aria-label="placeInfo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
                 </summary>
                 <div class="muted search-note">
-                  <p>Die Ortssuche sendet deine Eingabe an <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>). Gib bitte keine Privatadresse ein.</p>
+                  <p><span data-i18n="privacyBefore">Die Ortssuche sendet deine Eingabe an</span> <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright" data-i18n="osmContributors">OpenStreetMap-Mitwirkende</a>). <span data-i18n="privacyAfter">Gib bitte keine Privatadresse ein.</span></p>
                   <p id="map-coverage-note" hidden></p>
                 </div>
               </details>
-              <button class="button-primary" id="find-place" type="submit">Suchen</button>
+              <button class="button-primary" id="find-place" type="submit" data-i18n="findPlace">Suchen</button>
             </div>
-            <label class="wide" id="place-choices" hidden><span class="filter-label">Gefundener Ort</span><select id="place-result"></select></label>
+            <label class="wide" id="place-choices" hidden><span class="filter-label" data-i18n="foundPlace">Gefundener Ort</span><select id="place-result"></select></label>
           </form>
           <p id="place-status" role="status"></p>
         </div>
         <details class="advanced-search" id="advanced-search">
-          <summary id="advanced-title">Weitere Filter <span class="tag filter-count" id="filter-count" hidden></span></summary>
+          <summary id="advanced-title"><span data-i18n="advanced">Weitere Filter</span> <span class="tag filter-count" id="filter-count" hidden></span></summary>
           <form class="filters" id="filters" role="search" aria-labelledby="advanced-title" autocomplete="off">
-            <label><span class="filter-label">Stichwort</span>
+            <label><span class="filter-label" data-i18n="keyword">Stichwort</span>
               <span class="search-field">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
-                <input id="search" type="search" placeholder="z. B. Feinkost oder Graz">
+                <input id="search" type="search" placeholder="z. B. Feinkost oder Graz" data-i18n-placeholder="keywordPlaceholder">
               </span>
             </label>
-            <label><span class="filter-label">Bundesland</span><select id="state"><option value="">Alle</option></select></label>
-            <label><span class="filter-label">Berufsfeld</span><select id="field"><option value="">Alle</option></select></label>
-            <label><span class="filter-label">Arbeitszeit</span><select id="employment"><option value="">Alle</option></select></label>
+            <label><span class="filter-label" data-i18n="state">Bundesland</span><select id="state"><option value="" data-i18n="all">Alle</option></select></label>
+            <label><span class="filter-label" data-i18n="field">Berufsfeld</span><select id="field"><option value="" data-i18n="all">Alle</option></select></label>
+            <label><span class="filter-label" data-i18n="employment">Arbeitszeit</span><select id="employment"><option value="" data-i18n="all">Alle</option></select></label>
             <div class="filter-actions">
-              <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden>Nicht auf der Karte</button>
-              <button type="reset">Filter zurücksetzen</button>
+              <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
+              <button type="reset" data-i18n="resetFilters">Filter zurücksetzen</button>
             </div>
           </form>
         </details>
@@ -79,24 +85,24 @@
       <div class="layout">
         <section class="panel" aria-labelledby="jobs-title">
           <div class="panel-head">
-            <h2 id="jobs-title">Offene Stellen</h2>
+            <h2 id="jobs-title" data-i18n="jobs">Offene Stellen</h2>
             <p class="muted" id="count" role="status">Stellen werden geladen …</p>
           </div>
-          <p class="notice muted" id="unmapped-note" hidden>Diese Stellen können nicht auf der Karte angezeigt werden. <span id="unmapped-radius-note" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
+          <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Diese Stellen können nicht auf der Karte angezeigt werden.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
           <div class="notice" id="selection" hidden>
-            <p>Nur Stellen am ausgewählten Kartenstandort</p>
-            <button type="button" id="clear-site">Alle Standorte anzeigen</button>
+            <p data-i18n="siteSelection">Nur Stellen am ausgewählten Kartenstandort</p>
+            <button type="button" id="clear-site" data-i18n="clearSite">Alle Standorte anzeigen</button>
           </div>
           <p class="notice" id="message" hidden></p>
           <ul id="list"></ul>
-          <button type="button" id="more" hidden>Weitere Stellen anzeigen</button>
+          <button type="button" id="more" hidden></button>
         </section>
         <section class="panel map-panel" aria-labelledby="map-title">
           <div class="panel-head">
-            <h2 id="map-title">Standorte</h2>
+            <h2 id="map-title" data-i18n="locations">Standorte</h2>
           </div>
-          <div id="map" role="region" aria-label="Karte der SPAR-Organisationseinheiten"><p>Karte wird geladen …</p></div>
-          <p class="map-note muted">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt. Die Entfernung misst die Luftlinie zur SPAR-Einheit, nicht unbedingt zu deinem Dienstort.</p>
+          <div id="map" role="region" aria-label="Karte der SPAR-Organisationseinheiten" data-i18n-aria-label="mapRegion"><p data-i18n="loadingMap">Karte wird geladen …</p></div>
+          <p class="map-note" data-i18n="mapNote">Die Zahlen zeigen, wie viele Stellen es pro Standort oder Kartengruppe gibt. Die Entfernung misst die Luftlinie zur SPAR-Einheit, nicht unbedingt zu deinem Dienstort.</p>
         </section>
       </div>
       <noscript>Diese Seite benötigt JavaScript, um Stellen und Karte anzuzeigen.</noscript>
@@ -104,7 +110,7 @@
   </main>
   <footer class="site-footer">
     <div class="page-width footer-inner">
-      <a href="https://github.com/lazka/spar-jobportal">Quellcode auf GitHub</a>
+      <a href="https://github.com/lazka/spar-jobportal" data-i18n="sourceCode">Quellcode auf GitHub</a>
     </div>
   </footer>
 </body>

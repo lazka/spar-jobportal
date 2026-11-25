@@ -1,10 +1,12 @@
+import { englishLabel } from './translations.js';
+
 /** @typedef {[number, number]} Coordinates */
 /** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null}} JobUnit */
 /**
  * @typedef {object} RawJob
  * @property {string | null} [title]
  * @property {string | null} [location]
- * @property {string | null} [state]
+ * @property {string | string[] | null} [state]
  * @property {string | null} [jobField]
  * @property {string | null} [employmentType]
  * @property {string | null} [start]
@@ -44,13 +46,19 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
  */
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
-  return data.map(job => ({
-    ...job,
-    state: typeof job.state === 'string' ? job.state : '',
-    times: (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean),
-    siteKey: coordinateKey(job.unit?.coordinates),
-    searchText: normalizeSearch([job.title, job.location, job.state, job.jobField, job.unit?.name, job.unit?.address].join(' '))
-  }));
+  return data.map(job => {
+    const state = typeof job.state === 'string' ? job.state : '';
+    return {
+      ...job,
+      state,
+      times: (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean),
+      siteKey: coordinateKey(job.unit?.coordinates),
+      searchText: normalizeSearch([
+        job.title, job.location, state, job.jobField, job.unit?.name, job.unit?.address,
+        englishLabel('state', state), englishLabel('field', job.jobField ?? ''),
+      ].join(' '))
+    };
+  });
 }
 
 export async function loadJobs() {

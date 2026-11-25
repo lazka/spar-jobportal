@@ -1,5 +1,3 @@
-export const number = new Intl.NumberFormat('de-AT');
-
 /**
  * @template {keyof HTMLElementTagNameMap} Tag
  * @param {Tag} tag
