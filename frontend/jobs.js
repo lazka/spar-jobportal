@@ -14,7 +14,7 @@ import { englishLabel } from './translations.js';
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {state: string, states: string[], times: string[], siteKey: string | null, searchText: string}} Job */
+/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], siteKey: string | null, searchText: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
 
 /** @param {string | null | undefined} text */
@@ -50,11 +50,15 @@ export function normalizeJobs(data) {
     const states = [...new Set((Array.isArray(job.state) ? job.state : [job.state ?? ''])
       .flatMap(value => value.split(',')).map(value => value.trim()).filter(Boolean))];
     const state = states.join(', ');
+    const times = (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
+    const workingHours = [...new Set(times.flatMap(time =>
+      time === 'Geringfügig-Vollzeit' ? ['Geringfügig', 'Teilzeit', 'Vollzeit'] : [time]))];
     return {
       ...job,
       state,
       states,
-      times: (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean),
+      times,
+      workingHours,
       siteKey: coordinateKey(job.unit?.coordinates),
       searchText: normalizeSearch([
         job.title, job.location, state, job.jobField, job.unit?.name, job.unit?.address,
@@ -74,15 +78,17 @@ export async function loadJobs() {
 
 /**
  * @param {Job[]} jobs
- * @param {{query?: string, states?: string[], fields?: string[], time?: string, center?: Coordinates, radiusKm?: number}} filters
+ * @param {{query?: string, states?: string[], fields?: string[], workingHours?: string[], center?: Coordinates, radiusKm?: number}} filters
  */
-export function filterJobs(jobs, { query = '', states = [], fields = [], time, center, radiusKm = 0 }) {
+export function filterJobs(jobs, { query = '', states = [], fields = [], workingHours = [], center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
   const selectedStates = new Set(states);
   const selectedFields = new Set(fields);
+  const selectedHours = new Set(workingHours);
   return jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
     (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
-    (!time || job.times.includes(time)) && words.every(word => job.searchText.includes(word)) &&
+    (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
+    words.every(word => job.searchText.includes(word)) &&
     (!center || (job.siteKey && job.unit?.coordinates && distanceKm(center, job.unit.coordinates) <= radiusKm)));
 }
 

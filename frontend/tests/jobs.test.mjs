@@ -13,9 +13,9 @@ const jobs = normalizeJobs([
 ]);
 
 await test('keyword search matches accents and ß and combines with dropdown filters', () => {
-  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], time: 'Teilzeit' };
+  const filters = { query: '  BEISPIELSTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], workingHours: ['Teilzeit'] };
   assert.deepEqual(filterJobs(jobs, filters), [jobs[0]]);
-  assert.deepEqual(filterJobs(jobs, { ...filters, time: 'Geringfügig' }), []);
+  assert.deepEqual(filterJobs(jobs, { ...filters, workingHours: ['Geringfügig'] }), []);
   assert.deepEqual(filterJobs(jobs, { ...filters, query: 'verkaufer fehlt' }), []);
 });
 
@@ -52,6 +52,25 @@ await test('job category filters match any selected category and combine with th
   assert.deepEqual(filterJobs(categorized, { fields }), categorized.slice(0, 3));
   assert.deepEqual(filterJobs(categorized, { fields, states: ['Wien'] }), categorized.slice(0, 2));
   assert.deepEqual(filterJobs(categorized, { fields: [] }), categorized);
+});
+
+await test('working hours match any selected option and expand Geringfügig-Vollzeit to all three', () => {
+  const scheduled = normalizeJobs([
+    { employmentType: 'Geringfügig-Vollzeit', state: 'Wien' },
+    { employmentType: 'Vollzeit/Teilzeit', state: 'Wien' },
+    { employmentType: 'Teilzeit', state: 'Tirol' },
+    { employmentType: 'Vollzeit', state: 'Tirol' },
+    {},
+  ]);
+  assert.deepEqual(scheduled[0].times, ['Geringfügig-Vollzeit']);
+  assert.deepEqual(scheduled[0].workingHours, ['Geringfügig', 'Teilzeit', 'Vollzeit']);
+  assert.deepEqual(filterJobs(scheduled, { workingHours: ['Geringfügig'] }), [scheduled[0]]);
+  assert.deepEqual(filterJobs(scheduled, { workingHours: ['Teilzeit'] }), scheduled.slice(0, 3));
+  assert.deepEqual(filterJobs(scheduled, { workingHours: ['Vollzeit'] }), [scheduled[0], scheduled[1], scheduled[3]]);
+  const workingHours = ['Geringfügig', 'Teilzeit'];
+  assert.deepEqual(filterJobs(scheduled, { workingHours }), scheduled.slice(0, 3));
+  assert.deepEqual(filterJobs(scheduled, { workingHours, states: ['Tirol'] }), [scheduled[2]]);
+  assert.deepEqual(filterJobs(scheduled, { workingHours: [] }), scheduled);
 });
 
 await test('site grouping combines jobs with shared coordinates and skips unmapped jobs', () => {

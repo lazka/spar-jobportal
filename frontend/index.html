@@ -117,7 +117,18 @@
                 </button>
               </div>
             </div>
-            <label><span class="filter-label" data-i18n="employment">Arbeitszeit</span><select id="employment"><option value="" data-i18n="all">Alle</option></select></label>
+            <div class="multi-select-filter">
+              <span class="filter-label" id="employment-label" data-i18n="employment">Arbeitszeit</span>
+              <div class="multi-select-control" id="employment-control">
+                <details id="employment">
+                  <summary aria-labelledby="employment-label employment-value"><span id="employment-value" data-i18n="allEmployment">Alle Arbeitszeiten</span></summary>
+                  <div class="multi-select-options" id="employment-options" role="group" aria-labelledby="employment-label"></div>
+                </details>
+                <button id="clear-employment" class="multi-select-clear" type="button" title="Arbeitszeitauswahl aufheben" aria-label="Arbeitszeitauswahl aufheben" data-i18n-title="clearEmployment" data-i18n-aria-label="clearEmployment" hidden>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
+                </button>
+              </div>
+            </div>
             <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
           </form>
         </div>
