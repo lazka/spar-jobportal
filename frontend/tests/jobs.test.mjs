@@ -24,6 +24,18 @@ await test('radius search excludes distant jobs and jobs without coordinates', (
   assert.deepEqual(filterJobs(jobs, { center: vienna, radiusKm: 200 }), jobs.slice(0, 2));
 });
 
+await test('radius results are closest first, preserving the original order for ties', () => {
+  const nearby = normalizeJobs([
+    { title: 'Farther', unit: { coordinates: [48.3, 16.37] } },
+    { title: 'Closest first', unit: { coordinates: vienna } },
+    { title: 'Between', unit: { coordinates: [48.24, 16.37] } },
+    { title: 'Closest second', unit: { coordinates: vienna } },
+  ]);
+  assert.deepEqual(filterJobs(nearby, { center: vienna, radiusKm: 30 }),
+    [nearby[1], nearby[3], nearby[2], nearby[0]]);
+  assert.deepEqual(filterJobs(nearby, {}), nearby);
+});
+
 await test('state filters match any selected state and include multi-state jobs only once', () => {
   const regionalJobs = normalizeJobs([
     { state: ' Wien,Steiermark, Wien ' },

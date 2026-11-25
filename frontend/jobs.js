@@ -85,11 +85,17 @@ export function filterJobs(jobs, { query = '', states = [], fields = [], working
   const selectedStates = new Set(states);
   const selectedFields = new Set(fields);
   const selectedHours = new Set(workingHours);
-  return jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
+  const matches = jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
     (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
     (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
-    words.every(word => job.searchText.includes(word)) &&
-    (!center || (job.siteKey && job.unit?.coordinates && distanceKm(center, job.unit.coordinates) <= radiusKm)));
+    words.every(word => job.searchText.includes(word)));
+  if (!center) return matches;
+
+  return matches.flatMap(job => {
+    if (!job.siteKey || !job.unit?.coordinates) return [];
+    const distance = distanceKm(center, job.unit.coordinates);
+    return distance <= radiusKm ? [{ job, distance }] : [];
+  }).sort((a, b) => a.distance - b.distance).map(({ job }) => job);
 }
 
 /** @param {Job[]} jobs */
