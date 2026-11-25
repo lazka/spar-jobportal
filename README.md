@@ -38,3 +38,7 @@ uv run --locked pytest
 ```
 
 Pytest discovers tests in `tests/`. The updater has no runtime dependencies.
+
+## License
+
+The project's original code is licensed under the [MIT License](LICENSE). This does not grant rights to SPAR's job listings or branding. Bundled [libraries](frontend/vendor/) and [fonts](frontend/fonts/) retain their own licenses.
