@@ -221,6 +221,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 .map-panel { position: sticky; top: 1rem; }
 #map {
   --map-control-size: 2.25rem;
+  container-type: inline-size;
   height: clamp(24rem, 62vh, 44rem);
   background: #f1eeee;
   border-radius: var(--radius);
@@ -293,8 +294,35 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 }
 #map .leaflet-control-layers label:has(input:checked) { border-color: currentColor; }
 #map .leaflet-control-layers label:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: -3px; }
-#map .leaflet-popup-content { font: .875rem/1.45 var(--font); }
+#map .leaflet-popup { --popup-close-size: 2.75rem; }
+#map .leaflet-popup-content {
+  max-width: calc(100cqi - var(--popup-close-size) - 2.25rem);
+  margin-inline-end: calc(var(--popup-close-size) + .25rem);
+  font: .875rem/1.45 var(--font);
+}
 #map .leaflet-popup-content button { margin-top: .5rem; }
+#map .leaflet-popup-close-button {
+  inset: .125rem .125rem auto auto;
+  display: grid;
+  place-items: center;
+  width: var(--popup-close-size);
+  height: var(--popup-close-size);
+  border-radius: 50%;
+  color: var(--ink);
+}
+#map .leaflet-popup-close-button span { display: none; }
+#map .leaflet-popup-close-button::before,
+#map .leaflet-popup-close-button::after {
+  content: "";
+  grid-area: 1 / 1;
+  width: 1.5rem;
+  border-top: .15rem solid currentColor;
+  border-radius: 999px;
+}
+#map .leaflet-popup-close-button::before { rotate: 45deg; }
+#map .leaflet-popup-close-button::after { rotate: -45deg; }
+#map .leaflet-popup-close-button:hover { background: var(--pale-red); color: var(--deep-red); }
+#map .leaflet-popup-close-button:focus-visible { outline-offset: -3px; }
 .map-note {
   margin-top: .65rem;
   color: #666;
@@ -339,7 +367,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   box-shadow: 0 1px 6px #32000066;
   font: 700 .75rem/1 var(--font);
 }
-.pin.cluster span { background: var(--deep-red); font-size: .875rem; }
+.pin.cluster span { font-size: .875rem; }
 
 .site-footer { background: var(--spar-green); color: var(--white); }
 .footer-inner { padding-block: 1rem; }

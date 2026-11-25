@@ -96,7 +96,8 @@ export function createMap(container, onSelectSite) {
       button.type = 'button';
       button.addEventListener('click', () => onSelectSite(key));
       popup.append(button);
-      marker.bindPopup(popup);
+      // Keep the close button clear of the layer switch on narrow maps.
+      marker.bindPopup(popup, { autoPanPaddingTopLeft: [5, 70] });
       const translate = () => {
         marker.options.title = `${address || t('mapSite')}: ${t('jobCount', { count })}`;
         marker.getElement()?.setAttribute('title', marker.options.title);
