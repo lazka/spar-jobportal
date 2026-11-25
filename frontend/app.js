@@ -58,7 +58,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   const placeResult = control('place-result', HTMLSelectElement);
   const findPlaceButton = control('find-place', HTMLButtonElement);
   const clearPlace = control('clear-place', HTMLButtonElement);
-  const fit = control('fit', HTMLButtonElement);
   const radius = () => Number(radiusSelect.value);
 
   const map = createMap($('map'), key => {
@@ -66,7 +65,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderList();
     $('clear-site').focus();
   });
-  fit.disabled = !map;
 
   const jobList = createJobList({
     list: $('list'), more: $('more'), count: $('count'),
@@ -179,7 +177,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderList();
     (advancedSearch.open ? search : place).focus();
   });
-  fit.addEventListener('click', () => map?.fit());
   $('nearby').addEventListener('submit', findPlace);
   radiusSelect.addEventListener('change', () => { if (center) selectPlace(center); });
   placeResult.addEventListener('change', () => {

@@ -86,6 +86,37 @@ export function createMap(container, onSelectSite) {
     map.fitBounds(bounds.isValid() ? bounds : austria, { padding: [30, 30], maxZoom: 12 });
   }
 
+  const fitControl = new L.Control({ position: 'topleft' });
+  fitControl.onAdd = () => {
+    const bar = node('div', '', 'leaflet-bar');
+    const button = node('button', '', 'map-fit');
+    button.type = 'button';
+    button.title = 'Kartenausschnitt zurücksetzen';
+    button.setAttribute('aria-label', button.title);
+
+    const ns = 'http://www.w3.org/2000/svg';
+    const icon = document.createElementNS(ns, 'svg');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('width', '18');
+    icon.setAttribute('height', '18');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('stroke', 'currentColor');
+    icon.setAttribute('stroke-width', '2');
+    icon.setAttribute('stroke-linecap', 'round');
+    icon.setAttribute('stroke-linejoin', 'round');
+    icon.setAttribute('aria-hidden', 'true');
+    const arrows = document.createElementNS(ns, 'path');
+    arrows.setAttribute('d', 'm3 3 5 5m0-4v4H4m17-5-5 5m0-4v4h4M3 21l5-5m-4 0h4v4m13 1-5-5m0 4v-4h4');
+    icon.append(arrows);
+    button.append(icon);
+
+    button.addEventListener('click', fit);
+    bar.append(button);
+    L.DomEvent.disableClickPropagation(bar);
+    return bar;
+  };
+  fitControl.addTo(map);
+
   /** @param {string} key */
   function showSite(key) {
     const marker = markers.get(key);

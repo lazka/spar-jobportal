@@ -11,18 +11,35 @@ const pageSize = 25;
  * @param {string} label
  */
 function jobLink(url, label) {
-  if (!url) return node('span', label);
+  if (!url) return null;
   try {
     const target = new URL(url);
-    if (target.protocol !== 'https:' || target.hostname !== 'jobs.spar.at') return node('span', label);
-    const anchor = node('a', label);
+    if (target.protocol !== 'https:' || target.hostname !== 'jobs.spar.at') return null;
+    const anchor = node('a', label, 'button');
     anchor.href = target.href;
     anchor.target = '_blank';
     anchor.rel = 'noopener noreferrer';
     return anchor;
   } catch {
-    return node('span', label);
+    return null;
   }
+}
+
+function targetIcon() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const icon = document.createElementNS(ns, 'svg');
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('width', '18');
+  icon.setAttribute('height', '18');
+  icon.setAttribute('fill', 'none');
+  icon.setAttribute('stroke', 'currentColor');
+  icon.setAttribute('stroke-width', '2');
+  icon.setAttribute('stroke-linecap', 'round');
+  icon.setAttribute('aria-hidden', 'true');
+  const target = document.createElementNS(ns, 'path');
+  target.setAttribute('d', 'M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM12 2v5m0 10v5M2 12h5m10 0h5');
+  icon.append(target);
+  return icon;
 }
 
 /**
@@ -33,24 +50,28 @@ function jobLink(url, label) {
 function jobCard(job, center, onShowSite) {
   const item = node('li', '', 'card');
   if (job.jobField) item.append(node('span', job.jobField, 'tag'));
-  const title = node('h3');
-  title.append(jobLink(job.detailUrl, job.title || 'Stellenangebot'));
-  item.append(title, node('p', job.location ? `Dienstort: ${job.location}` : 'Kein Dienstort angegeben'));
+  item.append(node('h3', job.title || 'Stellenangebot'),
+    node('p', job.location ? `Dienstort: ${job.location}` : 'Kein Dienstort angegeben'));
   const details = [job.state, job.employmentType, job.start ? `Eintritt: ${job.start}` : ''].filter(Boolean);
   if (center && job.siteKey && job.unit?.coordinates) {
     details.push(`${number.format(Math.round(distanceKm(center, job.unit.coordinates)))} km Luftlinie zur Einheit`);
   }
   if (details.length) item.append(node('p', details.join(' · '), 'muted'));
   const actions = node('div', '', 'actions');
-  if (job.applicationUrl) {
-    const apply = jobLink(job.applicationUrl, 'Jetzt bewerben ↗');
-    if (apply instanceof HTMLAnchorElement) apply.classList.add('button', 'button-primary');
+  const posting = jobLink(job.detailUrl, 'Stellenanzeige ↗');
+  if (posting) actions.append(posting);
+  const apply = jobLink(job.applicationUrl, 'Jetzt bewerben ↗');
+  if (apply) {
+    apply.classList.add('button-primary');
     actions.append(apply);
   }
   const siteKey = job.siteKey;
   if (onShowSite && siteKey) {
-    const button = node('button', 'Einheit auf Karte');
+    const button = node('button', '', 'show-site');
     button.type = 'button';
+    button.title = 'Einheit auf Karte anzeigen';
+    button.setAttribute('aria-label', button.title);
+    button.append(targetIcon());
     button.addEventListener('click', () => onShowSite(siteKey));
     actions.append(button);
   }
@@ -80,8 +101,11 @@ export function createJobList({ list, more, count, selection, message }, onShowS
   more.addEventListener('click', () => {
     const firstNew = rendered;
     appendPage();
-    const link = list.children[firstNew]?.querySelector('h3 a');
-    if (link instanceof HTMLAnchorElement) link.focus();
+    const heading = list.children[firstNew]?.querySelector('h3');
+    if (heading) {
+      heading.tabIndex = -1;
+      heading.focus();
+    }
   });
 
   /**
