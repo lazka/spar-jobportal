@@ -18,10 +18,14 @@ Open <http://localhost:8000/>. Use HTTP rather than opening `index.html` directl
 - `frontend/place-search.js`: Nominatim requests, caching, and rate limiting.
 - `frontend/dom.js`: shared DOM creation and number formatting.
 
-Run the job filtering and grouping tests with Node.js 22 or newer:
+## Linting and tests
+
+With Node.js 22.12 or newer, install the development tools and run the checks:
 
 ```sh
-node --test tests/jobs.test.mjs
+npm ci
+npm run lint
+npm test
 ```
 
-Node.js is only needed for tests; there is no frontend build step.
+Node.js is only needed for linting and tests; there is no frontend build step.
