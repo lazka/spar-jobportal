@@ -42,7 +42,11 @@ function jobCard(job, center, onShowSite) {
   }
   if (details.length) item.append(node('p', details.join(' · '), 'muted'));
   const actions = node('div', '', 'actions');
-  if (job.applicationUrl) actions.append(jobLink(job.applicationUrl, 'Bewerben ↗'));
+  if (job.applicationUrl) {
+    const apply = jobLink(job.applicationUrl, 'Jetzt bewerben ↗');
+    if (apply instanceof HTMLAnchorElement) apply.classList.add('button', 'button-primary');
+    actions.append(apply);
+  }
   const siteKey = job.siteKey;
   if (onShowSite && siteKey) {
     const button = node('button', 'Einheit auf Karte');

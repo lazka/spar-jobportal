@@ -58,7 +58,7 @@ export function createMap(container, onSelectSite) {
     clusters.clearLayers();
     radiusLayer?.remove();
     radiusLayer = center ? L.circle(center, {
-      radius: radiusKm * 1000, color: '#006a50', fillOpacity: .08, weight: 2, interactive: false
+      radius: radiusKm * 1000, color: 'var(--spar-red)', fillOpacity: .08, weight: 2, interactive: false
     }).addTo(map) : null;
     markers.clear();
     for (const [key, site] of sites) {
@@ -71,7 +71,7 @@ export function createMap(container, onSelectSite) {
       const popup = node('div');
       popup.append(node('strong', `${number.format(count)} ${count === 1 ? 'Stelle' : 'Stellen'} an diesem Standort`));
       if (address) popup.append(node('p', address));
-      const button = node('button', 'Stellen am Standort anzeigen');
+      const button = node('button', 'Stellen am Standort anzeigen', 'button-primary');
       button.type = 'button';
       button.addEventListener('click', () => onSelectSite(key));
       popup.append(button);
