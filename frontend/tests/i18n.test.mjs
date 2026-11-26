@@ -11,6 +11,11 @@ await test('German and English use their own labels, plurals and number formatti
    assert.match(t('mapCoverage', { count: 5 }), /^5 Stellen können nicht auf der Karte angezeigt werden\./);
   assert.equal(t('titleSearch'), 'Titelsuche');
   assert.equal(t('filterMapView'), 'Liste auf Kartenausschnitt begrenzen');
+  assert.equal(t('jobsAtSite'), 'Stellen an diesem Standort');
+  assert.equal(t('showJobsAtSite', { count: 1 }), 'Stelle anzeigen');
+  assert.equal(t('showJobsAtSite', { count: 4 }), 'Alle 4 Stellen anzeigen');
+  assert.equal(t('moreJobsAtSite', { count: 1 }), '+ 1 weitere Stelle');
+  assert.equal(t('moreJobsAtSite', { count: 2 }), '+ 2 weitere Stellen');
   assert.equal(jobLabel('state', 'Wien, Tirol'), 'Wien, Tirol');
 
   await changeLanguage('en');
@@ -19,6 +24,11 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(t('jobCount', { count: 1500 }), '1,500 jobs');
   assert.equal(t('titleSearch'), 'Search job titles');
   assert.equal(t('filterMapView'), 'Limit list to map view');
+  assert.equal(t('jobsAtSite'), 'Jobs at this site');
+  assert.equal(t('showJobsAtSite', { count: 1 }), 'Show job');
+  assert.equal(t('showJobsAtSite', { count: 4 }), 'Show all 4 jobs');
+  assert.equal(t('moreJobsAtSite', { count: 1 }), '+ 1 more job');
+  assert.equal(t('moreJobsAtSite', { count: 2 }), '+ 2 more jobs');
   assert.match(t('mapCoverage', { count: 3 }), /3 jobs.*“More filters” → “Not on the map”/);
   assert.equal(jobLabel('state', 'Wien, Tirol'), 'Vienna, Tyrol');
   assert.equal(jobLabel('employment', 'Vollzeit'), 'Full-time');

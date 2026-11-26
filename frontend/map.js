@@ -1,5 +1,5 @@
 import { node } from './dom.js';
-import { t } from './i18n.js';
+import { jobLabel, t } from './i18n.js';
 
 /** @import { Coordinates, Site } from './jobs.js' */
 /** @import { Circle, LatLngBoundsLiteral, Marker } from 'leaflet' */
@@ -85,13 +85,27 @@ export function createMap(container, onSelectSite) {
       const marker = L.marker(site.pair, { icon: pin(count, 29) });
       jobCounts.set(marker, count);
       const popup = node('div');
-      const heading = node('strong');
+      const heading = node('strong', address ?? undefined);
+      if (address) heading.lang = 'de-AT';
       popup.append(heading);
-      if (address) {
-        const addressLine = node('p', address);
-        addressLine.lang = 'de-AT';
-        popup.append(addressLine);
-      }
+      const preview = node('ul', '', 'map-job-preview');
+      const translateJobs = site.jobs.slice(0, 2).map(job => {
+        const item = node('li');
+        const title = node('span', job.title || undefined);
+        if (job.title) title.lang = 'de-AT';
+        const schedule = node('span', '', 'muted');
+        item.append(title, schedule);
+        preview.append(item);
+        return () => {
+          if (!job.title) title.textContent = t('untitledJob');
+          schedule.textContent = job.times.length
+            ? ` · ${job.times.map(value => jobLabel('employment', value)).join(' / ')}` : '';
+        };
+      });
+      popup.append(preview);
+      const remaining = count - translateJobs.length;
+      const more = remaining > 0 ? node('div', '', 'muted map-job-more') : null;
+      if (more) popup.append(more);
       const button = node('button', '', 'button-primary');
       button.type = 'button';
       button.addEventListener('click', () => onSelectSite(key));
@@ -101,8 +115,10 @@ export function createMap(container, onSelectSite) {
       const translate = () => {
         marker.options.title = `${address || t('mapSite')}: ${t('jobCount', { count })}`;
         marker.getElement()?.setAttribute('title', marker.options.title);
-        heading.textContent = t('jobsAtSite', { count });
-        button.textContent = t('showJobsAtSite');
+        if (!address) heading.textContent = t('jobsAtSite');
+        for (const translateJob of translateJobs) translateJob();
+        if (more) more.textContent = t('moreJobsAtSite', { count: remaining });
+        button.textContent = t('showJobsAtSite', { count });
       };
       translate();
       markers.set(key, { marker, translate });

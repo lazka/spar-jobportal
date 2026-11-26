@@ -392,7 +392,22 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   margin-inline-end: calc(var(--popup-close-size) + .25rem);
   font: .875rem/1.45 var(--font);
 }
-#map .leaflet-popup-content button { margin-top: .5rem; }
+#map .leaflet-popup-content button {
+  margin-top: .75rem;
+  min-height: 2.25rem;
+  padding: .25rem .65rem;
+  font-size: .8125rem;
+}
+@media (pointer: coarse) {
+  #map .leaflet-popup-content button { min-height: 2.75rem; }
+}
+.map-job-preview {
+  margin: .5rem 0 0;
+  padding-inline-start: 1.125rem;
+  overflow-wrap: anywhere;
+}
+.map-job-preview li + li { margin-top: .25rem; }
+.map-job-more { margin-top: .25rem; }
 #map .leaflet-popup-close-button {
   inset: .125rem .125rem auto auto;
   display: grid;
