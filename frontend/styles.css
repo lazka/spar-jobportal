@@ -112,12 +112,6 @@ button, select { cursor: pointer; }
 }
 .advanced-header button:enabled:hover { background: transparent; text-decoration: underline; }
 .advanced-toggle { display: inline-flex; align-items: center; gap: .5rem; }
-.advanced-toggle::before {
-  content: "";
-  border-block: .3rem solid transparent;
-  border-inline-start: .4rem solid currentColor;
-}
-.advanced-toggle[aria-expanded="true"]::before { rotate: 90deg; }
 .reset-filters { text-decoration: underline; text-underline-offset: .18em; }
 #filters {
   grid-template-columns: minmax(12rem, 1.6fr) repeat(2, minmax(0, 1fr));
@@ -143,7 +137,7 @@ button, select { cursor: pointer; }
   list-style: none;
 }
 .multi-select-control summary::-webkit-details-marker { display: none; }
-.multi-select-control summary::after, .radius-select::after {
+.multi-select-control summary::after, .radius-select::after, .advanced-toggle::before {
   content: "";
   flex: none;
   width: .45rem;
@@ -153,6 +147,7 @@ button, select { cursor: pointer; }
   rotate: 45deg;
   translate: 0 -.125rem;
 }
+.advanced-toggle[aria-expanded="false"]::before { rotate: -45deg; translate: none; }
 .multi-select-control details[open] summary::after { rotate: 225deg; translate: 0 .125rem; }
 .radius-select { position: relative; color: var(--ink); }
 .radius-select::after {
