@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-25T21:58:06+00:00",
+  "lastUpdated": "2026-11-26T08:08:52+00:00",
   "jobs": [
     {
       "id": 8054,
@@ -394,28 +394,6 @@
         "coordinates": [
           47.4156799,
           16.4061159
-        ]
-      }
-    },
-    {
-      "id": 7195,
-      "title": "Verkäufer Feinkost (m/w/d) 10-38,5 Std./Wo in Hard-Schäfferhof",
-      "state": "Vorarlberg",
-      "location": "Hard",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Feinkost-m-w-d-10-38-5-Std-Wo-in-Hard-Sch-fferhof/7195",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7195",
-      "unit": {
-        "id": 162747,
-        "name": "SM2-01-181 Hard",
-        "address": "Schäfferhofstrasse 1, 6971 Hard, Österreich",
-        "addressSourceJobId": 7195,
-        "coordinates": [
-          47.4861021,
-          9.712167
         ]
       }
     },
@@ -8208,6 +8186,160 @@
       }
     },
     {
+      "id": 8084,
+      "title": "Mitarbeiter Market Kitchen (m/w/d), 30 Std./Woche, IM53",
+      "state": "Tirol",
+      "location": "Museumstraße, 38, 6020, Innsbruck, Österreich",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": false,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Market-Kitchen-m-w-d-30-Std-Woche-IM53/8084",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8084",
+      "unit": {
+        "id": 160475,
+        "name": "IM53 Innsbruck, Museumstr.",
+        "address": "Museumstraße 38, 6020 Innsbruck, Österreich",
+        "addressSourceJobId": 7002,
+        "coordinates": [
+          47.2660527,
+          11.4040991
+        ]
+      }
+    },
+    {
+      "id": 8082,
+      "title": "Mitarbeiter für unser maxi.kaffee (m/w/d), 20 - 30 Std./Woche, MM01G",
+      "state": "Oberösterreich",
+      "location": "Bäckermühlweg, 61, 4030, Linz, Österreich",
+      "jobField": "Gastronomie",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-f-r-unser-maxi-kaffee-m-w-d-20-30-Std-Woche-MM01G/8082",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8082",
+      "unit": {
+        "id": 150643,
+        "name": "MM01-100 Restaurant",
+        "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
+        "addressSourceJobId": 5812,
+        "coordinates": [
+          48.243022,
+          14.2770251
+        ]
+      }
+    },
+    {
+      "id": 8081,
+      "title": "Mitarbeiter Kassa für unser maxi.restaurant (m/w/d), 20 - 30 Std./Woche, MM01G",
+      "state": "Oberösterreich",
+      "location": "Bäckermühlweg, 61, 4030, Linz, Österreich",
+      "jobField": "Gastronomie",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-f-r-unser-maxi-restaurant-m-w-d-20-30-Std-Woche-MM01G/8081",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8081",
+      "unit": {
+        "id": 150643,
+        "name": "MM01-100 Restaurant",
+        "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
+        "addressSourceJobId": 5812,
+        "coordinates": [
+          48.243022,
+          14.2770251
+        ]
+      }
+    },
+    {
+      "id": 8080,
+      "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 20-30 Std./Wo - Fürstenfeld",
+      "state": "Steiermark",
+      "location": "8280 Fürstenfeld",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-Feinkost-m-w-d-20-30-Std-Wo-F-rstenfeld/8080",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8080",
+      "unit": {
+        "id": 155814,
+        "name": "SYS05-0587 Gaber Piere e.U.",
+        "address": "Hauptstraße 32, 8280 Fürstenfeld, Österreich",
+        "addressSourceJobId": 8080,
+        "coordinates": [
+          47.0477147,
+          16.0797835
+        ]
+      }
+    },
+    {
+      "id": 8076,
+      "title": "Mitarbeiter Kassa (m/w/d), Geringfügig, IM79",
+      "state": "Oberösterreich",
+      "location": "Linzerstraße, 50, 4840, Vöcklabruck, Österreich",
+      "jobField": "Verkauf",
+      "employmentType": "Geringfügig",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": false,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-Geringf-gig-IM79/8076",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8076",
+      "unit": {
+        "id": 160467,
+        "name": "IM79 Vöcklabruck",
+        "address": "Linzerstraße 50, 4840 Vöcklabruck, Österreich",
+        "addressSourceJobId": 6973,
+        "coordinates": [
+          48.0026263,
+          13.6689142
+        ]
+      }
+    },
+    {
+      "id": 8077,
+      "title": "Verkäufer Trockensortiment (m/w/d) 30-38,5 Std./Wo für unseren NEUEN STANDORT in Klagenfurt",
+      "state": "Kärnten",
+      "location": "9020 Klagenfurt",
+      "jobField": "Verkauf",
+      "employmentType": "Vollzeit/Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-m-w-d-30-38-5-Std-Wo-f-r-unseren-NEUEN-STANDORT-in-Klagenfurt/8077",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8077",
+      "unit": {
+        "id": 155357,
+        "name": "ZN 6-438 TS",
+        "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
+        "addressSourceJobId": 8077,
+        "coordinates": [
+          46.6131302,
+          14.2833676
+        ]
+      }
+    },
+    {
+      "id": 8075,
+      "title": "Mitarbeiter Kassa (m/w/d) 30-38,5 Std./Wo für unseren NEUEN STANDORT in Klagenfurt",
+      "state": "Kärnten",
+      "location": "9020 Klagenfurt",
+      "jobField": "Verkauf",
+      "employmentType": "Vollzeit/Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-30-38-5-Std-Wo-f-r-unseren-NEUEN-STANDORT-in-Klagenfurt/8075",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8075",
+      "unit": {
+        "id": 155370,
+        "name": "ZN 6-438 KA",
+        "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
+        "addressSourceJobId": 8075,
+        "coordinates": [
+          46.6131302,
+          14.2833676
+        ]
+      }
+    },
+    {
       "id": 8073,
       "title": "Verkäufer Feinkost (m/w/d) 30-38,5 Std./Wo",
       "state": "Kärnten",
@@ -15930,28 +16062,6 @@
       }
     },
     {
-      "id": 6964,
-      "title": "Abwäscher (m/w/d), 40 Std./Woche, IM29G",
-      "state": "Tirol",
-      "location": "Imst",
-      "jobField": "Gastronomie",
-      "employmentType": "Vollzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": false,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Abw-scher-m-w-d-40-Std-Woche-IM29G/6964",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=6964",
-      "unit": {
-        "id": 155486,
-        "name": "IM29-100 Restaurant",
-        "address": "Langgasse 38, 6460 Imst, Österreich",
-        "addressSourceJobId": 6969,
-        "coordinates": [
-          47.2337233,
-          10.7430448
-        ]
-      }
-    },
-    {
       "id": 6919,
       "title": "Verkäufer Feinkost (m/w/d) 20 Std./Wo",
       "state": "Tirol",
@@ -21111,10 +21221,10 @@
       "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/K-chengehilfe-f-r-unser-maxi-restaurant-m-w-d-20-30-Std-Woche-MM04G/5084",
       "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=5084",
       "unit": {
-        "id": 155423,
-        "name": "MM04-100 Restaurant",
+        "id": 150161,
+        "name": "ZN 5-633 FK",
         "address": "Schärdinger Straße 38, 4910 Ried, Österreich",
-        "addressSourceJobId": 7281,
+        "addressSourceJobId": 5084,
         "coordinates": [
           48.2164904,
           13.4834548
@@ -21712,28 +21822,6 @@
         "coordinates": [
           46.8307802,
           12.8025975
-        ]
-      }
-    },
-    {
-      "id": 4480,
-      "title": "Mitarbeiter Lebensmittel / Trockensortiment (m/w/d), 38,5 Std./Woche, IM48",
-      "state": "Vorarlberg",
-      "location": "Almteilweg, 1, 6706, Bürs",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": false,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Lebensmittel-Trockensortiment-m-w-d-38-5-Std-Woche-IM48/4480",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=4480",
-      "unit": {
-        "id": 160456,
-        "name": "IM48 Bürs",
-        "address": "Almteilweg 1, 6706 Bürs, Österreich",
-        "addressSourceJobId": 7010,
-        "coordinates": [
-          47.1509858,
-          9.8123108
         ]
       }
     },
@@ -23714,28 +23802,6 @@
         "coordinates": [
           47.4481089,
           12.2425717
-        ]
-      }
-    },
-    {
-      "id": 2674,
-      "title": "Verkäufer Feinkost (m/w/d) 20-30 Std./Wo in Hard",
-      "state": "Vorarlberg",
-      "location": "Hard",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Feinkost-m-w-d-20-30-Std-Wo-in-Hard/2674",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=2674",
-      "unit": {
-        "id": 159942,
-        "name": "SM1-01-060 Hard, Hofsteigstraße",
-        "address": "Hofsteigstr. 15, 6971 Hard, Österreich",
-        "addressSourceJobId": 7134,
-        "coordinates": [
-          47.490333,
-          9.6926335
         ]
       }
     },
@@ -27212,6 +27278,28 @@
         "coordinates": [
           47.8463536,
           16.5216945
+        ]
+      }
+    },
+    {
+      "id": 8020,
+      "title": "Samstagskraft Verkauf Fleisch- und Wurstabteilung TANN (m/w/d) 8 Std./Wo in Feldkirch",
+      "state": "Vorarlberg",
+      "location": "Feldkirch Altenstadt",
+      "jobField": "Verkauf",
+      "employmentType": "Geringfügig",
+      "start": "01.12.2026",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Samstagskraft-Verkauf-Fleisch-und-Wurstabteilung-TANN-m-w-d-8-Std-Wo-in-Feldkirch/8020",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8020",
+      "unit": {
+        "id": 164727,
+        "name": "TANN-01-365 Fleisch IM84",
+        "address": "Königshoferstraße 79, 6800 Feldkirch, Österreich",
+        "addressSourceJobId": 8020,
+        "coordinates": [
+          47.270497,
+          9.613718
         ]
       }
     },
@@ -33482,28 +33570,6 @@
         "coordinates": [
           48.0769459,
           16.2322635
-        ]
-      }
-    },
-    {
-      "id": 5763,
-      "title": "Verkäufer Trockensortiment (m/w/d) 20-25 Std./Wo in Nenzing",
-      "state": "Vorarlberg",
-      "location": "Nenzing",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "01.09.2026",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-m-w-d-20-25-Std-Wo-in-Nenzing/5763",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=5763",
-      "unit": {
-        "id": 150722,
-        "name": "SM3-01-274 Nenzing, Bundestraße",
-        "address": "Bundesstraße 90, 6710 Nenzing, Österreich",
-        "addressSourceJobId": 7141,
-        "coordinates": [
-          47.1876502,
-          9.7096147
         ]
       }
     },

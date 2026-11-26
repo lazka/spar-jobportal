@@ -6802,5 +6802,25 @@
   "162456": {
     "address": "Wienerstraße 91, 3500 Krems, Österreich",
     "sourceJobId": 8046
+  },
+  "155814": {
+    "address": "Hauptstraße 32, 8280 Fürstenfeld, Österreich",
+    "sourceJobId": 8080
+  },
+  "155357": {
+    "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
+    "sourceJobId": 8077
+  },
+  "155370": {
+    "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
+    "sourceJobId": 8075
+  },
+  "150161": {
+    "address": "Schärdinger Straße 38, 4910 Ried, Österreich",
+    "sourceJobId": 5084
+  },
+  "164727": {
+    "address": "Königshoferstraße 79, 6800 Feldkirch, Österreich",
+    "sourceJobId": 8020
   }
 }

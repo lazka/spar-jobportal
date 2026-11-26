@@ -19060,5 +19060,69 @@
       "country_code": "at"
     },
     "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
+  },
+  "hauptstrasse 32, 8280 fürstenfeld, österreich": {
+    "status": "matched",
+    "query": "Hauptstraße 32, 8280 Fürstenfeld, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-26T08:03:57.090699+00:00",
+    "attribution": "© OpenStreetMap contributors",
+    "latitude": 47.0477147,
+    "longitude": 16.0797835,
+    "displayName": "Eurospar, 32, Hauptstraße, Innere Stadt, Welsdorf, Katastralgemeinde Fürstenfeld, Fürstenfeld, Bezirk Hartberg-Fürstenfeld, Steiermark, 8280, Österreich",
+    "osmType": "way",
+    "osmId": 195626944,
+    "category": "shop",
+    "type": "supermarket",
+    "address": {
+      "shop": "Eurospar",
+      "house_number": "32",
+      "road": "Hauptstraße",
+      "neighbourhood": "Innere Stadt",
+      "hamlet": "Welsdorf",
+      "suburb": "Katastralgemeinde Fürstenfeld",
+      "town": "Fürstenfeld",
+      "county": "Bezirk Hartberg-Fürstenfeld",
+      "state": "Steiermark",
+      "ISO3166-2-lvl4": "AT-6",
+      "postcode": "8280",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
+  },
+  "maria-platzer-strasse 4, 9020 klagenfurt, österreich": {
+    "status": "matched",
+    "query": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-26T08:04:11.197178+00:00",
+    "attribution": "© OpenStreetMap contributors",
+    "latitude": 46.6131302,
+    "longitude": 14.2833676,
+    "displayName": "Spar, 4, Maria-Platzer-Straße, Waidmannsdorf, St. Martin, Klagenfurt am Wörthersee, Kärnten, 9020, Österreich",
+    "osmType": "way",
+    "osmId": 515034340,
+    "category": "shop",
+    "type": "supermarket",
+    "address": {
+      "shop": "Spar",
+      "house_number": "4",
+      "road": "Maria-Platzer-Straße",
+      "suburb": "Waidmannsdorf",
+      "city": "Klagenfurt am Wörthersee",
+      "state": "Kärnten",
+      "ISO3166-2-lvl4": "AT-2",
+      "postcode": "9020",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
+  },
+  "königshoferstrasse 79, 6800 feldkirch, österreich": {
+    "status": "not_found",
+    "query": "Königshoferstraße 79, 6800 Feldkirch, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-26T08:04:26.190332+00:00",
+    "attribution": "© OpenStreetMap contributors"
   }
 }

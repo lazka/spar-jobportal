@@ -1,4 +1,10 @@
 {
+  "164727": {
+    "latitude": 47.270497,
+    "longitude": 9.613718,
+    "source": "SPAR store catalogue, shop 8840: https://api-scp.spar-ics.com/mobile/b2c/apps/spar/v1/spar-app-at/v8/public/shops",
+    "note": "Host INTERSPAR Feldkirch-Altenstadt store pin for the TANN unit, not a separate meat counter pin. The official store page confirms IM84 and lists Könighofstraße 79, 6800 Feldkirch: https://www.interspar.at/standorte/8840."
+  },
   "150723": {
     "latitude": 47.2069765,
     "longitude": 10.1402867,
