@@ -16,7 +16,7 @@
     }
   </script>
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="./styles.css?v=field-filter">
+  <link rel="stylesheet" href="./styles.css?v=radius-chevron">
   <script defer src="./vendor/leaflet/leaflet.js"></script>
   <script defer src="./vendor/leaflet.markercluster/leaflet.markercluster-global.js"></script>
   <script type="importmap">
@@ -48,15 +48,20 @@
                 </button>
               </div>
             </div>
-            <label><span class="filter-label" data-i18n="radius">Umkreis</span><select id="radius">
-              <option value="2">2 km</option>
-              <option value="5">5 km</option>
-              <option value="10">10 km</option>
-              <option value="20">20 km</option>
-              <option value="30" selected>30 km</option>
-              <option value="50">50 km</option>
-              <option value="100">100 km</option>
-            </select></label>
+            <label>
+              <span class="filter-label" data-i18n="radius">Umkreis</span>
+              <span class="radius-select">
+                <select id="radius">
+                  <option value="2">2 km</option>
+                  <option value="5">5 km</option>
+                  <option value="10">10 km</option>
+                  <option value="20">20 km</option>
+                  <option value="30" selected>30 km</option>
+                  <option value="50">50 km</option>
+                  <option value="100">100 km</option>
+                </select>
+              </span>
+            </label>
             <div class="multi-select-filter">
               <span class="filter-label" id="field-label" data-i18n="field">Berufsfelder</span>
               <div class="multi-select-control" id="field-control">
