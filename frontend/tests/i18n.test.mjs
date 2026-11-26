@@ -7,7 +7,8 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(locale(), 'de-AT');
   assert.equal(t('jobCount', { count: 1 }), '1 Stelle');
   assert.equal(t('jobCount', { count: 1500 }), '1.500 Stellen');
-  assert.equal(t('mapCoverage', { count: 0 }), 'Alle Stellen können auf der Karte angezeigt werden.');
+   assert.match(t('mapCoverage', { count: 1 }), /^1 Stelle kann nicht auf der Karte angezeigt werden\./);
+   assert.match(t('mapCoverage', { count: 5 }), /^5 Stellen können nicht auf der Karte angezeigt werden\./);
   assert.equal(t('titleSearch'), 'Titelsuche');
   assert.equal(t('filterMapView'), 'Liste auf Kartenausschnitt begrenzen');
   assert.equal(jobLabel('state', 'Wien, Tirol'), 'Wien, Tirol');

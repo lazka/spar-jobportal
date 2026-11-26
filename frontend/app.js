@@ -202,8 +202,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   function renderJobFilters() {
     const coverageNote = $('map-coverage-note');
-    coverageNote.textContent = t('mapCoverage', { count: jobs.filter(job => !job.siteKey).length });
-    coverageNote.hidden = false;
+    const unmappedCount = jobs.filter(job => !job.siteKey).length;
+    coverageNote.hidden = unmappedCount === 0;
+    coverageNote.textContent = unmappedCount ? t('mapCoverage', { count: unmappedCount }) : '';
     state.setOptions(jobs.flatMap(job => job.states));
     field.setOptions(jobs.map(job => job.jobField));
     employment.setOptions(jobs.flatMap(job => job.workingHours));
