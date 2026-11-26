@@ -73,6 +73,7 @@ function createMultiSelect(category, emptyLabel, onChange) {
         const label = document.createElement('label');
         const input = document.createElement('input');
         input.type = 'checkbox';
+        input.setAttribute('form', 'filters');
         input.value = value;
         input.checked = checked.has(value);
         label.append(input, text);
@@ -154,7 +155,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     advancedToggle.setAttribute('aria-expanded', String(!filters.hidden));
     if (filters.hidden) {
       state.close();
-      field.close();
       employment.close();
     }
   });
@@ -217,8 +217,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const site = selected ? sites.get(selected) : undefined;
     if (site && bounds && !bounds.contains(site.pair)) selected = null;
     clearKeyword.hidden = !search.value;
-    const activeFilters = [search.value.trim(), state.renderSummary(), field.renderSummary(),
-      employment.renderSummary(), showUnmapped, limitToMapView].filter(Boolean).length;
+    field.renderSummary();
+    const activeFilters = [search.value.trim(), state.renderSummary(),
+      employment.renderSummary(), showUnmapped].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
     activeFilterActions.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;

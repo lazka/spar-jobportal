@@ -16,13 +16,13 @@
     }
   </script>
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=field-filter">
   <script defer src="./vendor/leaflet/leaflet.js"></script>
   <script defer src="./vendor/leaflet.markercluster/leaflet.markercluster-global.js"></script>
   <script type="importmap">
     {"imports":{"i18next":"./vendor/i18next/i18next.js","uqr":"./vendor/uqr/index.mjs"}}
   </script>
-  <script type="module" src="./app.js" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
+  <script type="module" src="./app.js?v=field-filter" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
 </head>
 <body>
   <main>
@@ -57,6 +57,18 @@
               <option value="50">50 km</option>
               <option value="100">100 km</option>
             </select></label>
+            <div class="multi-select-filter">
+              <span class="filter-label" id="field-label" data-i18n="field">Berufsfelder</span>
+              <div class="multi-select-control" id="field-control">
+                <details id="field">
+                  <summary aria-labelledby="field-label field-value"><span id="field-value" data-i18n="allFields">Alle Berufsfelder</span></summary>
+                  <div class="multi-select-options" id="field-options" role="group" aria-labelledby="field-label"></div>
+                </details>
+                <button id="clear-fields" class="multi-select-clear" type="button" title="Berufsfeldauswahl aufheben" aria-label="Berufsfeldauswahl aufheben" data-i18n-title="clearFields" data-i18n-aria-label="clearFields" hidden>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
+                </button>
+              </div>
+            </div>
             <div class="nearby-actions">
               <details class="place-info">
                 <summary aria-label="Hinweise zur Ortssuche" data-i18n-aria-label="placeInfo">
@@ -100,18 +112,6 @@
                   <div class="multi-select-options" id="state-options" role="group" aria-labelledby="state-label"></div>
                 </details>
                 <button id="clear-states" class="multi-select-clear" type="button" title="Bundeslandauswahl aufheben" aria-label="Bundeslandauswahl aufheben" data-i18n-title="clearStates" data-i18n-aria-label="clearStates" hidden>
-                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="multi-select-filter">
-              <span class="filter-label" id="field-label" data-i18n="field">Berufsfelder</span>
-              <div class="multi-select-control" id="field-control">
-                <details id="field">
-                  <summary aria-labelledby="field-label field-value"><span id="field-value" data-i18n="allFields">Alle Berufsfelder</span></summary>
-                  <div class="multi-select-options" id="field-options" role="group" aria-labelledby="field-label"></div>
-                </details>
-                <button id="clear-fields" class="multi-select-clear" type="button" title="Berufsfeldauswahl aufheben" aria-label="Berufsfeldauswahl aufheben" data-i18n-title="clearFields" data-i18n-aria-label="clearFields" hidden>
                   <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
                 </button>
               </div>
