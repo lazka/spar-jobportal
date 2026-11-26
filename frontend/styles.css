@@ -545,6 +545,8 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 }
 
 @media (max-width: 760px) {
+  .nearby { grid-template-columns: minmax(6rem, 7rem) minmax(0, 1fr) max-content; }
+  .place-field { grid-column: 1 / -1; }
   .layout { grid-template-columns: 1fr; }
   .map-panel { grid-row: 1; position: static; }
   #map { height: clamp(17rem, 45vh, 27rem); }
@@ -553,10 +555,10 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 @media (max-width: 550px) {
   .intro { padding-top: 1.1rem; }
   .filters, .advanced-header, #place-status:not(:empty) { padding-inline: .75rem; }
-  #filters .multi-select-filter, .place-field { grid-column: 1 / -1; }
+  #filters .multi-select-filter { grid-column: 1 / -1; }
   .nearby { grid-template-columns: minmax(6rem, 28%) minmax(0, 1fr); }
   #field-options { width: 100%; }
-  .nearby-actions { grid-column: 1 / -1; position: relative; }
+  .nearby-actions { grid-column: 1 / -1; position: relative; margin-block-start: .375rem; }
   .place-info { position: static; }
   .place-info .search-note { inset-inline: 0 auto; width: min(20rem, 100%); }
 }
