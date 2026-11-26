@@ -16,7 +16,7 @@
     }
   </script>
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="./styles.css?v=search-layout">
+  <link rel="stylesheet" href="./styles.css?v=inline-place-info">
   <script defer src="./vendor/leaflet/leaflet.js"></script>
   <script defer src="./vendor/leaflet.markercluster/leaflet.markercluster-global.js"></script>
   <script type="importmap">
@@ -40,7 +40,18 @@
         <div class="nearby-panel">
           <form class="filters nearby" id="nearby" role="search" aria-label="Umkreissuche" data-i18n-aria-label="nearbySearch" autocomplete="off">
             <div class="place-field">
-              <label class="filter-label" for="place" data-i18n="place">Ort oder Postleitzahl</label>
+              <div class="place-label">
+                <label class="filter-label" for="place" data-i18n="place">Ort oder Postleitzahl</label>
+                <details class="place-info">
+                  <summary aria-label="Hinweise zur Ortssuche" data-i18n-aria-label="placeInfo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
+                  </summary>
+                  <div class="muted search-note">
+                    <p><span data-i18n="privacyBefore">Die Ortssuche sendet deine Eingabe an</span> <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright" data-i18n="osmContributors">OpenStreetMap-Mitwirkende</a>). <span data-i18n="privacyAfter">Gib bitte keine Privatadresse ein.</span></p>
+                    <p id="map-coverage-note" hidden></p>
+                  </div>
+                </details>
+              </div>
               <div class="place-input">
                 <input id="place" placeholder="z. B. Graz oder 8010" data-i18n-placeholder="placePlaceholder" required maxlength="100">
                 <button id="clear-place" class="place-clear" type="button" title="Umkreis entfernen" aria-label="Umkreis entfernen" data-i18n-title="clearRadius" data-i18n-aria-label="clearRadius" hidden>
@@ -74,18 +85,7 @@
                 </button>
               </div>
             </div>
-            <div class="nearby-actions">
-              <details class="place-info">
-                <summary aria-label="Hinweise zur Ortssuche" data-i18n-aria-label="placeInfo">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
-                </summary>
-                <div class="muted search-note">
-                  <p><span data-i18n="privacyBefore">Die Ortssuche sendet deine Eingabe an</span> <a href="https://nominatim.openstreetmap.org/">Nominatim</a> (© <a href="https://www.openstreetmap.org/copyright" data-i18n="osmContributors">OpenStreetMap-Mitwirkende</a>). <span data-i18n="privacyAfter">Gib bitte keine Privatadresse ein.</span></p>
-                  <p id="map-coverage-note" hidden></p>
-                </div>
-              </details>
-              <button class="button-primary" id="find-place" type="submit" data-i18n="findPlace">Suchen</button>
-            </div>
+            <button class="button-primary" id="find-place" type="submit" data-i18n="findPlace">Suchen</button>
             <label class="wide" id="place-choices" hidden><span class="filter-label" data-i18n="foundPlace">Gefundener Ort</span><select id="place-result"></select></label>
           </form>
           <p id="place-status" role="status"></p>
