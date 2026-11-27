@@ -17,7 +17,6 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(t('showJobsAtSite', { count: 4 }), 'Alle 4 Stellen anzeigen');
   assert.equal(t('moreJobsAtSite', { count: 1 }), '+ 1 weitere Stelle');
   assert.equal(t('moreJobsAtSite', { count: 2 }), '+ 2 weitere Stellen');
-  assert.equal(jobLabel('state', 'Wien, Tirol'), 'Wien, Tirol');
   assert.equal(jobLabel('organisation', UNKNOWN_ORG_TYPE), 'Unbekannt');
 
   await changeLanguage('en');
@@ -32,7 +31,6 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(t('moreJobsAtSite', { count: 1 }), '+ 1 more job');
   assert.equal(t('moreJobsAtSite', { count: 2 }), '+ 2 more jobs');
   assert.match(t('mapCoverage', { count: 3 }), /3 jobs.*“More filters” → “Not on the map”/);
-  assert.equal(jobLabel('state', 'Wien, Tirol'), 'Vienna, Tyrol');
   assert.equal(jobLabel('employment', 'Vollzeit'), 'Full-time');
   assert.equal(jobLabel('field', 'Unbekanntes Berufsfeld'), 'Unbekanntes Berufsfeld');
   assert.equal(jobLabel('organisation', UNKNOWN_ORG_TYPE), 'Unknown');

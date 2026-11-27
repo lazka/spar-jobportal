@@ -5,7 +5,6 @@
  * @property {number} [id]
  * @property {string | null} [title]
  * @property {string | null} [location]
- * @property {string | string[] | null} [state]
  * @property {string | null} [jobField]
  * @property {string | null} [employmentType]
  * @property {string | null} [start]
@@ -13,7 +12,7 @@
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], orgType: string, siteKey: string | null, searchTitle: string}} Job */
+/** @typedef {RawJob & {times: string[], workingHours: string[], orgType: string, siteKey: string | null, searchTitle: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
 
 export const UNKNOWN_ORG_TYPE = ':unknown-org-type';
@@ -48,16 +47,11 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
   return data.map(job => {
-    const states = [...new Set((Array.isArray(job.state) ? job.state : [job.state ?? ''])
-      .flatMap(value => value.split(',')).map(value => value.trim()).filter(Boolean))];
-    const state = states.join(', ');
     const times = (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
     const workingHours = [...new Set(times.flatMap(time =>
       time === 'Geringfügig-Vollzeit' ? ['Geringfügig', 'Teilzeit', 'Vollzeit'] : [time]))];
     return {
       ...job,
-      state,
-      states,
       times,
       workingHours,
       orgType: job.unit?.orgType ?? UNKNOWN_ORG_TYPE,
@@ -107,16 +101,14 @@ function compareJobIdsDescending(a, b) {
 
 /**
  * @param {Job[]} jobs
- * @param {{query?: string, states?: string[], fields?: string[], workingHours?: string[], orgTypes?: string[], center?: Coordinates, radiusKm?: number}} filters
+ * @param {{query?: string, fields?: string[], workingHours?: string[], orgTypes?: string[], center?: Coordinates, radiusKm?: number}} filters
  */
-export function filterJobs(jobs, { query = '', states = [], fields = [], workingHours = [], orgTypes = [], center, radiusKm = 0 }) {
+export function filterJobs(jobs, { query = '', fields = [], workingHours = [], orgTypes = [], center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
-  const selectedStates = new Set(states);
   const selectedFields = new Set(fields);
   const selectedHours = new Set(workingHours);
   const selectedOrgTypes = new Set(orgTypes);
-  const matches = jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
-    (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
+  const matches = jobs.filter(job => (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
     (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
     (!selectedOrgTypes.size || selectedOrgTypes.has(job.orgType)) &&
     words.every(word => job.searchTitle.includes(word)));

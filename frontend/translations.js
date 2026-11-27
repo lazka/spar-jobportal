@@ -17,9 +17,6 @@ export const de = {
   titleSearch: 'Titelsuche',
   titleSearchPlaceholder: 'z. B. Feinkost oder Lehrling',
   clearTitleSearch: 'Titelsuche leeren',
-  state: 'Bundesländer',
-  allStates: 'Alle Bundesländer',
-  clearStates: 'Bundeslandauswahl aufheben',
   selectedOptions_one: '{{count, number}} ausgewählt',
   selectedOptions_other: '{{count, number}} ausgewählt',
   field: 'Berufsfelder',
@@ -120,9 +117,6 @@ export const en = {
   titleSearch: 'Search job titles',
   titleSearchPlaceholder: 'e.g. Feinkost or Lehrling',
   clearTitleSearch: 'Clear job title search',
-  state: 'States',
-  allStates: 'All states',
-  clearStates: 'Clear selected states',
   selectedOptions_one: '{{count, number}} selected',
   selectedOptions_other: '{{count, number}} selected',
   field: 'Job categories',
@@ -204,14 +198,6 @@ export const en = {
 };
 
 export const englishTaxonomy = {
-  state: {
-    Wien: 'Vienna',
-    Kärnten: 'Carinthia',
-    Tirol: 'Tyrol',
-    Niederösterreich: 'Lower Austria',
-    Oberösterreich: 'Upper Austria',
-    Steiermark: 'Styria',
-  },
   field: {
     Verkauf: 'Retail sales',
     'Lager / Fuhrpark': 'Warehouse / Fleet',
@@ -240,6 +226,5 @@ export const englishTaxonomy = {
 export function englishLabel(category, value) {
   /** @type {Record<string, string>} */
   const labels = englishTaxonomy[category];
-  return (category === 'state' ? value.split(', ') : [value])
-    .map(part => Object.hasOwn(labels, part) ? labels[part] : part).join(', ');
+  return Object.hasOwn(labels, value) ? labels[value] : value;
 }

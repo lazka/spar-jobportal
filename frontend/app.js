@@ -28,7 +28,7 @@ function control(id, type) {
 
 /**
  * @param {Parameters<typeof jobLabel>[0]} category
- * @param {'allStates' | 'allFields' | 'allEmployment' | 'allOrganisations'} emptyLabel
+ * @param {'allFields' | 'allEmployment' | 'allOrganisations'} emptyLabel
  * @param {() => void} onChange
  */
 function createMultiSelect(category, emptyLabel, onChange) {
@@ -136,7 +136,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   let debounce;
   const search = control('search', HTMLInputElement);
   const clearKeyword = control('clear-keyword', HTMLButtonElement);
-  const state = createMultiSelect('state', 'allStates', refreshFilters);
   const field = createMultiSelect('field', 'allFields', refreshFilters);
   const employment = createMultiSelect('employment', 'allEmployment', refreshFilters);
   const organisation = createMultiSelect('organisation', 'allOrganisations', refreshFilters);
@@ -162,7 +161,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     filters.hidden = !filters.hidden;
     advancedToggle.setAttribute('aria-expanded', String(!filters.hidden));
     if (filters.hidden) {
-      state.close();
       employment.close();
       organisation.close();
     }
@@ -216,7 +214,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     const unmappedCount = jobs.filter(job => !job.siteKey).length;
     coverageNote.hidden = unmappedCount === 0;
     coverageNote.textContent = unmappedCount ? t('mapCoverage', { count: unmappedCount }) : '';
-    state.setOptions(jobs.flatMap(job => job.states));
     field.setOptions(jobs.map(job => job.jobField));
     employment.setOptions(jobs.flatMap(job => job.workingHours));
     organisation.setOptions(jobs.map(job => job.orgType));
@@ -233,7 +230,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
     clearKeyword.hidden = !search.value;
     field.renderSummary();
-    state.renderSummary();
     employment.renderSummary();
     organisation.renderSummary();
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
@@ -263,9 +259,9 @@ window.addEventListener('DOMContentLoaded', async () => {
       refreshFilters();
     } });
 
-    const selections = { field, state, employment, organisation };
+    const selections = { field, employment, organisation };
     /** @type {(keyof typeof selections)[]} */
-    const categories = ['field', 'state', 'employment', 'organisation'];
+    const categories = ['field', 'employment', 'organisation'];
     for (const category of categories) {
       const select = selections[category];
       for (const value of select.values()) {
@@ -317,7 +313,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     const radiusKm = radius();
     const matchingFilters = filterJobs(jobs, {
       query: search.value.trim(),
-      states: state.values(),
       fields: field.values(),
       workingHours: employment.values(),
       orgTypes: organisation.values()

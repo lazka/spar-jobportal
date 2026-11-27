@@ -143,7 +143,7 @@ button.filter-pill {
 }
 .filter-pill span[aria-hidden] { flex: none; }
 #filters {
-  grid-template-columns: minmax(12rem, 1.6fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(12rem, 2.5fr) repeat(2, minmax(0, 1fr));
   padding-top: 0;
 }
 #show-unmapped { grid-column: 1 / -1; justify-self: start; }
@@ -605,7 +605,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 .site-footer :focus-visible { outline-color: var(--white); }
 
 @media (max-width: 960px) {
-  #filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .keyword-field { grid-column: 1 / -1; }
 }
 

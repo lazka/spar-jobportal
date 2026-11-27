@@ -5,11 +5,11 @@ import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, jobLocat
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
 const jobs = normalizeJobs([
-  { title: 'Verkäufer:in in der Thaliastraße', state: 'Wien', location: 'Ottakring', jobField: 'Verkauf',
+  { title: 'Verkäufer:in in der Thaliastraße', location: 'Ottakring', jobField: 'Verkauf',
     employmentType: 'Vollzeit / Teilzeit', unit: { address: 'Beispielstraße', name: 'INTERSPAR', coordinates: vienna } },
-  { title: 'Feinkost', state: 'Steiermark', jobField: 'Verkauf', employmentType: 'Vollzeit',
+  { title: 'Feinkost', jobField: 'Verkauf', employmentType: 'Vollzeit',
     unit: { coordinates: [47.0707, 15.4395] } },
-  { title: 'Kassa', state: 'Wien', jobField: 'Verkauf', employmentType: 'Teilzeit' }
+  { title: 'Kassa', jobField: 'Verkauf', employmentType: 'Teilzeit' }
 ]);
 
 await test('job dataset preserves its timestamp and accepts older data without one', () => {
@@ -46,14 +46,14 @@ await test('map sites prefer a shared unit address and fall back to an unambiguo
 });
 
 await test('title search matches accents and ß and combines with dropdown filters', () => {
-  const filters = { query: '  THALIASTRASSE verkaufer  ', states: ['Wien'], fields: ['Verkauf'], workingHours: ['Teilzeit'] };
+  const filters = { query: '  THALIASTRASSE verkaufer  ', fields: ['Verkauf'], workingHours: ['Teilzeit'] };
   assert.deepEqual(filterJobs(jobs, filters), [jobs[0]]);
   assert.deepEqual(filterJobs(jobs, { ...filters, workingHours: ['Geringfügig'] }), []);
   assert.deepEqual(filterJobs(jobs, { ...filters, query: 'verkaufer fehlt' }), []);
 });
 
 await test('title search ignores locations, work hours, site details, and category labels', () => {
-  for (const query of ['Ottakring', 'Wien', 'Teilzeit', 'Beispielstraße', 'Interspar', 'Retail sales', 'Styria']) {
+  for (const query of ['Ottakring', 'Teilzeit', 'Beispielstraße', 'Interspar', 'Retail sales']) {
     assert.deepEqual(filterJobs(jobs, { query }), [], query);
   }
   assert.deepEqual(filterJobs(jobs, { query: 'Beispielstraße verkaufer' }), []);
@@ -90,64 +90,49 @@ await test('the map view uses SPAR site coordinates and excludes unmapped jobs',
 
 await test('the map view narrows existing filters without changing nearest-first order', () => {
   const nearby = normalizeJobs([
-    { state: 'Wien', unit: { coordinates: [48.3, 16.37] } },
-    { state: 'Wien', unit: { coordinates: vienna } },
-    { state: 'Niederösterreich', unit: { coordinates: vienna } },
-    { state: 'Wien', unit: { coordinates: [48.24, 16.37] } },
+    { jobField: 'Verkauf', unit: { coordinates: [48.3, 16.37] } },
+    { jobField: 'Verkauf', unit: { coordinates: vienna } },
+    { jobField: 'Gastronomie', unit: { coordinates: vienna } },
+    { jobField: 'Verkauf', unit: { coordinates: [48.24, 16.37] } },
   ]);
-  const matches = filterJobs(nearby, { states: ['Wien'], center: vienna, radiusKm: 30 });
+  const matches = filterJobs(nearby, { fields: ['Verkauf'], center: vienna, radiusKm: 30 });
   assert.deepEqual(filterJobsInMapView(matches, ([lat]) => lat < 48.25), [nearby[1], nearby[3]]);
 });
 
-await test('state filters match any selected state and include multi-state jobs only once', () => {
-  const regionalJobs = normalizeJobs([
-    { state: ' Wien,Steiermark, Wien ' },
-    { state: ['Tirol', 'Steiermark'] },
-    { state: 'Oberösterreich' },
-    { state: [] },
-  ]);
-  assert.deepEqual(regionalJobs.map(job => job.states), [
-    ['Wien', 'Steiermark'], ['Tirol', 'Steiermark'], ['Oberösterreich'], []
-  ]);
-  assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien'] }), [regionalJobs[0]]);
-  assert.deepEqual(filterJobs(regionalJobs, { states: ['Wien', 'Steiermark'] }), regionalJobs.slice(0, 2));
-  assert.deepEqual(filterJobs(regionalJobs, { states: [] }), regionalJobs);
-});
-
-await test('job category filters match any selected category and combine with the states filter', () => {
+await test('job category filters match any selected category and combine with working hours', () => {
   const categorized = normalizeJobs([
-    { state: 'Wien', jobField: 'Verkauf' },
-    { state: 'Wien', jobField: 'Gastronomie' },
-    { state: 'Tirol', jobField: 'Verkauf' },
-    { state: 'Wien', jobField: 'Lehrlinge' },
-    { state: 'Wien' },
+    { jobField: 'Verkauf', employmentType: 'Teilzeit' },
+    { jobField: 'Gastronomie', employmentType: 'Teilzeit' },
+    { jobField: 'Verkauf', employmentType: 'Vollzeit' },
+    { jobField: 'Lehrlinge', employmentType: 'Teilzeit' },
+    {},
   ]);
   const fields = ['Verkauf', 'Gastronomie'];
   assert.deepEqual(filterJobs(categorized, { fields }), categorized.slice(0, 3));
-  assert.deepEqual(filterJobs(categorized, { fields, states: ['Wien'] }), categorized.slice(0, 2));
+  assert.deepEqual(filterJobs(categorized, { fields, workingHours: ['Teilzeit'] }), categorized.slice(0, 2));
   assert.deepEqual(filterJobs(categorized, { fields: [] }), categorized);
 });
 
 await test('organisation filters match any selected type and include missing types as unknown', () => {
   const openings = normalizeJobs([
-    { state: 'Wien', unit: { orgType: 'SPAR' } },
-    { state: 'Tirol', unit: { orgType: 'INTERSPAR' } },
-    { state: 'Wien', unit: { orgType: null } },
-    { state: 'Tirol', unit: { name: 'SPAR' } },
+    { jobField: 'Verkauf', unit: { orgType: 'SPAR' } },
+    { jobField: 'Verkauf', unit: { orgType: 'INTERSPAR' } },
+    { jobField: 'Verkauf', unit: { orgType: null } },
+    { jobField: 'Gastronomie', unit: { name: 'SPAR' } },
   ]);
   assert.deepEqual(openings.map(job => job.orgType), ['SPAR', 'INTERSPAR', UNKNOWN_ORG_TYPE, UNKNOWN_ORG_TYPE]);
   assert.deepEqual(filterJobs(openings, { orgTypes: [UNKNOWN_ORG_TYPE] }), openings.slice(2));
   assert.deepEqual(filterJobs(openings, { orgTypes: ['SPAR', 'INTERSPAR'] }), openings.slice(0, 2));
-  assert.deepEqual(filterJobs(openings, { orgTypes: ['SPAR', UNKNOWN_ORG_TYPE], states: ['Wien'] }), [openings[0], openings[2]]);
+  assert.deepEqual(filterJobs(openings, { orgTypes: ['SPAR', UNKNOWN_ORG_TYPE], fields: ['Verkauf'] }), [openings[0], openings[2]]);
   assert.deepEqual(filterJobs(openings, { orgTypes: [] }), openings);
 });
 
 await test('working hours match any selected option and expand Geringfügig-Vollzeit to all three', () => {
   const scheduled = normalizeJobs([
-    { employmentType: 'Geringfügig-Vollzeit', state: 'Wien' },
-    { employmentType: 'Vollzeit/Teilzeit', state: 'Wien' },
-    { employmentType: 'Teilzeit', state: 'Tirol' },
-    { employmentType: 'Vollzeit', state: 'Tirol' },
+    { employmentType: 'Geringfügig-Vollzeit' },
+    { employmentType: 'Vollzeit/Teilzeit' },
+    { employmentType: 'Teilzeit' },
+    { employmentType: 'Vollzeit' },
     {},
   ]);
   assert.deepEqual(scheduled[0].times, ['Geringfügig-Vollzeit']);
@@ -157,7 +142,6 @@ await test('working hours match any selected option and expand Geringfügig-Voll
   assert.deepEqual(filterJobs(scheduled, { workingHours: ['Vollzeit'] }), [scheduled[0], scheduled[1], scheduled[3]]);
   const workingHours = ['Geringfügig', 'Teilzeit'];
   assert.deepEqual(filterJobs(scheduled, { workingHours }), scheduled.slice(0, 3));
-  assert.deepEqual(filterJobs(scheduled, { workingHours, states: ['Tirol'] }), [scheduled[2]]);
   assert.deepEqual(filterJobs(scheduled, { workingHours: [] }), scheduled);
 });
 
