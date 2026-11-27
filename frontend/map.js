@@ -31,7 +31,10 @@ export function createMap(container, onSelectSite) {
   };
 
   container.replaceChildren();
-  const map = L.map(container, { scrollWheelZoom: true, zoomControl: false, zoomSnap: 0, maxZoom: 19 }).fitBounds(austria);
+  const map = L.map(container, {
+    scrollWheelZoom: true, zoomControl: false, zoomSnap: 0, maxZoom: 19, trackResize: false,
+  }).fitBounds(austria);
+  new ResizeObserver(() => map.invalidateSize({ debounceMoveend: true })).observe(container);
   const zoomControl = L.control.zoom({ zoomInTitle: t('zoomIn'), zoomOutTitle: t('zoomOut') }).addTo(map);
   const attributionHtml = () => `${t('attribution')} <a href="https://basemap.at/en/">basemap.at</a>`;
   const tileOptions = {
@@ -116,7 +119,14 @@ export function createMap(container, onSelectSite) {
       if (more) popup.append(more);
       const button = node('button', '', 'button-primary');
       button.type = 'button';
-      button.addEventListener('click', () => onSelectSite(key));
+      button.addEventListener('click', async () => {
+        if (isFullscreen()) {
+          await exitFullscreen();
+          map.invalidateSize();
+          map.panInside(marker.getLatLng(), { animate: false });
+        }
+        onSelectSite(key);
+      });
       popup.append(button);
       // Keep the close button clear of the layer switch on narrow maps.
       marker.bindPopup(popup, { autoPanPaddingTopLeft: [5, 70] });
@@ -140,12 +150,12 @@ export function createMap(container, onSelectSite) {
     map.fitBounds(bounds.isValid() ? bounds : austria, { padding: [24, 24], maxZoom: 12 });
   }
 
-  const fitControl = new L.Control({ position: 'topleft' });
-  const fitButton = node('button', '', 'map-fit');
-  fitControl.onAdd = () => {
+  /** @param {string} path @param {() => void} onClick */
+  function addMapButton(path, onClick) {
+    const control = new L.Control({ position: 'topleft' });
     const bar = node('div', '', 'leaflet-bar');
-    fitButton.type = 'button';
-    labelControl(fitButton, 'resetMap');
+    const button = node('button', '', 'map-button');
+    button.type = 'button';
 
     const ns = 'http://www.w3.org/2000/svg';
     const icon = document.createElementNS(ns, 'svg');
@@ -159,16 +169,73 @@ export function createMap(container, onSelectSite) {
     icon.setAttribute('stroke-linejoin', 'round');
     icon.setAttribute('aria-hidden', 'true');
     const arrows = document.createElementNS(ns, 'path');
-    arrows.setAttribute('d', 'm3 3 5 5m0-4v4H4m17-5-5 5m0-4v4h4M3 21l5-5m-4 0h4v4m13 1-5-5m0 4v-4h4');
+    arrows.setAttribute('d', path);
     icon.append(arrows);
-    fitButton.append(icon);
+    button.append(icon);
+    button.addEventListener('click', onClick);
+    bar.append(button);
 
-    fitButton.addEventListener('click', fit);
-    bar.append(fitButton);
     L.DomEvent.disableClickPropagation(bar);
-    return bar;
-  };
-  fitControl.addTo(map);
+    control.onAdd = () => bar;
+    control.addTo(map);
+    return { button, iconPath: arrows };
+  }
+
+  const { button: fitButton } = addMapButton(
+    'm3 3 5 5m0-4v4H4m17-5-5 5m0-4v4h4M3 21l5-5m-4 0h4v4m13 1-5-5m0 4v-4h4', fit);
+  labelControl(fitButton, 'resetMap');
+
+  const frame = container.parentElement;
+  const fullscreenDialog = node('dialog', '', 'map-fullscreen');
+  document.body.append(fullscreenDialog);
+  const expandIcon = 'M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6';
+  const collapseIcon = 'M3 9h6V3m12 6h-6V3M9 21v-6H3m12 6v-6h6';
+  const { button: fullscreenButton, iconPath: fullscreenIcon } = addMapButton(expandIcon, toggleFullscreen);
+  const isFullscreen = () => document.fullscreenElement === container || fullscreenDialog.open;
+
+  function updateFullscreenButton() {
+    const active = isFullscreen();
+    labelControl(fullscreenButton, active ? 'exitMapFullscreen' : 'enterMapFullscreen');
+    fullscreenIcon.setAttribute('d', active ? collapseIcon : expandIcon);
+    fullscreenDialog.setAttribute('aria-label', t('mapRegion'));
+  }
+
+  async function exitFullscreen() {
+    if (fullscreenDialog.open) {
+      frame?.append(container);
+      fullscreenDialog.close();
+      updateFullscreenButton();
+      fullscreenButton.focus({ preventScroll: true });
+    } else if (document.fullscreenElement === container) {
+      await document.exitFullscreen();
+    }
+  }
+
+  async function toggleFullscreen() {
+    if (isFullscreen()) {
+      await exitFullscreen();
+      return;
+    }
+    if (document.fullscreenEnabled) {
+      try {
+        await container.requestFullscreen();
+        return;
+      } catch {
+        // Use the full-viewport dialog if the browser blocks native fullscreen.
+      }
+    }
+    fullscreenDialog.append(container);
+    fullscreenDialog.showModal();
+    updateFullscreenButton();
+    fullscreenButton.focus({ preventScroll: true });
+  }
+
+  document.addEventListener('fullscreenchange', updateFullscreenButton);
+  fullscreenDialog.addEventListener('cancel', event => {
+    event.preventDefault();
+    void exitFullscreen();
+  });
+  updateFullscreenButton();
 
   /** @param {Element | null | undefined} element @param {string} key */
   function labelControl(element, key) {
@@ -198,6 +265,7 @@ export function createMap(container, onSelectSite) {
     labelControl(zoom?.querySelector('.leaflet-control-zoom-in'), 'zoomIn');
     labelControl(zoom?.querySelector('.leaflet-control-zoom-out'), 'zoomOut');
     labelControl(fitButton, 'resetMap');
+    updateFullscreenButton();
     translatePopupClose();
   }
 

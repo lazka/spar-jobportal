@@ -345,14 +345,28 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 }
 .muted { color: var(--muted); font-size: .875rem; }
 .map-panel { position: sticky; top: 1rem; }
+.map-frame { height: clamp(24rem, 62vh, 44rem); }
 #map {
   --map-control-size: 2.25rem;
   container-type: inline-size;
-  height: clamp(24rem, 62vh, 44rem);
+  height: 100%;
   background: #f1eeee;
   border-radius: var(--radius);
   z-index: 0;
 }
+#map:is(:fullscreen, .map-fullscreen #map) { width: 100%; height: 100%; border-radius: 0; }
+.map-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body:has(.map-fullscreen[open]) { overflow: hidden; }
 #map.leaflet-touch { --map-control-size: 2.75rem; }
 #map > p { padding: 1rem; }
 #map :is(.leaflet-bar, .leaflet-control-layers) {
@@ -361,7 +375,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   background: var(--white);
   box-shadow: 0 .125rem .5rem #3200001a;
 }
-#map :is(.leaflet-control-zoom a, .map-fit) {
+#map :is(.leaflet-control-zoom a, .map-button) {
   display: grid;
   place-items: center;
   width: var(--map-control-size);
@@ -381,15 +395,15 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
 }
 #map .leaflet-control-zoom a:last-child { border-radius: 0 0 999px 999px; }
 #map .leaflet-control-zoom a.leaflet-disabled { opacity: .55; }
-#map .map-fit {
+#map .map-button {
   border: 0;
   border-radius: 50%;
 }
-#map :is(.leaflet-control-zoom a:not(.leaflet-disabled), .map-fit):hover {
+#map :is(.leaflet-control-zoom a:not(.leaflet-disabled), .map-button):hover {
   background: var(--pale-red);
   color: var(--deep-red);
 }
-#map :is(.leaflet-control-zoom a, .map-fit):focus-visible { outline-offset: -3px; }
+#map :is(.leaflet-control-zoom a, .map-button):focus-visible { outline-offset: -3px; }
 #map .leaflet-control-layers { padding: .1875rem; }
 #map .leaflet-control-layers-base { display: flex; gap: .125rem; }
 #map .leaflet-control-layers label {
@@ -614,7 +628,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   .place-field { grid-column: 1 / -1; }
   .layout { grid-template-columns: 1fr; }
   .map-panel { grid-row: 1; position: static; }
-  #map { height: clamp(22rem, 65vh, 38rem); }
+  .map-frame { height: clamp(22rem, 65vh, 38rem); }
 }
 
 @media (max-width: 550px) {

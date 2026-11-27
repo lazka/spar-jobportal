@@ -94,6 +94,8 @@ export const de = {
   showJobsAtSite_one: 'Stelle anzeigen',
   showJobsAtSite_other: 'Alle {{count, number}} Stellen anzeigen',
   resetMap: 'Kartenausschnitt zurücksetzen',
+  enterMapFullscreen: 'Karte im Vollbild anzeigen',
+  exitMapFullscreen: 'Karten-Vollbild verlassen',
   closePopup: 'Schließen',
 };
 
@@ -194,6 +196,8 @@ export const en = {
   showJobsAtSite_one: 'Show job',
   showJobsAtSite_other: 'Show all {{count, number}} jobs',
   resetMap: 'Reset map view',
+  enterMapFullscreen: 'Show map in fullscreen',
+  exitMapFullscreen: 'Exit map fullscreen',
   closePopup: 'Close',
 };
 
