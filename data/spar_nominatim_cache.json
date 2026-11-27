@@ -19165,5 +19165,31 @@
     "provider": "Nominatim",
     "checkedAtUtc": "2026-11-27T09:48:40.000881+00:00",
     "attribution": "© OpenStreetMap contributors"
+  },
+  "brandnerstrasse 6, 6700 bludenz/bürs, österreich": {
+    "status": "matched",
+    "query": "Brandnerstraße 6, 6700 Bludenz/Bürs, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-27T11:11:43.446386+00:00",
+    "attribution": "© OpenStreetMap contributors",
+    "latitude": 47.1544909,
+    "longitude": 9.805016,
+    "displayName": "6, Brandnerstraße, Bürs, Bezirk Bludenz, Vorarlberg, 6706, Österreich",
+    "osmType": "way",
+    "osmId": 378773090,
+    "category": "building",
+    "type": "yes",
+    "address": {
+      "house_number": "6",
+      "road": "Brandnerstraße",
+      "village": "Bürs",
+      "county": "Bezirk Bludenz",
+      "state": "Vorarlberg",
+      "ISO3166-2-lvl4": "AT-8",
+      "postcode": "6706",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
   }
 }

@@ -3728,5 +3728,10 @@
     "name": "ES2-03-376 Wels, Gartenstadt",
     "address": "Schmierndorfer Straße 35, 4600 Wels, Österreich",
     "orgType": "SPAR"
+  },
+  "160712": {
+    "address": "Brandnerstraße 6, 6700 Bludenz/Bürs, Österreich",
+    "name": "TANN-01-0363 Fil. Bürs IM48",
+    "orgType": "SPAR"
   }
 }
