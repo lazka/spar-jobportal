@@ -287,12 +287,12 @@ button, .button { font-weight: 700; text-align: center; }
 button:enabled:hover, .button:hover { border-color: var(--deep-red); background: var(--pale-red); color: var(--deep-red); }
 button:disabled { cursor: default; opacity: .55; }
 .button-primary {
-  border-color: var(--spar-red);
+  border-color: transparent;
   background: var(--spar-red);
   color: var(--white);
 }
 button.button-primary:enabled:hover, .button.button-primary:hover {
-  border-color: var(--deep-red);
+  border-color: transparent;
   background: var(--deep-red);
   color: var(--white);
 }
