@@ -20,7 +20,7 @@ uv run update-spar-jobs maintain
 
 `maintain` uses the latest local job dataset and works only on units without coordinates. It tries the `Ort` field of a representative job's detail page when it has no cached address or correction. It does not use the job's free-text `Dienstort` as the site address. It caches Nominatim results (including misses), rejects area- and street-level results, prints unresolved unit IDs, and rebuilds the frontend JSON without refreshing the listings.
 
-When caching a new site address, maintenance derives `unitType` from the source listing's displayed job ID, if present, by removing the leading `ID` and trailing number (for example, `INTERSPAR` from `ID INTERSPAR 7905`). This stays in `data/spar_unit_addresses.json`; existing entries are not refetched.
+When caching a new site address in `data/spar_unit_details.json`, maintenance also stores the listing's unit `name` when available. It derives `orgType` from the source listing's displayed job ID, if present, by removing the leading `ID` and trailing number (for example, `INTERSPAR` from `ID INTERSPAR 7905`). Existing entries are not refetched.
 
 - See the [address corrections guide](docs/address-corrections.md) for how to investigate a missing or wrong pin, record a correction, and verify it.
 - By default, maintenance makes up to 10 new Nominatim queries per run, spaced more than 15 seconds apart. It is intended for occasional maintenance, not as part of the job refresh.

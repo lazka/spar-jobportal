@@ -259,7 +259,7 @@ def fetch_jobs(opener: PoliteOpener) -> list[dict[str, Any]]:
 @dataclass
 class SiteDetails:
     address: str | None = None
-    unit_type: str | None = None
+    org_type: str | None = None
 
 
 class SiteDetailsParser(HTMLParser):
@@ -316,9 +316,9 @@ class SiteDetailsParser(HTMLParser):
         value = clean_text("".join(self.value))
         if title == "Ort" and self.details.address is None:
             self.details.address = value
-        elif title is None and value and self.details.unit_type is None:
+        elif title is None and value and self.details.org_type is None:
             if match := re.fullmatch(r"ID (.+) [0-9]+", value):
-                self.details.unit_type = match[1]
+                self.details.org_type = match[1]
 
 
 def fetch_site_details(opener: PoliteOpener, job_id: int | str) -> SiteDetails:

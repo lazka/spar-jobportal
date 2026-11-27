@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T08:55:31+00:00",
+  "lastUpdated": "2026-11-27T09:09:55+00:00",
   "jobs": [
     {
       "id": 8104,
@@ -9012,7 +9012,10 @@
         "id": 161678,
         "name": "EH05-0217 Zsifkovits Thomas",
         "address": "Nr. 291, 8151 Hitzendorf, Österreich",
-        "coordinates": null,
+        "coordinates": [
+          47.0352,
+          15.299854
+        ],
         "relatedShop": {
           "bnr": "5217",
           "shopType": "SPAR Supermarkt"

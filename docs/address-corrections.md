@@ -18,7 +18,7 @@ This prints unresolved units without making network requests. It can still rebui
 
 ## 2. Verify the site
 
-1. Open the official listing using its `detailUrl`. Look for **Ort** (the site address), not **Dienstort**. If the listing has expired, check the unit name and the cached address in [`data/spar_unit_addresses.json`](../data/spar_unit_addresses.json).
+1. Open the official listing using its `detailUrl`. Look for **Ort** (the site address), not **Dienstort**. If the listing has expired, check the unit name and the cached address in [`data/spar_unit_details.json`](../data/spar_unit_details.json).
 2. Cross-check the name and full address against the [SPAR store directory](https://www.spar.at/standorte) or the site operator's own website. For a shopping center or regional office, verify that facility rather than picking the nearest SPAR store.
 3. For coordinates, find the matching business or building on a map. Check the house number, postcode, and which side of the street the point is on. Save the exact source link. If you can verify only a whole building, use a point in that building and say so in the note; don't claim it's a particular entrance or office. If you can't verify the site, leave the pin missing rather than guessing.
 

@@ -1,4 +1,10 @@
 {
+  "161678": {
+    "latitude": 47.0352,
+    "longitude": 15.299854,
+    "source": "SPAR store catalogue, shop 5217: https://api-scp.spar-ics.com/mobile/b2c/apps/spar/v1/spar-app-at/v8/public/shops",
+    "note": "SPAR Zsifkovits Hitzendorf matches the listing's site address: Nr. 291, 8151 Hitzendorf."
+  },
   "164727": {
     "latitude": 47.270497,
     "longitude": 9.613718,

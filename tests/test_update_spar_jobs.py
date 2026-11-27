@@ -190,7 +190,11 @@ class UpdateTests(unittest.TestCase):
         updater.save_json(
             updater.OUTPUT,
             [
-                {"id": 1, "unit": {"id": 10, "name": "New"}, "location": "not a site address"},
+                {
+                    "id": 1,
+                    "unit": {"id": 10, "name": "SM3-04-588 Großweikersdorf"},
+                    "location": "not a site address",
+                },
                 {"id": 2, "unit": {"id": 10}},
                 {"id": 3, "unit": {"id": 20}},
                 {"id": 4, "unit": {"id": 30}},
@@ -236,7 +240,11 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(
             updater.read_object(updater.ADDRESSES),
             {
-                "10": {"address": "Site address", "unitType": "INTERSPAR"},
+                "10": {
+                    "address": "Site address",
+                    "name": "SM3-04-588 Großweikersdorf",
+                    "orgType": "INTERSPAR",
+                },
             },
         )
         jobs = updater.read_object(updater.OUTPUT)["jobs"]
@@ -321,12 +329,12 @@ class LocationLookupTests(unittest.TestCase):
         parser.feed("""
             <div class="custom-field"><span class="custom-field__value">ID SPAR ICS</span></div>
         """)
-        self.assertIsNone(parser.details.unit_type)
+        self.assertIsNone(parser.details.org_type)
         parser.feed("""
             <div class="custom-field"><span class="custom-field__value">ID
               SPAR&nbsp;ICS 7819</span></div>
         """)
-        self.assertEqual(parser.details.unit_type, "SPAR ICS")
+        self.assertEqual(parser.details.org_type, "SPAR ICS")
 
     def test_nominatim_rejects_area_or_road_but_accepts_numbered_house(self):
         results = [

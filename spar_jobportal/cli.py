@@ -19,7 +19,7 @@ from .spar import RepeatedJobError, fetch_jobs, fetch_site_details
 from .storage import as_object, read_object, save_json
 
 ROOT = Path(__file__).resolve().parents[1]
-ADDRESSES = ROOT / "data/spar_unit_addresses.json"
+ADDRESSES = ROOT / "data/spar_unit_details.json"
 CORRECTIONS = ROOT / "data/spar_address_corrections.json"
 GEOCODES = ROOT / "data/spar_nominatim_cache.json"
 SHOPS_CACHE = ROOT / "data/spar_shops.json"
@@ -99,9 +99,12 @@ def maintain(
                         raise
                     details = None  # The job may have expired since the snapshot.
                 if details and details.address:
-                    address_entry = {"address": details.address}
-                    if details.unit_type is not None:
-                        address_entry["unitType"] = details.unit_type
+                    address_entry = {}
+                    if unit.get("name"):
+                        address_entry["name"] = unit["name"]
+                    address_entry["address"] = details.address
+                    if details.org_type is not None:
+                        address_entry["orgType"] = details.org_type
                     addresses[key] = address_entry
                     save_json(ADDRESSES, addresses)
                     query = details.address

@@ -1,2386 +1,2982 @@
 {
   "161125": {
+    "name": "ES2-04-219 Wien, 21. Bez., Brünnerstr.",
     "address": "Brünnerstraße 184, 1210 Wien, Österreich",
-    "jobIdPrefix": "SPAR"
+    "orgType": "SPAR"
   },
   "159898": {
+    "name": "ES1-01-269 Hohenems",
     "address": "Bahnhofstraße 10, 6845 Hohenems, Österreich",
-    "jobIdPrefix": "SPAR"
+    "orgType": "SPAR"
   },
   "150775": {
+    "name": "SM3-04-910 Thaliastrasse",
     "address": "Thaliastraße 144, 1160 Wien, Österreich",
-    "jobIdPrefix": "SPAR"
+    "orgType": "SPAR"
   },
   "153042": {
+    "name": "ES2-06-310 Völkermarkt",
     "address": "Umfahrungsstraße 9, 9100 Völkermarkt, Österreich",
-    "jobIdPrefix": "SPAR"
+    "orgType": "SPAR"
   },
   "155074": {
+    "name": "SM3-02-514 Wattens",
     "address": "Ritter-Waldaufstr. 4A, 6112 Wattens, Österreich",
-    "jobIdPrefix": "SPAR"
+    "orgType": "SPAR"
   },
   "151214": {
+    "name": "SM3-04-662 Wien, 10.Bez., Favoritenstr.",
     "address": "Favoritenstrasse 183, 1100 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161104": {
+    "name": "SM3-04-361 Langenzersdorf",
     "address": "Wiener Straße 138, 2103 Langenzersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161231": {
+    "name": "SM-04-147 Wien, 14. Bez, Penzingerstr.",
     "address": "Penzingerstraße 129, 1140 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153068": {
+    "name": "SM3-04-7514 SPAR SM Kematen/Ybbs",
     "address": "33.A Straße 4, 3331 Kematen/Ybbs, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151372": {
+    "name": "ES2-04-4835 SPAR AG ES 83 Mattersburg",
     "address": "Wiener Straße 38, 7210 Mattersburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150640": {
+    "name": "ES1-01-291 Hohenems, Lustenauerstr.",
     "address": "Lustenauerstr. 107A, 6845 Hohenems, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150928": {
+    "name": "SM3-04-907 Wolkersdorf",
     "address": "Adlergasse 3-5, 2120 Wolkersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152211": {
+    "name": "SM1-01-248 Feldkirch, Nofels",
     "address": "Rheinstraße 54, 6800 Feldkirch, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161150": {
+    "name": "GM-04-858 Wien, 19. Bez, Sieveringerstr.",
     "address": "Sieveringerstraße 2, 1190 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150975": {
+    "name": "ZN01-530 Lagerwesen",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152074": {
+    "name": "ES2-04-979 Porschestr.",
     "address": "Porschestr. 12, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161135": {
+    "name": "GM-04-885 St. Pölten, Kremser Gasse",
     "address": "Kremser Gasse 21, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150886": {
+    "name": "ES2-04-946 Ybbs/Donau",
     "address": "Bahnhofstraße 11, 3370 Ybbs, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159903": {
+    "name": "SM3-01-247 Göfis",
     "address": "Oberdorf 3, 6811 Göfis, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150418": {
+    "name": "EH02-0695 Hans-Peter Brennsteiner",
     "address": "Kellau 195, 5431 Kuchl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152149": {
+    "name": "MM 04 Maximarkt Ried",
     "address": "Schärdinger Strasse 38, 4910 Ried/Innkreis, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "153099": {
+    "name": "ES1-04-393 Ottenschlag",
     "address": "Sportplatzgasse 15, 3631 Ottenschlag, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155428": {
+    "name": "SM3-01-293 Thüringen",
     "address": "Dorfstrasse 4, 6712 Thüringen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152115": {
+    "name": "ES1-04-317 Ebreichsdorf",
     "address": "Wr. Neustädterstr. 44-46, 2483 Ebreichsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159917": {
+    "name": "ES3-01-241 Lustenau, Rheincenter",
     "address": "Kapellenstraße 1, 6890 Lustenau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153697": {
+    "name": "SM2-01-224 Nüziders, Kirchstraße",
     "address": "Kirchstr. 13, 6714 Nüziders, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161155": {
+    "name": "GM-04-857 Wien, 19. Bez, Krottenbachstr.",
     "address": "Krottenbachstraße 114, 1190 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154763": {
+    "name": "MM05-100 Restaurant",
     "address": "Robert-Kunz-Straße 4, 4840 Vöcklabruck, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "155423": {
+    "name": "MM04-100 Restaurant",
     "address": "Schärdinger Straße 38, 4910 Ried, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "154721": {
+    "name": "MM02-100 Restaurant",
     "address": "Gunskirchener Straße 7, 4600 Wels, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "153868": {
+    "name": "ES2-04-968 Stockerau",
     "address": "Hornerstraße 76, 2000 Stockerau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150412": {
+    "name": "ES1-04-649 Purkersdorf",
     "address": "Herrengasse 2, 3002 Purkersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150668": {
+    "name": "ES1-04-617 Kittsee",
     "address": "Eisenstädter Straße 29, 2421 Kittsee, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151448": {
+    "name": "SM1-04-265 Frauenkirchen",
     "address": "Neustiftstraße 2, 7132 Frauenkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160898": {
+    "name": "IM38 Klosterneuburg",
     "address": "Albrechtstrasse 115, 3400 Klosterneuburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159737": {
+    "name": "IM76 Bruck/Leitha",
     "address": "Industriegelände West 1, 2460 Bruck/Leitha, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161464": {
+    "name": "IM92 Eisenstadt",
     "address": "Haidäcker-Park 4, 7000 Eisenstadt, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159740": {
+    "name": "IM71 Vösendorf-Süd SCS",
     "address": "SCS, Westring , 2334 Vösendorf-Süd, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161971": {
+    "name": "IM37 Fürstenfeld",
     "address": "Burgauer Straße 2, 8280 Fürstenfeld, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154304": {
+    "name": "IM21 Oberwart",
     "address": "Europastraße 2, 7400 Oberwart, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160456": {
+    "name": "IM48 Bürs",
     "address": "Almteilweg 1, 6706 Bürs, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160460": {
+    "name": "IM42 Rum",
     "address": "Serlesstraße 11, 6063 Neu Rum, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160475": {
+    "name": "IM53 Innsbruck, Museumstr.",
     "address": "Museumstraße 38, 6020 Innsbruck, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160461": {
+    "name": "IM46 Saalfelden",
     "address": "Leoganger Straße 18, 5760 Saalfelden, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154267": {
+    "name": "IM23 Leibnitz",
     "address": "Wasserwerkstraße 32, 8430 Leibnitz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160469": {
+    "name": "IM77 Amstetten",
     "address": "Agathastraße 1, 3300 Amstetten, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160467": {
+    "name": "IM79 Vöcklabruck",
     "address": "Linzerstraße 50, 4840 Vöcklabruck, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160472": {
+    "name": "IM60 Pasching",
     "address": "Plus-Kauf-Straße 7, 4061 Pasching, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153520": {
+    "name": "IM56 St. Pölten",
     "address": "Daniel-Gran-Straße 13, 3100 St.Pölten, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154362": {
+    "name": "IM22 Gänserndorf",
     "address": "Bodenzeile 3, 2230 Gänserndorf, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160453": {
+    "name": "IM84 Feldkirch/Altenstadt",
     "address": "Königshofstraße 79, 6804 Feldkirch/Altenstadt, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154597": {
+    "name": "IM25 Perg",
     "address": "Naarner Straße 75, 4320 Perg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153602": {
+    "name": "IM80 Graz-Liebenau",
     "address": "Ostbahnstrasse 3, 8041 Graz-Liebenau, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160082": {
+    "name": "IM64 Leoben",
     "address": "Zeltenschlagstraße 2, 8700 Leoben, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159741": {
+    "name": "IM67 Mistelbach",
     "address": "Hüttendorf 189, 2130 Mistelbach, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160473": {
+    "name": "IM45 Linz, Industriezeile",
     "address": "Industriezeile 76, 4020 Linz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152222": {
+    "name": "IM54 Villach, Ringmauerg.",
     "address": "Ringmauergasse 9, 9500 Villach, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152127": {
+    "name": "IM65 Bäckerei / BSL Region Tirol",
     "address": "Spar-Straße 1, 6300 Wörgl, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152143": {
+    "name": "IM71 Bäckerei / BSL Region NÖ, W",
     "address": "Etrich-Straße 35-43, 2542 Kottingbrunn, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154813": {
+    "name": "GM-04-961 Hietzinger Hauptstr.",
     "address": "Hietzinger Hauptstr. 145, 1130 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165513": {
+    "name": "MM 06 Maximarkt Haid",
     "address": "Ikea-Platz 2, 4053 Haid, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "161002": {
+    "name": "ES3-01-296 Götzis, Hauptstraße",
     "address": "Am Garnmarkt 1, 6840 Götzis, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161334": {
+    "name": "SM3-05-395 Hönigsberg",
     "address": "Grazerstraße 70A, 8682 Hönigsberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160891": {
+    "name": "SM1-05-206 Mitterdorf",
     "address": "Grazerstraße 54, 8662 Mitterdorf im Mürztal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165224": {
+    "name": "ES-05-657 Trofaiach",
     "address": "Pulverstraße 3, 8793 Trofaiach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153621": {
+    "name": "SM-05-213 Graz, Leonhardstraße",
     "address": "Leonhardstraße 95, 8010 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150613": {
+    "name": "IM84-100 Restaurant",
     "address": "Königshofstraße 79, 6804 Feldkirch/Altenstadt, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161293": {
+    "name": "SM2-05-674 Graz, Papierfabrikgasse",
     "address": "Papierfabrikgasse 1, 8045 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161336": {
+    "name": "SM3-05-392 Lang",
     "address": "Stangersdorf-Gewerbegebiet 101, 8403 Lang, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161320": {
+    "name": "SM3-05-348 Raaba",
     "address": "Josef-Krainer-Straße 2, 8074 Raaba, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161141": {
+    "name": "SM2-05-309 Vasoldsberg",
     "address": "Kapellenstraße 112, 8071 Vasoldsberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159592": {
+    "name": "IM48-100 Restaurant",
     "address": "Almteilweg 1, 6706 Bürs, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "155496": {
+    "name": "IM29 Imst",
     "address": "Langgasse 38, 6460 Imst, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160710": {
+    "name": "IM90 Graz SCW",
     "address": "Weblinger Gürtel 25, 8054 Graz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160474": {
+    "name": "IM66 Schwaz",
     "address": "Hermine-Berghofer-Straße 12, 6130 Schwaz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161138": {
+    "name": "SM3-05-315 Traboch",
     "address": "Am Kreisverkehr 1, 8772 Traboch, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165500": {
+    "name": "MM 05 Maximarkt Vöcklabruck",
     "address": "Robert-Kunz-Strasse 4, 4840 Vöcklabruck, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "152348": {
+    "name": "IZ850 RGL Region Steiermark",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "151607": {
+    "name": "SM3-05-327 Graz, Radegund",
     "address": "Nordberggasse 3, 8045 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153442": {
+    "name": "ZN01 - Zweigniederlassung Dornbirn",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151788": {
+    "name": "ZN05-840 Vertrieb Filialen regional",
     "address": "Hafnerstraße 20, 8055 Graz-Puntigam, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152330": {
+    "name": "ZN05-910 TANN-Fleisch",
     "address": "Hafnerstraße 20, 8055 Graz-Puntigam, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153269": {
+    "name": "SM3-05-661 Rosental",
     "address": "Packer Straße 18, 8582 Rosental, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161325": {
+    "name": "SM2-05-333 Murau, Keltensiedlung",
     "address": "Keltensiedlung 108, 8850 Murau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161050": {
+    "name": "ES2-05-378 Liezen, Hptstr.",
     "address": "Hauptstraße 35, 8940 Liezen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151163": {
+    "name": "SM1-05-323 Liezen, Ausseestraße",
     "address": "Ausseerstraße 58, 8940 Liezen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161340": {
+    "name": "SM3-05-387 Eisenerz",
     "address": "Hieflauerstraße 66, 8790 Eisenerz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160831": {
+    "name": "SM3-05-307 Bärnbach",
     "address": "Hauptstraße 58, 8572 Bärnbach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161417": {
+    "name": "TANN-05-0572 Fil. Graz Weiz IM91",
     "address": "Kaplanweg 4, 8160 Weiz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160686": {
+    "name": "TANN-05-0375 Fil. Unterwart IM63",
     "address": "Gewerbepark 3, 7502 Unterwart, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151445": {
+    "name": "ZN03 - Zweigniederlassung Marchtrenk",
     "address": "Sparstrasse 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155094": {
+    "name": "SM3-05-629 Graz Eckertstr",
     "address": "Eckertstrasse 30/A, 8051 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165222": {
+    "name": "SES Spar European Shopping Centers",
     "address": "Söllheimerstraße 4, 5020 Salzburg, Österreich",
-    "unitType": "SES / Shopping Center"
+    "orgType": "SES / Shopping Center"
   },
   "165499": {
+    "name": "MM 03 Maximarkt Anif",
     "address": "Waldbadstrasse 2, 5081 Anif, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "151789": {
+    "name": "ZN06-840 Vertrieb Filialen regional",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150444": {
+    "name": "SM3-06-437 SM Lienz, Grafendorferstr.",
     "address": "Grafendorferstraße 30, 9900 Lienz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153571": {
+    "name": "ES2-06-420 Klagenfurt, Villacher Str.",
     "address": "Villacher Straße 171, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152832": {
+    "name": "SM3-06-360 Villach, Auer v. Welsbach S",
     "address": "Auer v. Welsbach Straße 22, 9500 Villach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154697": {
+    "name": "SM3-06-436 Hermagor",
     "address": "Bahnhofstraße 10, 9620 Hermagor, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151253": {
+    "name": "SM2-06-377 Spittal, Villacherstraße",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152002": {
+    "name": "SM2-06-477 Villach Treffnerstr.",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150574": {
+    "name": "ES2-06-446 St.Veit-Villacher-Str.",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155309": {
+    "name": "SM3-06-414 Tenorio Wolfsberg 2.0",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151776": {
+    "name": "SM3-04-674 Wien, Carlbergerstrasse",
     "address": "Carlbergergasse 64-66, 1230 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152126": {
+    "name": "ZN04-840 Vertrieb Filialen regional",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151155": {
+    "name": "ZN06 - Zweigniederlassung Maria Saal",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162029": {
+    "name": "IM91 Weiz",
     "address": "Kaplanweg 14, 8160 Weiz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161173": {
+    "name": "Information&Communication Service",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "153322": {
+    "name": "ZN04-320 Personal",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152470": {
+    "name": "ZN04-910 TANN-Fleisch",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153267": {
+    "name": "ZN05-320 Personal",
     "address": "Hafner Strasse 20, 8055 Graz / Puntigam, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153557": {
+    "name": "HZ344 Recruiting",
     "address": "Europastrasse 3, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160466": {
+    "name": "IM85 Steyr",
     "address": "Ennserstraße 23, 4400 Steyr, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152221": {
+    "name": "IM68 St. Veit a.d. Glan",
     "address": "Völkermarkter Straße 38, 9300 St.Veit a.d. Glan, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161079": {
+    "name": "IM58 Hollabrunn",
     "address": "Kaplanstraße 6, 2020 Hollabrunn, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161183": {
+    "name": "ES3-02-355 Seekirchen",
     "address": "Hauptstraße 4, 5201 Seekirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150463": {
+    "name": "TANN-02-0708 Fil. Taxham IM50",
     "address": "Europastraße 1, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151497": {
+    "name": "TANN-02-0700 Fil. Neurum IM42",
     "address": "Serlesstraße 11, 6063 Rum, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151737": {
+    "name": "SM2-02-166 Kundl",
     "address": "Biochemiestraße 70, 6250 Kundl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155822": {
+    "name": "SYS02-0690 Nina Wallner e.U.",
     "address": "Dorf 96, 6306 Söll, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153200": {
+    "name": "SM2-02-376 SPAR SM Steinach",
     "address": "Erlach 134A, 6150 Steinach am Brenner, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161208": {
+    "name": "SM2-02-233 Ebbs",
     "address": "Kirchplatz 1, 6341 Ebbs, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153608": {
+    "name": "SM3-02-526 Golling",
     "address": "Markt 109, 5440 Golling, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153598": {
+    "name": "SM3-02-194 Kaprun",
     "address": "Landesstraße 5, 5710 Kaprun, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150836": {
+    "name": "SM2-02-182 Brixen",
     "address": "Hof 1, 6364 Brixen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150690": {
+    "name": "SM1-02-126 Mayrhofen",
     "address": "Rauchenwald 675, 6290 Mayrhofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157434": {
+    "name": "SM2-02-523 SM FMZ Imst",
     "address": "Industriezone 32, 6460 Imst, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153198": {
+    "name": "SM2-02-515 SM Igls",
     "address": "Hilberstraße 2, 6080 Igls, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151747": {
+    "name": "ES2-02-503 EUROSPAR Brixlegg",
     "address": "Innsbruckerstraße 53, 6230 Brixlegg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152207": {
+    "name": "SM1-02-297 Ellmau",
     "address": "Dorf 3A, 6352 Ellmau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161200": {
+    "name": "SM2-02-227 Waidring",
     "address": "Unterwasser 14, 6384 Waidring, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153038": {
+    "name": "SM1-02-511 Jochberg",
     "address": "Dorf 26, 6373 Jochberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161214": {
+    "name": "SM2-02-249 Kirchberg",
     "address": "Kitzbühelerstraße 118, 6365 Kirchberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151842": {
+    "name": "SM1-02-063 Götzens",
     "address": "Kirchstraße 28, 6091 Götzens, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159912": {
+    "name": "SM2-02-046 Obsteig",
     "address": "Unterstrass 251, 6416 Obsteig, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160933": {
+    "name": "SM2-02-232 Kössen II",
     "address": "Postweg 12, 6345 Kössen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161053": {
+    "name": "SM2-02-081 Völs, Aflingerstr.",
     "address": "Aflingerstraße 11, 6176 Völs, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151168": {
+    "name": "TANN-02-0716 Fil. Hallein IM89",
     "address": "Kletzlgutweg 3, 5400 Hallein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151504": {
+    "name": "TANN-02-0714 Fil. Schwaz IM66",
     "address": "Hermine-Berghofer-Straße 12, 6130 Schwaz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151498": {
+    "name": "TANN-02-0712 Fil. Wörgl IM65",
     "address": "Innsbruckerstraße 104, 6300 Wörgl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151506": {
+    "name": "TANN-02-0719 Fil. Imst",
     "address": "Langgasse 38, 6460 Imst, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151501": {
+    "name": "TANN-02-0706 Fil. Saalfelden IM46",
     "address": "Leogangerstraße 18, 5760 Saalfelden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150637": {
+    "name": "ES1-02-070 Innsbruck, Technikerstraße",
     "address": "Technikerstraße 5, 6020 Innsbruck, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161202": {
+    "name": "SM2-02-209 Zell am See, Kitzsteinhorns",
     "address": "Kitzsteinhornstraße 6, 5700 Zell am See, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151384": {
+    "name": "SM2-02-529 SM Niederau",
     "address": "Wildschönauerstraße 322, 6314 Niederau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161089": {
+    "name": "SM3-02-240 St.Johann.i.T, Speckbacherstr",
     "address": "Speckbacher Straße 10, 6380 St. Johann in Tirol, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165591": {
+    "name": "Asset Management",
     "address": "Söllheimerstraße 4, 5020 Salzburg, Österreich",
-    "unitType": "SES / Shopping Center"
+    "orgType": "SES / Shopping Center"
   },
   "161064": {
+    "name": "SM2-03-616 Steyr, Resthof",
     "address": "Siemensstraße 1, 4400 Steyr, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "897554": {
+    "name": "EH03-0967 Klammer Handels GmbH",
     "address": "Perger Straße 14B, 4311 Schwertberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150296": {
+    "name": "SM2-01-233 SM Alberschwende",
     "address": "Hof 684, 6861 Alberschwende, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150751": {
+    "name": "SM1-01-297 Sulz NEU",
     "address": "Muesinenstraße 42, 6832 Sulz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150902": {
+    "name": "ES1-01-290 Feldkirch, Hämmerle-Center",
     "address": "Hämmerlestraße 24, 6800 Feldkirch, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155126": {
+    "name": "SM2-01-278 Wolfurt",
     "address": "Sternenplatz 10, 6922 Wolfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153599": {
+    "name": "SM2-01-281 Altach, Feldkircherstr.",
     "address": "Feldkircherstraße 9, 6844 Altach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159897": {
+    "name": "SM1-01-270 Altach, Achstraße",
     "address": "Achstraße 22, 6844 Altach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150724": {
+    "name": "SM3-01-280 Schruns",
     "address": "Silvrettastraße 8, 6780 Schruns, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150703": {
+    "name": "ES1-01-289 Bregenz - Kronhalde",
     "address": "Kennelbacherstr. 1, 6900 Bregenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150700": {
+    "name": "ES1-01-282 Bregenz, Vorkloster",
     "address": "Rheinstr. 72, 6900 Bregenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154100": {
+    "name": "SM2-01-222 Fußach",
     "address": "Dorfstraße 46, 6972 Fußach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150755": {
+    "name": "SM1-01-279 Lochau II",
     "address": "Alberlochstraße 30, 6911 Lochau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150742": {
+    "name": "SM1-01-236 SM Langen b. Bregenz",
     "address": "Dorf 150/C, 6900 Langen bei Bregenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150721": {
+    "name": "ES3-01-262 Bregenz, Mariahilfstraße",
     "address": "Mariahilfstraße 2, 6900 Bregenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150753": {
+    "name": "SM1-01-221 Hörbranz 2",
     "address": "Seestraße 17, 6912 Hörbranz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150720": {
+    "name": "SM2-01-260 Hörbranz",
     "address": "Ziegelbachstraße 4, 6912 Hörbranz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159926": {
+    "name": "SM3-01-240 Gaschurn, Novapark",
     "address": "Kirchdorfstr. 2C, 6793 Gaschurn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151039": {
+    "name": "SM3-01-294 Lauterach",
     "address": "Bundesstraße 41, 6923 Lauterach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151014": {
+    "name": "SM1-01-246 Lauterach",
     "address": "Lerchenauerstraße 1, 6923 Lauterach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153206": {
+    "name": "SM1-01-121 Rankweil, Alemannenstr.",
     "address": "Alemannenstr 20, 6830 Rankweil, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153429": {
+    "name": "SM2-01-223 SM Höchst",
     "address": "Jägerweg 2, 6973 Höchst, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155146": {
+    "name": "ES1-01-292 Frastanz",
     "address": "Bahnhofstraße 44, 6820 Frastanz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150722": {
+    "name": "SM3-01-274 Nenzing, Bundestraße",
     "address": "Bundesstraße 90, 6710 Nenzing, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150730": {
+    "name": "SM1-01-253 SPAR SM Tschagguns",
     "address": "Latschaustraße 1, 6774 Bludenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160875": {
+    "name": "ES1-01-287 Bludenz, Schmittenstr.",
     "address": "Schmittenstraße 3, 6700 Bludenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151780": {
+    "name": "SM3-01-249 Bludenz, Alte Landstraße",
     "address": "Alte Landstraße 62, 6700 Bludenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162747": {
+    "name": "SM2-01-181 Hard",
     "address": "Schäfferhofstrasse 1, 6971 Hard, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159942": {
+    "name": "SM1-01-060 Hard, Hofsteigstraße",
     "address": "Hofsteigstr. 15, 6971 Hard, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153588": {
+    "name": "SM2-01-226 Hard-Zentrum",
     "address": "Hofsteigstraße 2, 6971 Hard, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151496": {
+    "name": "SM2-0228 228/5 Egg",
     "address": "Loco 910, 6863 Egg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150714": {
+    "name": "SM2-01-152 Vandans",
     "address": "Dorfstraße 35, 6773 Vandans, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159894": {
+    "name": "ES2-01-267 Dornbirn, Sägercenter",
     "address": "Marktstraße 67, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154547": {
+    "name": "SM3-01-298 Dornbirn, Rohrbacherstr.",
     "address": "Rohrbach 59, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155046": {
+    "name": "SM2-01-283 Db- Schwefel",
     "address": "Schwefel 70, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160455": {
+    "name": "IM49 Bregenz",
     "address": "Heldendankstraße 22, 6900 Bregenz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160470": {
+    "name": "IM62 Braunau",
     "address": "Erlachweg 13, 5280 Braunau, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150901": {
+    "name": "ES1-02-301 Salzburg, Herrnau",
     "address": "Friedensstraße 4, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165600": {
+    "name": "Property Administration",
     "address": "Söllheimerstraße 4, 5020 Salzburg, Österreich",
-    "unitType": "SES / Shopping Center"
+    "orgType": "SES / Shopping Center"
   },
   "150927": {
+    "name": "SCM Sillpark Center-Technik",
     "address": "Museumstraße 38, 6020 Innsbruck, Österreich",
-    "unitType": "SES / Shopping Center"
+    "orgType": "SES / Shopping Center"
   },
   "155525": {
+    "name": "ES1-03-525 ES Waizenkirchen",
     "address": "Stelzhamerstr 1, 4730 Waizenkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150483": {
+    "name": "SM2-03-639 SM St. Georgen im Attergau",
     "address": "Attergaustraße 57, 4880 St. Georgen im Attergau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150315": {
+    "name": "ZN01-380 Personalentwicklung u. Ausb.",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161315": {
+    "name": "SM3-05-343 Kalsdorf",
     "address": "Hauptstraße 42, 8401 Kalsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153031": {
+    "name": "ZN06-360 Bau/Energie/Technik",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161248": {
+    "name": "SM3-03-453 Pregarten",
     "address": "Bahnhofstraße 31, 4230 Pregarten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150656": {
+    "name": "GM-04-888 Klosterneuburg, Stadtpl.",
     "address": "Stadtplatz 26, 3400 Klosterneuburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157192": {
+    "name": "SYS03-0256 Kronberger GmbH",
     "address": "Höhnharter Straße 45, 5252 Aspach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162801": {
+    "name": "SM2-03-349 Steyregg",
     "address": "Linzer Straße 16A, 4221 Steyregg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150643": {
+    "name": "MM01-100 Restaurant",
     "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "155814": {
+    "name": "SYS05-0587 Gaber Piere e.U.",
     "address": "Hauptstraße 32, 8280 Fürstenfeld, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165748": {
+    "name": "ICS455- Digital Product Data",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "159569": {
+    "name": "IM50-100 Restaurant",
     "address": "Europastraße 1, 5020 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161930": {
+    "name": "BPM303 Prozessmanagement",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151475": {
+    "name": "ICS-GRC Governance, Risk & Compliance",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "155357": {
+    "name": "ZN 6-438 TS",
     "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155370": {
+    "name": "ZN 6-438 KA",
     "address": "Maria-Platzer-Straße 4, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153575": {
+    "name": "SM1-06-474 SM Treffen",
     "address": "Sparstraße 1, 9521 Treffen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153576": {
+    "name": "SM1-06-463 Feldkirchen",
     "address": "Klagenfurterstr. 14, 9560 Feldkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152795": {
+    "name": "SM2-06-456 Villach Millesistr.",
     "address": "Millesistraße 10, 9500 Villach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153065": {
+    "name": "SM2-06-422 Bodensdorf",
     "address": "Bundesstraße 34, 9551 Bodensdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153562": {
+    "name": "SM2-06-336 Moosburg",
     "address": "Wachenbuchenerstraße 2, 9062 Moosburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152783": {
+    "name": "SM2-06-321 Fürnitz",
     "address": "Rosentalstraße 2, 9586 Fürnitz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151639": {
+    "name": "SM2-06-345 St. Kanzian",
     "address": "Klopeinerstraße 2, 9122 St. Kanzian, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151403": {
+    "name": "IM65 Wörgl",
     "address": "Innsbruckerstraße 104, 6300 Wörgl, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159558": {
+    "name": "IM51-100 Restaurant",
     "address": "Leonhardsplatz 4, 6800 Feldkirch, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150410": {
+    "name": "SM1-04-883 St. Pölten, Kremser Landstr.",
     "address": "Kremser Landstraße 34, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156644": {
+    "name": "ES1-03-816 ES Bad Leonfelden",
     "address": "Böhmerstraße 11A, 4190 Bad Leonfelden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151152": {
+    "name": "SM3-03-778 Leonding, Buchberg",
     "address": "Nußböckstraße 1, 4060 Leonding, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151393": {
+    "name": "ES1-02-252 Kufstein, Inntal-Center",
     "address": "Gewerbehof 1, 6330 Kufstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161213": {
+    "name": "ES2-02-250 Kufstein, Oskar-Pirlostraße",
     "address": "Oskar-Pirlostraße 33, 6330 Kufstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161197": {
+    "name": "ES1-03-373 Rohrbach, Ehrenreiterweg",
     "address": "Ehrenreiterweg 5, 4150 Rohrbach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159617": {
+    "name": "IM49-100 Restaurant",
     "address": "Heldendankstraße 22, 6900 Bregenz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153157": {
+    "name": "ES3-03-333 Schlüßlberg",
     "address": "Handelspark 8, 4707 Schlüßlberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153160": {
+    "name": "SM3-03-784 Aurolzmünster",
     "address": "Schärdinger Straße 20, 4971 Aurolzmünster, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152466": {
+    "name": "ZN03-540 Transportwesen",
     "address": "Sparstrasse 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "682746": {
+    "name": "SYS06-0252 SM Lassendorf",
     "address": "Görtschitztalstr. 120, 9064 Lassendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152012": {
+    "name": "IM53-100 Cappuccino",
     "address": "Museumstraße 38, 6020 Innsbruck, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "165726": {
+    "name": "ICS420 Business Services",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "156477": {
+    "name": "SM1-06-484 SM Steinfeld",
     "address": "Josef-Fräß Ehrfeldstraße 18F, 9754 Steinfeld, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153564": {
+    "name": "SM2-06-373 Matrei",
     "address": "Lienzerstrasse 79, 9971 Matrei, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155760": {
+    "name": "SYS02-0535 Haslinger e.U.",
     "address": "Faberstraße 6, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161313": {
+    "name": "SM2-05-534 Graz, Elisabethstraße",
     "address": "Elisabethstraße 80, 8010 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155088": {
+    "name": "SM3-05-410 Premstätten",
     "address": "Thalerhofstrasse 9, 8141 Premstätten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "799036": {
+    "name": "SYS02-0682 Michael Köchl GmbH",
     "address": "Rosenegg 66, 6391 Fieberbrunn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162019": {
+    "name": "SYS02-0197 Koblinger Ernst",
     "address": "Dorfstrasse 20, 6393 St. Ulrich, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165746": {
+    "name": "ICS-SOC Security Operations Center",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "161337": {
+    "name": "SM3-05-391 Wundschuh",
     "address": "Hauptstraße 4, 8142 Wundschuh, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153565": {
+    "name": "SM2-06-366 Bad Kleinkirch",
     "address": "Dorfstraße 42, 9546 Bad Kleinkirchheim, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151162": {
+    "name": "SM3-05-321 Graz, Kapellenstraße",
     "address": "Kapellenstraße 28A, 8020 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161110": {
+    "name": "ES2-04-250 Wien, 21. Bez, Pastorstr.",
     "address": "Pastorstraße 18, 1210 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151827": {
+    "name": "ES1-03-796 St. Georgen/Attersee",
     "address": "Am See-Ring 1, 4880 St. Georgen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159795": {
+    "name": "IM36-100 Restaurant",
     "address": "Sandleitengasse 41, 1160 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150364": {
+    "name": "ICS440P-EAI Enterprise Application Integ",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "161360": {
+    "name": "SM2-06-385 Riedergarten",
     "address": "Riedergasse 3, 9620 Hermagor, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160952": {
+    "name": "SM3-04-588 Großweikersdorf",
     "address": "Betriebsgebiet Nord 1, 3701 Großweikersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162553": {
+    "name": "IM40 Wien, HBF",
     "address": "Am Hauptbahnhof 1, 1100 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "151952": {
+    "name": "IM64-100 Restaurant",
     "address": "Zeltenschlagstraße 2, 8700 Leoben, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "165722": {
+    "name": "Data Engineering & Planning",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "165486": {
+    "name": "IM310N Verkaufsservice",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154777": {
+    "name": "MM05-083  sonstige Lebensmittel",
     "address": "Robert-Kunz-Strasse 4, 4840 Vöcklabruck, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "154419": {
+    "name": "SYS04-0880 Jürgen Prosenbauer eU",
     "address": "Marktstrasse 5, 3383 Hürm, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152566": {
+    "name": "ZN01-915 Produktionsleitung",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161258": {
+    "name": "SM1-03-746 Linz, Holzstraße",
     "address": "Holzstraße 13, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160844": {
+    "name": "ES1-03-417 St. Florian II",
     "address": "Thann Str. 35, 4490 St. Florian, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151754": {
+    "name": "ES2-03-416 Linz, Derfflingerstraße",
     "address": "Derfflingerstraße 19, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162087": {
+    "name": "IM37-100 Restaurant",
     "address": "Burgauer Straße 2, 8280 Fürstenfeld, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160464": {
+    "name": "IM47 Kapfenberg",
     "address": "Grazer Straße 79, 8605 Kapfenberg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161534": {
+    "name": "SM2-06-441 Brückl",
     "address": "Kirchweg 4, 9371 Brückl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159877": {
+    "name": "IM80-100 Restaurant",
     "address": "Ostbahnstrasse 3, 8041 Graz-Liebenau, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150200": {
+    "name": "ES3-03-367 Neuhofen",
     "address": "Kremstalstraße 27, 4501 Neuhofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160881": {
+    "name": "ES3-03-330 Linz, Puchenau",
     "address": "Golfplatzstraße 1B, 4048 Puchenau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153601": {
+    "name": "IM73 Wien, 17.Bez, Jörgerstr.",
     "address": "Jörgerstraße 24, 1170 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153305": {
+    "name": "ZN04-700 Sortimentsmanagement",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150165": {
+    "name": "ZN06-530 Lagerwesen",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159731": {
+    "name": "IM75 Wien, 22.Bez, Donaustadtstr.",
     "address": "Donaustadtstraße 1, 1220 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153225": {
+    "name": "ZN06-700 Sortimentsmanagement",
     "address": "SPAR Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151995": {
+    "name": "SM2-06-458 Bahnweg 1",
     "address": "Bahnweg 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162112": {
+    "name": "SM2-06-445 SM Krumpendorf",
     "address": "Hauptstraße 217, 9201 Krumpendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153573": {
+    "name": "SM-06-439 Bad St. Leonhard",
     "address": "Klagenfurter Straße 553, 9462 Bad St. Leonhard, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150845": {
+    "name": "SM2-03-846 St. Georgen Gusen",
     "address": "Wimminger Straße 1, 4222 St. Georgen an der Gusen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160865": {
+    "name": "ES2-05-373 Bruck/Mur, Bahnhofstrasse",
     "address": "Bahnhofstrasse 3, 8600 Bruck/Mur, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165747": {
+    "name": "ICS-FMT Future Mode Technology",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "150461": {
+    "name": "SM1-06-423 Finkenstein",
     "address": "Faakerseestraße 8, 9584 Finkenstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153581": {
+    "name": "SM2-06-405 Döbriach",
     "address": "Hauptstraße 93, 9873 Döbriach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151200": {
+    "name": "SYS03-0328 SM Jeblinger GmbH Taiskirchen",
     "address": "Lindet 2, 4753 Taiskirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159839": {
+    "name": "IM82-100 Restaurant",
     "address": "Kärntnerstraße 34, 9500 Villach, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150725": {
+    "name": "ES3-03-360 Pupping",
     "address": "Goldenberg 30, 4070 Pupping, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151813": {
+    "name": "SM3-03-847 Ohlsdorf",
     "address": "Hauptstr. 39, 4694 Ohlsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152006": {
+    "name": "SM3-03-772 Zell am Moos",
     "address": "Mondseer Straße 2, 4893 Zell am Moos, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157312": {
+    "name": "SM3-05-630 Graz, Humboldtstraße",
     "address": "Humboldtstrasse 37, 8010 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165656": {
+    "name": "ES1-03-610 Bad Hall",
     "address": "Bahnhofplatz 1, 4540 Bad Hall, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161191": {
+    "name": "ES1-03-412 Kirchdorf",
     "address": "Sengsschmiedstraße 12, 4560 Kirchdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153194": {
+    "name": "SM2-02-085 Innsbruck, Innrain",
     "address": "Innrain 36B, 6020 Innsbruck, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151606": {
+    "name": "TANN-05-0465 Fil. Graz IM44",
     "address": "Lazarettgürtel 55, 8020 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153485": {
+    "name": "SYS03-0171 RMG Handels KG",
     "address": "Trauner Strasse 82, 4050 Traun, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159733": {
+    "name": "IM35 Wien, Heiligenstadt, Q19",
     "address": "Grinzingerstraße 112, 1190 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159966": {
+    "name": "IM68-100 Restaurant",
     "address": "Völkermarkter Straße 38, 9300 St.Veit a.d. Glan, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150935": {
+    "name": "SM3-06-382 Lienz, Kärntnerstraße",
     "address": "Kärntnerstraße 80, 9900 Lienz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160711": {
+    "name": "TANN-01-0364 Fil. Bregenz IM49",
     "address": "Heldendankstraße 22, 6903 Bregenz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156314": {
+    "name": "SYS02-0683 Ebner Handels GmbH",
     "address": "Industriestraße 3, 5600 St. Johann im Pongau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160471": {
+    "name": "IM61 Wels",
     "address": "Oberfeldstraße 91, 4600 Wels, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152185": {
+    "name": "ZN01-840 Vertrieb Filialen regional",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162707": {
+    "name": "ES1-03-829 Bad Ischl",
     "address": "Grazer Str. 58, 4820 Bad Ischl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154914": {
+    "name": "IM27 Gudrunstr.",
     "address": "Gudrunstr. 102, 1100 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "155486": {
+    "name": "IM29-100 Restaurant",
     "address": "Langgasse 38, 6460 Imst, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161660": {
+    "name": "EH02-0426 Ripper",
     "address": "Anton Faistauer Platz 6, 5751 Maishofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151456": {
+    "name": "SM3-03-419 Altenberg",
     "address": "Reichenauer Straße 9, 4203 Altenberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153568": {
+    "name": "SM2-06-328 Feistritz / Drau",
     "address": "Villacherstraße 383, 9710 Feistritz / Drau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161195": {
+    "name": "ES2-03-376 Wels, Gartenstadt",
     "address": "Schmierndorfer Straße 35, 4600 Wels, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150212": {
+    "name": "ES1-03-519 Attnang, Salzburger Str.",
     "address": "Salzburger Str. 79, 4800 Attnang Puchheim, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161196": {
+    "name": "SM-03-374 Bad Hall, Hauptplatz",
     "address": "Hauptplatz 11, 4540 Bad Hall, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151802": {
+    "name": "MM05-085 Hartware",
     "address": "Robert-Kunz-Strasse 4, 4840 Vöcklabruck, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "150673": {
+    "name": "SM3-04-969 Gerasdorf",
     "address": "Leopoldauerstr. 3, 2201 Gerasdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160806": {
+    "name": "HZ735 Mopro, Fette, H-Produkte",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161338": {
+    "name": "SM3-05-390 Fernitz",
     "address": "Kalsdorferstraße 8, 8072 Fernitz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159777": {
+    "name": "IM45-100 Restaurant",
     "address": "Industriezeile 76, 4020 Linz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154009": {
+    "name": "SM3-05-646 Brauquartier",
     "address": "Brauquartier 1, 8055 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151401": {
+    "name": "SYS06-0258 NAPETSCHNIG Patrick e.U.",
     "address": "Bundesstraße 16, 9073 Lambichl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159744": {
+    "name": "IM82 Villach, Kärtnerstr.",
     "address": "Kärntnerstraße 34, 9500 Villach, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153745": {
+    "name": "SM3-05-374 Graz, Petrifelderstr.",
     "address": "Petrifelderstrasse 25, 8042 Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "443632": {
+    "name": "ICS-RCP-PH P.R.I.M.E Platform Hub",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "161876": {
+    "name": "EH03-0599 Reifetshammer Franz",
     "address": "Weyregger Str. 14, 4852 Weyregg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152992": {
+    "name": "ES1-03-513 Weißkirchen",
     "address": "Traunuferweg 1, 4616 Weißkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159738": {
+    "name": "IM72 Wien, 11.Bez, Landwehrstr.",
     "address": "Landwehrstraße 6, 1110 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "151259": {
+    "name": "ES1-03-626 Asten",
     "address": "Handelsring 8-10, 4481 Asten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161678": {
+    "name": "EH05-0217 Zsifkovits Thomas",
     "address": "Nr. 291, 8151 Hitzendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154388": {
+    "name": "IM26 Breitenfurter Straße",
     "address": "Breitenfurter Straße 235, 1230 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160975": {
+    "name": "SM1-03-619 Wilhering",
     "address": "Hitzinger Straße 19, 4073 Wilhering, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151700": {
+    "name": "HZ360PT Post",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161297": {
+    "name": "ES3-05-667 Knittelfeld",
     "address": "Schubertstraße 5, 8720 Knittelfeld, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161252": {
+    "name": "SM2-03-769 Grünburg",
     "address": "Hauptstraße 23, 4594 Grünburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161240": {
+    "name": "ES2-03-475 Ottensheim",
     "address": "Hostauerstraße 62-68, 4100 Ottensheim, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "443631": {
+    "name": "ICS-RCP-SE P.R.I.M.E SW Engineering",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "150864": {
+    "name": "REG420 Rösterei",
     "address": "Sparstrasse 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160977": {
+    "name": "ES1-04-602 Neulengbach, Tullner Str.",
     "address": "Tullner Straße 29, 3040 Neulengbach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153733": {
+    "name": "SM3-05-386 Kapfenberg, Maria Zellerstr.",
     "address": "Mariazellerstrasse 62, 8605 Kapfenberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154399": {
+    "name": "IM20 Wien, Schottengasse",
     "address": "Schottengasse 6-8, 1010 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152833": {
+    "name": "HZ670 Bestandscontrolling",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152040": {
+    "name": "SM3-03-773 Mittertreffling",
     "address": "Johann-Wöckinger-Straße 7, 4209 Mittertreffling, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150495": {
+    "name": "HZ273 Konz. NLK, GWSA, EK/Syst.-Proj.",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161178": {
+    "name": "ES3-03-353 Schwanenstadt",
     "address": "Salzburger Straße 27, 4690 Schwanenstadt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150566": {
+    "name": "ES1-03-348 Straßwalchen",
     "address": "Andreas Thalhammer Str. 22, 5204 Straßwalchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151808": {
+    "name": "IM34 Salzburg, Schumacherstr.",
     "address": "Schumacherstraße 15, 5020 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "162373": {
+    "name": "Maximarkt Handelsges mbH",
     "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "153523": {
+    "name": "IM57 Kufstein",
     "address": "Karl Ganzer-Str 1, 6330 Kufstein, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "162048": {
+    "name": "VD Innendienst ZN05",
     "address": "Hafnerstraße 20, 8055 Graz-Puntigam, Österreich",
-    "unitType": "SPAR Versicherungsdienst"
+    "orgType": "SPAR Versicherungsdienst"
   },
   "161239": {
+    "name": "SM2-03-477 Ebensee",
     "address": "Bahnhofstraße 14, 4802 Ebensee, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150462": {
+    "name": "SM2-03-462 Luftenberg",
     "address": "Oberfeldstraße 2, 4225 Luftenberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156886": {
+    "name": "SYS03-0200 SM Seemayer Christoph e. U.",
     "address": "Atterseestraße 48, 4850 Timelkam, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150314": {
+    "name": "IM31-100 Restaurant",
     "address": "Franz-Jonas-Platz 6, 1210 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153548": {
+    "name": "SM2-03-474 Gaspoltshofen",
     "address": "Hauptstraße 16A, 4673 Gaspoltshofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152677": {
+    "name": "ICS445-AP Web & Client Applications",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "154120": {
+    "name": "SYS03-0172 Zauner Andreas e. U.",
     "address": "Mattighofner Strasse 4, 5261 Uttendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160304": {
+    "name": "EH03-0081 Hartl Christine",
     "address": "Schulstraße 1, 4173 St.Veit, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153174": {
+    "name": "EH03-0680 SCHEURINGER MANFRED",
     "address": "Schärdinger Straße 2, 4793 ST. ROMAN, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152551": {
+    "name": "ICS445-CL Client Management & Hardware",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "165729": {
+    "name": "ICS460 Retail Solutions",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "151629": {
+    "name": "ES2-03-620 Wels-West",
     "address": "Europastraße 60, 4600 Wels, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152129": {
+    "name": "IM50 Bäckerei / BSL Region Europark",
     "address": "Europastraße 1, 5020 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "153559": {
+    "name": "SM2-06-406 SM Verw. Zentrum",
     "address": "Bahnhofstraße 37, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161140": {
+    "name": "ES3-05-313 Gleisdorf",
     "address": "Schillerstraße 16, 8200 Gleisdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153560": {
+    "name": "SM2-06-416 Klagenfurt Lodengasse",
     "address": "Lodengasse 22, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150752": {
+    "name": "ES1-02-457 Salzburg, Alpenstrasse",
     "address": "Alpenstrasse 114, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165714": {
+    "name": "ICS-FCO Finance, Controlling",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "160462": {
+    "name": "IM50 Salzburg, Europark",
     "address": "Europastraße 1, 5020 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150850": {
+    "name": "SM2-03-757 Pregarten II",
     "address": "Tragweiner Straße 32, 4230 Pregarten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159643": {
+    "name": "IM61-100 Restaurant",
     "address": "Oberfeldstraße 91, 4600 Wels, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "437176": {
+    "name": "SYS03-0314 SM Hasibether-Hamedinger OG",
     "address": "Sportplatzstraße 177, 4794 Kopfing, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159882": {
+    "name": "IM81-100 Restaurant",
     "address": "Rosentalerstraße 136, 9020 Klagenfurt, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159690": {
+    "name": "IM55-100 Restaurant",
     "address": "Durchlaßstraße 4, 9020 Klagenfurt, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "159661": {
+    "name": "IM54-100 Restaurant",
     "address": "Ringmauergasse 9, 9500 Villach, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150191": {
+    "name": "HZ322 Konzern Zeitw.&PEP, Konz. HR Proj.",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153365": {
+    "name": "TANN-02-0718 Fil. Kufstein IM57",
     "address": "Karl Ganzer-Str 1, 6330 Kufstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161193": {
+    "name": "SM1-03-379 Bad Ischl",
     "address": "Goetzstraße 8-10, 4820 Bad Ischl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160784": {
+    "name": "SYS04-0057 Unfried GmbH",
     "address": "Manhartstraße 13-16, 2000 Stockerau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160841": {
+    "name": "IM89 Hallein",
     "address": "Kletzlgutweg 3, 5400 Hallein, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "154765": {
+    "name": "MM05-080 Fleisch/Wurst",
     "address": "Robert-Kunz-Strasse 4, 4840 Vöcklabruck, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "153483": {
+    "name": "ZN01-360 Bau/Energie/Technik",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155369": {
+    "name": "ES1-03-523 ES Sattledt",
     "address": "Kirchdorferstr. 1, 4642 Sattledt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160949": {
+    "name": "SM-05-412 Murau, St.Egidi",
     "address": "St.Egidi 76A, 8850 Murau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150697": {
+    "name": "SM1-02-302 Salzburg, Kugelhof",
     "address": "Klostermaierhofweg 1, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162948": {
+    "name": "EH04-0627 Petra Hahn e.U.",
     "address": "Ybbs Straße 11-13, 3300 Amstetten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153154": {
+    "name": "ES1-03-770 Altheim",
     "address": "Braunauerstraße 39, 4950 Altheim, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161057": {
+    "name": "ES1-03-617 Ternberg",
     "address": "Alois-Derfler-Straße 7, 4452 Ternberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "163207": {
+    "name": "ES1-03-503 St. Valentin",
     "address": "Westbahnstr. 88, 4300 St. Valentin, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157276": {
+    "name": "EH02-0642 Sandra Kammerlander",
     "address": "Stadtplatz 14, 5730 Mittersill, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157269": {
+    "name": "HZ220 Recht",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153567": {
+    "name": "SM2-06-338 Klagenfurt, Feschnig",
     "address": "Turmgasse 24, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161333": {
+    "name": "SM3-05-358 Mühldorf",
     "address": "Gewerbepark 2, 8330 Mühldorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161316": {
+    "name": "SM3-05-353 Eggersdorf",
     "address": "Hauptstraße 2A, 8063 Eggersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160789": {
+    "name": "IZ930 Bäckerei/SOM Brot",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152721": {
+    "name": "SM3-06-424 Kühnsdorf",
     "address": "Fernando-Colazzo-Platz 2, 9125 Kühnsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153167": {
+    "name": "SYS03-0215 Proj. Pührmayr",
     "address": "Hauptstr. 34, 3314 Strengberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162671": {
+    "name": "SYS03-0137 Pürmayr KG",
     "address": "Dorf 25, 3351 Weistrach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161124": {
+    "name": "ES2-04-222 Wien, 23. Bez, Gatterederstr.",
     "address": "Gatterederstraße 17, 1230 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150362": {
+    "name": "ICS440F-CON Enterprise Connectivity",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "161142": {
+    "name": "SM2-05-308 Semriach",
     "address": "Semriacherstraße 22, 8102 Semriach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161007": {
+    "name": "SM-05-398 Hart bei Graz",
     "address": "Hauptstraße 90, 8075 Hart bei Graz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150756": {
+    "name": "ICS430 Field Services",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "161113": {
+    "name": "SM3-04-239 Wien, 16.Bez, Wilhelminenstr.",
     "address": "Wilhelminenstraße 29-31, 1160 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152111": {
+    "name": "IM44 Bäckerei / BSL Region Stmk.",
     "address": "Hafnerstraße 20, 8055 Graz, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "150734": {
+    "name": "ICS436 Field Services ZN06",
     "address": "SPAR-Straße 1, 9063 Maria Saal, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "152993": {
+    "name": "SM3-05-689 SM Saaz",
     "address": "Saaz 91, 8341 Paldau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154106": {
+    "name": "EH04-0479 Perspektive Handel Caritas gGm",
     "address": "Hauptstrasse 59, 2490 Ebenfurth, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150163": {
+    "name": "SM3-04-137 Leopoldsdorf",
     "address": "Hauptstraße 19, 2285 Leopoldsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160988": {
+    "name": "EH02-0028 Ennemoser Georg",
     "address": "Dorfstrasse 67, 6540 Sölden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153193": {
+    "name": "SM1-02-068 Rinn",
     "address": "Hauptstr. 2E, 6074 Rinn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152346": {
+    "name": "IZ850 RGL Region Kärnten",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "162291": {
+    "name": "SYS02-0618 Josef Mark",
     "address": "Dorfstraße 66, 6580 St. Anton am Arlberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151482": {
+    "name": "SM1-02-454 Elixhausen",
     "address": "Gewerbepark 10, 5161 Elixhausen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152601": {
+    "name": "ZN01-910 TANN Fleisch",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161029": {
+    "name": "EH04-0398 Andert Margit eU",
     "address": "Leopold Figl-Platz 8, 3454 Reidling, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154637": {
+    "name": "EH02-0467 Neureiter Josef",
     "address": "Brucker Bundesstraße 4, 5700 Zell am See, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160869": {
+    "name": "SM3-02-030 Prutz",
     "address": "Reschenstrasse 18, 6522 Prutz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152817": {
+    "name": "SM1-02-323 Bergheim",
     "address": "Uferweg 30, 5101 Bergheim, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159906": {
+    "name": "SM1-02-034 Lermoos",
     "address": "Garmischer Straße 2, 6631 Lermoos, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159782": {
+    "name": "IM46-100 Restaurant",
     "address": "Leoganger Straße 18, 5760 Saalfelden, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "160457": {
+    "name": "IM43 Dornbirn",
     "address": "Messestraße 2, 6854 Dornbirn, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "162197": {
+    "name": "EH02-0173 Schrümpf Henrik",
     "address": "Dorfstrasse 374, 5754 Hinterglemm, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "163145": {
+    "name": "SYS02-0449 Rauch",
     "address": "Dorfstraße 26, 6262 Schlitters, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152564": {
+    "name": "ZN01-540F Fahrer",
     "address": "Wallenmahd 46, 6850 Dornbirn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159695": {
+    "name": "IM34-100 Restaurant",
     "address": "Schumacherstraße 15, 5020 Salzburg, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152055": {
+    "name": "ZN04-500W Logistik/Organisaton Eberg.",
     "address": "Sparstrasse 1, 2435 Ebergassing, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154461": {
+    "name": "SYS02-0547 Thomas Winkler",
     "address": "Dorf 46, 6652 Elbigenalp, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150642": {
+    "name": "ES1-02-009 Reutte, Mühlerstr.20",
     "address": "Mühlerstr. 20, 6600 Reutte, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150774": {
+    "name": "SYS04-0973 SM Unfried",
     "address": "Korneuburgerstr 4, 2100 Leobendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160275": {
+    "name": "SYS04-0082 Unfried Franz Sen.",
     "address": "Laaer Straße 79, 2100 Korneuburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153467": {
+    "name": "EH04-7632 Peter Leichtfried eU",
     "address": "Oberer Gries 32, 3281 Oberndorf a.d. Melk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "163214": {
+    "name": "TANN-05-0562 Fil. Deutschlandsberg IM59",
     "address": "Frauentaler Straße 82, 8530 Deutschlandsberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152130": {
+    "name": "IM68 Bäckerei / BSL Region Ktn.",
     "address": "Völkermarkter Straße 38, 9300 St. Veit a. d. Glan, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "162988": {
+    "name": "EH04-0730 Christoph SCHOBER",
     "address": "Linzer Strasse 147, 3003 Gablitz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154565": {
+    "name": "IM20-100 Restaurant",
     "address": "Schottengasse 6-8, 1010 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "161131": {
+    "name": "ES1-04-646 Tulln, Frauentorgasse",
     "address": "Frauentorgasse 11-13, 3430 Tulln, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150438": {
+    "name": "SM1-02-351 Faistenau",
     "address": "Hinterseestraße 60, 5324 Faistenau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159736": {
+    "name": "IM86 Wien, 23.Bez, A.Baumgartnerstr.",
     "address": "Anton Baumgartnerstraße 40, 1230 Wien, Österreich",
-    "unitType": "INTERSPAR"
+    "orgType": "INTERSPAR"
   },
   "152978": {
+    "name": "SM3-05-671 Markt Hartmannsdorf",
     "address": "Hauptstraße 222, 8311 Markt Hartmannsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150346": {
+    "name": "SM3-04-742 Sieghartskirchen",
     "address": "Preßbaumerstraße 29, 3443 Sieghartskirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152139": {
+    "name": "ES2-04-728 Baden",
     "address": "Wiener Straße 119, 2500 Baden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150772": {
+    "name": "ES2-04-418 Hausmening",
     "address": "Schwarzer Weg 2, 3363 Hausmening - Neufurth, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151795": {
+    "name": "EH04-7642 Ballwein FlexCo",
     "address": "Hauptstraße 35, 3683 Yspertal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151297": {
+    "name": "ES1-02-268 Bischofshofen",
     "address": "Bahnhofstraße 4, 5500 Bischofshofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151042": {
+    "name": "SM2-02-352 Neumarkt, Hauptstraße",
     "address": "Hauptstraße 1, 5202 Neumarkt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161184": {
+    "name": "SM2-02-354 Mattsee",
     "address": "Münsterholzstr. 14, 5163 Mattsee, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161137": {
+    "name": "SM3-05-318 Voitsberg, Grazer Vorstadt",
     "address": "Grazer Vorstadt 21, 8570 Voitsberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162371": {
+    "name": "MM 700 NF2",
     "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "155087": {
+    "name": "MM06-080 Fleisch/Wurst",
     "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "152705": {
+    "name": "SM2-02-510 Wörgl",
     "address": "Brixentalerstraße 61, 6300 Wörgl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156873": {
+    "name": "EH02-0630 Daniel Ferchl",
     "address": "Franz Senn Straße 93, 6167 Neustift-Milders, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152216": {
+    "name": "GM-04-854 Wien, 18. Bez, Gersthoferstr.",
     "address": "Gersthoferstr. 121, 1180 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153412": {
+    "name": "SM3-05-383 Lieboch",
     "address": "Packerstraße 107A, 8501 Lieboch, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159909": {
+    "name": "SM3-02-073 Innsbruck, Gumppstraße",
     "address": "Gumppstraße 25, 6020 Innsbruck, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160257": {
+    "name": "EH02-0229 FECHTER HERMANN",
     "address": "Dorf 62, 6342 Niederndorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160269": {
+    "name": "EH02-0048 Schöpf-Sailer Andrea",
     "address": "UNTERDORF 6, 6473 WENNS, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160932": {
+    "name": "EH02-0043 Albrecht Paul",
     "address": "Olympiastraße 882, 6100 Seefeld, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157428": {
+    "name": "ES1-02-491 ES Abtenau",
     "address": "Markt 255, 5441 Abtenau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153138": {
+    "name": "SM3-05-397 Kumberg",
     "address": "Grazer Straße 48G, 8062 Kumberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160564": {
+    "name": "EH02-0555 Brix Gabriele",
     "address": "Dorfstrasse 30, 6142 Mieders, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151452": {
+    "name": "ES1-04-399 Mattersburg",
     "address": "Fachmarktzentrum 3, 7210 Mattersburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161230": {
+    "name": "SM1-04-154 Wien, 1.Bez, Fleischmarkt",
     "address": "Fleischmarkt 5, 1010 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161181": {
+    "name": "SM1-02-445 Ostermiething",
     "address": "Weilhartstraße 33, 5121 Ostermiething, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162384": {
+    "name": "SM2-02-464 Grödig",
     "address": "Dr. Richard Hartmann Straße 15, 5082 Grödig, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150358": {
+    "name": "ICS440P-EDB ERP & DB Technology",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "153271": {
+    "name": "ZN05 - Zweigniederlassung Graz",
     "address": "Hafner Strasse 20, 8055 Graz / Puntigam, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165711": {
+    "name": "ICS-RCB-MW Masterdata & Wholesale",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "165759": {
+    "name": "ICS-RCB-HCM Human Capital Management",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR ICS"
+    "orgType": "SPAR ICS"
   },
   "160756": {
+    "name": "TANN-06-0371 Fil. Villach IM54",
     "address": "Ringmauergasse 9, 9500 Villach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155686": {
+    "name": "SYS02-0550 Yvonne Ebing e.U.",
     "address": "Stubaital Str. 9, 6167 Neustift im Stubaital, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152468": {
+    "name": "ZN04-540 Transportwesen",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165485": {
+    "name": "MM 01 Maximarkt Linz",
     "address": "Bäckermühlweg 61, 4030 Linz, Österreich",
-    "unitType": "Maximarkt"
+    "orgType": "Maximarkt"
   },
   "160757": {
+    "name": "SYS02-0195 Kaufhaus Günther Peter",
     "address": "Stubachstrasse 16, 5723 Uttendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161205": {
+    "name": "SM1-02-135 Fügen, Lindenweg",
     "address": "Lindenweg 29, 6263 Fügen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160765": {
+    "name": "TANN-06-0348 Fil. Klagenfurt IM55",
     "address": "Durchlaßstraße 4, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152050": {
+    "name": "SM2-06-417 Klgft., Heiligengeistpl. 4",
     "address": "Heiligengeistplatz 4, 9020 Klagenfurt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153561": {
+    "name": "ES2-06-413 Spittal EKZ",
     "address": "Bahnhofstraße 16, 9800 Spittal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152517": {
+    "name": "ZN04-910 Prod. Lehrlinge",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151454": {
+    "name": "ZN03-325 Lohnverrechnung",
     "address": "SPAR-Straße 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160921": {
+    "name": "EH03-0097 Hochhauser Notburga",
     "address": "Landl Platz 2, 4710 Grieskirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153346": {
+    "name": "ZN03-380 Personalentwicklung u. Ausb.",
     "address": "SPAR-Straße 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161159": {
+    "name": "SM1-04-834 Wien, 12.Bez, Schönbrunnerstr",
     "address": "Schönbrunnerstraße 293, 1120 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153087": {
+    "name": "GM-04-892 Zwettl, Landstraße",
     "address": "Landstraße 33, 3910 Zwettl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157403": {
+    "name": "ZN 2-376 KA",
     "address": "Erlach 134A, 6150 Steinach am Brenner, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157406": {
+    "name": "ZN 2-376 FK",
     "address": "Erlach 134A, 6150 Steinach am Brenner, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160867": {
+    "name": "SM3-02-139 Zell am Ziller",
     "address": "Rohrerstraße 9, 6280 Zell am Ziller, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150216": {
+    "name": "GM-04-876 Perchtoldsdorf, Marktplatz",
     "address": "Marktplatz 19, 2380 Perchtoldsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150266": {
+    "name": "SM3-04-7659 SM Innermanzing",
     "address": "Gewerbepark Süd 1, 3052 Innermanzing, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152724": {
+    "name": "SM3-01-125 Fußach",
     "address": "Bundesstraße 80, 6972 Fußach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151450": {
+    "name": "GM-04-893 Eisenstadt, Hauptstraße",
     "address": "Hauptstraße 13, 7000 Eisenstadt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150681": {
+    "name": "SM3-04-775 Alland",
     "address": "Mayerlinger Straße 4, 2534 Alland, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157123": {
+    "name": "SM3-04-7540 SM St. Pölten, Stattersdorf",
     "address": "Stattersdorfer Hauptstraße 44A, 3100 St. Pölten, Stattersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "158871": {
+    "name": "ZN 2-268 FK",
     "address": "Bahnhofstraße 4, 5500 Bischofshofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153092": {
+    "name": "SM3-04-023 Zwettl, Industriestraße",
     "address": "Franz Eigl-Straße 11, 3910 Zwettl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150433": {
+    "name": "ES1-04-7649 Gloggnitz",
     "address": "Wiener Straße 8A, 2640 Gloggnitz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161222": {
+    "name": "ES3-03-795 Sierning",
     "address": "Lagerhausstraße 16, 4522 Sierning, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150180": {
+    "name": "TANN-03-0386 Wurst IM61",
     "address": "Oberfeldstraße 91, 4600 Wels, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "159916": {
+    "name": "SM2-02-035 Ötztaler Höhe",
     "address": "Ötztaler Höhe 19, 6430 Ötztal Bahnhof, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152864": {
+    "name": "GM-04-875 Mödling, Hauptstraße",
     "address": "Hauptstraße 45, 2340 Mödling, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150675": {
+    "name": "SM3-04-694 Hinterbrühl",
     "address": "Gaadnerstr. 52, 2371 Hinterbrühl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160678": {
+    "name": "TANN-03-0391 Fil. ISP Braunau IM62",
     "address": "Erlachweg 13, 5280 Braunau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161268": {
+    "name": "SM3-04-098 Zistersdorf, Kaiserstraße 3",
     "address": "Kaiserstraße 23, 2225 Zistersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153041": {
+    "name": "TANN-03-0386 Fil. ISP Wels Nord IM61",
     "address": "Oberfeldstraße 91, 4600 Wels, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151161": {
+    "name": "CITY-04-849 Wien, 16. Bez., Maroltinger",
     "address": "Maroltingergasse 57, 1160 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150215": {
+    "name": "ES1-04-324 Perchtoldsdorf, Mühlgasse",
     "address": "Mühlgasse 92, 2380 Perchtoldsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "164730": {
+    "name": "TANN-01-362 Fleisch IM51",
     "address": "Leonhardsplatz 4, 6800 Feldkirch, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155911": {
+    "name": "SYS02-0645 Fender Manuel",
     "address": "Untere Dorfstraße 14, 6323 Bad Häring, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151178": {
+    "name": "ZN04-841 Filialgebietsleiter 42",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153307": {
+    "name": "ZN04-350 Standort- und Objektentwicklung",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152790": {
+    "name": "SM2-02-332 Salzburg Nonntal",
     "address": "Nonntaler Hauptstraße 78, 5020 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152453": {
+    "name": "ZN03-910 TANN-Fleisch",
     "address": "SPAR-Straße 1, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160674": {
+    "name": "TANN-03-0404 Fil. ISP Steyr IM85",
     "address": "Ennserstraße 23, 4400 Steyr, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160675": {
+    "name": "TANN-03-0399 Fil. ISP Vöcklabruck IM79",
     "address": "Linzerstraße 50, 4840 Vöcklabruck, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154299": {
+    "name": "TANN-03-0345 Fil. ISP Perg IM25",
     "address": "Naarner Straße 75, 4320 Perg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160673": {
+    "name": "TANN-03-0821 Fil. ISP Linz Plus IM60",
     "address": "Plus-Kauf-Straße 7, 4061 Pasching, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162736": {
+    "name": "SM2-03-811 Zell/Pram",
     "address": "Erledt 19, 4755 Zell an der Pram, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160759": {
+    "name": "SM2-03-759 Wels Pernau",
     "address": "Negrellistrasse 27, 4600 Wels, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161262": {
+    "name": "ES-03-724 Wartberg",
     "address": "Hauptstraße 38, 4552 Wartberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150939": {
+    "name": "SM1-03-524 SM Walding",
     "address": "Hauptstraße 18A, 4111 Walding, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161225": {
+    "name": "SM3-03-776 Waidhofen/Ybbs, Wienerstr.",
     "address": "Wienerstraße 58, 3340 Waidhofen/Ybbs, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161174": {
+    "name": "ES3-03-849 Waidhofen, Hammerschmiedstr",
     "address": "Hammerschmiedstraße 2, 3340 Waidhofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161188": {
+    "name": "ES2-03-436 Vorchdorf",
     "address": "Neue Landstraße 70, 4655 Vorchdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150373": {
+    "name": "SM2-03-628 SM Vöcklamarkt",
     "address": "Marktstraße 4, 4870 Vöcklamarkt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152769": {
+    "name": "SM1-03-716 Traun-St.Martin",
     "address": "Leondinger Strasse 50, 4050 St. Martin, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160934": {
+    "name": "ES3-03-798 Traun I,Weidfelds",
     "address": "Weidfeldstr. 2, 4050 Traun, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162158": {
+    "name": "SM2-03-608 Steyr Schillerstr.",
     "address": "Schillerstr. 12A, 4400 Steyr, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153843": {
+    "name": "ES1-03-794 Seewalchen",
     "address": "Atterseestraße 7, 4863 Seewalchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161090": {
+    "name": "ES3-03-331 Schärding, Linzer Str.",
     "address": "Linzer Straße 55, 4780 Schärding, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154907": {
+    "name": "ES2-03-637 Weberzeile",
     "address": "Weberzeile 1, 4910 Ried, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152020": {
+    "name": "ES1-03-361 Ried, Goethestraße",
     "address": "Goethestraße 10, 4910 Ried, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "438329": {
+    "name": "SM1-03-691 SM Regau",
     "address": "Vöcklabrucker Str. 19, 4844 Regau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151367": {
+    "name": "SM3-03-729 Perg, Herrenstraße",
     "address": "Herrenstraße 3, 4320 Perg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154990": {
+    "name": "SM2-03-528 Oberneukirchen",
     "address": "Waxenberger Str. 6, 4181 Oberneukirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160926": {
+    "name": "SM2-03-793 Mondsee",
     "address": "Rainerstraße 18-20, 5310 Mondsee, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160880": {
+    "name": "SM3-03-484 Molln",
     "address": "Marktstraße 6, 4591 Molln, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161187": {
+    "name": "ES2-03-415 Mauthausen, Albern",
     "address": "Albern 3, 4310 Mauthausen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153153": {
+    "name": "SM2-03-717 Mauerkirchen",
     "address": "Obermarkt 23, 5270 Mauerkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151893": {
+    "name": "SM2-03-640 SM Mattighofen",
     "address": "Moosstraße 3B, 5230 Mattighofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153155": {
+    "name": "ES3-03-774 Mattighofen II, Braunauerstr.",
     "address": "Braunauerstraße 4, 5230 Mattighofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150469": {
+    "name": "SM3-03-521 Marchtrenk, Welser Straße",
     "address": "Welser Straße 14, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161773": {
+    "name": "ES3-03-789 Marchtrenk NEU",
     "address": "Eichenstr. 2, 4614 Marchtrenk, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161589": {
+    "name": "SM2-03-428 Linz, Ziegeleistr.",
     "address": "Ziegeleistraße 87, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161247": {
+    "name": "SM2-03-457 Linz, Wildbergstraße",
     "address": "Wildbergstraße 12, 4040 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152217": {
+    "name": "SM2-03-425 Linz, Stieglbauernstraße",
     "address": "Stieglbauernstraße 4, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161185": {
+    "name": "ES1-03-370 Linz, Oed",
     "address": "Schiffmannstraße 9, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156654": {
+    "name": "SM3-03-418 SM Linz Med-Uni",
     "address": "Krankenhausstraße 5, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161223": {
+    "name": "SM1-03-780 Linz, Solarcity",
     "address": "Lunaplatz 2, 4030 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152124": {
+    "name": "SM1-03-355 Linz, Gründberg",
     "address": "Leonfeldner Straße 123, 4040 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150245": {
+    "name": "SM3-03-719 Linz, Froschberg, Leharstra",
     "address": "Leharstraße 21, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151418": {
+    "name": "ES3-03-424 Linz, Passage",
     "address": "Landstraße 17-25, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161179": {
+    "name": "ES3-03-350 Linz, Kleinmünchen",
     "address": "Karl-Steiger Straße 1, 4030 Linz/Kleinmünchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157056": {
+    "name": "SM3-03-516 SPAR AG SM Linz Hanuschstraße",
     "address": "Hanuschstraße 23, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "165683": {
+    "name": "SM2-03-845 Linz Freistädter Str.",
     "address": "Bahnhofplatz 3-6, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161176": {
+    "name": "ES1-03-364 Linz, Friedhofstraße",
     "address": "Friedhofstraße 40, 4020 Linz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160832": {
+    "name": "SM3-03-791 Leonstein",
     "address": "Gewerbepark 2, 4592 Leonstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161686": {
+    "name": "ES1-03-336 Leonding Hart",
     "address": "Poststr. 10, 4060 Leonding, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151691": {
+    "name": "SM3-03-529 Hochburg Ach",
     "address": "Neue Mitte 3, 5122 Hochburg/Ach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162237": {
+    "name": "SM2-03-782 Haid Hauptplatz",
     "address": "Hauptplatz 52, 4053 Haid, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "163200": {
+    "name": "ES1-03-522 Haag",
     "address": "Lambacher Str. 47, 4680 Haag am Hausruck, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155785": {
+    "name": "ES3-03-542 ES Grein",
     "address": "Breitenangerstraße 8, 4360 Grein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152591": {
+    "name": "ES2-03-612 Gmunden",
     "address": "Aubauerstrasse 35, 4810 Gmunden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161180": {
+    "name": "SM3-03-368 Freistadt, Zemannstraße",
     "address": "Zemannstraße 49, 4240 Freistadt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153158": {
+    "name": "SM1-03-260 Frankenmarkt",
     "address": "Salzburgerstr. 15, 4890 Frankenmarkt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152004": {
+    "name": "ES1-03-500Frankenburg",
     "address": "Hauptstraße 42, 4873 Frankenburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150258": {
+    "name": "SM2-03-476 Enns",
     "address": "Marckhgott Platz 2, 4470 Enns, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153156": {
+    "name": "SM3-03-777 Eggelsberg",
     "address": "Gundertshausen 77, 5142 Eggelsberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153159": {
+    "name": "SM2-03-622 Braunau",
     "address": "Laabstraße 58, 5280 Braunau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157386": {
+    "name": "SM1-03-541 SM Bad Wimsbach",
     "address": "Landstraße 2, 4654 Bad Wimsbach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152754": {
+    "name": "ES1-03-783 Ansfelden",
     "address": "Ansfeldner Straße 1, 4052 Ansfelden, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161255": {
+    "name": "ES2-03-760 Andorf",
     "address": "Wilhelm Redl Straße 1, 4770 Andorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151752": {
+    "name": "ES1-03-859 Alkoven",
     "address": "Glaserstraße 6, 4072 Alkoven, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162099": {
+    "name": "TANN-04-0592 Fil. Eisenstadt IM92",
     "address": "Haidäcker-Park 4, 7000 Eisenstadt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "160687": {
+    "name": "TANN-04-0559 Fil. Amstetten IM77",
     "address": "Agathastraße 1, 3300 Amstetten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153311": {
+    "name": "ZN04-380 Personalentwicklung u. Ausb.",
     "address": "Lagergasse 30, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150399": {
+    "name": "SM3-04-0965 St. Margarethen",
     "address": "Hauptstraße 247, 7062 St. Margarethen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150400": {
+    "name": "SM3-04-634 Guntramsdorf",
     "address": "Franz-Novy-Gasse 23, 2353 Guntramsdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150229": {
+    "name": "ES2-04-7528 Neudörfl",
     "address": "Seestraße 1, 7201 Neudörfl, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150225": {
+    "name": "ES2-04-699 Theresienfeld",
     "address": "Grazer Straße 26, 2604 Theresienfeld, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150217": {
+    "name": "SM3-04-462 Pernitz",
     "address": "Hauptstraße 81, 2763 Pernitz, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150218": {
+    "name": "SM2-04-366 Berndorf",
     "address": "Hainfelder Straße 38A, 2560 Berndorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150651": {
+    "name": "ES1-04-041 Wr.Neustadt, Stadionstraße",
     "address": "Stadionstraße 11, 2700 Wr. Neustadt, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "583123": {
+    "name": "SM3-04-7522 SM Loosdorf",
     "address": "Wiener Straße 24, 3382 Loosdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "155102": {
+    "name": "ES2-04-678 Böheimkirchen",
     "address": "Hainfelderstraße 8A, 3071 Böheimkirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161100": {
+    "name": "SM1-04-484 Obergrafendorf",
     "address": "Mankerstraße 6, 3200 Ober-Grafendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151484": {
+    "name": "ES2-04-660 Fischamend",
     "address": "Smolekstraße 2, 2401 Fischamend, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150834": {
+    "name": "ES1-04-7592 ES Schwadorf",
     "address": "Brucker Straße 14, 2432 Schwadorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150652": {
+    "name": "ES1-04-401 Schwechat",
     "address": "Möhringgasse 2-4, 2320 Schwechat, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150885": {
+    "name": "ES2-04-7542 SPAR AG ES 54 Schrems",
     "address": "Josef Widy Straße 17, 3943 Schrems, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "417370": {
+    "name": "SM1-04-7536 SM Heidenreichstein",
     "address": "Litschauer Straße 19, 3860 Heidenreichstein, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154791": {
+    "name": "SM3-04-955 Friedrich Schiller Str.",
     "address": "Friedrich Schiller Str. 74-76, 2340 Mödling, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153063": {
+    "name": "ES2-04-532 Purgstall",
     "address": "Ötscherlandstraße 14, 3251 Purgstall, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161107": {
+    "name": "SM3-04-459 St. Pölten, Mariazellerstraße",
     "address": "Mariazellerstraße 7-9, 3100 St. Pölten, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150873": {
+    "name": "GM-04-060 Krems, Obere Landstraße",
     "address": "Obere Landstraße 15, 3500 Krems, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150867": {
+    "name": "SM3-04-028 Pöggstall",
     "address": "Untere Hauptstraße 16, 3650 Pöggstall, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152146": {
+    "name": "SM3-04-780 Oberwaltersdorf",
     "address": "Florianistr. 4, 2522 Oberwaltersdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152135": {
+    "name": "ES3-04-566 SPAR AG ES 56 Pottendorf",
     "address": "Bahnstrasse 5, 2486 Pottendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "152116": {
+    "name": "ES2-04-343 Traiskirchen Wiener Str.",
     "address": "Wiener Straße 75, 2514 Traiskirchen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150860": {
+    "name": "SM2-04-011 Krumbach",
     "address": "Bundesstraße 28, 2851 Krumbach, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150773": {
+    "name": "SM3-04-618 Stoob",
     "address": "Gymnasiumstraße 23, 7350 Oberpullendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "151471": {
+    "name": "ES2-04-7650 SLL Hohenau",
     "address": "Bernsteinstrasse 2, 2273 Hohenau, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "154183": {
+    "name": "SM3-04-444 Poysdorf",
     "address": "Laaer Straße 14-16, 2170 Poysdorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150963": {
+    "name": "SM1-04-122 Gaweinstal",
     "address": "Hauptplatz 7-9, 2191 Gaweinstal, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150776": {
+    "name": "ZN04-380 Spar Akademie Wien",
     "address": "Fleischmarkt 5, 1010 Wien, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "583130": {
+    "name": "SM2-04-7571 SM Hollabrunn",
     "address": "Wiener Straße 62, 2000 Hollabrunn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "150858": {
+    "name": "SM3-04-498 Horn, Wienerstraße",
     "address": "Wienerstraße 1, 3580 Horn, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "153067": {
+    "name": "ES2-04-610  Ober-Grafendorf",
     "address": "Mankerstraße 6, 3200 Ober-Grafendorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "158954": {
+    "name": "ZN 2-249 TS",
     "address": "Kitzbühelerstraße 118, 6365 Kirchberg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "161198": {
+    "name": "ES3-02-350 Oberndorf",
     "address": "Nußdorferstraße 1, 5110 Oberndorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "162720": {
+    "name": "SM1-02-456 Henndorf",
     "address": "Hauptstrasse 72, 5302 Henndorf, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "157247": {
+    "name": "BPM305 Gruppen Organisation Services",
     "address": "Europastraße 3, 5015 Salzburg, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   },
   "156325": {
+    "name": "ES1-06-429 ES Althofen",
     "address": "10. Oktober Straße 26, 9330 Althofen, Österreich",
-    "unitType": "SPAR"
+    "orgType": "SPAR"
   }
 }
