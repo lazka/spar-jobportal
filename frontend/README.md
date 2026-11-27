@@ -16,7 +16,7 @@ Open <http://127.0.0.1:8000/>. Both commands use Python 3 and neither needs `npm
 
 ## Static hosting
 
-Publish `index.html`, `styles.css`, the top-level JavaScript modules, `spar_jobs_final.json`, and the `fonts/` and `vendor/` directories. Include the [root `LICENSE`](../LICENSE) alongside them. No npm install is needed on the host. All JavaScript, CSS, fonts, and library images are served from the same origin. The site still uses basemap.at map tiles and sends place searches to Nominatim. The QR library is loaded locally when the share dialog opens.
+Publish `index.html`, `favicon.svg`, `styles.css`, the top-level JavaScript modules, `spar_jobs_final.json`, and the `fonts/` and `vendor/` directories. Include the [root `LICENSE`](../LICENSE) alongside them. No npm install is needed on the host. All JavaScript, CSS, fonts, and library images are served from the same origin. The site still uses basemap.at map tiles and sends place searches to Nominatim. The QR library is loaded locally when the share dialog opens.
 
 The job snapshot is generated separately; see [Updating job data](../README.md#updating-job-data). The footer shows how long ago the snapshot was written, with the exact Austrian local time on hover.
 

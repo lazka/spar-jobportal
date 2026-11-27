@@ -43,7 +43,7 @@ jobs:
       - name: Stage the static site
         run: |
           mkdir -p site
-          cp LICENSE frontend/index.html frontend/styles.css frontend/*.js frontend/spar_jobs_final.json site/
+          cp LICENSE frontend/index.html frontend/favicon.svg frontend/styles.css frontend/*.js frontend/spar_jobs_final.json site/
           cp -R frontend/fonts frontend/vendor site/
 
       - name: Upload for Pages
