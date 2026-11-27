@@ -34,6 +34,13 @@ function mapAddressKey(address) {
   return address.normalize('NFC').toLocaleLowerCase('de-AT').replaceAll('ß', 'ss').replace(/[\s,]+/g, ' ').trim();
 }
 
+/** @param {JobUnit | null | undefined} unit */
+function addressCompanyKey(unit) {
+  const address = mapAddressKey(unit?.address ?? '');
+  const company = unit?.orgType?.trim();
+  return address && company ? JSON.stringify([address, company]) : null;
+}
+
 /**
  * @param {Coordinates} from
  * @param {Coordinates} to
@@ -51,24 +58,33 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
  */
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
-  /** @type {Map<string, Coordinates>} */
-  const sitePositions = new Map();
+  /** @type {Map<string, Coordinates | null>} */
+  const positionsByAddress = new Map();
+  for (const { unit } of data) {
+    const pair = unit?.coordinates;
+    const coordinate = coordinateKey(pair);
+    const address = addressCompanyKey(unit);
+    if (!pair || !coordinate || !address) continue;
+    const previous = positionsByAddress.get(address);
+    if (previous === undefined) positionsByAddress.set(address, pair);
+    // A shared address can't locate an unmapped job if it points to multiple pins.
+    else if (previous && coordinateKey(previous) !== coordinate) positionsByAddress.set(address, null);
+  }
   return data.map(job => {
     const times = (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
     const workingHours = [...new Set(times.flatMap(time =>
       time === 'Geringfügig-Vollzeit' ? ['Geringfügig', 'Teilzeit', 'Vollzeit'] : [time]))];
-    const coordinates = job.unit?.coordinates;
-    const coordinate = coordinateKey(coordinates);
-    const address = mapAddressKey(job.unit?.address ?? '');
+    let siteCoordinates = job.unit?.coordinates ?? null;
+    let siteKey = coordinateKey(siteCoordinates);
+    if (!siteKey) {
+      const address = addressCompanyKey(job.unit);
+      siteCoordinates = address ? positionsByAddress.get(address) ?? null : null;
+      siteKey = coordinateKey(siteCoordinates);
+    }
     const company = job.unit?.orgType?.trim();
-    let siteKey = null;
-    let siteCoordinates = null;
-    if (coordinate && coordinates) {
-      siteKey = address && company ? JSON.stringify([address, company]) : coordinate;
-      if ((!address || !company) && job.unit?.id != null) siteKey += `:${job.unit.id}`;
-      // Keep the position stable when filters hide the first listing at this address.
-      siteCoordinates = sitePositions.get(siteKey) ?? coordinates;
-      sitePositions.set(siteKey, siteCoordinates);
+    if (siteKey) {
+      if (company) siteKey = JSON.stringify([siteKey, company]);
+      else if (job.unit?.id != null) siteKey += `:${job.unit.id}`;
     }
     return {
       ...job,

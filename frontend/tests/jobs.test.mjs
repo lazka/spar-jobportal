@@ -172,22 +172,45 @@ await test('site grouping keeps different units separate when the company is mis
   assert.deepEqual(sites.get(sales.siteKey)?.jobs, [sales]);
 });
 
-await test('site grouping combines departments by address and company and uses a shared map position', () => {
+await test('site grouping uses coordinates and company regardless of the address spelling', () => {
   const shop = { id: 12, orgType: 'Maximarkt', address: 'Beispielstraße 1, 1160 Wien', coordinates: vienna };
   const [sales, cook, logistics, office] = normalizeJobs([
     { title: 'Verkauf', unit: shop },
-    { title: 'Koch', unit: { ...shop, id: 34, address: 'Beispielstrasse 1,1160 Wien', coordinates: [48.209, 16.374] } },
+    { title: 'Koch', unit: { ...shop, id: 34, address: 'Beispiel Strasse 1, 1160 Wien', coordinates: [...vienna] } },
     { title: 'Lager', unit: { ...shop, id: 56, orgType: 'SPAR' } },
-    { title: 'Büro', unit: { ...shop, id: 78, address: 'Beispielstraße 2, 1160 Wien' } },
+    { title: 'Büro', unit: { ...shop, id: 78, coordinates: [48.209, 16.374] } },
   ]);
 
   const sites = groupSites([sales, cook, logistics, office]);
   assert.equal(sites.size, 3);
   assert.ok(sales.siteKey);
   assert.deepEqual(sites.get(sales.siteKey)?.jobs, [sales, cook]);
-  assert.equal(siteLocation([sales, cook]), shop.address);
-  assert.deepEqual(groupSites([cook]).get(sales.siteKey)?.pair, vienna);
-  assert.deepEqual(filterJobsInMapView([cook], pair => pair[0] === vienna[0]), [cook]);
+  assert.notEqual(logistics.siteKey, sales.siteKey);
+  assert.notEqual(office.siteKey, sales.siteKey);
+});
+
+await test('jobs without coordinates use a unique mapped address for the same company', () => {
+  const shop = { id: 12, orgType: 'Maximarkt', address: 'Beispielstraße 1, 1160 Wien', coordinates: vienna };
+  const department = { id: 34, orgType: shop.orgType, address: 'Beispielstrasse 1,1160 Wien' };
+  const [cook, sales, otherCompany, unknownAddress] = normalizeJobs([
+    { title: 'Koch', unit: department },
+    { title: 'Verkauf', unit: shop },
+    { title: 'Lager', unit: { ...department, orgType: 'SPAR' } },
+    { title: 'Büro', unit: { ...department, address: 'Andere Straße 2, 1160 Wien' } },
+  ]);
+
+  assert.ok(sales.siteKey);
+  assert.deepEqual(groupSites([cook, sales]).get(sales.siteKey)?.jobs, [cook, sales]);
+  assert.deepEqual(filterJobsInMapView([cook], pair => pair === vienna), [cook]);
+  assert.equal(otherCompany.siteKey, null);
+  assert.equal(unknownAddress.siteKey, null);
+
+  const [ambiguous] = normalizeJobs([
+    { unit: department },
+    { unit: shop },
+    { unit: { ...shop, coordinates: [48.209, 16.374] } },
+  ]);
+  assert.equal(ambiguous.siteKey, null);
 });
 
 await test('site previews group matching categories and hours before limiting to four rows', () => {
