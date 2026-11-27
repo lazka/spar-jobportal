@@ -73,7 +73,6 @@ function createMultiSelect(category, emptyLabel, onChange) {
         const label = document.createElement('label');
         const input = document.createElement('input');
         input.type = 'checkbox';
-        input.setAttribute('form', 'filters');
         input.value = value;
         input.checked = checked.has(value);
         label.append(input, text);
