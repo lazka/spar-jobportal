@@ -134,6 +134,18 @@
               </div>
             </div>
             <button type="button" id="show-unmapped" aria-pressed="false" aria-controls="list" hidden></button>
+            <div class="multi-select-filter">
+              <span class="filter-label" id="organisation-label" data-i18n="organisation">Organisation</span>
+              <div class="multi-select-control" id="organisation-control">
+                <details id="organisation">
+                  <summary aria-labelledby="organisation-label organisation-value"><span id="organisation-value" data-i18n="allOrganisations">Alle Organisationen</span></summary>
+                  <div class="multi-select-options" id="organisation-options" role="group" aria-labelledby="organisation-label"></div>
+                </details>
+                <button class="multi-select-clear" type="button" title="Organisationsauswahl aufheben" aria-label="Organisationsauswahl aufheben" data-i18n-title="clearOrganisations" data-i18n-aria-label="clearOrganisations" hidden>
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="m4 3 4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4z"/></svg>
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </div>

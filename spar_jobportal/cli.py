@@ -16,7 +16,7 @@ from .http_client import PoliteOpener
 from .locations import coordinates, geocode, geocode_key, load_corrections, resolve_unit, unit_query
 from .shops import fetch_shops, map_unit
 from .spar import RepeatedJobError, fetch_jobs, fetch_site_details
-from .storage import as_object, read_object, save_json
+from .storage import as_object, clean_text, read_object, save_json
 
 ROOT = Path(__file__).resolve().parents[1]
 ADDRESSES = ROOT / "data/spar_unit_details.json"
@@ -79,37 +79,54 @@ def maintain(
     shops = fetch_shops(spar) if limit > 0 else None
     # The public service limits regularly run scripts to four requests per minute.
     nominatim = PoliteOpener(delay=15.1, timeout=25, retries=0)
+    entries = {key: as_object(addresses.get(key)) for key in representatives}
+    pending_details = {
+        key
+        for key, entry in entries.items()
+        if not clean_text(entry.get("address")) or not clean_text(entry.get("orgType"))
+    }
     detail_count = lookup_count = 0
-    unresolved = 0
+    unresolved = missing_org_types = 0
     for key, job in representatives.items():
         unit = job["unit"]
+        entry = entries[key]
+        if limit > 0 and key in pending_details:
+            detail_count += 1
+            LOGGER.info(
+                "Unit details %d/%d: unit %s, job %s",
+                detail_count,
+                len(pending_details),
+                key,
+                job["id"],
+            )
+            try:
+                details = fetch_site_details(spar, job["id"])
+            except urllib.error.HTTPError as error:
+                if error.code not in (404, 410):
+                    raise OSError(
+                        f"Site details for unit {key}, job {job['id']}: {error}"
+                    ) from error
+                details = None  # The job may have expired since the snapshot.
+            if details:
+                updated = entry.copy()
+                for field, value in (
+                    ("name", unit.get("name")),
+                    ("address", details.address),
+                    ("orgType", details.org_type),
+                ):
+                    if value and not clean_text(updated.get(field)):
+                        updated[field] = value
+                if updated != entry:
+                    addresses[key] = entry = updated
+                    save_json(ADDRESSES, addresses)
+        missing_org_types += not clean_text(entry.get("orgType"))
         if resolve_unit(unit, addresses, corrections, geocodes)["coordinates"] is not None:
             continue
-        entry = as_object(addresses.get(key))
         correction = corrections.get(key)
         query = unit_query(entry, correction)
         status = "missing site address"
-        if not query:
-            if limit > 0:
-                detail_count += 1
-                try:
-                    details = fetch_site_details(spar, job["id"])
-                except urllib.error.HTTPError as error:
-                    if error.code not in (404, 410):
-                        raise
-                    details = None  # The job may have expired since the snapshot.
-                if details and details.address:
-                    address_entry = {}
-                    if unit.get("name"):
-                        address_entry["name"] = unit["name"]
-                    address_entry["address"] = details.address
-                    if details.org_type is not None:
-                        address_entry["orgType"] = details.org_type
-                    addresses[key] = address_entry
-                    save_json(ADDRESSES, addresses)
-                    query = details.address
-            else:
-                status = "site address lookup deferred"
+        if not query and limit == 0:
+            status = "site address lookup deferred"
         if query:
             query_key = geocode_key(query)
             if query_key not in geocodes and lookup_count < limit:
@@ -127,7 +144,8 @@ def maintain(
         )
 
     print(
-        f"Site detail requests: {detail_count}; Nominatim lookups: {lookup_count}; unresolved units: {unresolved}."
+        f"Site detail requests: {detail_count}; units without orgType: {missing_org_types}; "
+        f"Nominatim lookups: {lookup_count}; unresolved units: {unresolved}."
     )
     if unresolved:
         print(
@@ -143,7 +161,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "update", help="Fetch SPAR jobs and rebuild the frontend dataset using local location data."
     )
     maintenance = commands.add_parser(
-        "maintain", help="Look up missing unit locations for the current dataset."
+        "maintain", help="Look up missing unit details and locations for the current dataset."
     )
     for command in (update, maintenance):
         command.add_argument(

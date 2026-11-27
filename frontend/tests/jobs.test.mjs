@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs } from '../jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs, UNKNOWN_ORG_TYPE } from '../jobs.js';
 
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
@@ -107,6 +107,20 @@ await test('job category filters match any selected category and combine with th
   assert.deepEqual(filterJobs(categorized, { fields }), categorized.slice(0, 3));
   assert.deepEqual(filterJobs(categorized, { fields, states: ['Wien'] }), categorized.slice(0, 2));
   assert.deepEqual(filterJobs(categorized, { fields: [] }), categorized);
+});
+
+await test('organisation filters match any selected type and include missing types as unknown', () => {
+  const openings = normalizeJobs([
+    { state: 'Wien', unit: { orgType: 'SPAR' } },
+    { state: 'Tirol', unit: { orgType: 'INTERSPAR' } },
+    { state: 'Wien', unit: { orgType: null } },
+    { state: 'Tirol', unit: { name: 'SPAR' } },
+  ]);
+  assert.deepEqual(openings.map(job => job.orgType), ['SPAR', 'INTERSPAR', UNKNOWN_ORG_TYPE, UNKNOWN_ORG_TYPE]);
+  assert.deepEqual(filterJobs(openings, { orgTypes: [UNKNOWN_ORG_TYPE] }), openings.slice(2));
+  assert.deepEqual(filterJobs(openings, { orgTypes: ['SPAR', 'INTERSPAR'] }), openings.slice(0, 2));
+  assert.deepEqual(filterJobs(openings, { orgTypes: ['SPAR', UNKNOWN_ORG_TYPE], states: ['Wien'] }), [openings[0], openings[2]]);
+  assert.deepEqual(filterJobs(openings, { orgTypes: [] }), openings);
 });
 
 await test('working hours match any selected option and expand Geringfügig-Vollzeit to all three', () => {

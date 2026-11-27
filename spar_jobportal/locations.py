@@ -79,6 +79,7 @@ def resolve_unit(
     return {
         "id": unit_id,
         "name": unit.get("name"),
+        "orgType": clean_text(entry.get("orgType")),
         "address": address,
         "coordinates": point,
     }

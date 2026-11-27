@@ -28,7 +28,7 @@ function control(id, type) {
 
 /**
  * @param {Parameters<typeof jobLabel>[0]} category
- * @param {'allStates' | 'allFields' | 'allEmployment'} emptyLabel
+ * @param {'allStates' | 'allFields' | 'allEmployment' | 'allOrganisations'} emptyLabel
  * @param {() => void} onChange
  */
 function createMultiSelect(category, emptyLabel, onChange) {
@@ -133,6 +133,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const state = createMultiSelect('state', 'allStates', refreshFilters);
   const field = createMultiSelect('field', 'allFields', refreshFilters);
   const employment = createMultiSelect('employment', 'allEmployment', refreshFilters);
+  const organisation = createMultiSelect('organisation', 'allOrganisations', refreshFilters);
   const advancedToggle = control('advanced-title', HTMLButtonElement);
   const filters = control('filters', HTMLFormElement);
   const activeFilterActions = $('active-filter-actions');
@@ -156,6 +157,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (filters.hidden) {
       state.close();
       employment.close();
+      organisation.close();
     }
   });
 
@@ -208,6 +210,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     state.setOptions(jobs.flatMap(job => job.states));
     field.setOptions(jobs.map(job => job.jobField));
     employment.setOptions(jobs.flatMap(job => job.workingHours));
+    organisation.setOptions(jobs.map(job => job.orgType));
   }
 
   function renderList(preservePages = false) {
@@ -219,7 +222,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     clearKeyword.hidden = !search.value;
     field.renderSummary();
     const activeFilters = [search.value.trim(), state.renderSummary(),
-      employment.renderSummary(), showUnmapped].filter(Boolean).length;
+      employment.renderSummary(), organisation.renderSummary(), showUnmapped].filter(Boolean).length;
     filterCount.textContent = t('activeFilters', { count: activeFilters });
     activeFilterActions.hidden = activeFilters === 0;
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
@@ -239,7 +242,8 @@ window.addEventListener('DOMContentLoaded', async () => {
       query: search.value.trim(),
       states: state.values(),
       fields: field.values(),
-      workingHours: employment.values()
+      workingHours: employment.values(),
+      orgTypes: organisation.values()
     });
     unmapped = matchingFilters.filter(job => !job.siteKey);
     const activeCenter = showUnmapped ? undefined : center?.pair;

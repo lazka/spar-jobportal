@@ -18,16 +18,16 @@ The JSON contains `jobs` and a UTC `lastUpdated` timestamp. The timestamp record
 uv run update-spar-jobs maintain
 ```
 
-`maintain` uses the latest local job dataset and works only on units without coordinates. It tries the `Ort` field of a representative job's detail page when it has no cached address or correction. It does not use the job's free-text `Dienstort` as the site address. It caches Nominatim results (including misses), rejects area- and street-level results, prints unresolved unit IDs, and rebuilds the frontend JSON without refreshing the listings.
+`maintain` uses the latest local job dataset. It checks a representative job's detail page for units missing a cached address or `orgType`, even if they already have coordinates. It uses the `Ort` field, not the free-text `Dienstort`, and does not overwrite cached details or manual corrections. Only units without coordinates are eligible for geocoding. Maintenance caches Nominatim results (including misses), rejects area- and street-level results, reports unresolved units and how many still lack `orgType`, and rebuilds the frontend JSON without refreshing the listings.
 
-When caching a new site address in `data/spar_unit_details.json`, maintenance also stores the listing's unit `name` when available. It derives `orgType` from the source listing's displayed job ID, if present, by removing the leading `ID` and trailing number (for example, `INTERSPAR` from `ID INTERSPAR 7905`). Existing entries are not refetched.
+When caching details in `data/spar_unit_details.json`, maintenance also stores the listing's unit `name` when available. It derives `orgType` from the source listing's displayed job ID, if present, by removing the leading `ID` and trailing number (for example, `INTERSPAR` from `ID INTERSPAR 7905`). The frontend snapshot exports this listing-derived label as `unit.orgType`, or `null` if it isn't cached.
 
 - See the [address corrections guide](docs/address-corrections.md) for how to investigate a missing or wrong pin, record a correction, and verify it.
 - By default, maintenance makes up to 10 new Nominatim queries per run, spaced more than 15 seconds apart. It is intended for occasional maintenance, not as part of the job refresh.
 
 The Python implementation lives in `spar_jobportal/`, and the caches are in `data/`. Superseded scripts, exports, and reports are available in Git history.
 
-Both commands log HTTP failures to stderr with the request path and status. Add `--verbose` after `update` or `maintain` to also log each attempt, successful responses, and retry waits. Logs omit query strings, request headers, and response bodies.
+Both commands log HTTP failures to stderr with the request path and status. Add `--verbose` after `update` or `maintain` to also log each attempt, successful responses, and retry waits. Verbose maintenance shows detail lookup progress as `Unit details 1/149` (current lookup / total pending). Logs omit query strings, request headers, and response bodies.
 
 ### Mapping jobs to shops
 

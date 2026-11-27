@@ -1,5 +1,5 @@
 /** @typedef {[number, number]} Coordinates */
-/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null}} JobUnit */
+/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null}} JobUnit */
 /**
  * @typedef {object} RawJob
  * @property {string | null} [title]
@@ -12,8 +12,10 @@
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], siteKey: string | null, searchTitle: string}} Job */
+/** @typedef {RawJob & {state: string, states: string[], times: string[], workingHours: string[], orgType: string, siteKey: string | null, searchTitle: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
+
+export const UNKNOWN_ORG_TYPE = ':unknown-org-type';
 
 /** @param {string | null | undefined} text */
 export function normalizeSearch(text) {
@@ -57,6 +59,7 @@ export function normalizeJobs(data) {
       states,
       times,
       workingHours,
+      orgType: job.unit?.orgType ?? UNKNOWN_ORG_TYPE,
       siteKey: coordinateKey(job.unit?.coordinates),
       searchTitle: normalizeSearch(job.title)
     };
@@ -95,16 +98,18 @@ export async function loadJobs() {
 
 /**
  * @param {Job[]} jobs
- * @param {{query?: string, states?: string[], fields?: string[], workingHours?: string[], center?: Coordinates, radiusKm?: number}} filters
+ * @param {{query?: string, states?: string[], fields?: string[], workingHours?: string[], orgTypes?: string[], center?: Coordinates, radiusKm?: number}} filters
  */
-export function filterJobs(jobs, { query = '', states = [], fields = [], workingHours = [], center, radiusKm = 0 }) {
+export function filterJobs(jobs, { query = '', states = [], fields = [], workingHours = [], orgTypes = [], center, radiusKm = 0 }) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);
   const selectedStates = new Set(states);
   const selectedFields = new Set(fields);
   const selectedHours = new Set(workingHours);
+  const selectedOrgTypes = new Set(orgTypes);
   const matches = jobs.filter(job => (!selectedStates.size || job.states.some(state => selectedStates.has(state))) &&
     (!selectedFields.size || selectedFields.has(job.jobField ?? '')) &&
     (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
+    (!selectedOrgTypes.size || selectedOrgTypes.has(job.orgType)) &&
     words.every(word => job.searchTitle.includes(word)));
   if (!center) return matches;
 

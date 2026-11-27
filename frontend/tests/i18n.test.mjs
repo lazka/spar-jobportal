@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { changeLanguage, initLanguage, jobLabel, locale, t } from '../i18n.js';
+import { UNKNOWN_ORG_TYPE } from '../jobs.js';
 
 await test('German and English use their own labels, plurals and number formatting', async () => {
   await initLanguage();
@@ -17,6 +18,7 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(t('moreJobsAtSite', { count: 1 }), '+ 1 weitere Stelle');
   assert.equal(t('moreJobsAtSite', { count: 2 }), '+ 2 weitere Stellen');
   assert.equal(jobLabel('state', 'Wien, Tirol'), 'Wien, Tirol');
+  assert.equal(jobLabel('organisation', UNKNOWN_ORG_TYPE), 'Unbekannt');
 
   await changeLanguage('en');
   assert.equal(locale(), 'en-GB');
@@ -33,4 +35,6 @@ await test('German and English use their own labels, plurals and number formatti
   assert.equal(jobLabel('state', 'Wien, Tirol'), 'Vienna, Tyrol');
   assert.equal(jobLabel('employment', 'Vollzeit'), 'Full-time');
   assert.equal(jobLabel('field', 'Unbekanntes Berufsfeld'), 'Unbekanntes Berufsfeld');
+  assert.equal(jobLabel('organisation', UNKNOWN_ORG_TYPE), 'Unknown');
+  assert.equal(jobLabel('organisation', 'INTERSPAR'), 'INTERSPAR');
 });

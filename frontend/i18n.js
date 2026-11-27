@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import { UNKNOWN_ORG_TYPE } from './jobs.js';
 import { de, en, englishLabel } from './translations.js';
 
 const preferenceKey = 'spar-jobportal-language';
@@ -60,7 +61,11 @@ export function translateMarkup(root) {
   }
 }
 
-/** @type {typeof englishLabel} */
+/**
+ * @param {Parameters<typeof englishLabel>[0] | 'organisation'} category
+ * @param {string} value
+ */
 export function jobLabel(category, value) {
+  if (category === 'organisation') return value === UNKNOWN_ORG_TYPE ? t('unknownOrganisation') : value;
   return language() === 'en' ? englishLabel(category, value) : value;
 }

@@ -70,7 +70,9 @@ class UpdateTests(unittest.TestCase):
         return updater.main(args)
 
     def test_update_uses_only_local_locations_and_preserves_new_jobs(self):
-        updater.save_json(updater.ADDRESSES, {"10": {"address": "Hauptplatz 1, Graz"}})
+        updater.save_json(
+            updater.ADDRESSES, {"10": {"address": "Hauptplatz 1, Graz", "orgType": "SPAR"}}
+        )
         updater.save_json(
             updater.GEOCODES,
             {
@@ -98,6 +100,7 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(datetime.fromisoformat(dataset["lastUpdated"]).utcoffset(), timedelta(0))
         known, unknown = dataset["jobs"]
         self.assertEqual(known["unit"]["coordinates"], [47, 15])
+        self.assertEqual(known["unit"]["orgType"], "SPAR")
         self.assertNotIn("addressSourceJobId", known["unit"])
         self.assertEqual(known["title"], "Originaltitel (m/w/d)")
         self.assertEqual(known["detailUrl"], "https://jobs.spar.at/posting?jobId=1")
@@ -106,6 +109,7 @@ class UpdateTests(unittest.TestCase):
             {
                 "id": 20,
                 "name": "SPAR Filiale",
+                "orgType": None,
                 "address": None,
                 "coordinates": None,
                 "relatedShop": None,
@@ -217,7 +221,13 @@ class UpdateTests(unittest.TestCase):
             patch.object(
                 updater,
                 "fetch_site_details",
-                return_value=spar.SiteDetails("Site address", "INTERSPAR"),
+                side_effect=[
+                    spar.SiteDetails("Site address", "INTERSPAR"),
+                    spar.SiteDetails(),
+                    spar.SiteDetails(),
+                    spar.SiteDetails(),
+                    spar.SiteDetails(),
+                ],
             ) as detail,
             patch.object(
                 updater,
@@ -233,7 +243,7 @@ class UpdateTests(unittest.TestCase):
             self.assertEqual(self.run_command("maintain"), 0)
             self.assertEqual(updater.OUTPUT.read_bytes(), previous)
         fetch_jobs.assert_not_called()
-        self.assertEqual([call.args[1] for call in detail.call_args_list], [1])
+        self.assertEqual([call.args[1] for call in detail.call_args_list], [1, 3, 4, 3, 4])
         self.assertEqual(
             [call.args[1] for call in geocode.call_args_list], ["Site address", "Corrected query"]
         )
@@ -249,9 +259,61 @@ class UpdateTests(unittest.TestCase):
         )
         jobs = updater.read_object(updater.OUTPUT)["jobs"]
         self.assertEqual(
+            [job["unit"]["orgType"] for job in jobs], ["INTERSPAR", "INTERSPAR", None, None]
+        )
+        self.assertEqual(
             [job["unit"]["coordinates"] for job in jobs], [[47, 15], [47, 15], [48, 14], None]
         )
         self.assertEqual(jobs[2]["unit"]["address"], "Manual address")
+
+    def test_maintain_backfills_details_for_pinned_units_without_replacing_addresses(self):
+        updater.save_json(
+            updater.OUTPUT,
+            [
+                {"id": 1, "unit": {"id": 10, "name": "Pinned unit"}},
+                {"id": 2, "unit": {"id": 20, "name": "Another pinned unit"}},
+            ],
+        )
+        updater.save_json(
+            updater.ADDRESSES, {"10": {"name": "Pinned unit", "address": "Verified 1/2"}}
+        )
+        updater.save_json(
+            updater.CORRECTIONS,
+            {
+                "10": {"latitude": 48, "longitude": 14, "source": "Map"},
+                "20": {"latitude": 47, "longitude": 15, "source": "Map"},
+            },
+        )
+        with (
+            patch.object(
+                updater,
+                "fetch_site_details",
+                side_effect=[
+                    spar.SiteDetails("Other address", "SPAR"),
+                    spar.SiteDetails(None, "SES"),
+                ],
+            ) as detail,
+            patch.object(updater, "geocode") as geocode,
+            self.assertLogs(updater.LOGGER, level="INFO") as progress,
+        ):
+            self.assertEqual(self.run_command("maintain", "--verbose"), 0)
+        self.assertEqual(
+            [log.getMessage() for log in progress.records],
+            ["Unit details 1/2: unit 10, job 1", "Unit details 2/2: unit 20, job 2"],
+        )
+        self.assertEqual([call.args[1] for call in detail.call_args_list], [1, 2])
+        geocode.assert_not_called()
+        self.assertEqual(
+            updater.read_object(updater.ADDRESSES),
+            {
+                "10": {"name": "Pinned unit", "address": "Verified 1/2", "orgType": "SPAR"},
+                "20": {"name": "Another pinned unit", "orgType": "SES"},
+            },
+        )
+        jobs = updater.read_object(updater.OUTPUT)["jobs"]
+        self.assertEqual([job["unit"]["orgType"] for job in jobs], ["SPAR", "SES"])
+        self.assertEqual([job["unit"]["coordinates"] for job in jobs], [[48, 14], [47, 15]])
+        self.assertEqual(jobs[0]["unit"]["address"], "Verified 1/2")
 
     def test_offline_maintenance_applies_verified_corrections_without_requests(self):
         updater.save_json(
@@ -288,15 +350,18 @@ class UpdateTests(unittest.TestCase):
         updater.save_json(
             updater.CORRECTIONS, {"1": "First site", "2": "Deferred site", "3": "First site"}
         )
-        with patch.object(
-            updater,
-            "geocode",
-            return_value={
-                "status": "matched",
-                "latitude": 47,
-                "longitude": 15,
-            },
-        ) as geocode:
+        with (
+            patch.object(updater, "fetch_site_details", return_value=spar.SiteDetails()),
+            patch.object(
+                updater,
+                "geocode",
+                return_value={
+                    "status": "matched",
+                    "latitude": 47,
+                    "longitude": 15,
+                },
+            ) as geocode,
+        ):
             self.assertEqual(self.run_command("maintain", "--max-requests", "1"), 0)
         self.assertEqual([call.args[1] for call in geocode.call_args_list], ["First site"])
         jobs = updater.read_object(updater.OUTPUT)["jobs"]
