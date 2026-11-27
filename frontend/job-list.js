@@ -1,6 +1,6 @@
 import { node } from './dom.js';
 import { jobLabel, t } from './i18n.js';
-import { distanceKm } from './jobs.js';
+import { distanceKm, jobLocation } from './jobs.js';
 
 /** @import { Coordinates, Job } from './jobs.js' */
 /** @typedef {((key: string) => void) | null} ShowSite */
@@ -67,8 +67,9 @@ function jobCard(job, center, onShowSite, onShare) {
   const title = node('h3', job.title || t('untitledJob'));
   if (job.title) title.lang = 'de-AT';
   const location = node('p', '', 'card-location');
-  const locationText = node('span', job.location || t('noWorkLocation'));
-  if (job.location) {
+  const place = jobLocation(job);
+  const locationText = node('span', place || t('noWorkLocation'));
+  if (place) {
     locationText.lang = 'de-AT';
     location.append(cardIcon('M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0ZM15 10a3 3 0 1 1-6 0 3 3 0 1 1 6 0Z'));
   }

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
@@ -68,7 +69,7 @@ def resolve_unit(
     override = as_object(correction)
     query = unit_query(entry, correction)
     point = coordinates(override)
-    address = entry.get("address")
+    address = clean_text(entry.get("address"))
     if point is not None:
         address = clean_text(override.get("address")) or address
     else:
@@ -76,6 +77,9 @@ def resolve_unit(
         if cached.get("status") == "matched":
             point = coordinates(cached)
             address = address or (query if point is not None else None)
+    if address:
+        # Keep the country in the source address and geocoding query, not the export.
+        address = re.sub(r"(?:^|,\s*)Österreich$", "", address).rstrip() or None
     return {
         "id": unit_id,
         "name": unit.get("name"),

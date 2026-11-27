@@ -211,7 +211,7 @@ class UpdateTests(unittest.TestCase):
                     "latitude": 48,
                     "longitude": 14,
                     "source": "Verified map",
-                    "address": "Manual address",
+                    "address": "Manual address, Österreich",
                 },
                 "30": {"address": "Corrected query"},
             },
@@ -222,7 +222,7 @@ class UpdateTests(unittest.TestCase):
                 updater,
                 "fetch_site_details",
                 side_effect=[
-                    spar.SiteDetails("Site address", "INTERSPAR"),
+                    spar.SiteDetails("Site address, Österreich", "INTERSPAR"),
                     spar.SiteDetails(),
                     spar.SiteDetails(),
                     spar.SiteDetails(),
@@ -245,13 +245,14 @@ class UpdateTests(unittest.TestCase):
         fetch_jobs.assert_not_called()
         self.assertEqual([call.args[1] for call in detail.call_args_list], [1, 3, 4, 3, 4])
         self.assertEqual(
-            [call.args[1] for call in geocode.call_args_list], ["Site address", "Corrected query"]
+            [call.args[1] for call in geocode.call_args_list],
+            ["Site address, Österreich", "Corrected query"],
         )
         self.assertEqual(
             updater.read_object(updater.ADDRESSES),
             {
                 "10": {
-                    "address": "Site address",
+                    "address": "Site address, Österreich",
                     "name": "SM3-04-588 Großweikersdorf",
                     "orgType": "INTERSPAR",
                 },
@@ -264,7 +265,10 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(
             [job["unit"]["coordinates"] for job in jobs], [[47, 15], [47, 15], [48, 14], None]
         )
-        self.assertEqual(jobs[2]["unit"]["address"], "Manual address")
+        self.assertEqual(
+            [job["unit"]["address"] for job in jobs],
+            ["Site address", "Site address", "Manual address", None],
+        )
 
     def test_maintain_backfills_details_for_pinned_units_without_replacing_addresses(self):
         updater.save_json(

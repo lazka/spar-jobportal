@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs, summarizeSiteJobs, UNKNOWN_ORG_TYPE } from '../jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, jobLocation, normalizeJobDataset, normalizeJobs, siteLocation, summarizeSiteJobs, UNKNOWN_ORG_TYPE } from '../jobs.js';
 
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
@@ -28,6 +28,21 @@ await test('dataset age is relative and localized', () => {
   assert.equal(formatDatasetAge(lastUpdated, 'en-GB', fourHoursLater), '4 hours ago');
   assert.equal(formatDatasetAge(lastUpdated, 'de-AT', fourHoursLater), 'vor 4 Stunden');
   assert.equal(formatDatasetAge(lastUpdated, 'en-GB', Date.parse(lastUpdated)), 'now');
+});
+
+await test('job cards prefer the unit address and fall back to the listing location', () => {
+  assert.equal(jobLocation(jobs[0]), 'Beispielstraße');
+  assert.equal(jobLocation({ unit: { address: ' ' }, location: ' Ottakring ' }), 'Ottakring');
+  assert.equal(jobLocation(jobs[2]), '');
+});
+
+await test('map sites prefer a shared unit address and fall back to an unambiguous location', () => {
+  const fallback = { location: 'Ottakring' };
+  assert.equal(siteLocation([jobs[0], fallback]), 'Beispielstraße');
+  assert.equal(siteLocation([fallback, { ...fallback, unit: { address: null } }]), 'Ottakring');
+  assert.equal(siteLocation([fallback, { location: 'Hernals' }]), undefined);
+  assert.equal(siteLocation([jobs[0], { ...fallback, unit: { address: 'Andere Straße' } }]), undefined);
+  assert.equal(siteLocation([{}]), undefined);
 });
 
 await test('title search matches accents and ß and combines with dropdown filters', () => {

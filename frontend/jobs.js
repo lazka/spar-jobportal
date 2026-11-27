@@ -128,6 +128,19 @@ export function filterJobsInMapView(jobs, contains) {
   return jobs.filter(job => job.siteKey && job.unit?.coordinates && contains(job.unit.coordinates));
 }
 
+/** @param {RawJob} job */
+export function jobLocation(job) {
+  return job.unit?.address?.trim() || job.location?.trim() || '';
+}
+
+/** @param {RawJob[]} jobs */
+export function siteLocation(jobs) {
+  const addresses = new Set(jobs.map(job => job.unit?.address?.trim()).filter(Boolean));
+  const labels = addresses.size ? addresses : new Set(jobs.map(jobLocation).filter(Boolean));
+  // A shared pin need not have a single address or fallback location.
+  return labels.size === 1 ? labels.values().next().value : undefined;
+}
+
 /** @param {Job[]} jobs */
 export function groupSites(jobs) {
   /** @type {Map<string, Site>} */

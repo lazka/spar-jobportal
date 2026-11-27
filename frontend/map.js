@@ -1,6 +1,6 @@
 import { node } from './dom.js';
 import { jobLabel, locale, t } from './i18n.js';
-import { summarizeSiteJobs } from './jobs.js';
+import { siteLocation, summarizeSiteJobs } from './jobs.js';
 
 /** @import { Coordinates, Site } from './jobs.js' */
 /** @import { Circle, LatLngBoundsLiteral, Marker } from 'leaflet' */
@@ -81,15 +81,14 @@ export function createMap(container, onSelectSite) {
     markers.clear();
     for (const [key, site] of sites) {
       const count = site.jobs.length;
-      const addresses = [...new Set(site.jobs.map(job => job.unit?.address).filter(Boolean))];
-      const address = addresses.length === 1 ? addresses[0] : undefined;
+      const location = siteLocation(site.jobs);
       const orgType = site.jobs[0]?.unit?.orgType;
       const marker = L.marker(site.pair, { icon: pin(count, 29) });
       jobCounts.set(marker, count);
       const popup = node('div');
       const heading = node('div', '', 'map-popup-heading');
-      const headingText = node('strong', address ?? undefined);
-      if (address) headingText.lang = 'de-AT';
+      const headingText = node('strong', location);
+      if (location) headingText.lang = 'de-AT';
       heading.append(headingText);
       if (orgType && site.jobs.every(job => job.unit?.orgType === orgType)) {
         heading.append(' ', node('span', orgType, 'tag tag-neutral'));
@@ -122,9 +121,9 @@ export function createMap(container, onSelectSite) {
       // Keep the close button clear of the layer switch on narrow maps.
       marker.bindPopup(popup, { autoPanPaddingTopLeft: [5, 70] });
       const translate = () => {
-        marker.options.title = `${address || t('mapSite')}: ${t('jobCount', { count })}`;
+        marker.options.title = `${location || t('mapSite')}: ${t('jobCount', { count })}`;
         marker.getElement()?.setAttribute('title', marker.options.title);
-        if (!address) headingText.textContent = t('jobsAtSite');
+        if (!location) headingText.textContent = t('jobsAtSite');
         for (const translateJob of translateJobs) translateJob();
         if (more) more.textContent = t('moreJobsAtSite', { count: remaining });
         button.textContent = t('showJobsAtSite', { count });
