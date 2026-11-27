@@ -625,4 +625,6 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   #field-options { width: 100%; }
   #find-place { grid-column: 1 / -1; justify-self: end; margin-block-start: .375rem; }
   .place-info .search-note { width: min(20rem, 100%); }
+  .footer-inner { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; }
+  .footer-update { margin-inline-start: 0; text-align: start; }
 }
