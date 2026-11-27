@@ -1,6 +1,6 @@
 import { createJobList } from './job-list.js';
 import { createJobShare } from './job-share.js';
-import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, loadJobs } from './jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, loadJobs, siteLocation } from './jobs.js';
 import { createMap } from './map.js';
 import { searchPlaces } from './place-search.js';
 import { changeLanguage, initLanguage, jobLabel, language, locale, t, translateMarkup } from './i18n.js';
@@ -62,6 +62,13 @@ function createMultiSelect(category, emptyLabel, onChange) {
   return {
     values,
     close,
+    /** @param {string} value */
+    remove(value) {
+      for (const input of options.querySelectorAll('input')) {
+        if (input.value === value) input.checked = false;
+      }
+      onChange();
+    },
     /** @param {(string | null | undefined)[]} items */
     setOptions(items) {
       const checked = new Set(values());
@@ -84,7 +91,6 @@ function createMultiSelect(category, emptyLabel, onChange) {
       valueLabel.textContent = selected.length === 1 ? jobLabel(category, selected[0])
         : selected.length ? t('selectedOptions', { count: selected.length }) : t(emptyLabel);
       clear.hidden = selected.length === 0;
-      return selected.length;
     },
   };
 }
@@ -123,8 +129,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   let center = null;
   /** @type {Place[]} */
   let placeResults = [];
-  /** @type {'' | 'radiusStatus' | 'noPlace' | 'placeError' | 'searchingPlace'} */
+  /** @type {'' | 'noPlace' | 'placeError' | 'searchingPlace'} */
   let placeStatus = '';
+  let placeSearchVersion = 0;
   /** @type {number | undefined} */
   let debounce;
   const search = control('search', HTMLInputElement);
@@ -136,8 +143,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   const advancedToggle = control('advanced-title', HTMLButtonElement);
   const filters = control('filters', HTMLFormElement);
   const activeFilterActions = $('active-filter-actions');
-  const filterCount = $('filter-count');
   const resetFilters = control('reset-filters', HTMLButtonElement);
+  const filterBar = $('filter-bar');
+  const filterPills = $('filter-pills');
+  const resetAllFilters = control('reset-all-filters', HTMLButtonElement);
+  const nearby = control('nearby', HTMLFormElement);
   const place = control('place', HTMLInputElement);
   const radiusSelect = control('radius', HTMLSelectElement);
   const placeResult = control('place-result', HTMLSelectElement);
@@ -162,15 +172,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   const map = createMap($('map'), key => {
     selected = key;
+    renderActiveFilters();
     renderList();
-    (selected ? $('clear-site') : mapViewCheckbox).focus();
+    $('jobs-title').focus();
   });
 
   const jobCount = $('count');
   const shareJob = createJobShare(control('share-dialog', HTMLDialogElement));
   const jobList = createJobList({
     list: $('list'), more: $('more'), count: jobCount,
-    selection: $('selection'), message: $('message')
+    message: $('message')
   }, map ? key => {
     $('map-title').scrollIntoView({ block: 'nearest' });
     map.showSite(key);
@@ -184,6 +195,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderPlaceStatus();
     if (loadState === 'ready') {
       renderJobFilters();
+      renderActiveFilters();
       renderList(true);
     } else if (loadState === 'error') {
       jobList.showLoadError();
@@ -217,13 +229,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     const bounds = limitToMapView ? map?.getBounds() : undefined;
     const visibleJobs = bounds ? filterJobsInMapView(matches, pair => bounds.contains(pair)) : matches;
     const site = selected ? sites.get(selected) : undefined;
-    if (site && bounds && !bounds.contains(site.pair)) selected = null;
+    if (site && bounds && !bounds.contains(site.pair)) {
+      selected = null;
+      renderActiveFilters();
+    }
     clearKeyword.hidden = !search.value;
     field.renderSummary();
-    const activeFilters = [search.value.trim(), state.renderSummary(),
-      employment.renderSummary(), organisation.renderSummary(), showUnmapped].filter(Boolean).length;
-    filterCount.textContent = t('activeFilters', { count: activeFilters });
-    activeFilterActions.hidden = activeFilters === 0;
+    state.renderSummary();
+    employment.renderSummary();
+    organisation.renderSummary();
     unmappedButton.hidden = !showUnmapped && !unmapped.length;
     unmappedButton.textContent = t('unmappedCount', { count: unmapped.length });
     unmappedButton.setAttribute('aria-pressed', String(showUnmapped));
@@ -231,8 +245,78 @@ window.addEventListener('DOMContentLoaded', async () => {
     $('unmapped-radius-note').hidden = !center;
     mapViewNote.hidden = !limitToMapView;
     jobList.render((selected && site) ? site.jobs : visibleJobs, {
-      selected, center: center?.pair, preservePages, limitToMapView
+      center: center?.pair, preservePages, limitToMapView
     });
+  }
+
+  function renderActiveFilters() {
+    /** @type {{label: string, remove: () => void}[]} */
+    const pills = [];
+    if (center) {
+      const label = t('radiusStatus', { radius: radius(), place: center.label });
+      pills.push({ label: showUnmapped ? t('radiusPaused', { filter: label }) : label, remove: () => {
+        clearPlaceSelection();
+        refreshFilters();
+      } });
+    }
+    const keyword = search.value.trim();
+    if (keyword) pills.push({ label: `“${keyword}”`, remove: () => {
+      search.value = '';
+      refreshFilters();
+    } });
+
+    const selections = { field, state, employment, organisation };
+    /** @type {(keyof typeof selections)[]} */
+    const categories = ['field', 'state', 'employment', 'organisation'];
+    for (const category of categories) {
+      const select = selections[category];
+      for (const value of select.values()) {
+        pills.push({ label: jobLabel(category, value), remove: () => select.remove(value) });
+      }
+    }
+    activeFilterActions.hidden = !(
+      keyword || state.values().length || employment.values().length || organisation.values().length ||
+      showUnmapped || mapViewCheckbox.checked
+    );
+    if (showUnmapped) pills.push({ label: t('unmappedFilter'), remove: () => {
+      showUnmapped = false;
+      refreshFilters();
+    } });
+    if (mapViewCheckbox.checked) pills.push({ label: t('filterMapView'), remove: () => {
+      mapViewCheckbox.checked = false;
+      renderActiveFilters();
+      renderList();
+    } });
+    const site = selected ? sites.get(selected) : undefined;
+    if (site) {
+      const location = siteLocation(site.jobs);
+      pills.push({ label: location ? t('mapSiteFilter', { location }) : t('selectedMapSite'), remove: () => {
+        selected = null;
+        map?.closePopup();
+        renderActiveFilters();
+        renderList();
+      } });
+    }
+
+    filterBar.hidden = pills.length === 0;
+    filterPills.replaceChildren(...pills.map(({ label, remove }, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'filter-pill';
+      button.setAttribute('aria-label', t('removeFilter', { filter: label }));
+      const text = document.createElement('span');
+      text.textContent = label;
+      const icon = document.createElement('span');
+      icon.textContent = '×';
+      icon.setAttribute('aria-hidden', 'true');
+      button.append(text, icon);
+      button.addEventListener('click', () => {
+        remove();
+        const remaining = filterPills.querySelectorAll('button');
+        (remaining[Math.min(index, remaining.length - 1)] ?? advancedToggle).focus();
+      });
+      return button;
+    }));
   }
 
   function applyFilters(fitView = !mapViewCheckbox.checked) {
@@ -248,10 +332,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     const activeCenter = showUnmapped ? undefined : center?.pair;
     matches = showUnmapped ? unmapped : matchingFilters;
     if (activeCenter) matches = filterJobs(matches, { center: activeCenter, radiusKm });
-    selected = null;
     sites = groupSites(matches);
+    if (selected && !sites.has(selected)) selected = null;
     map?.draw(sites, activeCenter, radiusKm);
     if (fitView && !showUnmapped) map?.fit();
+    renderActiveFilters();
     renderList();
   }
 
@@ -264,7 +349,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   function selectPlace(result) {
     center = result;
     clearPlace.hidden = false;
-    placeStatus = 'radiusStatus';
+    placeStatus = '';
     renderPlaceStatus();
     applyFilters(true);
   }
@@ -276,18 +361,32 @@ window.addEventListener('DOMContentLoaded', async () => {
     $('place-status').textContent = status + keptRadius;
   }
 
+  function clearPlaceSelection() {
+    placeSearchVersion++;
+    center = null;
+    placeResults = [];
+    clearPlace.hidden = true;
+    $('place-choices').hidden = true;
+    placeStatus = '';
+    renderPlaceStatus();
+    place.value = '';
+  }
+
   /** @param {Event} event */
   async function findPlace(event) {
     event.preventDefault();
     const query = place.value.trim();
     if (!query || findPlaceButton.disabled) return;
+    const version = placeSearchVersion;
     findPlaceButton.disabled = true;
     clearPlace.disabled = true;
     placeStatus = 'searchingPlace';
     renderPlaceStatus();
     $('place-choices').hidden = true;
     try {
-      placeResults = await searchPlaces(query, language());
+      const results = await searchPlaces(query, language());
+      if (version !== placeSearchVersion) return;
+      placeResults = results;
       if (!placeResults.length) {
         placeStatus = 'noPlace';
         renderPlaceStatus();
@@ -300,6 +399,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
       selectPlace(placeResults[0]);
     } catch (error) {
+      if (version !== placeSearchVersion) return;
       placeStatus = 'placeError';
       renderPlaceStatus();
       console.error(error);
@@ -342,11 +442,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     window.clearTimeout(debounce);
     window.setTimeout(applyFilters, 0);
   });
-  $('clear-site').addEventListener('click', () => {
+  resetAllFilters.addEventListener('click', () => {
     selected = null;
-    map?.closePopup();
-    renderList();
-    (filters.hidden ? place : search).focus();
+    nearby.reset();
+    clearPlaceSelection();
+    filters.reset();
+    advancedToggle.focus();
   });
   unmappedButton.addEventListener('click', () => {
     showUnmapped = !showUnmapped;
@@ -360,25 +461,21 @@ window.addEventListener('DOMContentLoaded', async () => {
         showUnmapped = false;
         applyFilters();
       } else {
+        renderActiveFilters();
         renderList();
       }
     });
     map.onViewChange(() => { if (mapViewCheckbox.checked) renderList(true); });
   }
-  $('nearby').addEventListener('submit', findPlace);
+  nearby.addEventListener('submit', findPlace);
   radiusSelect.addEventListener('change', () => { if (center) selectPlace(center); });
   placeResult.addEventListener('change', () => {
     const result = placeResults[Number(placeResult.value)];
     if (result) selectPlace(result);
   });
   clearPlace.addEventListener('click', () => {
-    center = null;
-    clearPlace.hidden = true;
-    $('place-choices').hidden = true;
-    placeStatus = '';
-    renderPlaceStatus();
-    place.value = '';
-    applyFilters();
+    clearPlaceSelection();
+    refreshFilters();
     place.focus();
   });
   applyFilters();

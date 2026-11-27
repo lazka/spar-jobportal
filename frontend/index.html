@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inoffizielles SPAR-Jobportal</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <style>.awaiting-language body { visibility: hidden; }</style>
   <script>
     try {
@@ -16,13 +17,13 @@
     }
   </script>
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="./styles.css?v=inline-place-info">
+  <link rel="stylesheet" href="./styles.css?v=filter-row-inset-2">
   <script defer src="./vendor/leaflet/leaflet.js"></script>
   <script defer src="./vendor/leaflet.markercluster/leaflet.markercluster-global.js"></script>
   <script type="importmap">
     {"imports":{"i18next":"./vendor/i18next/i18next.js","uqr":"./vendor/uqr/index.mjs"}}
   </script>
-  <script type="module" src="./app.js?v=field-filter" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
+  <script type="module" src="./app.js?v=active-filter-pills-3" onerror="document.documentElement.classList.remove('awaiting-language')"></script>
 </head>
 <body>
   <main>
@@ -61,7 +62,7 @@
             </div>
             <label>
               <span class="filter-label" data-i18n="radius">Umkreis</span>
-              <span class="radius-select">
+              <span class="select-control">
                 <select id="radius">
                   <option value="2">2 km</option>
                   <option value="5">5 km</option>
@@ -86,7 +87,10 @@
               </div>
             </div>
             <button class="button-primary" id="find-place" type="submit" data-i18n="findPlace">Suchen</button>
-            <label class="wide" id="place-choices" hidden><span class="filter-label" data-i18n="foundPlace">Gefundener Ort</span><select id="place-result"></select></label>
+            <label class="wide" id="place-choices" hidden>
+              <span class="filter-label" data-i18n="foundPlace">Gefundener Ort</span>
+              <span class="select-control"><select id="place-result"></select></span>
+            </label>
           </form>
           <p id="place-status" role="status"></p>
         </div>
@@ -94,8 +98,7 @@
           <div class="advanced-header">
             <button class="advanced-toggle" id="advanced-title" type="button" aria-expanded="false" aria-controls="filters"><span data-i18n="advanced">Weitere Filter</span></button>
             <div class="active-filter-actions" id="active-filter-actions" hidden>
-              <span class="tag" id="filter-count"></span>
-              <button class="reset-filters" id="reset-filters" type="reset" form="filters" data-i18n="resetFilters">Filter zurücksetzen</button>
+              <button class="reset-filters" id="reset-filters" type="reset" form="filters" data-i18n="resetFilters">Weitere Filter zurücksetzen</button>
             </div>
           </div>
           <form class="filters" id="filters" role="search" aria-labelledby="advanced-title" autocomplete="off" hidden>
@@ -149,17 +152,20 @@
           </form>
         </div>
       </div>
+      <section class="filter-bar" id="filter-bar" aria-label="Aktive Filter" data-i18n-aria-label="activeFilters" hidden>
+        <div class="filter-pills" id="filter-pills"></div>
+        <button class="reset-filters" id="reset-all-filters" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 1 2.6 6.4M3 5v7h7"/></svg>
+          <span data-i18n="resetAllFilters">Filter zurücksetzen</span>
+        </button>
+      </section>
       <div class="layout">
         <section class="panel" aria-labelledby="jobs-title">
           <div class="panel-head">
-            <h2 id="jobs-title" data-i18n="jobs">Offene Stellen</h2>
+            <h2 id="jobs-title" data-i18n="jobs" tabindex="-1">Offene Stellen</h2>
             <p class="muted" id="count" role="status" data-i18n="loadingJobs">Stellen werden geladen …</p>
           </div>
           <p class="notice muted" id="unmapped-note" hidden><span data-i18n="unmappedNote">Nicht auf der Karte: Standortdaten fehlen.</span> <span id="unmapped-radius-note" data-i18n="unmappedRadiusNote" hidden>Der gewählte Umkreis gilt für sie nicht.</span></p>
-          <div class="notice" id="selection" hidden>
-            <p data-i18n="siteSelection">Nur Stellen am ausgewählten Kartenstandort</p>
-            <button type="button" id="clear-site" data-i18n="clearSite">Standortauswahl aufheben</button>
-          </div>
           <p class="notice" id="message" hidden></p>
           <ul id="list"></ul>
           <button type="button" id="more" hidden></button>

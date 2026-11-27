@@ -136,11 +136,11 @@ function jobCard(job, center, onShowSite, onShare) {
 }
 
 /**
- * @param {{list: HTMLElement, more: HTMLElement, count: HTMLElement, selection: HTMLElement, message: HTMLElement}} elements
+ * @param {{list: HTMLElement, more: HTMLElement, count: HTMLElement, message: HTMLElement}} elements
  * @param {ShowSite} onShowSite
  * @param {ShareJob} onShare
  */
-export function createJobList({ list, more, count, selection, message }, onShowSite, onShare) {
+export function createJobList({ list, more, count, message }, onShowSite, onShare) {
   /** @type {Job[]} */
   let shown = [];
   let rendered = 0;
@@ -167,13 +167,12 @@ export function createJobList({ list, more, count, selection, message }, onShowS
 
   /**
    * @param {Job[]} jobs
-   * @param {{selected: string | null, center?: Coordinates, preservePages?: boolean, limitToMapView?: boolean}} options
+   * @param {{center?: Coordinates, preservePages?: boolean, limitToMapView?: boolean}} options
    */
-  function render(jobs, { selected, center: activeCenter, preservePages, limitToMapView }) {
+  function render(jobs, { center: activeCenter, preservePages, limitToMapView }) {
     shown = jobs;
     center = activeCenter;
     count.textContent = t('jobCount', { count: shown.length });
-    selection.hidden = !selected;
     message.hidden = shown.length !== 0;
     message.textContent = t(limitToMapView ? 'noJobsInMapView' : 'noJobs');
     list.replaceChildren();

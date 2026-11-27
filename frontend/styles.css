@@ -83,6 +83,7 @@ button, select { cursor: pointer; }
   box-shadow: 0 .25rem 1rem #3200000d;
   margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
+.search-panel:has(+ .filter-bar:not([hidden])) { margin-bottom: .625rem; }
 .filters {
   display: grid;
   align-items: end;
@@ -97,22 +98,50 @@ button, select { cursor: pointer; }
   border-top: 1px solid var(--line);
   border-radius: 0 0 var(--radius) var(--radius);
 }
-.advanced-header, .active-filter-actions {
+.advanced-header, .filter-bar, .filter-pills {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   column-gap: .625rem;
 }
 .advanced-header { padding-inline: 1rem; }
-.advanced-header button {
+.advanced-header button, .filter-bar .reset-filters {
   padding: 0;
   border: 0;
   background: transparent;
   color: var(--deep-red);
 }
-.advanced-header button:enabled:hover { background: transparent; text-decoration: underline; }
+.advanced-header button:enabled:hover, .filter-bar .reset-filters:enabled:hover {
+  background: transparent;
+  text-decoration: underline;
+}
 .advanced-toggle { display: inline-flex; align-items: center; gap: .5rem; }
 .reset-filters { text-decoration: underline; text-underline-offset: .18em; }
+.filter-bar {
+  gap: .375rem 1rem;
+  margin-inline: .375rem;
+  margin-block-end: .875rem;
+}
+.filter-bar button.filter-pill, .filter-bar .reset-filters { font-size: .75rem; }
+.filter-pills { flex: 1 1 16rem; min-width: 0; gap: .375rem; }
+.filter-bar .reset-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  margin-inline-start: auto;
+}
+.filter-bar .reset-filters svg { flex: none; width: 1em; height: 1em; }
+button.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
+  min-height: 2rem;
+  padding: .25rem .65rem;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.filter-pill span[aria-hidden] { flex: none; }
 #filters {
   grid-template-columns: minmax(12rem, 1.6fr) repeat(3, minmax(0, 1fr));
   padding-top: 0;
@@ -137,7 +166,7 @@ button, select { cursor: pointer; }
   list-style: none;
 }
 .multi-select-control summary::-webkit-details-marker { display: none; }
-.multi-select-control summary::after, .radius-select::after, .advanced-toggle::before {
+.multi-select-control summary::after, .select-control::after, .advanced-toggle::before {
   content: "";
   flex: none;
   width: .45rem;
@@ -149,14 +178,14 @@ button, select { cursor: pointer; }
 }
 .advanced-toggle[aria-expanded="false"]::before { rotate: -45deg; translate: none; }
 .multi-select-control details[open] summary::after { rotate: 225deg; translate: 0 .125rem; }
-.radius-select { position: relative; color: var(--ink); }
-.radius-select::after {
+.select-control { position: relative; color: var(--ink); }
+.select-control::after {
   position: absolute;
   inset-block-start: calc(50% - .225rem);
   inset-inline-end: calc(var(--control-inset) + 1px);
   pointer-events: none;
 }
-.radius-select:has(select:open)::after { rotate: 225deg; translate: 0 .125rem; }
+.select-control:has(select:open)::after { rotate: 225deg; translate: 0 .125rem; }
 .multi-select-control:has(.multi-select-clear:not([hidden])) summary { padding-inline-end: 2.75rem; }
 .multi-select-control summary span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .multi-select-options {
@@ -281,7 +310,7 @@ input, select, button, .button {
 input, select { width: 100%; font-weight: 400; }
 input::placeholder { color: var(--muted); opacity: 1; }
 select { padding-inline-end: .55rem; text-overflow: ellipsis; }
-.radius-select select { display: block; appearance: none; padding-inline-end: calc(var(--control-inset) + .85rem); }
+.select-control select { display: block; appearance: none; padding-inline-end: calc(var(--control-inset) + .85rem); }
 button, .button { font-weight: 700; text-align: center; }
 .button { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
 button:enabled:hover, .button:hover { border-color: var(--deep-red); background: var(--pale-red); color: var(--deep-red); }
