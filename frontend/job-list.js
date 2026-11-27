@@ -59,7 +59,7 @@ function jobCard(job, center, onShowSite, onShare) {
     const tags = node('div', '', 'card-tags');
     if (job.jobField) {
       const field = node('span', jobLabel('field', job.jobField), 'tag');
-      field.title = t('jobCategoryTag');
+      field.title = t('field');
       tags.append(field);
     }
     if (orgType) {
