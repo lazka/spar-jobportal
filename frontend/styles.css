@@ -98,24 +98,31 @@ button, select { cursor: pointer; }
   border-top: 1px solid var(--line);
   border-radius: 0 0 var(--radius) var(--radius);
 }
-.advanced-header, .filter-bar, .filter-pills {
+.filter-bar, .filter-pills {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   column-gap: .625rem;
 }
-.advanced-header { padding-inline: 1rem; }
-.advanced-header button, .filter-bar .reset-filters {
+.advanced-toggle, .filter-bar .reset-filters {
   padding: 0;
   border: 0;
   background: transparent;
   color: var(--deep-red);
 }
-.advanced-header button:enabled:hover, .filter-bar .reset-filters:enabled:hover {
-  background: transparent;
-  text-decoration: underline;
+.filter-bar .reset-filters:enabled:hover { background: transparent; }
+.advanced-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  width: 100%;
+  padding: .4rem 1rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: start;
 }
-.advanced-toggle { display: inline-flex; align-items: center; gap: .5rem; }
+.advanced-toggle[aria-expanded="true"] { border-radius: 0; }
+.advanced-toggle:focus-visible { outline-offset: -3px; }
 .reset-filters { text-decoration: underline; text-underline-offset: .18em; }
 .filter-bar {
   gap: .375rem 1rem;
@@ -166,7 +173,7 @@ button.filter-pill {
   list-style: none;
 }
 .multi-select-control summary::-webkit-details-marker { display: none; }
-.multi-select-control summary::after, .select-control::after, .advanced-toggle::before {
+.multi-select-control summary::after, .select-control::after, .advanced-toggle::after {
   content: "";
   flex: none;
   width: .45rem;
@@ -176,7 +183,7 @@ button.filter-pill {
   rotate: 45deg;
   translate: 0 -.125rem;
 }
-.advanced-toggle[aria-expanded="false"]::before { rotate: -45deg; translate: none; }
+.advanced-toggle[aria-expanded="true"]::after,
 .multi-select-control details[open] summary::after { rotate: 225deg; translate: 0 .125rem; }
 .select-control { position: relative; color: var(--ink); }
 .select-control::after {
@@ -670,7 +677,7 @@ body:has(.map-fullscreen[open]) { overflow: hidden; }
 
 @media (max-width: 550px) {
   .intro { padding-top: 1.1rem; }
-  .filters, .advanced-header, #place-status:not(:empty) { padding-inline: .75rem; }
+  .filters, .advanced-toggle, #place-status:not(:empty) { padding-inline: .75rem; }
   #filters .multi-select-filter { grid-column: 1 / -1; }
   .nearby { grid-template-columns: minmax(6rem, 28%) minmax(0, 1fr); }
   #field-options { width: 100%; }
