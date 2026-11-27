@@ -16,7 +16,9 @@ Open <http://127.0.0.1:8000/>. Both commands use Python 3 and neither needs `npm
 
 ## Static hosting
 
-Publish `index.html`, `favicon.svg`, `styles.css`, the top-level JavaScript modules, `spar_jobs_final.json`, and the `fonts/` and `vendor/` directories. Include the [root `LICENSE`](../LICENSE) alongside them. No npm install is needed on the host. All JavaScript, CSS, fonts, and library images are served from the same origin. The site still uses basemap.at map tiles and sends place searches to Nominatim. The QR library is loaded locally when the share dialog opens.
+Publish `index.html`, `favicon.svg`, `styles.css`, the top-level JavaScript modules, `spar_jobs_final.json`, both `bundeslaender*.txt` files, and the `fonts/` and `vendor/` directories. Include the [root `LICENSE`](../LICENSE) alongside them. No npm install is needed on the host. All JavaScript, CSS, fonts, and library images are served from the same origin. The site still uses basemap.at map tiles and sends place searches to Nominatim. The QR library is loaded locally when the share dialog opens.
+
+The state borders use the [BEV administrative boundaries dated 1 April 2026](https://doi.org/10.48677/2d7b8f24-deb9-42eb-82f2-c7c1c7ff7075), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The cadastral polygons were dissolved by state (`BL`), simplified to a 250 m tolerance for the overview and 20 m for the detail layer, then converted to boundary lines. The lines were reprojected from EPSG:31287 to WGS84 and stored as one [encoded polyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) per line, at four decimal places instead of five. The detail file loads on demand at zoom 11 and above.
 
 The job snapshot is generated separately; see [Updating job data](../README.md#updating-job-data). The footer shows how long ago the snapshot was written, with the exact Austrian local time on hover.
 

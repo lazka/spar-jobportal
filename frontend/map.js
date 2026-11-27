@@ -8,6 +8,40 @@ import { siteLocation, summarizeSiteJobs } from './jobs.js';
 /** @type {LatLngBoundsLiteral} */
 const austria = [[46.35, 9.48], [49.03, 17.2]];
 
+/** @param {string} encoded @returns {Coordinates[]} */
+function decodeBoundary(encoded) {
+  /** @type {Coordinates[]} */
+  const points = [];
+  let cursor = 0;
+  let latitude = 0;
+  let longitude = 0;
+  // Encoded polyline deltas, with four decimal places.
+  function readDelta() {
+    let value = 0;
+    let shift = 0;
+    let chunk;
+    do {
+      chunk = encoded.charCodeAt(cursor++) - 63;
+      value |= (chunk & 31) << shift;
+      shift += 5;
+    } while (chunk >= 32);
+    return (value >>> 1) ^ -(value & 1);
+  }
+  while (cursor < encoded.length) {
+    latitude += readDelta();
+    longitude += readDelta();
+    points.push([latitude / 10000, longitude / 10000]);
+  }
+  return points;
+}
+
+/** @param {string} filename */
+async function loadBoundaries(filename) {
+  const response = await fetch(new URL(filename, import.meta.url));
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return (await response.text()).trim().split(/\r?\n/).map(decodeBoundary);
+}
+
 /**
  * @param {HTMLElement} container
  * @param {(key: string) => void} onSelectSite
@@ -44,6 +78,44 @@ export function createMap(container, onSelectSite) {
   const street = L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png', tileOptions).addTo(map);
   const aerial = L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg', tileOptions);
   const layers = L.control.layers({ [t('streetMap')]: street, [t('aerialMap')]: aerial }, undefined, { collapsed: false }).addTo(map);
+  const boundaryPane = map.createPane('stateBoundaries');
+  boundaryPane.style.zIndex = '390';
+  boundaryPane.style.pointerEvents = 'none';
+  const boundaries = L.layerGroup([], {
+    attribution: '<a href="https://doi.org/10.48677/2d7b8f24-deb9-42eb-82f2-c7c1c7ff7075">BEV</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>',
+  });
+  const boundaryOptions = { pane: 'stateBoundaries', interactive: false };
+  const outline = L.polyline([], { ...boundaryOptions, color: 'var(--white)', weight: 4, opacity: .9 }).addTo(boundaries);
+  const stroke = L.polyline([], { ...boundaryOptions, color: 'var(--ink)', weight: 2, opacity: .95 }).addTo(boundaries);
+  /** @type {Coordinates[][]} */
+  let overview = [];
+  /** @type {Coordinates[][] | undefined} */
+  let detail;
+  let loadingDetail = false;
+  const detailZoom = 11;
+
+  function drawBoundaries() {
+    const lines = map.getZoom() >= detailZoom && detail ? detail : overview;
+    if (!lines.length) return;
+    outline.setLatLngs(lines);
+    stroke.setLatLngs(lines);
+    boundaries.addTo(map);
+  }
+  void loadBoundaries('./bundeslaender.txt').then(lines => {
+    overview = lines;
+    drawBoundaries();
+  }).catch(error => console.warn('Could not load Austrian state boundaries:', error));
+
+  map.on('zoomend', () => {
+    drawBoundaries();
+    if (map.getZoom() < detailZoom || detail || loadingDetail) return;
+    loadingDetail = true;
+    void loadBoundaries('./bundeslaender-detail.txt').then(lines => {
+      detail = lines;
+      drawBoundaries();
+    }).catch(error => console.warn('Could not load detailed state boundaries:', error))
+      .finally(() => { loadingDetail = false; });
+  });
   /** @type {WeakMap<Marker, number>} */
   const jobCounts = new WeakMap();
   const clusters = new L.MarkerClusterGroup({
