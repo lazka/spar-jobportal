@@ -3,7 +3,7 @@ import { jobLabel, locale, t } from './i18n.js';
 import { siteLocation, summarizeSiteJobs } from './jobs.js';
 
 /** @import { Coordinates, Site } from './jobs.js' */
-/** @import { Circle, LatLngBoundsLiteral, Marker } from 'leaflet' */
+/** @import { Circle, LatLngBoundsLiteral, Marker, MarkerCluster, MarkerClusterGroupOptions } from 'leaflet' */
 
 /** @type {LatLngBoundsLiteral} */
 const austria = [[46.35, 9.48], [49.03, 17.2]];
@@ -107,17 +107,21 @@ export function createMap(container, onSelectSite) {
     }).catch(error => console.warn('Could not load detailed state boundaries:', error))
       .finally(() => { loadingDetail = false; });
   });
-  const clusters = new L.MarkerClusterGroup({
+  /** @param {MarkerCluster} group */
+  const clusterLabel = group => t('mapClusterUnits', { count: group.getChildCount() });
+  /** @type {MarkerClusterGroupOptions & {clusterLabel: typeof clusterLabel}} */
+  const clusterOptions = {
     showCoverageOnHover: false,
     maxClusterRadius: 50,
+    clusterLabel,
     iconCreateFunction: group => {
-      const count = group.getChildCount();
-      group.options.title = t('mapClusterLocations', { count });
-      const label = node('span', count.toLocaleString(locale()));
+      group.options.title = clusterLabel(group);
+      const label = node('span', group.getChildCount().toLocaleString(locale()));
       label.setAttribute('aria-hidden', 'true');
       return L.divIcon({ html: label, className: 'map-cluster-marker', iconSize: [44, 44] });
     },
-  }).addTo(map);
+  };
+  const clusters = new L.MarkerClusterGroup(clusterOptions).addTo(map);
 
   /** @type {Map<string, {marker: Marker, translate: () => void}>} */
   const markers = new Map();

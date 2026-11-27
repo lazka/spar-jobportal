@@ -145,7 +145,7 @@ await test('working hours match any selected option and expand Geringfügig-Voll
   assert.deepEqual(filterJobs(scheduled, { workingHours: [] }), scheduled);
 });
 
-await test('site grouping combines jobs with shared coordinates and skips unmapped jobs', () => {
+await test('site grouping falls back to coordinates without unit IDs and skips unmapped jobs', () => {
   const extra = normalizeJobs([{ title: 'Lager', unit: { coordinates: [...vienna] } }])[0];
   const sites = groupSites([...jobs, extra]);
   assert.equal(sites.size, 2);
@@ -153,6 +153,23 @@ await test('site grouping combines jobs with shared coordinates and skips unmapp
   assert.ok(key);
   assert.deepEqual(sites.get(key), { pair: vienna, jobs: [jobs[0], extra] });
   assert.equal(jobs[2].siteKey, null);
+});
+
+await test('site grouping keeps different units at the same coordinates separate', () => {
+  const restaurant = { id: 12, address: 'Beispielstraße', coordinates: vienna };
+  /** @type {import('../jobs.js').JobUnit} */
+  const shop = { id: 34, address: 'Beispielstrasse', coordinates: [...vienna] };
+  const [cook, sales, waiter] = normalizeJobs([
+    { title: 'Koch', unit: restaurant },
+    { title: 'Verkauf', unit: shop },
+    { title: 'Service', unit: restaurant },
+  ]);
+
+  const sites = groupSites([cook, sales, waiter]);
+  assert.equal(sites.size, 2);
+  assert.ok(cook.siteKey && sales.siteKey);
+  assert.deepEqual(sites.get(cook.siteKey)?.jobs, [cook, waiter]);
+  assert.deepEqual(sites.get(sales.siteKey)?.jobs, [sales]);
 });
 
 await test('site previews group matching categories and hours before limiting to four rows', () => {

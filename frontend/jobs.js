@@ -1,5 +1,5 @@
 /** @typedef {[number, number]} Coordinates */
-/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null, relatedShop?: {pageUrl?: string | null} | null}} JobUnit */
+/** @typedef {{id?: number | string | null, address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null, relatedShop?: {pageUrl?: string | null} | null}} JobUnit */
 /**
  * @typedef {object} RawJob
  * @property {number} [id]
@@ -50,12 +50,14 @@ export function normalizeJobs(data) {
     const times = (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
     const workingHours = [...new Set(times.flatMap(time =>
       time === 'Geringfügig-Vollzeit' ? ['Geringfügig', 'Teilzeit', 'Vollzeit'] : [time]))];
+    let siteKey = coordinateKey(job.unit?.coordinates);
+    if (siteKey && job.unit?.id != null) siteKey += `:${job.unit.id}`;
     return {
       ...job,
       times,
       workingHours,
       orgType: job.unit?.orgType ?? UNKNOWN_ORG_TYPE,
-      siteKey: coordinateKey(job.unit?.coordinates),
+      siteKey,
       searchTitle: normalizeSearch(job.title)
     };
   });
