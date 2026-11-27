@@ -530,17 +530,15 @@
     "address": "Wiener Straße 24, 8820 Neumarkt",
     "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Neumarkt, Wiener Straße 24, 8820 Neumarkt."
   },
-  "153371": {
-    "address": "Dreschnigstraße 34, 9500 Villach",
-    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Villach, Dreschnigstraße, Dreschnigstraße 34, 9500 Villach."
-  },
   "155862": {
     "address": "Paul-Gerhardt-Straße 18, 9020 Klagenfurt",
     "note": "Manually verified Nominatim match against the catalogue: SPAR-Supermarkt Klgft., Paul-Gerhardt-Straße, Paul-Gerhardt-Straße 18, 9020 Klagenfurt."
   },
   "152301": {
-    "address": "Dreschnigstraße 34, 9500 Villach",
-    "note": "Manually verified Nominatim match against the catalogue: SPAR Supermarkt Villach, Dreschnigstraße, Dreschnigstraße 34, 9500 Villach."
+    "address": "Landesstraße 45, 9241 Wernberg",
+    "latitude": 46.5975327827,
+    "longitude": 13.9536237717,
+    "note": "Jobs 2021, 7773 and 3286 name the TANN Föderlach production site. Kärnten schnuppert confirms its address: https://www.kaernten-schnuppert.at/betrieb/spar-oesterreichische-warenhandels-ag/9241-wernberg-2/."
   },
   "151499": {
     "address": "Museumstraße 38, 6021 Innsbruck",

@@ -36,10 +36,8 @@ def load_corrections(path: Path) -> dict[str, Any]:
         entry = as_object(correction)
         address = correction if isinstance(correction, str) else entry.get("address")
         if {"latitude", "longitude"} & entry.keys():
-            if coordinates(entry) is None or not clean_text(entry.get("source")):
-                raise ValueError(
-                    f"Correction for unit {unit_id} needs valid coordinates and a source."
-                )
+            if coordinates(entry) is None:
+                raise ValueError(f"Correction for unit {unit_id} needs valid coordinates.")
             if "address" in entry and not clean_text(address):
                 raise ValueError(f"Correction for unit {unit_id} has an invalid address.")
         elif not clean_text(address):

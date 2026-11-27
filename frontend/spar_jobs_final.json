@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T13:55:00+00:00",
+  "lastUpdated": "2026-11-27T14:56:33+00:00",
   "jobs": [
     {
       "id": 8104,
@@ -5040,8 +5040,8 @@
         "orgType": "SPAR",
         "address": "Spar Straße 1, 9063 Maria Saal",
         "coordinates": [
-          46.6117857,
-          13.8554758
+          46.6860378,
+          14.3429158
         ],
         "relatedShop": {
           "bnr": "6415",
@@ -5331,10 +5331,10 @@
         "id": 152301,
         "name": "ZN06-915 Produktion",
         "orgType": "SPAR",
-        "address": "Dreschningstraße 34, 9500 Villach",
+        "address": "Landesstraße 45, 9241 Wernberg",
         "coordinates": [
-          46.6117857,
-          13.8554758
+          46.5975327827,
+          13.9536237717
         ],
         "relatedShop": null
       }
@@ -15288,10 +15288,10 @@
         "id": 152301,
         "name": "ZN06-915 Produktion",
         "orgType": "SPAR",
-        "address": "Dreschningstraße 34, 9500 Villach",
+        "address": "Landesstraße 45, 9241 Wernberg",
         "coordinates": [
-          46.6117857,
-          13.8554758
+          46.5975327827,
+          13.9536237717
         ],
         "relatedShop": null
       }
@@ -26620,10 +26620,10 @@
         "id": 152301,
         "name": "ZN06-915 Produktion",
         "orgType": "SPAR",
-        "address": "Dreschningstraße 34, 9500 Villach",
+        "address": "Landesstraße 45, 9241 Wernberg",
         "coordinates": [
-          46.6117857,
-          13.8554758
+          46.5975327827,
+          13.9536237717
         ],
         "relatedShop": null
       }
