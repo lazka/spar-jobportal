@@ -11,12 +11,13 @@ const pageSize = 25;
 /**
  * @param {string | null | undefined} url
  * @param {string} label
+ * @param {string} hostname
  */
-function jobLink(url, label) {
+function sparLink(url, label, hostname = 'jobs.spar.at') {
   if (!url) return null;
   try {
     const target = new URL(url);
-    if (target.protocol !== 'https:' || target.hostname !== 'jobs.spar.at') return null;
+    if (target.origin !== `https://${hostname}` || target.username || target.password) return null;
     const anchor = node('a', label, 'button');
     anchor.href = target.href;
     anchor.target = '_blank';
@@ -101,9 +102,9 @@ function jobCard(job, center, onShowSite, onShare) {
     item.append(metadata);
   }
   const actions = node('div', '', 'actions');
-  const posting = jobLink(job.detailUrl, t('posting'));
+  const posting = sparLink(job.detailUrl, t('posting'));
   if (posting) actions.append(posting);
-  const apply = jobLink(job.applicationUrl, t('apply'));
+  const apply = sparLink(job.applicationUrl, t('apply'));
   if (apply) {
     apply.classList.add('button-primary');
     actions.append(apply);
@@ -118,18 +119,34 @@ function jobCard(job, center, onShowSite, onShare) {
     button.addEventListener('click', () => onShowSite(siteKey));
     actions.append(button);
   }
-  if (posting) {
-    const button = node('button', '', 'share-job');
-    button.type = 'button';
-    button.title = t('shareJob');
-    button.setAttribute('aria-label', button.title);
-    button.setAttribute('aria-haspopup', 'dialog');
-    button.append(cardIcon('M18 2a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM6 9a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM18 16a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM8.6 10.5l6.8-4M8.6 13.5l6.8 4'));
-    button.addEventListener('click', () => {
-      button.focus();
-      void onShare(posting.href, job.title);
-    });
-    actions.append(button);
+  const shop = sparLink(job.unit?.relatedShop?.pageUrl, t('viewShop'), 'www.spar.at');
+  if (posting || shop) {
+    const more = node('details', '', 'card-more');
+    more.setAttribute('name', 'job-actions');
+    const toggle = node('summary');
+    toggle.title = t('moreJobActions');
+    toggle.setAttribute('aria-label', toggle.title);
+    toggle.append(cardIcon('M5 12h.01M12 12h.01M19 12h.01'));
+    const menu = node('div', '', 'card-more-actions');
+    if (shop) {
+      const external = node('span', ' ↗');
+      external.setAttribute('aria-hidden', 'true');
+      shop.append(external);
+      menu.append(shop);
+    }
+    if (posting) {
+      const share = node('button', t('shareJob'));
+      share.type = 'button';
+      share.setAttribute('aria-haspopup', 'dialog');
+      share.addEventListener('click', () => {
+        toggle.focus();
+        more.open = false;
+        void onShare(posting.href, job.title);
+      });
+      menu.append(share);
+    }
+    more.append(toggle, menu);
+    actions.append(more);
   }
   if (actions.childElementCount) item.append(actions);
   return item;
@@ -146,6 +163,21 @@ export function createJobList({ list, more, count, message }, onShowSite, onShar
   let rendered = 0;
   /** @type {Coordinates | undefined} */
   let center;
+
+  document.addEventListener('click', event => {
+    const open = list.querySelector('details.card-more[open]');
+    if (open && event.target instanceof Node && !open.contains(event.target)) {
+      open.removeAttribute('open');
+    }
+  });
+  list.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !(event.target instanceof Element)) return;
+    const open = event.target.closest('details.card-more[open]');
+    if (!open) return;
+    event.preventDefault();
+    open.removeAttribute('open');
+    open.querySelector('summary')?.focus();
+  });
 
   function appendPage(size = pageSize) {
     const next = shown.slice(rendered, rendered + size);

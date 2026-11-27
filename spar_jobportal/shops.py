@@ -10,8 +10,10 @@ from .http_client import PoliteOpener
 from .storage import as_object, clean_text
 
 SHOPS_ENDPOINT = "https://api-scp.spar-ics.com/mobile/b2c/apps/spar/v1/spar-app-at/v8/public/shops"
+STORE_FINDER_ORIGIN = "https://www.spar.at"
+STORE_FINDER_ENDPOINT = f"{STORE_FINDER_ORIGIN}/standorte/_jcr_content.stores.v2.html"
 REGIONAL_STORE = re.compile(
-    r"(?:SM[123]?-|ES[123]?-|GM-|CITY-|EH|SYS)(0[1-6])-([0-9]{3,4})(?![0-9])"
+    r"(?:(?:SM[123]?-|ES[123]?-|GM-|CITY-|EH|SYS)0|ZN\s+0?)([1-6])-([0-9]{3,4})(?![0-9])"
 )
 INTERSPAR_UNIT = re.compile(r"IM([0-9]{2})(-100)?")
 
@@ -30,6 +32,26 @@ def fetch_shops(opener: PoliteOpener) -> dict[str, dict[str, Any]]:
             raise ValueError("The mobile shop catalogue has an invalid or duplicate shop entry.")
         by_bnr[bnr] = shop
     return by_bnr
+
+
+def fetch_shop_urls(opener: PoliteOpener) -> dict[str, str]:
+    """Read the full store-finder listing, without geographic filters."""
+    _, body = opener.get(STORE_FINDER_ENDPOINT, "application/json")
+    stores = json.loads(body)
+    if not isinstance(stores, list) or not stores:
+        raise ValueError("Expected a non-empty list from the SPAR store finder.")
+    urls = {}
+    for raw in stores:
+        entry = as_object(raw)
+        bnr = clean_text(entry.get("locationId"))
+        if bnr is None:
+            raise ValueError("The SPAR store finder returned an entry without a locationId.")
+        page = clean_text(entry.get("pageUrl"))
+        if page and re.fullmatch(r"/standorte/[\w%.-]+", page) and not page.endswith(("/.", "/..")):
+            urls[bnr] = f"{STORE_FINDER_ORIGIN}{page}"
+    if not urls:
+        raise ValueError("The SPAR store finder returned no store-page URLs.")
+    return urls
 
 
 def unit_code(name: str) -> str:

@@ -1,5 +1,5 @@
 /** @typedef {[number, number]} Coordinates */
-/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null}} JobUnit */
+/** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null, relatedShop?: {pageUrl?: string | null} | null}} JobUnit */
 /**
  * @typedef {object} RawJob
  * @property {number} [id]

@@ -22,6 +22,20 @@ def test_split_code_before_decoding():
     assert shops.decode_bnr("Leopoldsdorf") is None
 
 
+@pytest.mark.parametrize(
+    ("name", "code", "bnr"),
+    [
+        ("ZN 2-376 KA", "ZN 2-376", "2376"),
+        ("ZN 06-438 TS", "ZN 06-438", "6438"),
+        ("ZN 2-37600 KA", "ZN", None),
+        ("ZN 2", "ZN", None),
+    ],
+)
+def test_decode_zn_store_codes(name, code, bnr):
+    assert shops.unit_code(name) == code
+    assert shops.decode_bnr(code) == bnr
+
+
 @pytest.mark.parametrize("suffix", ["", " Frankenburg", "Frankenburg", ",Frankenburg"])
 def test_split_regional_code_at_the_first_non_digit(suffix):
     name = f"ES1-03-500{suffix}"

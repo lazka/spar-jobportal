@@ -14,7 +14,7 @@ from typing import Any
 
 from .http_client import PoliteOpener
 from .locations import coordinates, geocode, geocode_key, load_corrections, resolve_unit, unit_query
-from .shops import fetch_shops, map_unit
+from .shops import fetch_shop_urls, fetch_shops, map_unit
 from .spar import RepeatedJobError, fetch_jobs, fetch_site_details
 from .storage import as_object, clean_text, read_object, save_json
 
@@ -35,6 +35,42 @@ def has_unit_details(entry: dict[str, Any]) -> bool:
     )
 
 
+def read_jobs_snapshot() -> tuple[list[dict[str, Any]], bool]:
+    dataset = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    legacy = isinstance(dataset, list)
+    jobs = dataset if legacy else as_object(dataset).get("jobs")
+    if not isinstance(jobs, list) or not all(
+        isinstance(job, dict) and "id" in job and isinstance(job.get("unit"), dict) for job in jobs
+    ):
+        raise ValueError(
+            "Expected a frontend job dataset with a unit object per job. Run update first."
+        )
+    return jobs, legacy
+
+
+def cached_shop_urls(jobs: list[dict[str, Any]]) -> dict[str, str]:
+    urls = {}
+    for job in jobs:
+        related = as_object(job["unit"].get("relatedShop"))
+        bnr = clean_text(related.get("bnr"))
+        url = clean_text(related.get("pageUrl"))
+        if bnr and url:
+            urls[bnr] = url
+    return urls
+
+
+def update_shop_urls(opener: PoliteOpener) -> dict[str, str]:
+    try:
+        return fetch_shop_urls(opener)
+    except (OSError, ValueError) as error:
+        LOGGER.warning("Store page lookup failed; reusing URLs from the jobs snapshot: %s", error)
+        try:
+            jobs, _ = read_jobs_snapshot()
+        except (OSError, ValueError):
+            return {}
+        return cached_shop_urls(jobs)
+
+
 def write_jobs(
     jobs: list[dict[str, Any]],
     addresses: dict[str, Any],
@@ -42,11 +78,14 @@ def write_jobs(
     geocodes: dict[str, Any],
     *,
     shops: dict[str, dict[str, Any]] | None = None,
+    shop_urls: dict[str, str] | None = None,
     force: bool = True,
 ) -> None:
     changed = False
     missing_details = 0
     by_bnr = shops if shops is not None else {}
+    if shop_urls is None:
+        shop_urls = cached_shop_urls(jobs) if shops is not None else {}
     for job in jobs:
         previous = job["unit"]
         unit = resolve_unit(previous, addresses, corrections, geocodes)
@@ -54,8 +93,12 @@ def write_jobs(
         related_shop = None
         if shops is None:
             related_shop = previous.get("relatedShop")
-        elif mapped["bnr"] is not None:
-            related_shop = {"bnr": mapped["bnr"], "shopType": mapped["shopTypeName"]}
+        elif (bnr := mapped["bnr"]) is not None:
+            related_shop = {
+                "bnr": bnr,
+                "shopType": mapped["shopTypeName"],
+                "pageUrl": shop_urls.get(bnr),
+            }
         unit["relatedShop"] = related_shop
         changed |= unit != previous
         job["unit"] = unit
@@ -168,7 +211,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     update = commands.add_parser(
-        "update", help="Fetch SPAR jobs and rebuild the frontend dataset using local location data."
+        "update", help="Fetch SPAR jobs and shop URLs, and rebuild the frontend dataset."
     )
     maintenance = commands.add_parser(
         "maintain", help="Look up missing unit details and locations for the current dataset."
@@ -204,18 +247,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             except RepeatedJobError as error:
                 LOGGER.warning("%s Restarting the jobs fetch once.", error)
                 jobs = fetch_jobs(spar)
-            write_jobs(jobs, addresses, corrections, geocodes, shops=shops)
+            urls = update_shop_urls(spar) if shops else {}
+            write_jobs(jobs, addresses, corrections, geocodes, shops=shops, shop_urls=urls)
         else:
-            dataset = json.loads(OUTPUT.read_text(encoding="utf-8"))
-            legacy = isinstance(dataset, list)
-            jobs = dataset if legacy else as_object(dataset).get("jobs")
-            if not isinstance(jobs, list) or not all(
-                isinstance(job, dict) and "id" in job and isinstance(job.get("unit"), dict)
-                for job in jobs
-            ):
-                raise ValueError(
-                    "Expected a frontend job dataset with a unit object per job. Run update first."
-                )
+            jobs, legacy = read_jobs_snapshot()
             maintain(jobs, addresses, corrections, geocodes, args.max_requests, migrate=legacy)
     except (OSError, RuntimeError, ValueError, KeyError, TypeError) as error:
         print(f"{args.command}: {error}", file=sys.stderr)

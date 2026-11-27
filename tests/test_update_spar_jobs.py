@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from spar_jobportal import cli as updater
-from spar_jobportal import locations, spar
+from spar_jobportal import locations, shops, spar
 
 
 def record(job_id, unit_id):
@@ -133,7 +133,11 @@ class UpdateTests(unittest.TestCase):
             }
         }
         job = {"id": 1, "unit": {"id": 10, "name": name}}
-        with patch.object(updater, "fetch_jobs", return_value=[job]):
+        page_url = "https://www.spar.at/standorte/eurospar-frankenburg"
+        with (
+            patch.object(updater, "fetch_jobs", return_value=[job]),
+            patch.object(updater, "fetch_shop_urls", return_value={"3500": page_url}),
+        ):
             self.assertEqual(self.run_command("update"), 0)
         self.fetch_shops.assert_called_once()
         self.assertEqual(
@@ -144,7 +148,9 @@ class UpdateTests(unittest.TestCase):
         unit = dataset["jobs"][0]["unit"]
         self.assertNotIn("regionCode", unit)
         self.assertNotIn("unitGroup", unit)
-        self.assertEqual(unit["relatedShop"], {"bnr": "3500", "shopType": "EUROSPAR"})
+        self.assertEqual(
+            unit["relatedShop"], {"bnr": "3500", "shopType": "EUROSPAR", "pageUrl": page_url}
+        )
         self.assertNotIn("shopType", unit)
         dataset["jobs"][0]["unit"] = {**unit, "unitGroup": "ES1", "addressSourceJobId": 1}
         updater.save_json(updater.OUTPUT, dataset)
@@ -155,18 +161,105 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(updater.read_object(updater.OUTPUT)["jobs"][0]["unit"], unit)
         self.assertEqual(updater.SHOPS_CACHE.read_bytes(), shops_before)
 
+    def test_update_exports_exact_shop_urls_and_reuses_the_previous_snapshot_on_failure(self):
+        jobs = [
+            {"id": 1, "unit": {"id": 10, "name": "EH02-0690 Wallner Söll"}},
+            {"id": 2, "unit": {"id": 11, "name": "EH02-0176 Itter"}},
+        ]
+        updater.save_json(
+            updater.ADDRESSES,
+            {
+                "10": {"address": "Dorf 96, 6306 Söll", "orgType": "SPAR"},
+                "11": {"address": "Dorfplatz 7, 6305 Itter", "orgType": "SPAR"},
+            },
+        )
+        updater.save_json(
+            updater.GEOCODES,
+            {
+                "dorf 96, 6306 söll": {"status": "matched", "latitude": 47.5, "longitude": 12.2},
+                "dorfplatz 7, 6305 itter": {
+                    "status": "matched",
+                    "latitude": 47.5,
+                    "longitude": 12.1,
+                },
+            },
+        )
+        self.fetch_shops.return_value = {
+            "2690": {"bnr": "2690", "shopTypeName": "SPAR Markt"},
+            "2176": {"bnr": "2176", "shopTypeName": "SPAR Markt"},
+            "2731": {"bnr": "2731", "shopTypeName": "SPAR Express"},
+            "4444": {"bnr": "4444", "shopTypeName": "SPAR Supermarkt"},
+        }
+        results = [
+            {"locationId": "2731", "pageUrl": "/standorte/despar-express-scheffau"},
+            {"locationId": "2176", "pageUrl": "/standorte/spar-itter"},
+            {"locationId": "2690", "pageUrl": "/standorte/spar-soell-6306-dorf-96"},
+        ]
+        old_url = "https://www.spar.at/standorte/old-soell-url"
+        updater.save_json(
+            updater.OUTPUT,
+            {
+                "jobs": [
+                    {
+                        **jobs[0],
+                        "unit": {
+                            **jobs[0]["unit"],
+                            "relatedShop": {
+                                "bnr": "2690",
+                                "shopType": "SPAR Markt",
+                                "pageUrl": old_url,
+                            },
+                        },
+                    }
+                ]
+            },
+        )
+        with (
+            patch.object(updater, "fetch_jobs", return_value=jobs),
+            patch.object(updater.PoliteOpener, "get") as get,
+        ):
+            get.side_effect = [
+                OSError("temporary failure"),
+                (None, json.dumps(results).encode()),
+            ]
+            self.assertEqual(self.run_command("update"), 0)
+            result = updater.read_object(updater.OUTPUT)["jobs"]
+            self.assertEqual(
+                [job["unit"]["relatedShop"]["pageUrl"] for job in result], [old_url, None]
+            )
+            self.assertEqual(self.run_command("update"), 0)
+            self.assertEqual(self.run_command("maintain"), 0)
+        self.assertEqual(
+            [call.args for call in get.call_args_list],
+            [(shops.STORE_FINDER_ENDPOINT, "application/json")] * 2,
+        )
+        result = updater.read_object(updater.OUTPUT)["jobs"]
+        self.assertEqual(
+            [job["unit"]["relatedShop"]["pageUrl"] for job in result],
+            [
+                "https://www.spar.at/standorte/spar-soell-6306-dorf-96",
+                "https://www.spar.at/standorte/spar-itter",
+            ],
+        )
+        self.assertEqual(
+            updater.read_object(updater.SHOPS_CACHE),
+            {"shop": list(self.fetch_shops.return_value.values())},
+        )
+
     def test_incomplete_jobs_fetch_refreshes_shops_but_preserves_jobs(self):
         shop = {"bnr": "3500", "shopTypeName": "EUROSPAR"}
         self.fetch_shops.return_value = {"3500": shop}
         updater.save_json(updater.OUTPUT, {"lastUpdated": "2026-11-25T21:21:10+00:00", "jobs": []})
         before = updater.OUTPUT.read_bytes()
         with (
+            patch.object(updater, "fetch_shop_urls") as fetch_urls,
             patch.object(spar, "bootstrap", return_value=({}, spar.SEARCH_PAGE)),
             patch.object(spar, "fetch_page", return_value=page("2", [record(1, 10)])),
         ):
             self.assertEqual(self.run_command("update"), 1)
         self.assertEqual(updater.read_object(updater.SHOPS_CACHE), {"shop": [shop]})
         self.assertEqual(updater.OUTPUT.read_bytes(), before)
+        fetch_urls.assert_not_called()
 
     def test_repeated_id_restarts_pagination_once(self):
         first_page = page("2", [record(1, 10)], 1)
