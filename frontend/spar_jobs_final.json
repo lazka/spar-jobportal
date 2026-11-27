@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T11:11:43+00:00",
+  "lastUpdated": "2026-11-27T13:13:10+00:00",
   "jobs": [
     {
       "id": 8104,
@@ -9317,6 +9317,29 @@
       }
     },
     {
+      "id": 8119,
+      "title": "Verkäufer Fleisch- und Wurstabteilung TANN (m/w/d) 20-25 Std./Wo - Fürstenfeld",
+      "state": "Steiermark",
+      "location": "8280 Fürstenfeld",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Fleisch-und-Wurstabteilung-TANN-m-w-d-20-25-Std-Wo-F-rstenfeld/8119",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8119",
+      "unit": {
+        "id": 153424,
+        "name": "TANN-05-0582 Fil. Fürstenfeld IM37",
+        "orgType": "SPAR",
+        "address": "Burgauer Straße 1, 8280 Fürstenfeld",
+        "coordinates": [
+          47.056909,
+          16.073475
+        ],
+        "relatedShop": null
+      }
+    },
+    {
       "id": 8118,
       "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 20-30 Std./Wo - SPAR Miksche - 2651 Hadres, Nr. 375",
       "state": "Niederösterreich",
@@ -9339,6 +9362,32 @@
         "relatedShop": {
           "bnr": "7625",
           "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
+      "id": 8117,
+      "title": "Verkäufer Trockensortiment (m/w/d) 30 Std./Wo - 1230 Wien, Maurer Hauptplatz",
+      "state": "Wien",
+      "location": "Maurer Hauptplatz 7, 1230 Wien",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-m-w-d-30-Std-Wo-1230-Wien-Maurer-Hauptplatz/8117",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8117",
+      "unit": {
+        "id": 151774,
+        "name": "SM3-04-954 Maurer Hauptstr.",
+        "orgType": "SPAR",
+        "address": "Maurer Hauptplatz 7, 1230 Wien",
+        "coordinates": [
+          48.1506556,
+          16.2678057
+        ],
+        "relatedShop": {
+          "bnr": "4954",
+          "shopType": "SPAR Supermarkt"
         }
       }
     },
@@ -18023,32 +18072,6 @@
       }
     },
     {
-      "id": 7117,
-      "title": "Verkäufer Allrounder (m/w/d) 20-38,5 Std./Wo - SPAR Seemayer, Timelkam",
-      "state": "Oberösterreich",
-      "location": "SPAR Seemayer 4850 Timelkam",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Allrounder-m-w-d-20-38-5-Std-Wo-SPAR-Seemayer-Timelkam/7117",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7117",
-      "unit": {
-        "id": 156886,
-        "name": "SYS03-0200 SM Seemayer Christoph e. U.",
-        "orgType": "SPAR",
-        "address": "Atterseestraße 48, 4850 Timelkam",
-        "coordinates": [
-          47.9967246,
-          13.6214697
-        ],
-        "relatedShop": {
-          "bnr": "3200",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
       "id": 7107,
       "title": "Mitarbeiter Bäckerei in Produktion (m/w/d), 40 Std./Woche, IM65B",
       "state": "Tirol",
@@ -18225,32 +18248,6 @@
           13.0049083
         ],
         "relatedShop": null
-      }
-    },
-    {
-      "id": 7104,
-      "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 20-38,5 Std./Wo - SPAR Seemayer, Timelkam",
-      "state": "Oberösterreich",
-      "location": "SPAR Seemayer 4850 Timelkam",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-Feinkost-m-w-d-20-38-5-Std-Wo-SPAR-Seemayer-Timelkam/7104",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7104",
-      "unit": {
-        "id": 156886,
-        "name": "SYS03-0200 SM Seemayer Christoph e. U.",
-        "orgType": "SPAR",
-        "address": "Atterseestraße 48, 4850 Timelkam",
-        "coordinates": [
-          47.9967246,
-          13.6214697
-        ],
-        "relatedShop": {
-          "bnr": "3200",
-          "shopType": "SPAR Supermarkt"
-        }
       }
     },
     {

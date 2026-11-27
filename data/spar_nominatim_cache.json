@@ -19191,5 +19191,38 @@
       "country_code": "at"
     },
     "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
+  },
+  "burgauer strasse 1, 8280 fürstenfeld, österreich": {
+    "status": "not_specific",
+    "query": "Burgauer Straße 1, 8280 Fürstenfeld, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-27T13:12:29.324199+00:00",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "maurer hauptplatz 7, 1230 wien, österreich": {
+    "status": "matched",
+    "query": "Maurer Hauptplatz 7, 1230 Wien, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-27T13:12:44.455893+00:00",
+    "attribution": "© OpenStreetMap contributors",
+    "latitude": 48.1506556,
+    "longitude": 16.2678057,
+    "displayName": "7, Maurer Hauptplatz, Katastralgemeinde Mauer, Liesing, Wien, 1230, Österreich",
+    "osmType": "way",
+    "osmId": 110537907,
+    "category": "building",
+    "type": "apartments",
+    "address": {
+      "house_number": "7",
+      "road": "Maurer Hauptplatz",
+      "suburb": "Katastralgemeinde Mauer",
+      "city_district": "Liesing",
+      "city": "Wien",
+      "ISO3166-2-lvl4": "AT-9",
+      "postcode": "1230",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
   }
 }

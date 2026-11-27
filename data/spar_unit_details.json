@@ -3733,5 +3733,15 @@
     "address": "Brandnerstraße 6, 6700 Bludenz/Bürs, Österreich",
     "name": "TANN-01-0363 Fil. Bürs IM48",
     "orgType": "SPAR"
+  },
+  "153424": {
+    "address": "Burgauer Straße 1, 8280 Fürstenfeld, Österreich",
+    "name": "TANN-05-0582 Fil. Fürstenfeld IM37",
+    "orgType": "SPAR"
+  },
+  "151774": {
+    "address": "Maurer Hauptplatz 7, 1230 Wien, Österreich",
+    "name": "SM3-04-954 Maurer Hauptstr.",
+    "orgType": "SPAR"
   }
 }

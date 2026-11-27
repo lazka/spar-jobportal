@@ -1,4 +1,10 @@
 {
+  "153424": {
+    "latitude": 47.056909,
+    "longitude": 16.073475,
+    "source": "INTERSPAR Fürstenfeld, market 8370: https://www.interspar.at/standorte/8370",
+    "note": "Use the host INTERSPAR IM37 store pin at Burgauer Straße 2 for the TANN unit. Job 8119 lists Burgauer Straße 1; retain that display address."
+  },
   "151571": {
     "latitude": 48.70618797983461,
     "longitude": 16.138393126849785,
