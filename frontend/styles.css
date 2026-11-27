@@ -614,7 +614,7 @@ button.button-primary:enabled:hover, .button.button-primary:hover {
   .place-field { grid-column: 1 / -1; }
   .layout { grid-template-columns: 1fr; }
   .map-panel { grid-row: 1; position: static; }
-  #map { height: clamp(17rem, 45vh, 27rem); }
+  #map { height: clamp(22rem, 65vh, 38rem); }
 }
 
 @media (max-width: 550px) {

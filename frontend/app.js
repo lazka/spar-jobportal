@@ -170,7 +170,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     selected = key;
     renderActiveFilters();
     renderList();
-    $('jobs-title').focus();
+    const jobsTitle = $('jobs-title');
+    jobsTitle.focus({ preventScroll: true });
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      jobsTitle.scrollIntoView({ block: 'start' });
+    }
   });
 
   const jobCount = $('count');
