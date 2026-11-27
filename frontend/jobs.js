@@ -92,7 +92,7 @@ export function formatDatasetAge(timestamp, locale, now = Date.now()) {
 }
 
 export async function loadJobs() {
-  const response = await fetch(new URL('./spar_jobs_final.json', import.meta.url));
+  const response = await fetch('./spar_jobs_final.json', { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return normalizeJobDataset(await response.json());
 }
