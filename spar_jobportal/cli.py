@@ -27,6 +27,14 @@ OUTPUT = ROOT / "frontend/spar_jobs_final.json"
 LOGGER = logging.getLogger(__name__)
 
 
+def has_unit_details(entry: dict[str, Any]) -> bool:
+    address = entry.get("address")
+    # An explicitly blank Ort was checked; a missing address still needs a lookup.
+    return clean_text(entry.get("orgType")) is not None and (
+        address == "" or clean_text(address) is not None
+    )
+
+
 def write_jobs(
     jobs: list[dict[str, Any]],
     addresses: dict[str, Any],
@@ -37,6 +45,7 @@ def write_jobs(
     force: bool = True,
 ) -> None:
     changed = False
+    missing_details = 0
     by_bnr = shops if shops is not None else {}
     for job in jobs:
         previous = job["unit"]
@@ -50,6 +59,7 @@ def write_jobs(
         unit["relatedShop"] = related_shop
         changed |= unit != previous
         job["unit"] = unit
+        missing_details += not has_unit_details(as_object(addresses.get(str(unit["id"]))))
     if changed or force:
         save_json(
             OUTPUT,
@@ -57,7 +67,10 @@ def write_jobs(
         )
     unmapped = sum(job["unit"]["coordinates"] is None for job in jobs)
     label = "Updated" if changed or force else "Unchanged:"
-    print(f"{label} {OUTPUT.relative_to(ROOT)}: {len(jobs)} jobs ({unmapped} without coordinates).")
+    print(
+        f"{label} {OUTPUT.relative_to(ROOT)}: {len(jobs)} jobs "
+        f"({unmapped} without coordinates, {missing_details} without complete unit details)."
+    )
 
 
 def maintain(
@@ -80,11 +93,7 @@ def maintain(
     # The public service limits regularly run scripts to four requests per minute.
     nominatim = PoliteOpener(delay=15.1, timeout=25, retries=0)
     entries = {key: as_object(addresses.get(key)) for key in representatives}
-    pending_details = {
-        key
-        for key, entry in entries.items()
-        if not clean_text(entry.get("address")) or not clean_text(entry.get("orgType"))
-    }
+    pending_details = {key for key, entry in entries.items() if not has_unit_details(entry)}
     detail_count = lookup_count = 0
     unresolved = missing_org_types = 0
     for key, job in representatives.items():
@@ -109,9 +118,10 @@ def maintain(
                 details = None  # The job may have expired since the snapshot.
             if details:
                 updated = entry.copy()
+                if details.address is not None and not clean_text(updated.get("address")):
+                    updated["address"] = details.address
                 for field, value in (
                     ("name", unit.get("name")),
-                    ("address", details.address),
                     ("orgType", details.org_type),
                 ):
                     if value and not clean_text(updated.get(field)):

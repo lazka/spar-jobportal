@@ -258,6 +258,7 @@ def fetch_jobs(opener: PoliteOpener) -> list[dict[str, Any]]:
 
 @dataclass
 class SiteDetails:
+    # None means the Ort field was absent; "" means SPAR showed a blank field.
     address: str | None = None
     org_type: str | None = None
 
@@ -314,8 +315,8 @@ class SiteDetailsParser(HTMLParser):
     def finish_field(self) -> None:
         title = clean_text("".join(self.title))
         value = clean_text("".join(self.value))
-        if title == "Ort" and self.details.address is None:
-            self.details.address = value
+        if title == "Ort" and not self.details.address:
+            self.details.address = value or ""
         elif title is None and value and self.details.org_type is None:
             if match := re.fullmatch(r"ID (.+) [0-9]+", value):
                 self.details.org_type = match[1]

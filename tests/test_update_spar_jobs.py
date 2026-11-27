@@ -1,7 +1,9 @@
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from datetime import datetime, timedelta, timezone
+from io import StringIO
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -294,13 +296,19 @@ class UpdateTests(unittest.TestCase):
                 "fetch_site_details",
                 side_effect=[
                     spar.SiteDetails("Other address", "SPAR"),
-                    spar.SiteDetails(None, "SES"),
+                    spar.SiteDetails("", "SES"),
                 ],
             ) as detail,
             patch.object(updater, "geocode") as geocode,
             self.assertLogs(updater.LOGGER, level="INFO") as progress,
+            redirect_stdout(StringIO()) as output,
         ):
             self.assertEqual(self.run_command("maintain", "--verbose"), 0)
+            self.assertEqual(self.run_command("maintain", "--verbose"), 0)
+        self.assertIn(
+            "Unchanged: jobs.json: 2 jobs (0 without coordinates, 0 without complete unit details).",
+            output.getvalue(),
+        )
         self.assertEqual(
             [log.getMessage() for log in progress.records],
             ["Unit details 1/2: unit 10, job 1", "Unit details 2/2: unit 20, job 2"],
@@ -311,13 +319,14 @@ class UpdateTests(unittest.TestCase):
             updater.read_object(updater.ADDRESSES),
             {
                 "10": {"name": "Pinned unit", "address": "Verified 1/2", "orgType": "SPAR"},
-                "20": {"name": "Another pinned unit", "orgType": "SES"},
+                "20": {"name": "Another pinned unit", "address": "", "orgType": "SES"},
             },
         )
         jobs = updater.read_object(updater.OUTPUT)["jobs"]
         self.assertEqual([job["unit"]["orgType"] for job in jobs], ["SPAR", "SES"])
         self.assertEqual([job["unit"]["coordinates"] for job in jobs], [[48, 14], [47, 15]])
         self.assertEqual(jobs[0]["unit"]["address"], "Verified 1/2")
+        self.assertIsNone(jobs[1]["unit"]["address"])
 
     def test_offline_maintenance_applies_verified_corrections_without_requests(self):
         updater.save_json(
@@ -333,10 +342,15 @@ class UpdateTests(unittest.TestCase):
         with (
             patch.object(updater.PoliteOpener, "get") as get,
             patch.object(updater, "datetime") as clock,
+            redirect_stdout(StringIO()) as output,
         ):
             clock.now.return_value = datetime(2026, 11, 26, 8, tzinfo=timezone.utc)
             self.assertEqual(self.run_command("maintain", "--max-requests", "0"), 0)
         get.assert_not_called()
+        self.assertIn(
+            "Updated jobs.json: 2 jobs (1 without coordinates, 2 without complete unit details).",
+            output.getvalue(),
+        )
         dataset = updater.read_object(updater.OUTPUT)
         self.assertEqual(dataset["lastUpdated"], "2026-11-26T08:00:00+00:00")
         self.assertEqual(dataset["jobs"][0]["unit"]["coordinates"], [48, 14])
@@ -404,6 +418,15 @@ class LocationLookupTests(unittest.TestCase):
               SPAR&nbsp;ICS 7819</span></div>
         """)
         self.assertEqual(parser.details.org_type, "SPAR ICS")
+
+    def test_detail_parser_distinguishes_blank_ort_from_missing_ort(self):
+        parser = spar.SiteDetailsParser()
+        self.assertIsNone(parser.details.address)
+        parser.feed("""
+            <div class="custom-field"><span class="custom-field__title">Ort</span>
+              <span class="custom-field__value">&nbsp;</span></div>
+        """)
+        self.assertEqual(parser.details.address, "")
 
     def test_nominatim_rejects_area_or_road_but_accepts_numbered_house(self):
         results = [
