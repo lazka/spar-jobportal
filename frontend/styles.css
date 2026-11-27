@@ -308,7 +308,7 @@ input, select, button, .button {
   font-size: .875rem;
 }
 input, select { width: 100%; font-weight: 400; }
-input::placeholder { color: var(--muted); opacity: 1; }
+input::placeholder { color: #707070; opacity: 1; }
 select { padding-inline-end: .55rem; text-overflow: ellipsis; }
 .select-control select { display: block; appearance: none; padding-inline-end: calc(var(--control-inset) + .85rem); }
 button, .button { font-weight: 700; text-align: center; }
