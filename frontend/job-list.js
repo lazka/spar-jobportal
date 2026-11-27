@@ -92,8 +92,8 @@ function jobCard(job, center, onShowSite, onShare) {
     start.append(sourceStart);
     details.push(start);
   }
-  if (center && job.siteKey && job.unit?.coordinates) {
-    details.push(t('distance', { distance: Math.round(distanceKm(center, job.unit.coordinates)) }));
+  if (center && job.siteCoordinates) {
+    details.push(t('distance', { distance: Math.round(distanceKm(center, job.siteCoordinates)) }));
   }
   if (details.length) {
     const metadata = node('ul', '', 'card-details');

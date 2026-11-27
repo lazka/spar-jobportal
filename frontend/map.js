@@ -107,16 +107,17 @@ export function createMap(container, onSelectSite) {
     }).catch(error => console.warn('Could not load detailed state boundaries:', error))
       .finally(() => { loadingDetail = false; });
   });
-  /** @param {MarkerCluster} group */
-  const clusterLabel = group => t('mapClusterUnits', { count: group.getChildCount() });
-  /** @type {MarkerClusterGroupOptions & {clusterLabel: typeof clusterLabel}} */
+  /** @type {WeakMap<Marker, number>} */
+  const jobCounts = new WeakMap();
+  /** @type {MarkerClusterGroupOptions & {clusterLabel: (group: MarkerCluster) => string}} */
   const clusterOptions = {
     showCoverageOnHover: false,
     maxClusterRadius: 50,
-    clusterLabel,
+    clusterLabel: group => group.options.title ?? '',
     iconCreateFunction: group => {
-      group.options.title = clusterLabel(group);
-      const label = node('span', group.getChildCount().toLocaleString(locale()));
+      const count = group.getAllChildMarkers().reduce((total, marker) => total + (jobCounts.get(marker) ?? 0), 0);
+      group.options.title = t('jobCount', { count });
+      const label = node('span', count.toLocaleString(locale()));
       label.setAttribute('aria-hidden', 'true');
       return L.divIcon({ html: label, className: 'map-cluster-marker', iconSize: [44, 44] });
     },
@@ -164,6 +165,7 @@ export function createMap(container, onSelectSite) {
       const marker = L.marker(site.pair, {
         icon: L.divIcon({ html: label, className: 'map-site-marker', iconSize: [width, 29] })
       });
+      jobCounts.set(marker, count);
       const popup = node('div');
       const heading = node('div', '', 'map-popup-heading');
       const headingText = node('strong', location);

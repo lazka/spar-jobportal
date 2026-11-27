@@ -155,7 +155,7 @@ await test('site grouping falls back to coordinates without unit IDs and skips u
   assert.equal(jobs[2].siteKey, null);
 });
 
-await test('site grouping keeps different units at the same coordinates separate', () => {
+await test('site grouping keeps different units separate when the company is missing', () => {
   const restaurant = { id: 12, address: 'Beispielstraße', coordinates: vienna };
   /** @type {import('../jobs.js').JobUnit} */
   const shop = { id: 34, address: 'Beispielstrasse', coordinates: [...vienna] };
@@ -170,6 +170,24 @@ await test('site grouping keeps different units at the same coordinates separate
   assert.ok(cook.siteKey && sales.siteKey);
   assert.deepEqual(sites.get(cook.siteKey)?.jobs, [cook, waiter]);
   assert.deepEqual(sites.get(sales.siteKey)?.jobs, [sales]);
+});
+
+await test('site grouping combines departments by address and company and uses a shared map position', () => {
+  const shop = { id: 12, orgType: 'Maximarkt', address: 'Beispielstraße 1, 1160 Wien', coordinates: vienna };
+  const [sales, cook, logistics, office] = normalizeJobs([
+    { title: 'Verkauf', unit: shop },
+    { title: 'Koch', unit: { ...shop, id: 34, address: 'Beispielstrasse 1,1160 Wien', coordinates: [48.209, 16.374] } },
+    { title: 'Lager', unit: { ...shop, id: 56, orgType: 'SPAR' } },
+    { title: 'Büro', unit: { ...shop, id: 78, address: 'Beispielstraße 2, 1160 Wien' } },
+  ]);
+
+  const sites = groupSites([sales, cook, logistics, office]);
+  assert.equal(sites.size, 3);
+  assert.ok(sales.siteKey);
+  assert.deepEqual(sites.get(sales.siteKey)?.jobs, [sales, cook]);
+  assert.equal(siteLocation([sales, cook]), shop.address);
+  assert.deepEqual(groupSites([cook]).get(sales.siteKey)?.pair, vienna);
+  assert.deepEqual(filterJobsInMapView([cook], pair => pair[0] === vienna[0]), [cook]);
 });
 
 await test('site previews group matching categories and hours before limiting to four rows', () => {

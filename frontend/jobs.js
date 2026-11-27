@@ -12,7 +12,7 @@
  * @property {string | null} [applicationUrl]
  * @property {JobUnit | null} [unit]
  */
-/** @typedef {RawJob & {times: string[], workingHours: string[], orgType: string, siteKey: string | null, searchTitle: string}} Job */
+/** @typedef {RawJob & {times: string[], workingHours: string[], orgType: string, siteKey: string | null, siteCoordinates: Coordinates | null, searchTitle: string}} Job */
 /** @typedef {{pair: Coordinates, jobs: Job[]}} Site */
 
 export const UNKNOWN_ORG_TYPE = ':unknown-org-type';
@@ -27,6 +27,11 @@ export function normalizeSearch(text) {
 export function coordinateKey(pair) {
   return Array.isArray(pair) && pair.length === 2 && pair.every(Number.isFinite) &&
     Math.abs(pair[0]) <= 90 && Math.abs(pair[1]) <= 180 ? pair.join(',') : null;
+}
+
+/** @param {string} address */
+function mapAddressKey(address) {
+  return address.normalize('NFC').toLocaleLowerCase('de-AT').replaceAll('ß', 'ss').replace(/[\s,]+/g, ' ').trim();
 }
 
 /**
@@ -46,18 +51,32 @@ export function distanceKm([lat1, lon1], [lat2, lon2]) {
  */
 export function normalizeJobs(data) {
   if (!Array.isArray(data)) throw new Error('Expected an array of jobs');
+  /** @type {Map<string, Coordinates>} */
+  const sitePositions = new Map();
   return data.map(job => {
     const times = (job.employmentType || '').split('/').map(value => value.trim()).filter(Boolean);
     const workingHours = [...new Set(times.flatMap(time =>
       time === 'Geringfügig-Vollzeit' ? ['Geringfügig', 'Teilzeit', 'Vollzeit'] : [time]))];
-    let siteKey = coordinateKey(job.unit?.coordinates);
-    if (siteKey && job.unit?.id != null) siteKey += `:${job.unit.id}`;
+    const coordinates = job.unit?.coordinates;
+    const coordinate = coordinateKey(coordinates);
+    const address = mapAddressKey(job.unit?.address ?? '');
+    const company = job.unit?.orgType?.trim();
+    let siteKey = null;
+    let siteCoordinates = null;
+    if (coordinate && coordinates) {
+      siteKey = address && company ? JSON.stringify([address, company]) : coordinate;
+      if ((!address || !company) && job.unit?.id != null) siteKey += `:${job.unit.id}`;
+      // Keep the position stable when filters hide the first listing at this address.
+      siteCoordinates = sitePositions.get(siteKey) ?? coordinates;
+      sitePositions.set(siteKey, siteCoordinates);
+    }
     return {
       ...job,
       times,
       workingHours,
       orgType: job.unit?.orgType ?? UNKNOWN_ORG_TYPE,
       siteKey,
+      siteCoordinates,
       searchTitle: normalizeSearch(job.title)
     };
   });
@@ -117,8 +136,8 @@ export function filterJobs(jobs, { query = '', fields = [], workingHours = [], o
   if (!center) return matches.sort(compareJobIdsDescending);
 
   return matches.flatMap(job => {
-    if (!job.siteKey || !job.unit?.coordinates) return [];
-    const distance = distanceKm(center, job.unit.coordinates);
+    if (!job.siteCoordinates) return [];
+    const distance = distanceKm(center, job.siteCoordinates);
     return distance <= radiusKm ? [{ job, distance }] : [];
   }).sort((a, b) => a.distance - b.distance || compareJobIdsDescending(a.job, b.job))
     .map(({ job }) => job);
@@ -129,7 +148,7 @@ export function filterJobs(jobs, { query = '', fields = [], workingHours = [], o
  * @param {(pair: Coordinates) => boolean} contains
  */
 export function filterJobsInMapView(jobs, contains) {
-  return jobs.filter(job => job.siteKey && job.unit?.coordinates && contains(job.unit.coordinates));
+  return jobs.filter(job => job.siteCoordinates && contains(job.siteCoordinates));
 }
 
 /** @param {RawJob} job */
@@ -139,9 +158,13 @@ export function jobLocation(job) {
 
 /** @param {RawJob[]} jobs */
 export function siteLocation(jobs) {
-  const addresses = new Set(jobs.map(job => job.unit?.address?.trim()).filter(Boolean));
-  const labels = addresses.size ? addresses : new Set(jobs.map(jobLocation).filter(Boolean));
-  // A shared pin need not have a single address or fallback location.
+  const addresses = jobs.map(job => job.unit?.address?.trim() ?? '').filter(Boolean);
+  const [address] = addresses;
+  if (address) {
+    const key = mapAddressKey(address);
+    return addresses.every(value => mapAddressKey(value) === key) ? address : undefined;
+  }
+  const labels = new Set(jobs.map(jobLocation).filter(Boolean));
   return labels.size === 1 ? labels.values().next().value : undefined;
 }
 
@@ -150,7 +173,7 @@ export function groupSites(jobs) {
   /** @type {Map<string, Site>} */
   const sites = new Map();
   for (const job of jobs) {
-    const pair = job.unit?.coordinates;
+    const pair = job.siteCoordinates;
     if (!job.siteKey || !pair) continue;
     let site = sites.get(job.siteKey);
     if (!site) {
