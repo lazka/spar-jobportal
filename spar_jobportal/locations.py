@@ -71,8 +71,6 @@ def resolve_unit(
     address = entry.get("address")
     if point is not None:
         address = clean_text(override.get("address")) or address
-        if override.get("address"):
-            entry = {}  # The displayed address is from the manual override, not a listing.
     else:
         cached = as_object(geocodes.get(geocode_key(query)))
         if cached.get("status") == "matched":
@@ -82,7 +80,6 @@ def resolve_unit(
         "id": unit_id,
         "name": unit.get("name"),
         "address": address,
-        "addressSourceJobId": entry.get("sourceJobId"),
         "coordinates": point,
     }
 

@@ -19124,5 +19124,39 @@
     "provider": "Nominatim",
     "checkedAtUtc": "2026-11-26T08:04:26.190332+00:00",
     "attribution": "© OpenStreetMap contributors"
+  },
+  "favoritenstrasse 183, 1100 wien, österreich": {
+    "status": "matched",
+    "query": "Favoritenstrasse 183, 1100 Wien, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-26T22:54:12.264222+00:00",
+    "attribution": "© OpenStreetMap contributors",
+    "latitude": 48.1662603,
+    "longitude": 16.3818866,
+    "displayName": "Eurospar, 183, Favoritenstraße, Katastralgemeinde Favoriten, Favoriten, Wien, 1100, Österreich",
+    "osmType": "node",
+    "osmId": 1540354003,
+    "category": "shop",
+    "type": "supermarket",
+    "address": {
+      "shop": "Eurospar",
+      "house_number": "183",
+      "road": "Favoritenstraße",
+      "suburb": "Katastralgemeinde Favoriten",
+      "city_district": "Favoriten",
+      "city": "Wien",
+      "ISO3166-2-lvl4": "AT-9",
+      "postcode": "1100",
+      "country": "Österreich",
+      "country_code": "at"
+    },
+    "license": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright"
+  },
+  "nr. 291, 8151 hitzendorf, österreich": {
+    "status": "not_found",
+    "query": "Nr. 291, 8151 Hitzendorf, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-27T08:37:31.148256+00:00",
+    "attribution": "© OpenStreetMap contributors"
   }
 }

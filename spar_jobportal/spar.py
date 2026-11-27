@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import urllib.parse
+from dataclasses import dataclass
 from html.parser import HTMLParser
 from typing import Any
 
@@ -174,6 +176,10 @@ def convert_job(
     return job
 
 
+class RepeatedJobError(ValueError):
+    """The same job appeared more than once during pagination."""
+
+
 def fetch_jobs(opener: PoliteOpener) -> list[dict[str, Any]]:
     config, search_page = bootstrap(opener)
     jobs: list[dict[str, Any]] = []
@@ -204,9 +210,11 @@ def fetch_jobs(opener: PoliteOpener) -> list[dict[str, Any]]:
             raise ValueError("SPAR's response is missing the title or organization-unit column.")
         for index, record in enumerate(records):
             job_id = as_object(record).get("id")
-            if not str(job_id).isdecimal() or str(job_id) in seen_ids:
-                raise ValueError(
-                    f"Invalid or repeated job ID {job_id} at offset {offset}. Try again."
+            if not str(job_id).isdecimal():
+                raise ValueError(f"Invalid job ID {job_id} at offset {offset}.")
+            if str(job_id) in seen_ids:
+                raise RepeatedJobError(
+                    f"Repeated job ID {job_id} at offset {offset}; refusing to save an incomplete jobs snapshot."
                 )
             seen_ids.add(str(job_id))
             job_links = as_object(links[index]) if index < len(links) else {}
@@ -248,12 +256,18 @@ def fetch_jobs(opener: PoliteOpener) -> list[dict[str, Any]]:
     return jobs
 
 
-class SiteAddressParser(HTMLParser):
-    """Extract the unit-level Ort field, not other free text in the ad."""
+@dataclass
+class SiteDetails:
+    address: str | None = None
+    unit_type: str | None = None
+
+
+class SiteDetailsParser(HTMLParser):
+    """Extract the Ort field and the displayed job ID prefix."""
 
     def __init__(self) -> None:
         super().__init__()
-        self.address = None
+        self.details = SiteDetails()
         self.div_depth = 0
         self.field_depth = None
         self.span_depth = 0
@@ -287,8 +301,7 @@ class SiteAddressParser(HTMLParser):
             self.span_depth -= 1
         if tag == "div":
             if self.field_depth == self.div_depth:
-                if clean_text("".join(self.title)) == "Ort" and self.address is None:
-                    self.address = clean_text("".join(self.value))
+                self.finish_field()
                 self.field_depth = None
                 self.part = None
                 self.part_depth = None
@@ -298,11 +311,20 @@ class SiteAddressParser(HTMLParser):
         if self.part is not None:
             self.part.append(data)
 
+    def finish_field(self) -> None:
+        title = clean_text("".join(self.title))
+        value = clean_text("".join(self.value))
+        if title == "Ort" and self.details.address is None:
+            self.details.address = value
+        elif title is None and value and self.details.unit_type is None:
+            if match := re.fullmatch(r"ID (.+) [0-9]+", value):
+                self.details.unit_type = match[1]
 
-def fetch_site_address(opener: PoliteOpener, job_id: int | str) -> str | None:
+
+def fetch_site_details(opener: PoliteOpener, job_id: int | str) -> SiteDetails:
     url = DETAIL_URL + urllib.parse.quote(str(job_id), safe="")
     response, body = opener.get(url, "text/html,application/xhtml+xml")
-    parser = SiteAddressParser()
+    parser = SiteDetailsParser()
     parser.feed(body.decode(response.headers.get_content_charset() or "utf-8", "replace"))
     parser.close()
-    return parser.address
+    return parser.details

@@ -26,7 +26,7 @@ This prints unresolved units without making network requests. It can still rebui
 
 The [SPAR Austria app's public shops endpoint](https://api-scp.spar-ics.com/mobile/b2c/apps/spar/v1/spar-app-at/v8/public/shops) returns the shop catalogue as JSON. In the top-level `shop` array, match `name` and the full address (`location.address`, `location.post`, `location.city`). The coordinates are `location.geo.lat` and `location.geo.lon`. For example, shop `1277` is SPAR Lech at Omesberg 211, 6764 Lech. The catalogue's `id` and `bnr` identify the **shop**, not the jobs **unit**; keep using `unit.id` as the correction key.
 
-This endpoint is used by the app and may change. It's a manual verification source, not part of `update` or `maintain`. If you use its coordinates, cite the endpoint and shop ID in `source`.
+The updater uses this endpoint for shop types, not coordinates. If you manually use its coordinates, cite the endpoint and shop ID in `source`.
 
 ## 3. Add the correction
 
