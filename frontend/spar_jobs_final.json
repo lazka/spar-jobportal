@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T09:58:38+00:00",
+  "lastUpdated": "2026-11-27T10:20:26+00:00",
   "jobs": [
     {
       "id": 8104,
@@ -231,58 +231,6 @@
         ],
         "relatedShop": {
           "bnr": "4361",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
-      "id": 7891,
-      "title": "Verkäufer Feinkost (m/w/d) 30 Std./Wo - 1140 Wien, Penzingerstraße",
-      "state": "Wien",
-      "location": "Penzingerstraße 129, 1140 Wien",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Feinkost-m-w-d-30-Std-Wo-1140-Wien-Penzingerstra-e/7891",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7891",
-      "unit": {
-        "id": 161231,
-        "name": "SM-04-147 Wien, 14. Bez, Penzingerstr.",
-        "orgType": "SPAR",
-        "address": "Penzingerstraße 129, 1140 Wien",
-        "coordinates": [
-          48.1907442,
-          16.295198
-        ],
-        "relatedShop": {
-          "bnr": "4147",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
-      "id": 7865,
-      "title": "Stellvertretende Filialleitung SPAR (m/w/d) 38,5 Std./Wo - 1140 Wien, Penzingerstraße",
-      "state": "Wien",
-      "location": "Penzingerstraße 129, 1140 Wien",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit",
-      "start": "sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Stellvertretende-Filialleitung-SPAR-m-w-d-38-5-Std-Wo-1140-Wien-Penzingerstra-e/7865",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7865",
-      "unit": {
-        "id": 161231,
-        "name": "SM-04-147 Wien, 14. Bez, Penzingerstr.",
-        "orgType": "SPAR",
-        "address": "Penzingerstraße 129, 1140 Wien",
-        "coordinates": [
-          48.1907442,
-          16.295198
-        ],
-        "relatedShop": {
-          "bnr": "4147",
           "shopType": "SPAR Supermarkt"
         }
       }
@@ -9447,6 +9395,58 @@
       }
     },
     {
+      "id": 8109,
+      "title": "Mitarbeiter Verkauf (m/w/d) 20 Std./Wo",
+      "state": "Oberösterreich",
+      "location": "EUROSPAR 4600 Thalheim bei Wels",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-m-w-d-20-Std-Wo/8109",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8109",
+      "unit": {
+        "id": 161194,
+        "name": "ES1-03-377 Wels, Thalheim",
+        "orgType": "SPAR",
+        "address": "Rodlbergstraße 26, 4600 Wels Thalheim",
+        "coordinates": [
+          48.1527422,
+          14.0333355
+        ],
+        "relatedShop": {
+          "bnr": "3377",
+          "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
+      "id": 8108,
+      "title": "Verkäufer Trockensortiment (m/w/d) 15-30 Std./Wo",
+      "state": "Oberösterreich",
+      "location": "EUROSPAR 4600 Thalheim bei Wels",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-m-w-d-15-30-Std-Wo/8108",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8108",
+      "unit": {
+        "id": 161194,
+        "name": "ES1-03-377 Wels, Thalheim",
+        "orgType": "SPAR",
+        "address": "Rodlbergstraße 26, 4600 Wels Thalheim",
+        "coordinates": [
+          48.1527422,
+          14.0333355
+        ],
+        "relatedShop": {
+          "bnr": "3377",
+          "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
       "id": 8107,
       "title": "Mitarbeiter Feinkost (Brot, Käse & Fisch) (m/w/d), 30 Std./Woche, IM27",
       "state": "Wien",
@@ -13662,32 +13662,6 @@
       }
     },
     {
-      "id": 7848,
-      "title": "Verkäufer Obst und Gemüse (m/w/d) 15-35 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4222 St. Georgen",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Obst-und-Gem-se-m-w-d-15-35-Std-Wo/7848",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7848",
-      "unit": {
-        "id": 150845,
-        "name": "SM2-03-846 St. Georgen Gusen",
-        "orgType": "SPAR",
-        "address": "Wimminger Straße 1, 4222 St. Georgen an der Gusen",
-        "coordinates": [
-          48.2655951,
-          14.4527422
-        ],
-        "relatedShop": {
-          "bnr": "3846",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
       "id": 7847,
       "title": "Verkäufer Feinkost (m/w/d) 20-38,5 Std./Wo - Bruck an der Mur, Bahnhofstraße",
       "state": "Steiermark",
@@ -14935,32 +14909,6 @@
       }
     },
     {
-      "id": 7736,
-      "title": "Mitarbeiter Kassa (m/w/d) 6-10 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4222 St. Georgen/Gusen",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-6-10-Std-Wo/7736",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7736",
-      "unit": {
-        "id": 150845,
-        "name": "SM2-03-846 St. Georgen Gusen",
-        "orgType": "SPAR",
-        "address": "Wimminger Straße 1, 4222 St. Georgen an der Gusen",
-        "coordinates": [
-          48.2655951,
-          14.4527422
-        ],
-        "relatedShop": {
-          "bnr": "3846",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
       "id": 7730,
       "title": "Verkäufer Obst und Gemüse (m/w/d) 15-38,5 Std./Wo",
       "state": "Oberösterreich",
@@ -15165,32 +15113,6 @@
         "relatedShop": {
           "bnr": "2426",
           "shopType": "SPAR Markt"
-        }
-      }
-    },
-    {
-      "id": 7723,
-      "title": "Verkäufer Trockensortiment (m/w/d) 15-38,5 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4203 Altenberg",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-m-w-d-15-38-5-Std-Wo/7723",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7723",
-      "unit": {
-        "id": 151456,
-        "name": "SM3-03-419 Altenberg",
-        "orgType": "SPAR",
-        "address": "Reichenauer Straße 9, 4203 Altenberg",
-        "coordinates": [
-          48.3738429,
-          14.3474321
-        ],
-        "relatedShop": {
-          "bnr": "3419",
-          "shopType": "SPAR Supermarkt"
         }
       }
     },
@@ -16927,32 +16849,6 @@
       }
     },
     {
-      "id": 7447,
-      "title": "Verkäufer Feinkost (m/w/d) 15-30 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4203 Altenberg",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Feinkost-m-w-d-15-30-Std-Wo/7447",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7447",
-      "unit": {
-        "id": 151456,
-        "name": "SM3-03-419 Altenberg",
-        "orgType": "SPAR",
-        "address": "Reichenauer Straße 9, 4203 Altenberg",
-        "coordinates": [
-          48.3738429,
-          14.3474321
-        ],
-        "relatedShop": {
-          "bnr": "3419",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
       "id": 7439,
       "title": "Verkäufer Feinkost (m/w/d) 12-25 Std./Wo",
       "state": "Oberösterreich",
@@ -16974,32 +16870,6 @@
         ],
         "relatedShop": {
           "bnr": "3453",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
-      "id": 7436,
-      "title": "Verkäufer Trockensortiment mit Kassa (m/w/d) 15-25 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4222 St. Georgen/Gusen",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Trockensortiment-mit-Kassa-m-w-d-15-25-Std-Wo/7436",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7436",
-      "unit": {
-        "id": 150845,
-        "name": "SM2-03-846 St. Georgen Gusen",
-        "orgType": "SPAR",
-        "address": "Wimminger Straße 1, 4222 St. Georgen an der Gusen",
-        "coordinates": [
-          48.2655951,
-          14.4527422
-        ],
-        "relatedShop": {
-          "bnr": "3846",
           "shopType": "SPAR Supermarkt"
         }
       }
@@ -17582,32 +17452,6 @@
       }
     },
     {
-      "id": 7291,
-      "title": "Verkäufer Obst und Gemüse (m/w/d) 12-15 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4209 Mittertreffling",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Obst-und-Gem-se-m-w-d-12-15-Std-Wo/7291",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7291",
-      "unit": {
-        "id": 152040,
-        "name": "SM3-03-773 Mittertreffling",
-        "orgType": "SPAR",
-        "address": "Johann-Wöckinger-Straße 7, 4209 Mittertreffling",
-        "coordinates": [
-          48.3375561,
-          14.3688241
-        ],
-        "relatedShop": {
-          "bnr": "3773",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
       "id": 7290,
       "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 15-30 Std./Wo - Schladming",
       "state": "Steiermark",
@@ -18127,32 +17971,6 @@
           12.0537503
         ],
         "relatedShop": null
-      }
-    },
-    {
-      "id": 7118,
-      "title": "Mitarbeiter Kassa (m/w/d) 12-20 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4225 Luftenberg",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-12-20-Std-Wo/7118",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7118",
-      "unit": {
-        "id": 150462,
-        "name": "SM2-03-462 Luftenberg",
-        "orgType": "SPAR",
-        "address": "Oberfeldstraße 2, 4225 Luftenberg",
-        "coordinates": [
-          48.2712526,
-          14.4279915
-        ],
-        "relatedShop": {
-          "bnr": "3462",
-          "shopType": "SPAR Supermarkt"
-        }
       }
     },
     {
@@ -19145,32 +18963,6 @@
         "relatedShop": {
           "bnr": "8500",
           "shopType": "INTERSPAR"
-        }
-      }
-    },
-    {
-      "id": 7004,
-      "title": "Verkäufer Feinkost (m/w/d) 10-25 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4230 Pregarten",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-Feinkost-m-w-d-10-25-Std-Wo/7004",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=7004",
-      "unit": {
-        "id": 150850,
-        "name": "SM2-03-757 Pregarten II",
-        "orgType": "SPAR",
-        "address": "Tragweiner Straße 32, 4230 Pregarten",
-        "coordinates": [
-          48.3532326,
-          14.5335492
-        ],
-        "relatedShop": {
-          "bnr": "3757",
-          "shopType": "SPAR Supermarkt"
         }
       }
     },
@@ -20427,58 +20219,6 @@
         "relatedShop": {
           "bnr": "3348",
           "shopType": "EUROSPAR"
-        }
-      }
-    },
-    {
-      "id": 6791,
-      "title": "Mitarbeiter Verkauf Samstag (m/w/d) 6-9 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4209 Mittertrefflng",
-      "jobField": "Verkauf",
-      "employmentType": "Geringfügig",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-Samstag-m-w-d-6-9-Std-Wo/6791",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=6791",
-      "unit": {
-        "id": 152040,
-        "name": "SM3-03-773 Mittertreffling",
-        "orgType": "SPAR",
-        "address": "Johann-Wöckinger-Straße 7, 4209 Mittertreffling",
-        "coordinates": [
-          48.3375561,
-          14.3688241
-        ],
-        "relatedShop": {
-          "bnr": "3773",
-          "shopType": "SPAR Supermarkt"
-        }
-      }
-    },
-    {
-      "id": 6790,
-      "title": "Mitarbeiter Kassa (m/w/d) 15-25 Std./Wo",
-      "state": "Oberösterreich",
-      "location": "SPAR-Supermarkt 4209 Mittertreffling",
-      "jobField": "Verkauf",
-      "employmentType": "Teilzeit",
-      "start": "ab sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-15-25-Std-Wo/6790",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=6790",
-      "unit": {
-        "id": 152040,
-        "name": "SM3-03-773 Mittertreffling",
-        "orgType": "SPAR",
-        "address": "Johann-Wöckinger-Straße 7, 4209 Mittertreffling",
-        "coordinates": [
-          48.3375561,
-          14.3688241
-        ],
-        "relatedShop": {
-          "bnr": "3773",
-          "shopType": "SPAR Supermarkt"
         }
       }
     },
@@ -30684,6 +30424,32 @@
           13.0680198
         ],
         "relatedShop": null
+      }
+    },
+    {
+      "id": 8111,
+      "title": "Ferialmitarbeiter Verkauf Kassa und Trockensortiment (m/w/d) 25-38,5 Std./Wo",
+      "state": "Oberösterreich",
+      "location": "SPAR-Supermarkt 4971 Aurolzmünster",
+      "jobField": "Verkauf",
+      "employmentType": "Vollzeit/Teilzeit",
+      "start": "7.12.2026",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Ferialmitarbeiter-Verkauf-Kassa-und-Trockensortiment-m-w-d-25-38-5-Std-Wo/8111",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8111",
+      "unit": {
+        "id": 153160,
+        "name": "SM3-03-784 Aurolzmünster",
+        "orgType": "SPAR",
+        "address": "Schärdinger Straße 20, 4971 Aurolzmünster",
+        "coordinates": [
+          48.2514982,
+          13.4536567
+        ],
+        "relatedShop": {
+          "bnr": "3784",
+          "shopType": "SPAR Supermarkt"
+        }
       }
     },
     {
