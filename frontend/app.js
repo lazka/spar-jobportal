@@ -142,8 +142,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   const organisation = createMultiSelect('organisation', 'allOrganisations', refreshFilters);
   const advancedToggle = control('advanced-title', HTMLButtonElement);
   const filters = control('filters', HTMLFormElement);
-  const activeFilterActions = $('active-filter-actions');
-  const resetFilters = control('reset-filters', HTMLButtonElement);
   const filterBar = $('filter-bar');
   const filterPills = $('filter-pills');
   const resetAllFilters = control('reset-all-filters', HTMLButtonElement);
@@ -274,10 +272,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         pills.push({ label: jobLabel(category, value), remove: () => select.remove(value) });
       }
     }
-    activeFilterActions.hidden = !(
-      keyword || state.values().length || employment.values().length || organisation.values().length ||
-      showUnmapped || mapViewCheckbox.checked
-    );
     if (showUnmapped) pills.push({ label: t('unmappedFilter'), remove: () => {
       showUnmapped = false;
       refreshFilters();
@@ -435,18 +429,14 @@ window.addEventListener('DOMContentLoaded', async () => {
     search.focus();
     refreshFilters();
   });
-  filters.addEventListener('reset', () => {
-    if (document.activeElement === resetFilters) advancedToggle.focus();
-    showUnmapped = false;
-    mapViewCheckbox.checked = false;
-    window.clearTimeout(debounce);
-    window.setTimeout(applyFilters, 0);
-  });
   resetAllFilters.addEventListener('click', () => {
     selected = null;
+    showUnmapped = false;
+    mapViewCheckbox.checked = false;
     nearby.reset();
     clearPlaceSelection();
     filters.reset();
+    refreshFilters();
     advancedToggle.focus();
   });
   unmappedButton.addEventListener('click', () => {
