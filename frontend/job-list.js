@@ -57,10 +57,14 @@ function jobCard(job, center, onShowSite, onShare) {
   const orgType = job.unit?.orgType;
   if (job.jobField || orgType) {
     const tags = node('div', '', 'card-tags');
-    if (job.jobField) tags.append(node('span', jobLabel('field', job.jobField), 'tag'));
+    if (job.jobField) {
+      const field = node('span', jobLabel('field', job.jobField), 'tag');
+      field.title = t('jobCategoryTag');
+      tags.append(field);
+    }
     if (orgType) {
-      const organisation = node('span', orgType, 'tag');
-      organisation.classList.add('tag-neutral');
+      const organisation = node('span', orgType, 'tag tag-neutral');
+      organisation.title = t('organisation');
       tags.append(organisation);
     }
     item.append(tags);
