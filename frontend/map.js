@@ -55,15 +55,6 @@ export function createMap(container, onSelectSite) {
     return null;
   }
 
-  /**
-   * @param {number} count
-   * @param {number} size
-   */
-  const pin = (count, size, cluster = false) => {
-    const label = node('span', String(count));
-    return L.divIcon({ html: label, className: cluster ? 'pin cluster' : 'pin', iconSize: [size, size] });
-  };
-
   container.replaceChildren();
   const map = L.map(container, {
     scrollWheelZoom: true, zoomControl: false, zoomSnap: 0, maxZoom: 19, trackResize: false,
@@ -116,12 +107,16 @@ export function createMap(container, onSelectSite) {
     }).catch(error => console.warn('Could not load detailed state boundaries:', error))
       .finally(() => { loadingDetail = false; });
   });
-  /** @type {WeakMap<Marker, number>} */
-  const jobCounts = new WeakMap();
   const clusters = new L.MarkerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 50,
-    iconCreateFunction: group => pin(group.getAllChildMarkers().reduce((sum, marker) => sum + (jobCounts.get(marker) ?? 0), 0), 44, true)
+    iconCreateFunction: group => {
+      const count = group.getChildCount();
+      group.options.title = t('mapClusterLocations', { count });
+      const label = node('span', count.toLocaleString(locale()));
+      label.setAttribute('aria-hidden', 'true');
+      return L.divIcon({ html: label, className: 'map-cluster-marker', iconSize: [44, 44] });
+    },
   }).addTo(map);
 
   /** @type {Map<string, {marker: Marker, translate: () => void}>} */
@@ -158,8 +153,13 @@ export function createMap(container, onSelectSite) {
       const count = site.jobs.length;
       const location = siteLocation(site.jobs);
       const orgType = site.jobs[0]?.unit?.orgType;
-      const marker = L.marker(site.pair, { icon: pin(count, 29) });
-      jobCounts.set(marker, count);
+      const formattedCount = count.toLocaleString(locale());
+      const label = node('span', formattedCount);
+      label.setAttribute('aria-hidden', 'true');
+      const width = Math.max(29, 20 + 7 * formattedCount.length);
+      const marker = L.marker(site.pair, {
+        icon: L.divIcon({ html: label, className: 'map-site-marker', iconSize: [width, 29] })
+      });
       const popup = node('div');
       const heading = node('div', '', 'map-popup-heading');
       const headingText = node('strong', location);
@@ -203,6 +203,7 @@ export function createMap(container, onSelectSite) {
       // Keep the close button clear of the layer switch on narrow maps.
       marker.bindPopup(popup, { autoPanPaddingTopLeft: [5, 70] });
       const translate = () => {
+        label.textContent = count.toLocaleString(locale());
         marker.options.title = `${location || t('mapSite')}: ${t('jobCount', { count })}`;
         marker.getElement()?.setAttribute('title', marker.options.title);
         if (!location) headingText.textContent = t('jobsAtSite');
@@ -323,6 +324,7 @@ export function createMap(container, onSelectSite) {
 
   function translate() {
     for (const entry of markers.values()) entry.translate();
+    clusters.refreshClusters();
     const attribution = attributionHtml();
     for (const [layer, label] of /** @type {const} */ ([[street, 'streetMap'], [aerial, 'aerialMap']])) {
       layers.removeLayer(layer).addBaseLayer(layer, t(label));

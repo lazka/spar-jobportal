@@ -627,19 +627,21 @@ body:has(.map-fullscreen[open]) { overflow: hidden; }
 .share-link input { flex: 1 1 9rem; min-width: 0; }
 .share-copy-status:not(:empty) { margin-top: .5rem; font-size: .875rem; }
 #more { display: block; margin-top: .75rem; }
-.pin span {
+.map-cluster-marker,
+.map-site-marker {
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 100%;
   background: var(--spar-red);
   color: var(--white);
   border: 2px solid var(--white);
-  border-radius: 50%;
   box-shadow: 0 1px 6px #32000066;
   font: 700 .75rem/1 var(--font);
 }
-.pin.cluster span { font-size: .875rem; }
+.map-cluster-marker {
+  border-radius: 50%;
+  font-size: .875rem;
+}
+.map-site-marker { border-radius: 7px; }
 
 .site-footer { background: var(--spar-green); color: var(--white); }
 .footer-inner {
