@@ -1479,11 +1479,6 @@
     "address": "Villacherstraße 383, 9710 Feistritz / Drau, Österreich",
     "orgType": "SPAR"
   },
-  "161195": {
-    "name": "ES2-03-376 Wels, Gartenstadt",
-    "address": "Schmierndorfer Straße 35, 4600 Wels, Österreich",
-    "orgType": "SPAR"
-  },
   "150212": {
     "name": "ES1-03-519 Attnang, Salzburger Str.",
     "address": "Salzburger Str. 79, 4800 Attnang Puchheim, Österreich",
@@ -3601,6 +3596,136 @@
   "151407": {
     "name": "ZN02-810 EH Außendienst",
     "address": "Madersbacherweg 11, 6300 Wörgl, Österreich",
+    "orgType": "SPAR"
+  },
+  "150202": {
+    "name": "SM3-03-715 Vöcklabruck",
+    "address": "Anton Hesch Gasse 2, 4840 Vöcklabruck, Österreich",
+    "orgType": "SPAR"
+  },
+  "160679": {
+    "name": "TANN-03-0381 Fil. ISP Linz IM45",
+    "address": "Industriezeile , 4020 Linz, Österreich",
+    "orgType": "SPAR"
+  },
+  "161254": {
+    "name": "SM3-03-765 Windischgarsten",
+    "address": "Phyrnstraße 5, 4580 Windischgarsten, Österreich",
+    "orgType": "SPAR"
+  },
+  "161246": {
+    "name": "SM-03-459 Waidhofen/Ybbs, Freisinger",
+    "address": "Freisinger Berg 6, 3340 Waidhofen/Ybbs, Österreich",
+    "orgType": "SPAR"
+  },
+  "161763": {
+    "name": "SM3-03-486 Schärding-Allerheiligen",
+    "address": "Passauerstr. 35, 4780 Allerheiligen, Österreich",
+    "orgType": "SPAR"
+  },
+  "151323": {
+    "name": "ES1-03-536 Peuerbach",
+    "address": "Bruck an der Aschach 34, 4722 Peuerbach, Österreich",
+    "orgType": "SPAR"
+  },
+  "151702": {
+    "name": "ES1-03-527 Ottnang",
+    "address": "Falkenweg 9, 4901 Ottnang im Hausruck, Österreich",
+    "orgType": "SPAR"
+  },
+  "152172": {
+    "name": "SM2-03-615 Neukirchen am Walde",
+    "address": "Hauserstraße 15A, 4724 Neukirchen am Walde, Österreich",
+    "orgType": "SPAR"
+  },
+  "161190": {
+    "name": "ES1-03-413 Linz, Wiener Straße",
+    "address": "Wiener Straße 428, 4030 Linz, Österreich",
+    "orgType": "SPAR"
+  },
+  "153391": {
+    "name": "SM2-03-767 Linz, Urfahr/Dornach",
+    "address": "Johann-Wilhelm-Klein Straße 13, 4040 Linz/Urfahr, Österreich",
+    "orgType": "SPAR"
+  },
+  "161249": {
+    "name": "SM-03-452 Linz, Magdalena",
+    "address": "Griesmayrstraße 21, 4040 Linz/Urfahr, Österreich",
+    "orgType": "SPAR"
+  },
+  "151371": {
+    "name": "SM2-03-613 SPAR AG SM Kronstorf",
+    "address": "Eisenstraße 45, 4484 Kronstorf, Österreich",
+    "orgType": "SPAR"
+  },
+  "161259": {
+    "name": "SM-03-742 Gmunden, Esplanade",
+    "address": "Esplanade Kursaalgasse 5, 4810 Gmunden, Österreich",
+    "orgType": "SPAR"
+  },
+  "161243": {
+    "name": "ES2-03-467 Freistadt, Maderspergerstraße",
+    "address": "Maderspergerstraße 3, 4240 Freistadt, Österreich",
+    "orgType": "SPAR"
+  },
+  "160672": {
+    "name": "TANN-04-0203 Fil. ISP Krems IM52",
+    "address": "Wienerstraße 91, 3500 Krems, Österreich",
+    "orgType": "INTERSPAR"
+  },
+  "154903": {
+    "name": "TANN-04-0774 Traisenpark IM28",
+    "address": "Dr. Adolf Schärf S. 5, 3107 St.Pölten, Österreich",
+    "orgType": "SPAR"
+  },
+  "150416": {
+    "name": "SM3-04-7639 SPAR AG SM 63 Ternitz",
+    "address": "Werkstraße 9, 2630 Ternitz, Österreich",
+    "orgType": "SPAR"
+  },
+  "150648": {
+    "name": "SM3-04-223 Wr.Neustadt, Fischauerstr.",
+    "address": "Fischauergasse 58B, 2700 Wr. Neustadt, Österreich",
+    "orgType": "SPAR"
+  },
+  "153064": {
+    "name": "ES1-04-683 Melk, Löwenpark",
+    "address": "Löwenpark 1/15, 3390 Melk, Österreich",
+    "orgType": "SPAR"
+  },
+  "161206": {
+    "name": "SM1-02-133 Fügen, Zillerweg",
+    "address": "Zillerweg 174, 6263 Fügen, Österreich",
+    "orgType": "SPAR"
+  },
+  "152827": {
+    "name": "ES1-02-484 Obertrum, Reintalstraße",
+    "address": "Reintalstraße 5, 5162 Obertrum, Österreich",
+    "orgType": "SPAR"
+  },
+  "160262": {
+    "name": "EH02-0164 BUCHAUER JOHANN",
+    "address": "Nr. 87, 6212 Maurach, Österreich",
+    "orgType": "SPAR"
+  },
+  "150919": {
+    "name": "SM1-02-482 ES St. Johann i. PG",
+    "address": "Hans-Kappacher-Str. 1, 5600 St. Johann i. Pg, Österreich",
+    "orgType": "SPAR"
+  },
+  "162456": {
+    "name": "MARIANDL / SES Center Management GmbH",
+    "address": "Wienerstraße 91, 3500 Krems, Österreich",
+    "orgType": "SES / Shopping Center"
+  },
+  "151571": {
+    "name": "SYS04-7625 Miksche eU",
+    "address": "Hadres 375, 2651 Hadres, Österreich",
+    "orgType": "SPAR"
+  },
+  "161195": {
+    "name": "ES2-03-376 Wels, Gartenstadt",
+    "address": "Schmierndorfer Straße 35, 4600 Wels, Österreich",
     "orgType": "SPAR"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T09:28:36+00:00",
+  "lastUpdated": "2026-11-27T09:49:06+00:00",
   "jobs": [
     {
       "id": 8104,
@@ -3020,29 +3020,6 @@
           "bnr": "4961",
           "shopType": "SPAR Gourmet"
         }
-      }
-    },
-    {
-      "id": 2964,
-      "title": "Verkäufer:in im Wurstbereich",
-      "state": "Oberösterreich",
-      "location": "Haid",
-      "jobField": "Verkauf",
-      "employmentType": "Vollzeit/Teilzeit",
-      "start": "per sofort",
-      "quickApplyWithoutCV": null,
-      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Verk-ufer-in-im-Wurstbereich/2964",
-      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=2964",
-      "unit": {
-        "id": 165513,
-        "name": "MM 06 Maximarkt Haid",
-        "orgType": "Maximarkt",
-        "address": "Ikea-Platz 2, 4053 Haid, Österreich",
-        "coordinates": [
-          48.1956739,
-          14.2466052
-        ],
-        "relatedShop": null
       }
     },
     {
@@ -9343,6 +9320,84 @@
       }
     },
     {
+      "id": 8118,
+      "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 20-30 Std./Wo - SPAR Miksche - 2651 Hadres, Nr. 375",
+      "state": "Niederösterreich",
+      "location": "Hadres 375, 2651 Hadres",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-Feinkost-m-w-d-20-30-Std-Wo-SPAR-Miksche-2651-Hadres-Nr-375/8118",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8118",
+      "unit": {
+        "id": 151571,
+        "name": "SYS04-7625 Miksche eU",
+        "orgType": "SPAR",
+        "address": "Hadres 375, 2061 Hadres, Österreich",
+        "coordinates": [
+          48.70618797983461,
+          16.138393126849785
+        ],
+        "relatedShop": {
+          "bnr": "7625",
+          "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
+      "id": 8116,
+      "title": "Mitarbeiter Kassa (m/w/d) 9 Std./Wo - SPAR Miksche 2651 Hadres, Nr. 375",
+      "state": "Niederösterreich",
+      "location": "2651  Hadres, Hadres, 375,",
+      "jobField": "Verkauf",
+      "employmentType": "Geringfügig",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-9-Std-Wo-SPAR-Miksche-2651-Hadres-Nr-375/8116",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8116",
+      "unit": {
+        "id": 151571,
+        "name": "SYS04-7625 Miksche eU",
+        "orgType": "SPAR",
+        "address": "Hadres 375, 2061 Hadres, Österreich",
+        "coordinates": [
+          48.70618797983461,
+          16.138393126849785
+        ],
+        "relatedShop": {
+          "bnr": "7625",
+          "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
+      "id": 8115,
+      "title": "Mitarbeiter Verkauf Feinkost (m/w/d) 9 Std./Wo - SPAR Miksche - 2651 Hadres, Nr. 375",
+      "state": "Niederösterreich",
+      "location": "Hadres 375, 2651 Hadres",
+      "jobField": "Verkauf",
+      "employmentType": "Geringfügig",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Verkauf-Feinkost-m-w-d-9-Std-Wo-SPAR-Miksche-2651-Hadres-Nr-375/8115",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8115",
+      "unit": {
+        "id": 151571,
+        "name": "SYS04-7625 Miksche eU",
+        "orgType": "SPAR",
+        "address": "Hadres 375, 2061 Hadres, Österreich",
+        "coordinates": [
+          48.70618797983461,
+          16.138393126849785
+        ],
+        "relatedShop": {
+          "bnr": "7625",
+          "shopType": "EUROSPAR"
+        }
+      }
+    },
+    {
       "id": 8113,
       "title": "Mitarbeiter Administration (m/w/d) 25 Std./Wo",
       "state": "Salzburg",
@@ -9389,6 +9444,107 @@
           "bnr": "5217",
           "shopType": "SPAR Supermarkt"
         }
+      }
+    },
+    {
+      "id": 8107,
+      "title": "Mitarbeiter Feinkost (Brot, Käse & Fisch) (m/w/d), 30 Std./Woche, IM27",
+      "state": "Wien",
+      "location": "Gudrunstr., 102, 1100, Wien, Österreich",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": false,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Feinkost-Brot-K-se-Fisch-m-w-d-30-Std-Woche-IM27/8107",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8107",
+      "unit": {
+        "id": 154914,
+        "name": "IM27 Gudrunstr.",
+        "orgType": "INTERSPAR",
+        "address": "Gudrunstr. 102, 1100 Wien, Österreich",
+        "coordinates": [
+          48.1775005,
+          16.3853984
+        ],
+        "relatedShop": {
+          "bnr": "8270",
+          "shopType": "INTERSPAR"
+        }
+      }
+    },
+    {
+      "id": 8106,
+      "title": "Mitarbeiter Kassa (m/w/d), Geringfügig, IM27",
+      "state": "Wien",
+      "location": "Gudrunstr., 102, 1100, Wien, Österreich",
+      "jobField": "Verkauf",
+      "employmentType": "Geringfügig",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": false,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-Geringf-gig-IM27/8106",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8106",
+      "unit": {
+        "id": 154914,
+        "name": "IM27 Gudrunstr.",
+        "orgType": "INTERSPAR",
+        "address": "Gudrunstr. 102, 1100 Wien, Österreich",
+        "coordinates": [
+          48.1775005,
+          16.3853984
+        ],
+        "relatedShop": {
+          "bnr": "8270",
+          "shopType": "INTERSPAR"
+        }
+      }
+    },
+    {
+      "id": 8105,
+      "title": "Mitarbeiter Kassa (m/w/d), 20 Std./Woche, IM27",
+      "state": "Wien",
+      "location": "Gudrunstr., 102, 1100, Wien, Österreich",
+      "jobField": "Verkauf",
+      "employmentType": "Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": false,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Mitarbeiter-Kassa-m-w-d-20-Std-Woche-IM27/8105",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8105",
+      "unit": {
+        "id": 154914,
+        "name": "IM27 Gudrunstr.",
+        "orgType": "INTERSPAR",
+        "address": "Gudrunstr. 102, 1100 Wien, Österreich",
+        "coordinates": [
+          48.1775005,
+          16.3853984
+        ],
+        "relatedShop": {
+          "bnr": "8270",
+          "shopType": "INTERSPAR"
+        }
+      }
+    },
+    {
+      "id": 8103,
+      "title": "Abwäscher für unser maxi.restaurant (m/w/d), 30 - 40 Std./Woche, MM07G",
+      "state": "Salzburg",
+      "location": "Kaprunerstraße, 50, 5671, Bruck an der Glocknerstraße, Österreich",
+      "jobField": "Gastronomie",
+      "employmentType": "Vollzeit/Teilzeit",
+      "start": "ab sofort",
+      "quickApplyWithoutCV": null,
+      "detailUrl": "https://jobs.spar.at/SparCareers/job-detail/Abw-scher-f-r-unser-maxi-restaurant-m-w-d-30-40-Std-Woche-MM07G/8103",
+      "applicationUrl": "https://jobs.spar.at/de_DE/SparCareers/ApplicationEvaluation?jobId=8103",
+      "unit": {
+        "id": 155387,
+        "name": "MM07-100 Restaurant",
+        "orgType": "Maximarkt",
+        "address": "Kaprunerstraße 50, 5671 Bruck an der Glocknerstraße, Österreich",
+        "coordinates": [
+          47.2875765,
+          12.8114383
+        ],
+        "relatedShop": null
       }
     },
     {
@@ -32698,8 +32854,8 @@
       "unit": {
         "id": 151407,
         "name": "ZN02-810 EH Außendienst",
-        "orgType": null,
-        "address": "Spar-Straße 1, 6300 Wörgl",
+        "orgType": "SPAR",
+        "address": "Madersbacherweg 11, 6300 Wörgl, Österreich",
         "coordinates": [
           47.4866959,
           12.0537503
@@ -33125,8 +33281,8 @@
       "unit": {
         "id": 150202,
         "name": "SM3-03-715 Vöcklabruck",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Anton Hesch Gasse 2, 4840 Vöcklabruck, Österreich",
         "coordinates": [
           48.0087171,
           13.6514307
@@ -33961,8 +34117,8 @@
       "unit": {
         "id": 160679,
         "name": "TANN-03-0381 Fil. ISP Linz IM45",
-        "orgType": null,
-        "address": "Industriezeile 76, 4020 Linz",
+        "orgType": "SPAR",
+        "address": "Industriezeile , 4020 Linz, Österreich",
         "coordinates": [
           48.3001042,
           14.3189787
@@ -34036,8 +34192,8 @@
       "unit": {
         "id": 161254,
         "name": "SM3-03-765 Windischgarsten",
-        "orgType": null,
-        "address": "Pyhrnstraße 5, 4580 Windischgarsten",
+        "orgType": "SPAR",
+        "address": "Phyrnstraße 5, 4580 Windischgarsten, Österreich",
         "coordinates": [
           47.7208602,
           14.330223
@@ -34322,8 +34478,8 @@
       "unit": {
         "id": 161246,
         "name": "SM-03-459 Waidhofen/Ybbs, Freisinger",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Freisinger Berg 6, 3340 Waidhofen/Ybbs, Österreich",
         "coordinates": [
           47.9609264,
           14.7739534
@@ -34400,8 +34556,8 @@
       "unit": {
         "id": 150202,
         "name": "SM3-03-715 Vöcklabruck",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Anton Hesch Gasse 2, 4840 Vöcklabruck, Österreich",
         "coordinates": [
           48.0087171,
           13.6514307
@@ -34998,8 +35154,8 @@
       "unit": {
         "id": 161763,
         "name": "SM3-03-486 Schärding-Allerheiligen",
-        "orgType": null,
-        "address": "Passauer Straße 35, 4780 Schärding",
+        "orgType": "SPAR",
+        "address": "Passauerstr. 35, 4780 Allerheiligen, Österreich",
         "coordinates": [
           48.4644861,
           13.4357396
@@ -35284,8 +35440,8 @@
       "unit": {
         "id": 151323,
         "name": "ES1-03-536 Peuerbach",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Bruck an der Aschach 34, 4722 Peuerbach, Österreich",
         "coordinates": [
           48.3327198,
           13.7712316
@@ -35362,8 +35518,8 @@
       "unit": {
         "id": 151702,
         "name": "ES1-03-527 Ottnang",
-        "orgType": null,
-        "address": "Falkenweg 9, 4901 Ottnang am Hausruck",
+        "orgType": "SPAR",
+        "address": "Falkenweg 9, 4901 Ottnang im Hausruck, Österreich",
         "coordinates": [
           48.0951512,
           13.6607291
@@ -35466,8 +35622,8 @@
       "unit": {
         "id": 152172,
         "name": "SM2-03-615 Neukirchen am Walde",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Hauserstraße 15A, 4724 Neukirchen am Walde, Österreich",
         "coordinates": [
           48.4063832,
           13.776295
@@ -35856,8 +36012,8 @@
       "unit": {
         "id": 161190,
         "name": "ES1-03-413 Linz, Wiener Straße",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Wiener Straße 428, 4030 Linz, Österreich",
         "coordinates": [
           48.2520368,
           14.3218394
@@ -36090,8 +36246,8 @@
       "unit": {
         "id": 153391,
         "name": "SM2-03-767 Linz, Urfahr/Dornach",
-        "orgType": null,
-        "address": "Johann-Wilhelm-Klein-Straße 13, 4040 Linz",
+        "orgType": "SPAR",
+        "address": "Johann-Wilhelm-Klein Straße 13, 4040 Linz/Urfahr, Österreich",
         "coordinates": [
           48.3312099,
           14.3126223
@@ -36168,8 +36324,8 @@
       "unit": {
         "id": 161249,
         "name": "SM-03-452 Linz, Magdalena",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Griesmayrstraße 21, 4040 Linz/Urfahr, Österreich",
         "coordinates": [
           48.3338981,
           14.2997299
@@ -36350,8 +36506,8 @@
       "unit": {
         "id": 151371,
         "name": "SM2-03-613 SPAR AG SM Kronstorf",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Eisenstraße 45, 4484 Kronstorf, Österreich",
         "coordinates": [
           48.1689186,
           14.4726314
@@ -36558,8 +36714,8 @@
       "unit": {
         "id": 161259,
         "name": "SM-03-742 Gmunden, Esplanade",
-        "orgType": null,
-        "address": "Kursaalgasse 5, 4810 Gmunden",
+        "orgType": "SPAR",
+        "address": "Esplanade Kursaalgasse 5, 4810 Gmunden, Österreich",
         "coordinates": [
           47.9174388,
           13.798295
@@ -36662,8 +36818,8 @@
       "unit": {
         "id": 161243,
         "name": "ES2-03-467 Freistadt, Maderspergerstraße",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Maderspergerstraße 3, 4240 Freistadt, Österreich",
         "coordinates": [
           48.4967117,
           14.5052571
@@ -37283,8 +37439,8 @@
       "unit": {
         "id": 160672,
         "name": "TANN-04-0203 Fil. ISP Krems IM52",
-        "orgType": null,
-        "address": null,
+        "orgType": "INTERSPAR",
+        "address": "Wienerstraße 91, 3500 Krems, Österreich",
         "coordinates": [
           48.416758,
           15.620327
@@ -37329,8 +37485,8 @@
       "unit": {
         "id": 154903,
         "name": "TANN-04-0774 Traisenpark IM28",
-        "orgType": null,
-        "address": "Dr. Adolf-Schärf-Straße 5, 3107 St. Pölten",
+        "orgType": "SPAR",
+        "address": "Dr. Adolf Schärf S. 5, 3107 St.Pölten, Österreich",
         "coordinates": [
           48.2232393,
           15.6384765
@@ -37424,8 +37580,8 @@
       "unit": {
         "id": 150416,
         "name": "SM3-04-7639 SPAR AG SM 63 Ternitz",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Werkstraße 9, 2630 Ternitz, Österreich",
         "coordinates": [
           47.71399,
           16.03921
@@ -37658,8 +37814,8 @@
       "unit": {
         "id": 150648,
         "name": "SM3-04-223 Wr.Neustadt, Fischauerstr.",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Fischauergasse 58B, 2700 Wr. Neustadt, Österreich",
         "coordinates": [
           47.8221097,
           16.2368436
@@ -37736,8 +37892,8 @@
       "unit": {
         "id": 153064,
         "name": "ES1-04-683 Melk, Löwenpark",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Löwenpark 1/15, 3390 Melk, Österreich",
         "coordinates": [
           48.224477,
           15.338546
@@ -39165,8 +39321,8 @@
       "unit": {
         "id": 153064,
         "name": "ES1-04-683 Melk, Löwenpark",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Löwenpark 1/15, 3390 Melk, Österreich",
         "coordinates": [
           48.224477,
           15.338546
@@ -39217,8 +39373,8 @@
       "unit": {
         "id": 161206,
         "name": "SM1-02-133 Fügen, Zillerweg",
-        "orgType": null,
-        "address": "Zillerweg 6, 6263 Fügen",
+        "orgType": "SPAR",
+        "address": "Zillerweg 174, 6263 Fügen, Österreich",
         "coordinates": [
           47.3487214,
           11.8517798
@@ -39243,8 +39399,8 @@
       "unit": {
         "id": 161206,
         "name": "SM1-02-133 Fügen, Zillerweg",
-        "orgType": null,
-        "address": "Zillerweg 6, 6263 Fügen",
+        "orgType": "SPAR",
+        "address": "Zillerweg 174, 6263 Fügen, Österreich",
         "coordinates": [
           47.3487214,
           11.8517798
@@ -39503,8 +39659,8 @@
       "unit": {
         "id": 152827,
         "name": "ES1-02-484 Obertrum, Reintalstraße",
-        "orgType": null,
-        "address": "Reintalstraße 1, 5162 Obertrum",
+        "orgType": "SPAR",
+        "address": "Reintalstraße 5, 5162 Obertrum, Österreich",
         "coordinates": [
           47.9319874,
           13.08038
@@ -39555,8 +39711,8 @@
       "unit": {
         "id": 160262,
         "name": "EH02-0164 BUCHAUER JOHANN",
-        "orgType": null,
-        "address": "Dorfstraße 40, 6212 Maurach",
+        "orgType": "SPAR",
+        "address": "Nr. 87, 6212 Maurach, Österreich",
         "coordinates": [
           47.423714,
           11.7479447
@@ -39682,8 +39838,8 @@
       "unit": {
         "id": 150919,
         "name": "SM1-02-482 ES St. Johann i. PG",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Hans-Kappacher-Str. 1, 5600 St. Johann i. Pg, Österreich",
         "coordinates": [
           47.3467109,
           13.2014871
@@ -39734,8 +39890,8 @@
       "unit": {
         "id": 150919,
         "name": "SM1-02-482 ES St. Johann i. PG",
-        "orgType": null,
-        "address": null,
+        "orgType": "SPAR",
+        "address": "Hans-Kappacher-Str. 1, 5600 St. Johann i. Pg, Österreich",
         "coordinates": [
           47.3467109,
           13.2014871
@@ -39786,8 +39942,8 @@
       "unit": {
         "id": 162456,
         "name": "MARIANDL / SES Center Management GmbH",
-        "orgType": null,
-        "address": null,
+        "orgType": "SES / Shopping Center",
+        "address": "Wienerstraße 91, 3500 Krems, Österreich",
         "coordinates": [
           48.417341,
           15.620187

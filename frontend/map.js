@@ -1,5 +1,6 @@
 import { node } from './dom.js';
-import { jobLabel, t } from './i18n.js';
+import { jobLabel, locale, t } from './i18n.js';
+import { summarizeSiteJobs } from './jobs.js';
 
 /** @import { Coordinates, Site } from './jobs.js' */
 /** @import { Circle, LatLngBoundsLiteral, Marker } from 'leaflet' */
@@ -82,28 +83,36 @@ export function createMap(container, onSelectSite) {
       const count = site.jobs.length;
       const addresses = [...new Set(site.jobs.map(job => job.unit?.address).filter(Boolean))];
       const address = addresses.length === 1 ? addresses[0] : undefined;
+      const orgType = site.jobs[0]?.unit?.orgType;
       const marker = L.marker(site.pair, { icon: pin(count, 29) });
       jobCounts.set(marker, count);
       const popup = node('div');
-      const heading = node('strong', address ?? undefined);
-      if (address) heading.lang = 'de-AT';
+      const heading = node('div', '', 'map-popup-heading');
+      const headingText = node('strong', address ?? undefined);
+      if (address) headingText.lang = 'de-AT';
+      heading.append(headingText);
+      if (orgType && site.jobs.every(job => job.unit?.orgType === orgType)) {
+        heading.append(' ', node('span', orgType, 'tag tag-neutral'));
+      }
       popup.append(heading);
       const preview = node('ul', '', 'map-job-preview');
-      const translateJobs = site.jobs.slice(0, 2).map(job => {
+      preview.setAttribute('role', 'list');
+      const { rows, remaining } = summarizeSiteJobs(site.jobs);
+      const translateJobs = rows.map(({ field, times, count: occurrences }) => {
         const item = node('li');
-        const title = node('span', job.title || undefined);
-        if (job.title) title.lang = 'de-AT';
-        const schedule = node('span', '', 'muted');
-        item.append(title, schedule);
+        const category = node('span', '', 'map-job-category');
+        const schedule = times.length ? node('span', '', 'muted map-job-schedule') : null;
+        if (field || !schedule || occurrences > 1) item.append(category);
+        if (schedule) item.append(schedule);
         preview.append(item);
         return () => {
-          if (!job.title) title.textContent = t('untitledJob');
-          schedule.textContent = job.times.length
-            ? ` · ${job.times.map(value => jobLabel('employment', value)).join(' / ')}` : '';
+          const prefix = occurrences > 1 ? `${occurrences.toLocaleString(locale())}×` : '';
+          const label = field ? jobLabel('field', field) : schedule ? '' : t('untitledJob');
+          category.textContent = [prefix, label].filter(Boolean).join(' ');
+          if (schedule) schedule.textContent = times.map(value => jobLabel('employment', value)).join(' / ');
         };
       });
       popup.append(preview);
-      const remaining = count - translateJobs.length;
       const more = remaining > 0 ? node('div', '', 'muted map-job-more') : null;
       if (more) popup.append(more);
       const button = node('button', '', 'button-primary');
@@ -115,7 +124,7 @@ export function createMap(container, onSelectSite) {
       const translate = () => {
         marker.options.title = `${address || t('mapSite')}: ${t('jobCount', { count })}`;
         marker.getElement()?.setAttribute('title', marker.options.title);
-        if (!address) heading.textContent = t('jobsAtSite');
+        if (!address) headingText.textContent = t('jobsAtSite');
         for (const translateJob of translateJobs) translateJob();
         if (more) more.textContent = t('moreJobsAtSite', { count: remaining });
         button.textContent = t('showJobsAtSite', { count });

@@ -19158,5 +19158,12 @@
     "provider": "Nominatim",
     "checkedAtUtc": "2026-11-27T08:37:31.148256+00:00",
     "attribution": "© OpenStreetMap contributors"
+  },
+  "hadres 375, 2651 hadres, österreich": {
+    "status": "not_specific",
+    "query": "Hadres 375, 2651 Hadres, Österreich",
+    "provider": "Nominatim",
+    "checkedAtUtc": "2026-11-27T09:48:40.000881+00:00",
+    "attribution": "© OpenStreetMap contributors"
   }
 }

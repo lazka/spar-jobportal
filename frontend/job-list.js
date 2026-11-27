@@ -28,7 +28,7 @@ function jobLink(url, label) {
 }
 
 /** @param {string} pathData */
-function actionIcon(pathData) {
+function cardIcon(pathData) {
   const ns = 'http://www.w3.org/2000/svg';
   const icon = document.createElementNS(ns, 'svg');
   icon.setAttribute('viewBox', '0 0 24 24');
@@ -53,18 +53,32 @@ function actionIcon(pathData) {
  */
 function jobCard(job, center, onShowSite, onShare) {
   const item = node('li', '', 'card');
-  if (job.jobField) item.append(node('span', jobLabel('field', job.jobField), 'tag'));
+  const orgType = job.unit?.orgType;
+  if (job.jobField || orgType) {
+    const tags = node('div', '', 'card-tags');
+    if (job.jobField) tags.append(node('span', jobLabel('field', job.jobField), 'tag'));
+    if (orgType) {
+      const organisation = node('span', orgType, 'tag');
+      organisation.classList.add('tag-neutral');
+      tags.append(organisation);
+    }
+    item.append(tags);
+  }
   const title = node('h3', job.title || t('untitledJob'));
   if (job.title) title.lang = 'de-AT';
-  const location = node('p', job.location ? `${t('workLocation')} ` : t('noWorkLocation'));
+  const location = node('p', '', 'card-location');
+  const locationText = node('span', job.location || t('noWorkLocation'));
   if (job.location) {
-    const sourceLocation = node('span', job.location);
-    sourceLocation.lang = 'de-AT';
-    location.append(sourceLocation);
+    locationText.lang = 'de-AT';
+    location.append(cardIcon('M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0ZM15 10a3 3 0 1 1-6 0 3 3 0 1 1 6 0Z'));
   }
+  location.append(locationText);
   item.append(title, location);
   /** @type {(string | HTMLElement)[]} */
-  const details = [jobLabel('state', job.state), job.times.map(value => jobLabel('employment', value)).join(' / ')].filter(Boolean);
+  const details = [];
+  if (job.times.length) {
+    details.push(job.times.map(value => jobLabel('employment', value)).join(' / '));
+  }
   if (job.start) {
     const sourceStart = node('span', job.start);
     sourceStart.lang = 'de-AT';
@@ -76,11 +90,13 @@ function jobCard(job, center, onShowSite, onShare) {
     details.push(t('distance', { distance: Math.round(distanceKm(center, job.unit.coordinates)) }));
   }
   if (details.length) {
-    const metadata = node('p', '', 'muted');
-    details.forEach((detail, index) => {
-      if (index > 0) metadata.append(' · ');
-      metadata.append(detail);
-    });
+    const metadata = node('ul', '', 'card-details');
+    metadata.setAttribute('role', 'list');
+    for (const detail of details) {
+      const entry = node('li');
+      entry.append(detail);
+      metadata.append(entry);
+    }
     item.append(metadata);
   }
   const actions = node('div', '', 'actions');
@@ -97,7 +113,7 @@ function jobCard(job, center, onShowSite, onShare) {
     button.type = 'button';
     button.title = t('showSite');
     button.setAttribute('aria-label', button.title);
-    button.append(actionIcon('M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM12 2v5m0 10v5M2 12h5m10 0h5'));
+    button.append(cardIcon('M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM12 2v5m0 10v5M2 12h5m10 0h5'));
     button.addEventListener('click', () => onShowSite(siteKey));
     actions.append(button);
   }
@@ -107,7 +123,7 @@ function jobCard(job, center, onShowSite, onShare) {
     button.title = t('shareJob');
     button.setAttribute('aria-label', button.title);
     button.setAttribute('aria-haspopup', 'dialog');
-    button.append(actionIcon('M18 2a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM6 9a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM18 16a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM8.6 10.5l6.8-4M8.6 13.5l6.8 4'));
+    button.append(cardIcon('M18 2a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM6 9a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM18 16a3 3 0 1 1 0 6 3 3 0 1 1 0-6ZM8.6 10.5l6.8-4M8.6 13.5l6.8 4'));
     button.addEventListener('click', () => {
       button.focus();
       void onShare(posting.href, job.title);

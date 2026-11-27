@@ -144,3 +144,18 @@ export function groupSites(jobs) {
   }
   return sites;
 }
+
+/** @param {Job[]} jobs */
+export function summarizeSiteJobs(jobs) {
+  /** @type {Map<string, {field: string | null, times: string[], count: number}>} */
+  const groups = new Map();
+  for (const job of jobs) {
+    const field = job.jobField || null;
+    const key = JSON.stringify([field, [...new Set(job.times)].sort()]);
+    const group = groups.get(key);
+    if (group) group.count++;
+    else groups.set(key, { field, times: job.times, count: 1 });
+  }
+  const rows = Array.from(groups.values()).slice(0, 4);
+  return { rows, remaining: jobs.length - rows.reduce((sum, row) => sum + row.count, 0) };
+}

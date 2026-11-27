@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs, UNKNOWN_ORG_TYPE } from '../jobs.js';
+import { filterJobs, filterJobsInMapView, formatDatasetAge, groupSites, normalizeJobDataset, normalizeJobs, summarizeSiteJobs, UNKNOWN_ORG_TYPE } from '../jobs.js';
 
 /** @type {import('../jobs.js').Coordinates} */
 const vienna = [48.2082, 16.3738];
@@ -150,4 +150,28 @@ await test('site grouping combines jobs with shared coordinates and skips unmapp
   assert.ok(key);
   assert.deepEqual(sites.get(key), { pair: vienna, jobs: [jobs[0], extra] });
   assert.equal(jobs[2].siteKey, null);
+});
+
+await test('site previews group matching categories and hours before limiting to four rows', () => {
+  const gastronomy = { jobField: 'Gastronomie', employmentType: 'Vollzeit' };
+  const hidden = { jobField: 'IT', employmentType: 'Teilzeit' };
+  const openings = normalizeJobs([
+    gastronomy,
+    { ...gastronomy, employmentType: 'Teilzeit' },
+    { jobField: 'Verkauf', employmentType: 'Vollzeit / Teilzeit' },
+    { jobField: 'Lager' },
+    hidden,
+    gastronomy,
+    { jobField: 'Verkauf', employmentType: 'Teilzeit / Vollzeit' },
+    hidden,
+  ]);
+  assert.deepEqual(summarizeSiteJobs(openings), {
+    rows: [
+      { field: 'Gastronomie', times: ['Vollzeit'], count: 2 },
+      { field: 'Gastronomie', times: ['Teilzeit'], count: 1 },
+      { field: 'Verkauf', times: ['Vollzeit', 'Teilzeit'], count: 2 },
+      { field: 'Lager', times: [], count: 1 },
+    ],
+    remaining: 2,
+  });
 });
