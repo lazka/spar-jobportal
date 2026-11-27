@@ -65,16 +65,20 @@ await test('radius search excludes distant jobs and jobs without coordinates', (
   assert.deepEqual(filterJobs(jobs, { center: vienna, radiusKm: 200 }), jobs.slice(0, 2));
 });
 
-await test('radius results are closest first, preserving the original order for ties', () => {
+await test('jobs without a radius search are sorted by numeric ID, highest first', () => {
+  const openings = normalizeJobs([{ id: 9 }, { id: 100 }, { id: 20 }]);
+  assert.deepEqual(filterJobs(openings, {}), [openings[1], openings[2], openings[0]]);
+});
+
+await test('radius results are closest first, with higher job IDs first at equal distance', () => {
   const nearby = normalizeJobs([
-    { title: 'Farther', unit: { coordinates: [48.3, 16.37] } },
-    { title: 'Closest first', unit: { coordinates: vienna } },
-    { title: 'Between', unit: { coordinates: [48.24, 16.37] } },
-    { title: 'Closest second', unit: { coordinates: vienna } },
+    { id: 100, unit: { coordinates: [48.3, 16.37] } },
+    { id: 9, unit: { coordinates: vienna } },
+    { id: 80, unit: { coordinates: [48.24, 16.37] } },
+    { id: 20, unit: { coordinates: vienna } },
   ]);
   assert.deepEqual(filterJobs(nearby, { center: vienna, radiusKm: 30 }),
-    [nearby[1], nearby[3], nearby[2], nearby[0]]);
-  assert.deepEqual(filterJobs(nearby, {}), nearby);
+    [nearby[3], nearby[1], nearby[2], nearby[0]]);
 });
 
 await test('the map view uses SPAR site coordinates and excludes unmapped jobs', () => {

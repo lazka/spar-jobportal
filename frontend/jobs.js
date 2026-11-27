@@ -2,6 +2,7 @@
 /** @typedef {{address?: string | null, name?: string | null, coordinates?: Coordinates | null, orgType?: string | null}} JobUnit */
 /**
  * @typedef {object} RawJob
+ * @property {number} [id]
  * @property {string | null} [title]
  * @property {string | null} [location]
  * @property {string | string[] | null} [state]
@@ -97,6 +98,14 @@ export async function loadJobs() {
 }
 
 /**
+ * @param {Job} a
+ * @param {Job} b
+ */
+function compareJobIdsDescending(a, b) {
+  return (b.id ?? 0) - (a.id ?? 0);
+}
+
+/**
  * @param {Job[]} jobs
  * @param {{query?: string, states?: string[], fields?: string[], workingHours?: string[], orgTypes?: string[], center?: Coordinates, radiusKm?: number}} filters
  */
@@ -111,13 +120,14 @@ export function filterJobs(jobs, { query = '', states = [], fields = [], working
     (!selectedHours.size || job.workingHours.some(time => selectedHours.has(time))) &&
     (!selectedOrgTypes.size || selectedOrgTypes.has(job.orgType)) &&
     words.every(word => job.searchTitle.includes(word)));
-  if (!center) return matches;
+  if (!center) return matches.sort(compareJobIdsDescending);
 
   return matches.flatMap(job => {
     if (!job.siteKey || !job.unit?.coordinates) return [];
     const distance = distanceKm(center, job.unit.coordinates);
     return distance <= radiusKm ? [{ job, distance }] : [];
-  }).sort((a, b) => a.distance - b.distance).map(({ job }) => job);
+  }).sort((a, b) => a.distance - b.distance || compareJobIdsDescending(a.job, b.job))
+    .map(({ job }) => job);
 }
 
 /**
