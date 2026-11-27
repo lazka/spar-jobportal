@@ -300,9 +300,16 @@ window.addEventListener('DOMContentLoaded', async () => {
       button.setAttribute('aria-label', t('removeFilter', { filter: label }));
       const text = document.createElement('span');
       text.textContent = label;
-      const icon = document.createElement('span');
-      icon.textContent = '×';
+      const svg = 'http://www.w3.org/2000/svg';
+      const icon = document.createElementNS(svg, 'svg');
+      icon.setAttribute('viewBox', '0 0 16 16');
       icon.setAttribute('aria-hidden', 'true');
+      const cross = document.createElementNS(svg, 'path');
+      cross.setAttribute('d', 'm4 4 8 8m0-8-8 8');
+      cross.setAttribute('stroke', 'currentColor');
+      cross.setAttribute('stroke-width', '2');
+      cross.setAttribute('stroke-linecap', 'round');
+      icon.append(cross);
       button.append(text, icon);
       button.addEventListener('click', () => {
         remove();
