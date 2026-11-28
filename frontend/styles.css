@@ -114,13 +114,14 @@ button, select { cursor: pointer; }
 .advanced-toggle {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: .5rem;
   width: 100%;
   padding: .4rem 1rem;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: start;
 }
+.advanced-toggle:enabled:hover { background: transparent; }
+.advanced-toggle:enabled:hover span { text-decoration: underline; text-underline-offset: .18em; }
 .advanced-toggle[aria-expanded="true"] { border-radius: 0; }
 .advanced-toggle:focus-visible { outline-offset: -3px; }
 .reset-filters { text-decoration: underline; text-underline-offset: .18em; }
